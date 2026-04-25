@@ -44,3 +44,4 @@ Thumbs.db
 # Pi session files (local only)
 *.jsonl
 !Pi-Agent-Optimus.jsonl
+node_modules/

@@ -1,6 +1,6 @@
 # Pi Agent Optimus
 
-**System Architecture:** [ARCHITECTURE.svg](ARCHITECTURE.svg) | [Pi vs Optimus](PI-ARCHITECTURE.svg)
+![Architecture](ARCHITECTURE.png)
 
 *A memory-augmented, production-ready coding agent with autonomous workflow and continuous learning.*
 
