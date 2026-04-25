@@ -1,0 +1,259 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', monospace; }
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#fbbf24"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#020617"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  
+  <!-- Header -->
+  <circle cx="50" cy="30" r="6" fill="#22d3ee">
+    <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="70" y="35" fill="#22d3ee" font-size="14" font-weight="700">Pi Agent Optimus Architecture</text>
+  <text x="70" y="55" fill="#94a3b8" font-size="10">Memory-augmented coding agent with autonomous workflow and continuous learning</text>
+  
+  <!-- User Input -->
+  <rect x="30" y="100" width="100" height="50" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="80" y="125" fill="white" font-size="10" font-weight="600" text-anchor="middle">User</text>
+  <text x="80" y="140" fill="#94a3b8" font-size="8" text-anchor="middle">Input</text>
+
+  <!-- Pi Core -->
+  <rect x="180" y="85" width="160" height="80" rx="8" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="2"/>
+  <text x="260" y="110" fill="#22d3ee" font-size="10" font-weight="600" text-anchor="middle">Pi Core Agent</text>
+  <text x="260" y="128" fill="#94a3b8" font-size="8" text-anchor="middle">Session Manager</text>
+  <text x="260" y="142" fill="#94a3b8" font-size="8" text-anchor="middle">Skills Loader</text>
+  <text x="260" y="156" fill="#94a3b8" font-size="8" text-anchor="middle">Tool Executor</text>
+
+  <!-- Arrow: User to Pi -->
+  <line x1="130" y1="125" x2="178" y2="125" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- AI Provider -->
+  <rect x="180" y="20" width="160" height="50" rx="6" fill="rgba(120,53,15,0.4)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="260" y="42" fill="white" font-size="10" font-weight="600" text-anchor="middle">AI Provider</text>
+  <text x="260" y="58" fill="#94a3b8" font-size="8" text-anchor="middle">Claude / GPT / Gemini</text>
+
+  <!-- Arrow: Pi to Provider -->
+  <line x1="260" y1="85" x2="260" y2="72" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <!-- Memory Layer -->
+  <rect x="380" y="20" width="320" height="160" rx="8" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="392" y="40" fill="#a78bfa" font-size="9" font-weight="600">Memory Layer</text>
+
+  <rect x="390" y="50" width="90" height="40" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="435" y="70" fill="white" font-size="8" font-weight="600" text-anchor="middle">user-memory</text>
+  <text x="435" y="82" fill="#94a3b8" font-size="7" text-anchor="middle">Cross-project</text>
+
+  <rect x="490" y="50" width="90" height="40" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="535" y="70" fill="white" font-size="8" font-weight="600" text-anchor="middle">skill-memory</text>
+  <text x="535" y="82" fill="#94a3b8" font-size="7" text-anchor="middle">Learned patterns</text>
+
+  <rect x="590" y="50" width="90" height="40" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="635" y="70" fill="white" font-size="8" font-weight="600" text-anchor="middle">session.jsonl</text>
+  <text x="635" y="82" fill="#94a3b8" font-size="7" text-anchor="middle">Conversation</text>
+
+  <rect x="390" y="100" width="90" height="40" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="435" y="120" fill="white" font-size="8" font-weight="600" text-anchor="middle">.pi/memory</text>
+  <text x="435" y="132" fill="#94a3b8" font-size="7" text-anchor="middle">Project</text>
+
+  <rect x="490" y="100" width="90" height="40" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="535" y="120" fill="white" font-size="8" font-weight="600" text-anchor="middle">ci-alerts</text>
+  <text x="535" y="132" fill="#94a3b8" font-size="7" text-anchor="middle">CI failures</text>
+
+  <rect x="590" y="100" width="90" height="40" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="635" y="120" fill="white" font-size="8" font-weight="600" text-anchor="middle">processes</text>
+  <text x="635" y="132" fill="#94a3b8" font-size="7" text-anchor="middle">Running</text>
+
+  <!-- Arrow: Pi to Memory -->
+  <line x1="340" y1="110" x2="378" y2="100" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+  <!-- Skills Layer -->
+  <rect x="380" y="200" width="320" height="180" rx="8" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="392" y="220" fill="#34d399" font-size="9" font-weight="600">Skills Layer</text>
+
+  <rect x="390" y="230" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="435" y="248" fill="white" font-size="7" font-weight="600" text-anchor="middle">startup</text>
+  <text x="435" y="260" fill="#94a3b8" font-size="6" text-anchor="middle">Auto-load prefs</text>
+
+  <rect x="490" y="230" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="535" y="248" fill="white" font-size="7" font-weight="600" text-anchor="middle">skill-evolution</text>
+  <text x="535" y="260" fill="#94a3b8" font-size="6" text-anchor="middle">Learn patterns</text>
+
+  <rect x="590" y="230" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="635" y="248" fill="white" font-size="7" font-weight="600" text-anchor="middle">context-memory</text>
+  <text x="635" y="260" fill="#94a3b8" font-size="6" text-anchor="middle">Project state</text>
+
+  <rect x="390" y="278" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="435" y="296" fill="white" font-size="7" font-weight="600" text-anchor="middle">project-health</text>
+  <text x="435" y="308" fill="#94a3b8" font-size="6" text-anchor="middle">CI, deps</text>
+
+  <rect x="490" y="278" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="535" y="296" fill="white" font-size="7" font-weight="600" text-anchor="middle">ci-watcher</text>
+  <text x="535" y="308" fill="#94a3b8" font-size="6" text-anchor="middle">Monitor CI</text>
+
+  <rect x="590" y="278" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="635" y="296" fill="white" font-size="7" font-weight="600" text-anchor="middle">system-awareness</text>
+  <text x="635" y="308" fill="#94a3b8" font-size="6" text-anchor="middle">Processes</text>
+
+  <rect x="390" y="326" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="435" y="344" fill="white" font-size="7" font-weight="600" text-anchor="middle">auto-test</text>
+  <text x="435" y="356" fill="#94a3b8" font-size="6" text-anchor="middle">Testing</text>
+
+  <rect x="490" y="326" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="535" y="344" fill="white" font-size="7" font-weight="600" text-anchor="middle">file-watcher</text>
+  <text x="535" y="356" fill="#94a3b8" font-size="6" text-anchor="middle">Watch mode</text>
+
+  <rect x="590" y="326" width="90" height="38" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="635" y="344" fill="white" font-size="7" font-weight="600" text-anchor="middle">auto-recover</text>
+  <text x="635" y="356" fill="#94a3b8" font-size="6" text-anchor="middle">Error fix</text>
+
+  <!-- Arrow: Pi to Skills -->
+  <line x1="340" y1="125" x2="378" y2="290" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- External Services -->
+  <rect x="730" y="20" width="160" height="140" rx="8" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="742" y="40" fill="#fbbf24" font-size="9" font-weight="600">External Services</text>
+
+  <rect x="740" y="50" width="70" height="35" rx="4" fill="rgba(120,53,15,0.5)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="775" y="68" fill="white" font-size="7" font-weight="600" text-anchor="middle">GitHub CLI</text>
+  <text x="775" y="80" fill="#94a3b8" font-size="6" text-anchor="middle">CI runs</text>
+
+  <rect x="820" y="50" width="70" height="35" rx="4" fill="rgba(120,53,15,0.5)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="855" y="68" fill="white" font-size="7" font-weight="600" text-anchor="middle">Databases</text>
+  <text x="855" y="80" fill="#94a3b8" font-size="6" text-anchor="middle">Postgres</text>
+
+  <rect x="740" y="95" width="70" height="35" rx="4" fill="rgba(120,53,15,0.5)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="775" y="113" fill="white" font-size="7" font-weight="600" text-anchor="middle">Windows API</text>
+  <text x="775" y="125" fill="#94a3b8" font-size="6" text-anchor="middle">Notify</text>
+
+  <rect x="820" y="95" width="70" height="35" rx="4" fill="rgba(120,53,15,0.5)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="855" y="113" fill="white" font-size="7" font-weight="600" text-anchor="middle">watchdog</text>
+  <text x="855" y="125" fill="#94a3b8" font-size="6" text-anchor="middle">File watch</text>
+
+  <!-- Additional Skills -->
+  <rect x="730" y="170" width="160" height="85" rx="8" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="742" y="190" fill="#34d399" font-size="9" font-weight="600">More Skills</text>
+
+  <rect x="740" y="200" width="70" height="30" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="775" y="218" fill="white" font-size="6" font-weight="600" text-anchor="middle">architecture-diagram</text>
+
+  <rect x="820" y="200" width="70" height="30" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="855" y="218" fill="white" font-size="6" font-weight="600" text-anchor="middle">scheduler</text>
+
+  <rect x="740" y="240" width="70" height="30" rx="4" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="775" y="258" fill="white" font-size="6" font-weight="600" text-anchor="middle">db-introspect</text>
+
+  <!-- Project Context -->
+  <rect x="730" y="270" width="440" height="170" rx="8" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="742" y="290" fill="#fb7185" font-size="9" font-weight="600">Project Context</text>
+
+  <rect x="740" y="300" width="100" height="40" rx="4" fill="rgba(136,19,55,0.5)" stroke="#fb7185" stroke-width="1"/>
+  <text x="790" y="318" fill="white" font-size="7" font-weight="600" text-anchor="middle">Git Repo</text>
+  <text x="790" y="332" fill="#94a3b8" font-size="6" text-anchor="middle">Code & commits</text>
+
+  <rect x="850" y="300" width="100" height="40" rx="4" fill="rgba(136,19,55,0.5)" stroke="#fb7185" stroke-width="1"/>
+  <text x="900" y="318" fill="white" font-size="7" font-weight="600" text-anchor="middle">package.json</text>
+  <text x="900" y="332" fill="#94a3b8" font-size="6" text-anchor="middle">Dependencies</text>
+
+  <rect x="960" y="300" width="100" height="40" rx="4" fill="rgba(136,19,55,0.5)" stroke="#fb7185" stroke-width="1"/>
+  <text x="1010" y="318" fill="white" font-size="7" font-weight="600" text-anchor="middle">Test Files</text>
+  <text x="1010" y="332" fill="#94a3b8" font-size="6" text-anchor="middle">Vitest/Jest</text>
+
+  <rect x="740" y="350" width="100" height="40" rx="4" fill="rgba(136,19,55,0.5)" stroke="#fb7185" stroke-width="1"/>
+  <text x="790" y="368" fill="white" font-size="7" font-weight="600" text-anchor="middle">Docker Compose</text>
+  <text x="790" y="382" fill="#94a3b8" font-size="6" text-anchor="middle">Services</text>
+
+  <rect x="850" y="350" width="100" height="40" rx="4" fill="rgba(136,19,55,0.5)" stroke="#fb7185" stroke-width="1"/>
+  <text x="900" y="368" fill="white" font-size="7" font-weight="600" text-anchor="middle">Config Files</text>
+  <text x="900" y="382" fill="#94a3b8" font-size="6" text-anchor="middle">tsconfig</text>
+
+  <rect x="960" y="350" width="100" height="40" rx="4" fill="rgba(136,19,55,0.5)" stroke="#fb7185" stroke-width="1"/>
+  <text x="1010" y="368" fill="white" font-size="7" font-weight="600" text-anchor="middle">Dockerfiles</text>
+  <text x="1010" y="382" fill="#94a3b8" font-size="6" text-anchor="middle">Container</text>
+
+  <rect x="740" y="400" width="320" height="30" rx="4" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1"/>
+  <text x="750" y="418" fill="#94a3b8" font-size="7">Dev Servers: Vite, Next.js, Cargo (tracked via system-awareness)</text>
+
+  <!-- Arrows: Skills to External -->
+  <line x1="680" y1="250" x2="728" y2="70" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrow-amber)"/>
+  <line x1="680" y1="300" x2="728" y2="120" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrow-amber)"/>
+  <line x1="680" y1="350" x2="728" y2="210" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrow-amber)"/>
+
+  <!-- Legend -->
+  <rect x="30" y="460" width="1140" height="120" rx="8" fill="rgba(15,23,42,0.5)" stroke="#1e293b"/>
+  <text x="45" y="485" fill="white" font-size="10" font-weight="600">Legend</text>
+  
+  <rect x="45" y="495" width="16" height="10" rx="2" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="67" y="503" fill="#94a3b8" font-size="8">Frontend / User</text>
+  
+  <rect x="45" y="515" width="16" height="10" rx="2" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="67" y="523" fill="#94a3b8" font-size="8">Skills / Capabilities</text>
+  
+  <rect x="45" y="535" width="16" height="10" rx="2" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="67" y="543" fill="#94a3b8" font-size="8">Memory / Storage</text>
+  
+  <rect x="200" y="495" width="16" height="10" rx="2" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="222" y="503" fill="#94a3b8" font-size="8">External Services</text>
+  
+  <rect x="200" y="515" width="16" height="10" rx="2" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1"/>
+  <text x="222" y="523" fill="#94a3b8" font-size="8">Project Context</text>
+  
+  <rect x="200" y="535" width="16" height="10" rx="2" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="222" y="543" fill="#94a3b8" font-size="8">User Input</text>
+  
+  <rect x="350" y="495" width="16" height="10" rx="2" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="372" y="503" fill="#94a3b8" font-size="8">Skill Layer Boundary</text>
+  
+  <rect x="350" y="515" width="16" height="10" rx="2" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="372" y="523" fill="#94a3b8" font-size="8">Memory Layer Boundary</text>
+
+  <!-- Summary Cards -->
+  <rect x="30" y="600" width="370" height="130" rx="8" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="45" y="625" fill="#a78bfa" font-size="10" font-weight="600">Memory Layer</text>
+  <text x="45" y="650" fill="#94a3b8" font-size="8">• user-memory.md: Cross-project</text>
+  <text x="45" y="665" fill="#94a3b8" font-size="8">• skill-memory.json: Learned patterns</text>
+  <text x="45" y="680" fill="#94a3b8" font-size="8">• session.jsonl: Conversation history</text>
+  <text x="45" y="695" fill="#94a3b8" font-size="8">• .pi/memory.md: Project conventions</text>
+  <text x="45" y="710" fill="#94a3b8" font-size="8">• ci-alerts.json: CI failure tracking</text>
+
+  <rect x="415" y="600" width="370" height="130" rx="8" fill="rgba(6,78,59,0.2)" stroke="#34d399" stroke-width="1"/>
+  <text x="430" y="625" fill="#34d399" font-size="10" font-weight="600">Skills (12 total)</text>
+  <text x="430" y="650" fill="#94a3b8" font-size="8">• startup: Auto-load preferences</text>
+  <text x="430" y="665" fill="#94a3b8" font-size="8">• skill-evolution: Learn from experience</text>
+  <text x="430" y="680" fill="#94a3b8" font-size="8">• project-health: CI/deps/tests</text>
+  <text x="430" y="695" fill="#94a3b8" font-size="8">• system-awareness: Track processes</text>
+  <text x="430" y="710" fill="#94a3b8" font-size="8">• auto-test + file-watcher: Test on save</text>
+
+  <rect x="800" y="600" width="370" height="130" rx="8" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="815" y="625" fill="#fbbf24" font-size="10" font-weight="600">External Integrations</text>
+  <text x="815" y="650" fill="#94a3b8" font-size="8">• GitHub CLI: CI status monitoring</text>
+  <text x="815" y="665" fill="#94a3b8" font-size="8">• PostgreSQL/MySQL: Schema introspection</text>
+  <text x="815" y="680" fill="#94a3b8" font-size="8">• Windows API: Toast notifications</text>
+  <text x="815" y="695" fill="#94a3b8" font-size="8">• watchdog: File change detection</text>
+  <text x="815" y="710" fill="#94a3b8" font-size="8">• Claude API: AI inference</text>
+
+  <!-- Footer -->
+  <text x="600" y="780" fill="#475569" font-size="10" text-anchor="middle">Pi Agent Optimus • github.com/benclawbot/Pi-Agent-Optimus • Based on badlogic/pi-mono</text>
+</svg>
