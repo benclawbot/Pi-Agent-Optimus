@@ -135,7 +135,12 @@ You: learn from this - always validate inputs before processing
 
 ## Architecture
 
-See [ARCHITECTURE.html](ARCHITECTURE.html) for the complete system architecture diagram (open in browser).
+See these diagrams for the complete system architecture:
+
+| Diagram | Description |
+|---------|-------------|
+| [PI-ARCHITECTURE.html](PI-ARCHITECTURE.html) | Pi vs Pi Agent Optimus comparison (open in browser) |
+| [ARCHITECTURE.html](ARCHITECTURE.html) | Pi Agent Optimus internal architecture |
 
 ## File Structure
 
