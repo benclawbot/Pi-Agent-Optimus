@@ -1,0 +1,30 @@
+{
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-sonnet-4-20250514",
+  "defaultThinkingLevel": "medium",
+  "theme": "dark",
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 16384,
+    "keepRecentTokens": 20000
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 3
+  },
+  "skills": [
+    "~/.pi/agent/skills/startup",
+    "~/.pi/agent/skills/skill-evolution",
+    "~/.pi/agent/skills/project-health",
+    "~/.pi/agent/skills/system-awareness",
+    "~/.pi/agent/skills/auto-test",
+    "~/.pi/agent/skills/file-watcher",
+    "~/.pi/agent/skills/ci-watcher",
+    "~/.pi/agent/skills/architecture-diagram",
+    "~/.pi/agent/skills/scheduler",
+    "~/.pi/agent/skills/db-introspect",
+    "~/.pi/agent/skills/auto-recover",
+    "~/.pi/agent/skills/context-memory"
+  ],
+  "enableSkillCommands": true
+}
