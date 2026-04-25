@@ -1,0 +1,50 @@
+{
+  "defaultProvider": "minimax",
+  "defaultModel": "MiniMax-M2.5",
+  "defaultThinkingLevel": "off",
+  "hideThinkingBlock": true,
+  "theme": "dark",
+  "shellCommandPrefix": "shopt -s expand_aliases",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  },
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 8192,
+    "keepRecentTokens": 15000
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 2
+  },
+  "skills": [
+    "~/.pi/agent/skills/startup",
+    "~/.pi/agent/skills/context-memory",
+    "~/.pi/agent/skills/skill-evolution",
+    "~/.pi/agent/skills/quick-ref",
+    "~/.pi/agent/skills/write-todos"
+  ],
+  "enableSkillCommands": true,
+  "extensions": [
+    "+extensions/btw/index.ts",
+    "+extensions/status/index.ts",
+    "+extensions/cmux/index.ts",
+    "+extensions/reload/index.ts",
+    "+extensions/auto-commit/index.ts",
+    "+extensions/commit-review/index.ts",
+    "+extensions/compact-tools/index.ts",
+    "+extensions/todos/index.ts",
+    "+extensions/telegram/index.ts"
+  ],
+  "lastChangelogVersion": "0.70.2"
+}
