@@ -21,40 +21,44 @@ Pi Agent Optimus extends the base Pi installation with:
 9. **Scheduling** - Sets reminders and notifications
 10. **CI Watching** - Monitors pipelines and alerts on failures
 
-## Quick Start
-
-### Prerequisites
-
-- Node.js 18+ installed
-- Git installed
-- An AI provider API key (Anthropic, OpenAI, etc.)
-- Windows (tested), macOS/Linux should work similarly
-
-### Installation
+## Quick Start (One Command)
 
 ```bash
-# Clone the repository
-git clone https://github.com/YOUR_USER/Pi-Agent-Optimus.git ~/Pi-Agent-Optimus
-
-# Run the setup script
+# Clone and run setup - that's it!
+git clone https://github.com/benclawbot/Pi-Agent-Optimus.git ~/Pi-Agent-Optimus
 cd ~/Pi-Agent-Optimus
 ./setup.sh
 ```
 
-Or manually:
+The setup script will:
+1. Check and install Node.js if needed
+2. Install Pi coding agent
+3. Install all 12 enhanced skills
+4. Configure your preferences
+5. Install Python dependencies
+6. Guide you through API key setup
+
+## Manual Installation
+
+If you prefer to install manually:
 
 ```bash
-# Copy skills to your Pi skills directory
-cp -r skills/* ~/.pi/agent/skills/
+# 1. Install Node.js from https://nodejs.org
 
-# Copy settings
-cp settings.json ~/.pi/agent/settings.json
+# 2. Install Pi
+npm install -g @mariozechner/pi-coding-agent
 
-# Copy user memory template
-cp user-memory.md ~/.pi/user-memory.md
+# 3. Clone and copy files
+git clone https://github.com/benclawbot/Pi-Agent-Optimus.git ~/Pi-Agent-Optimus
+cp -r ~/Pi-Agent-Optimus/skills/* ~/.pi/agent/skills/
+cp ~/Pi-Agent-Optimus/settings.json ~/.pi/agent/
+cp ~/Pi-Agent-Optimus/user-memory.md ~/.pi/user-memory.md
+
+# 4. Install Python dependencies (optional)
+pip install watchdog psycopg2-binary pymysql
 ```
 
-### Configuration
+## Configuration
 
 1. **Configure your AI provider** - Follow [Pi's provider setup](https://github.com/badlogic/pi-mono)
 
@@ -131,7 +135,7 @@ You: learn from this - always validate inputs before processing
 
 ## Architecture
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for the complete system architecture diagram.
+See [ARCHITECTURE.html](ARCHITECTURE.html) for the complete system architecture diagram (open in browser).
 
 ## File Structure
 
