@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 730">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
       <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
@@ -239,6 +239,6 @@
   <text x="815" y="648" fill="#94a3b8" font-size="7" font-family="sans-serif">- Windows API: Toast notifications</text>
   <text x="815" y="662" fill="#94a3b8" font-size="7" font-family="sans-serif">- watchdog: File change detection</text>
 
-  <!-- Footer -->
+  <!-- Footer - bottom of image -->
   <text x="600" y="720" fill="#475569" font-size="9" text-anchor="middle" font-family="sans-serif">github.com/benclawbot/Pi-Agent-Optimus</text>
 </svg>
