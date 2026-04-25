@@ -1,6 +1,8 @@
 # Pi Agent Optimus
 
-A memory-augmented, production-ready configuration of the [Pi coding agent](https://github.com/badlogic/pi-mono) with enhanced capabilities for autonomous workflow, continuous learning, and system awareness.
+[![Architecture Diagram](ARCHITECTURE.svg)](ARCHITECTURE.svg)
+
+*A memory-augmented, production-ready coding agent with autonomous workflow and continuous learning.*
 
 ## What is Pi?
 
@@ -114,7 +116,7 @@ python ~/.pi/agent/skills/file-watcher/scripts/watch.py run --dir src
 ### Generate Architecture Diagram
 ```
 You: Create architecture diagram for a web app with React + Node.js + PostgreSQL
-→ Generates architecture-diagram.html
+→ Generates architecture-diagram.html or SVG output
 ```
 
 ### Set a Reminder
@@ -139,7 +141,8 @@ See these diagrams for the complete system architecture:
 
 | Diagram | Description |
 |---------|-------------|
-| [PI-ARCHITECTURE.html](PI-ARCHITECTURE.html) | Pi vs Pi Agent Optimus comparison (open in browser) |
+| [ARCHITECTURE.svg](ARCHITECTURE.svg) | Pi Agent Optimus internal architecture |
+| [PI-ARCHITECTURE.svg](PI-ARCHITECTURE.svg) | Pi vs Pi Agent Optimus comparison |
 | [ARCHITECTURE.html](ARCHITECTURE.html) | Pi Agent Optimus internal architecture |
 
 ## File Structure
