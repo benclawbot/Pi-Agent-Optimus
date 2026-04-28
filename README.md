@@ -35,7 +35,7 @@ cd ~/Pi-Agent-Optimus
 The setup script will:
 1. Check and install Node.js if needed
 2. Install Pi coding agent
-3. Install all 12 enhanced skills
+3. Install all 28 enhanced skills
 4. Configure your preferences
 5. Install Python dependencies
 6. Guide you through API key setup
@@ -86,6 +86,7 @@ pip install watchdog psycopg2-binary pymysql
 
 ## Skills Overview
 
+### Core Skills (12)
 | Skill | Purpose | Trigger |
 |-------|---------|---------|
 | `startup` | Load user preferences | Auto at startup |
@@ -100,6 +101,26 @@ pip install watchdog psycopg2-binary pymysql
 | `db-introspect` | Query database schemas | "show tables" |
 | `auto-recover` | Diagnose/fix errors | "fix this error" |
 | `context-memory` | Project conventions | "remember this" |
+
+### Enhanced Skills (16)
+| Skill | Purpose | Trigger |
+|-------|---------|---------|
+| `proactive-context` | Load vault context at startup | Auto at startup |
+| `quick-context` | Wikilink-style `[[context]]` retrieval | `[[...]]` anywhere |
+| `skill-chain` | Auto-chain related skills | Auto-triggered |
+| `improvement-tracker` | Track top 30 agent improvements | "improvements", "pending fixes" |
+| `task-continuity` | Track multi-session tasks | "continue", "what was I doing" |
+| `decision-tracker` | Persist decisions to decisions.md | "decided", "agreed on" |
+| `daily-standup` | Generate daily standup summary | "standup", "daily" |
+| `quick-project-switch` | Instant project switch | `[[goto project-name]]` |
+| `task-linker` | Link tasks across conversations | "continue", "link to previous" |
+| `intent-classifier` | Auto-detect intent and route skills | Auto-triggered |
+| `memory-summarizer` | Rich session summaries | `[[summarize]]`, "what did we discover" |
+| `tech-stack-detector` | Auto-detect stack and trigger skills | Auto at project open |
+| `skill-marketplace` | Index of all available skills | "what skills", "marketplace" |
+| `skill-memory-sharing` | Cross-skill memory sharing | Auto-triggered |
+| `chain-of-thought` | Show reasoning before acting | "why", "how", "reasoning" |
+| `task-memory` | Track current task across sessions | "current task", "what am I working on" |
 
 ## Usage Examples
 
@@ -168,7 +189,22 @@ Pi-Agent-Optimus/
 │   ├── scheduler/              # Reminders
 │   ├── db-introspect/          # Database schemas
 │   ├── auto-recover/           # Error diagnosis
-│   └── context-memory/         # Project conventions
+│   ├── context-memory/         # Project conventions
+│   ├── proactive-context/      # Load vault context at startup
+│   ├── quick-context/          # Wikilink-style [[...]] retrieval
+│   ├── skill-chain/           # Auto-chain related skills
+│   ├── improvement-tracker/    # Track top 30 improvements
+│   ├── task-continuity/       # Multi-session task tracking
+│   ├── decision-tracker/       # Persist decisions
+│   ├── daily-standup/         # Daily standup generator
+│   ├── quick-project-switch/  # Instant project switch
+│   ├── task-linker/           # Link tasks across conversations
+│   ├── intent-classifier/     # Auto-detect and route intent
+│   ├── memory-summarizer/     # Rich session summaries
+│   ├── tech-stack-detector/   # Auto-detect tech stack
+│   ├── skill-marketplace/     # Skill index and marketplace
+│   ├── skill-memory-sharing/  # Cross-skill memory sharing
+│   └── chain-of-thought/      # Show reasoning before acting
 └── scripts/
     └── install-dependencies.sh # Optional deps installer
 ```

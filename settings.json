@@ -24,7 +24,22 @@
     "~/.pi/agent/skills/scheduler",
     "~/.pi/agent/skills/db-introspect",
     "~/.pi/agent/skills/auto-recover",
-    "~/.pi/agent/skills/context-memory"
+    "~/.pi/agent/skills/context-memory",
+    "~/.pi/agent/skills/proactive-context",
+    "~/.pi/agent/skills/quick-context",
+    "~/.pi/agent/skills/skill-chain",
+    "~/.pi/agent/skills/improvement-tracker",
+    "~/.pi/agent/skills/task-continuity",
+    "~/.pi/agent/skills/decision-tracker",
+    "~/.pi/agent/skills/daily-standup",
+    "~/.pi/agent/skills/quick-project-switch",
+    "~/.pi/agent/skills/task-linker",
+    "~/.pi/agent/skills/intent-classifier",
+    "~/.pi/agent/skills/memory-summarizer",
+    "~/.pi/agent/skills/tech-stack-detector",
+    "~/.pi/agent/skills/skill-marketplace",
+    "~/.pi/agent/skills/skill-memory-sharing",
+    "~/.pi/agent/skills/chain-of-thought"
   ],
   "enableSkillCommands": true
 }
