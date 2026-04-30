@@ -6,39 +6,86 @@
     "apiProvider": "minimax",
     "apiBaseUrl": "https://api.minimax.chat/v1"
   },
-  "evaluation": {
-    "nightlySchedule": "0 3 * * *",
-    "onDemandCommand": "pi-eval run",
-    "maxTasksPerRun": 40,
-    "syntheticCount": 20,
-    "historicalCount": 20,
+  "benchmark": {
+    "suiteName": "pi-agent-optimus-benchmark",
+    "taskCount": 50,
+    "categories": ["coding", "reasoning", "summarization", "tool-usage", "open-ended"],
     "timeoutSeconds": 300,
-    "baselineRuns": 10
+    "warmupRuns": 3
   },
-  "metrics": {
-    "codeQuality": {
-      "weight": 0.4,
-      "subMetrics": ["correctness", "style", "security", "readability"]
-    },
+  "dimensions": {
     "speed": {
-      "weight": 0.3,
-      "baselineMetric": "median_time_first_N_runs"
+      "weight": 0.15,
+      "metrics": ["latency_p50", "latency_p95", "latency_p99", "throughput", "cost_per_task", "token_efficiency"]
+    },
+    "output_quality": {
+      "weight": 0.20,
+      "metrics": ["task_success_rate", "correctness_score", "coherence", "hallucination_rate"]
+    },
+    "code_quality": {
+      "weight": 0.15,
+      "metrics": ["test_pass_rate", "lint_score", "cyclomatic_complexity", "bug_density", "maintainability_index"]
+    },
+    "reasoning": {
+      "weight": 0.15,
+      "metrics": ["multi_step_accuracy", "chain_of_thought_score", "error_recovery_rate", "step_efficiency"]
+    },
+    "adaptability": {
+      "weight": 0.10,
+      "metrics": ["adaptation_score", "few_shot_efficiency", "cross_domain_transfer"]
     },
     "proactivity": {
-      "weight": 0.3,
-      "patterns": [
-        "suggested:",
-        "i'll go ahead and",
-        "would you like me to",
-        "automatically",
-        "while you're"
-      ]
+      "weight": 0.10,
+      "metrics": ["initiative_rate", "tool_usage_relevance", "task_decomposition_quality", "goal_completion_rate"]
+    },
+    "reliability": {
+      "weight": 0.10,
+      "metrics": ["failure_rate", "recovery_rate", "consistency_score", "prompt_sensitivity"]
+    },
+    "tool_use": {
+      "weight": 0.00,
+      "metrics": ["correct_tool_selection", "tool_call_success_rate", "tool_latency", "chaining_efficiency"]
+    },
+    "user_experience": {
+      "weight": 0.00,
+      "metrics": ["time_to_usable_result", "iterations_required", "turns_count", "corrections_needed"]
+    },
+    "safety": {
+      "weight": 0.05,
+      "metrics": ["policy_violation_rate", "toxicity_score", "refusal_correctness", "data_leakage_risk"]
+    }
+  },
+  "scoring": {
+    "rubrics": {
+      "task_success": {
+        "0": "Wrong - completely incorrect",
+        "1": "Partially correct - major gaps",
+        "2": "Correct but messy / suboptimal",
+        "3": "Correct and clean"
+      },
+      "coherence": {
+        "0": "Incoherent / contradictory",
+        "1": "Mostly unclear",
+        "2": "Understandable with some issues",
+        "3": "Clear and well-structured"
+      },
+      "proactivity": {
+        "0": "No initiative - waits for everything",
+        "1": "Rarely proposes improvements",
+        "2": "Sometimes proactive",
+        "3": "Consistently proposes good next steps",
+        "4": "Highly proactive - anticipates needs",
+        "5": "Exceptional - autonomous execution"
+      }
     }
   },
   "reporting": {
-    "formats": ["markdown", "terminal", "html"],
-    "obsidianVault": null,
-    "trendHistory": 90
+    "formats": ["markdown", "terminal", "html", "json"],
+    "dashboards": {
+      "realtime": true,
+      "historical": true,
+      "comparison": true
+    }
   },
   "skills": {
     "evolutionThreshold": 3,

@@ -734,11 +734,22 @@
         }
         
         async function fetchTrends() {
-            // Fetch trends.json file
-            const response = await fetch('trends.json');
-            if (!response.ok) throw new Error('Trends file not found');
-            const data = await response.json();
-            return data.runs || [];
+            try {
+                // Try dashboard_data.json first (cleaner format)
+                let response = await fetch('dashboard_data.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.runs || [];
+                }
+                // Fall back to trends.json
+                response = await fetch('trends.json');
+                if (!response.ok) throw new Error('Trends file not found');
+                const data = await response.json();
+                return data.runs || [];
+            } catch (error) {
+                console.warn('Using mock data:', error);
+                return generateMockData();
+            }
         }
         
         function generateMockData() {
@@ -770,34 +781,45 @@
             
             const latest = allRuns[0];
             const prev = allRuns.length > 1 ? allRuns[1] : latest;
-            const summary = latest.summary;
-            const prevSummary = prev.summary;
+            
+            // Handle both nested summary and flat formats
+            const getVal = (obj, key) => obj.summary?.[key] ?? obj[key];
+            
+            const overallScore = getVal(latest, 'overall_score');
+            const prevScore = getVal(prev, 'overall_score');
+            const codeQuality = getVal(latest, 'code_quality_avg');
+            const prevCodeQuality = getVal(prev, 'code_quality_avg');
+            const proactivity = getVal(latest, 'proactivity_avg');
+            const prevProactivity = getVal(prev, 'proactivity_avg');
+            const speed = getVal(latest, 'speed_improvement_pct');
             
             // Overall Score
-            document.getElementById('overallScore').textContent = summary.overall_score.toFixed(2);
-            updateTrend('overallTrend', summary.overall_score, prevSummary.overall_score, 0.05);
+            document.getElementById('overallScore').textContent = overallScore?.toFixed(2) ?? '--';
+            updateTrend('overallTrend', overallScore, prevScore, 0.05);
             
             // Code Quality
-            document.getElementById('codeQuality').textContent = summary.code_quality_avg.toFixed(1) + '/5';
-            updateTrend('codeQualityTrend', summary.code_quality_avg, prevSummary.code_quality_avg, 0.3);
+            document.getElementById('codeQuality').textContent = (codeQuality?.toFixed(1) ?? '--') + '/5';
+            updateTrend('codeQualityTrend', codeQuality, prevCodeQuality, 0.3);
             
             // Proactivity
-            document.getElementById('proactivity').textContent = summary.proactivity_avg.toFixed(1) + '/5';
-            updateTrend('proactivityTrend', summary.proactivity_avg, prevSummary.proactivity_avg, 0.3);
+            document.getElementById('proactivity').textContent = (proactivity?.toFixed(1) ?? '--') + '/5';
+            updateTrend('proactivityTrend', proactivity, prevProactivity, 0.3);
             
             // Speed
-            const speedDisplay = summary.speed_improvement_pct >= 0 
-                ? `+${summary.speed_improvement_pct.toFixed(0)}%`
-                : `${summary.speed_improvement_pct.toFixed(0)}%`;
-            document.getElementById('speed').textContent = speedDisplay;
-            
-            const speedColor = summary.speed_improvement_pct >= 0 ? colors.secondary : colors.danger;
-            document.getElementById('speed').style.color = speedColor;
-            
-            const speedTrendEl = document.getElementById('speedTrend');
-            speedTrendEl.innerHTML = summary.speed_improvement_pct >= 0 
-                ? `<span class="trend-up">↑ ${summary.speed_improvement_pct.toFixed(1)}% faster</span>`
-                : `<span class="trend-down">↓ ${Math.abs(summary.speed_improvement_pct).toFixed(1)}% slower</span>`;
+            if (speed !== undefined && speed !== null) {
+                const speedDisplay = speed >= 0 
+                    ? `+${speed.toFixed(0)}%`
+                    : `${speed.toFixed(0)}%`;
+                document.getElementById('speed').textContent = speedDisplay;
+                
+                const speedColor = speed >= 0 ? colors.secondary : colors.danger;
+                document.getElementById('speed').style.color = speedColor;
+                
+                const speedTrendEl = document.getElementById('speedTrend');
+                speedTrendEl.innerHTML = speed >= 0 
+                    ? `<span class="trend-up">↑ ${speed.toFixed(1)}% faster</span>`
+                    : `<span class="trend-down">↓ ${Math.abs(speed).toFixed(1)}% slower</span>`;
+            }
         }
         
         function updateTrend(elementId, current, previous, threshold) {
@@ -848,6 +870,10 @@
             renderLineChart('speedChart', allRuns, 'speed_improvement_pct', colors.cyan, 'percent');
         }
         
+        function getVal(obj, key) {
+            return obj.summary?.[key] ?? obj[key];
+        }
+        
         function renderLineChart(canvasId, data, key, color, type) {
             const canvas = document.getElementById(canvasId);
             const ctx = canvas.getContext('2d');
@@ -863,9 +889,15 @@
             // Clear
             ctx.clearRect(0, 0, width, height);
             
-            // Get values
-            const values = data.map(r => r.summary?.[key] || 0).reverse();
-            const labels = data.map(r => new Date(r.timestamp).toLocaleDateString()).reverse();
+            // Get values - handle both nested and flat formats
+            const values = data.map(r => getVal(r, key) ?? 0).reverse();
+            const labels = data.map(r => {
+                try {
+                    return new Date(r.timestamp).toLocaleDateString();
+                } catch {
+                    return r.timestamp;
+                }
+            }).reverse();
             
             if (values.length === 0) {
                 ctx.fillStyle = colors.muted;
@@ -1041,17 +1073,20 @@
                 return;
             }
             
+            const getVal = (obj, key) => obj.summary?.[key] ?? obj[key];
+            
             tbody.innerHTML = allRuns.slice(0, 10).map(run => {
-                const summary = run.summary;
-                const score = summary.overall_score;
+                const score = getVal(run, 'overall_score') ?? 0;
+                const tasks = getVal(run, 'tasks_run') ?? 0;
+                const codeQuality = getVal(run, 'code_quality_avg') ?? 0;
+                const proactivity = getVal(run, 'proactivity_avg') ?? 0;
+                const speed = getVal(run, 'speed_improvement_pct') ?? 0;
                 const status = getScoreStatus(score);
-                const statusClass = status.class;
-                const statusLabel = status.label;
                 
                 return `
                     <tr>
                         <td>${new Date(run.timestamp).toLocaleString()}</td>
-                        <td>${summary.tasks_run}</td>
+                        <td>${tasks}</td>
                         <td>
                             <div class="score-bar">
                                 <span>${score.toFixed(2)}</span>
@@ -1060,14 +1095,14 @@
                                 </div>
                             </div>
                         </td>
-                        <td>${summary.code_quality_avg.toFixed(1)}/5</td>
-                        <td>${summary.proactivity_avg.toFixed(1)}/5</td>
+                        <td>${codeQuality.toFixed(1)}/5</td>
+                        <td>${proactivity.toFixed(1)}/5</td>
                         <td>
-                            <span style="color: ${summary.speed_improvement_pct >= 0 ? colors.secondary : colors.danger};">
-                                ${summary.speed_improvement_pct >= 0 ? '+' : ''}${summary.speed_improvement_pct.toFixed(1)}%
+                            <span style="color: ${speed >= 0 ? colors.secondary : colors.danger};">
+                                ${speed >= 0 ? '+' : ''}${speed.toFixed(1)}%
                             </span>
                         </td>
-                        <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+                        <td><span class="status-badge ${status.class}">${status.label}</span></td>
                     </tr>
                 `;
             }).join('');

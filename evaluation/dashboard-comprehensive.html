@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Agent Optimus - Comprehensive Evaluation Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-yellow: #eab308;
+            --accent-red: #ef4444;
+            --accent-purple: #a855f7;
+            --accent-cyan: #06b6d4;
+            --accent-orange: #f97316;
+            --accent-pink: #ec4899;
+            --border: #475569;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .header h1 span { color: var(--accent-blue); }
+        
+        .header-info { display: flex; gap: 1rem; align-items: center; }
+        
+        .refresh-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        
+        .refresh-btn:hover { background: var(--bg-tertiary); border-color: var(--accent-blue); }
+        
+        .last-updated { color: var(--text-muted); font-size: 0.875rem; }
+        
+        /* Scorecard */
+        .scorecard {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .overall-score {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .overall-label { color: var(--text-secondary); font-size: 1rem; margin-top: 0.5rem; }
+        
+        .version-badge {
+            display: inline-block;
+            background: var(--bg-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+            color: var(--accent-green);
+        }
+        
+        /* Dimension Grid */
+        .dimensions-section { margin-bottom: 2rem; }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dimension-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        
+        .dimension-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+        
+        .dimension-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+        
+        .dimension-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .dimension-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dimension-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .dimension-weight {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-tertiary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .dimension-score {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .score-bar {
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+        
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        
+        .dimension-metrics {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2rem 0;
+        }
+        
+        .metric-value { color: var(--text-secondary); }
+        
+        /* Charts */
+        .charts-section { margin-bottom: 2rem; }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .chart-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .chart-title { font-weight: 600; }
+        
+        .chart-container { position: relative; height: 250px; }
+        
+        .chart-canvas { width: 100%; height: 100%; }
+        
+        /* Latency Stats */
+        .latency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .latency-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .latency-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+        
+        .latency-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        /* Comparison */
+        .comparison-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .comparison-table { width: 100%; border-collapse: collapse; }
+        
+        .comparison-table th {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .comparison-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+        
+        .delta-positive { color: var(--accent-green); }
+        .delta-negative { color: var(--accent-red); }
+        .delta-neutral { color: var(--text-muted); }
+        
+        .trend-icon { font-size: 1rem; }
+        
+        /* Proactivity Detail */
+        .proactivity-detail {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .proactivity-item {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .proactivity-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+        
+        .proactivity-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        /* Tasks breakdown */
+        .tasks-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .task-category {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        
+        .task-category-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .task-category-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: var(--text-muted);
+        }
+        
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 <span>Pi Agent Optimus</span> - Comprehensive Evaluation</h1>
+        <div class="header-info">
+            <span class="last-updated" id="lastUpdated">Loading...</span>
+            <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
+        </div>
+    </div>
+
+    <!-- Overall Scorecard -->
+    <div class="scorecard" id="scorecard">
+        <div class="overall-score" id="overallScore">--</div>
+        <div class="overall-label">Overall Performance Score</div>
+        <div class="version-badge" id="versionBadge">v1.0</div>
+    </div>
+
+    <!-- Latency Stats -->
+    <div class="latency-grid" id="latencyGrid">
+        <div class="latency-card">
+            <div class="latency-value" id="latencyP50">--</div>
+            <div class="latency-label">P50 Latency (s)</div>
+        </div>
+        <div class="latency-card">
+            <div class="latency-value" id="latencyP95">--</div>
+            <div class="latency-label">P95 Latency (s)</div>
+        </div>
+        <div class="latency-card">
+            <div class="latency-value" id="latencyP99">--</div>
+            <div class="latency-label">P99 Latency (s)</div>
+        </div>
+        <div class="latency-card">
+            <div class="latency-value" id="avgTokens">--</div>
+            <div class="latency-label">Avg Tokens/Task</div>
+        </div>
+        <div class="latency-card">
+            <div class="latency-value" id="taskSuccess">--</div>
+            <div class="latency-label">Success Rate %</div>
+        </div>
+    </div>
+
+    <!-- Dimension Cards -->
+    <div class="dimensions-section">
+        <h2 class="section-title">📊 Evaluation Dimensions</h2>
+        <div class="dimension-grid" id="dimensionGrid">
+            <!-- Generated by JS -->
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-section">
+        <h2 class="section-title">📈 Performance Over Time</h2>
+        <div class="charts-grid">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <span class="chart-title">Overall Score Trend</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="overallTrendChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <span class="chart-title">Dimension Breakdown</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="dimensionChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="comparison-section" id="comparisonSection" style="display: none;">
+        <h2 class="section-title">📉 Version Comparison</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Dimension</th>
+                    <th>Previous</th>
+                    <th>Current</th>
+                    <th>Change</th>
+                </tr>
+            </thead>
+            <tbody id="comparisonBody">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const COLORS = {
+            speed: '#06b6d4',
+            output_quality: '#22c55e',
+            code_quality: '#3b82f6',
+            reasoning: '#a855f7',
+            adaptability: '#ec4899',
+            proactivity: '#f97316',
+            reliability: '#eab308',
+            tool_use: '#64748b',
+            user_experience: '#94a3b8',
+            safety: '#ef4444'
+        };
+        
+        const ICONS = {
+            speed: '⚡',
+            output_quality: '✓',
+            code_quality: '💻',
+            reasoning: '🧠',
+            adaptability: '📈',
+            proactivity: '🚀',
+            reliability: '🔒',
+            tool_use: '🔧',
+            user_experience: '👤',
+            safety: '🛡️'
+        };
+        
+        const WEIGHTS = {
+            speed: 0.15,
+            output_quality: 0.20,
+            code_quality: 0.15,
+            reasoning: 0.15,
+            adaptability: 0.10,
+            proactivity: 0.10,
+            reliability: 0.10,
+            tool_use: 0.00,
+            user_experience: 0.00,
+            safety: 0.05
+        };
+        
+        let benchmarkData = null;
+        let comparisonData = null;
+        
+        document.addEventListener('DOMContentLoaded', loadData);
+        
+        async function loadData() {
+            try {
+                // Load benchmark results
+                const response = await fetch('benchmark/data/latest.json');
+                if (response.ok) {
+                    benchmarkData = await response.json();
+                    renderDashboard();
+                } else {
+                    // Use mock data for demo
+                    benchmarkData = generateMockData();
+                    renderDashboard();
+                }
+                
+                // Try to load comparison
+                try {
+                    const compResponse = await fetch('benchmark/data/comparison.json');
+                    if (compResponse.ok) {
+                        comparisonData = await compResponse.json();
+                        renderComparison();
+                    }
+                } catch (e) {}
+                
+                document.getElementById('lastUpdated').textContent = 
+                    `Last updated: ${new Date().toLocaleString()}`;
+            } catch (error) {
+                console.error('Error loading data:', error);
+                benchmarkData = generateMockData();
+                renderDashboard();
+            }
+        }
+        
+        function generateMockData() {
+            return {
+                version: "v1.0",
+                timestamp: new Date().toISOString(),
+                scorecard: {
+                    overall_score: 0.72,
+                    dimensions: {
+                        speed: { weight: 0.15, raw_score: 0.85, weighted_score: 0.128 },
+                        output_quality: { weight: 0.20, raw_score: 0.75, weighted_score: 0.150 },
+                        code_quality: { weight: 0.15, raw_score: 0.70, weighted_score: 0.105 },
+                        reasoning: { weight: 0.15, raw_score: 0.68, weighted_score: 0.102 },
+                        adaptability: { weight: 0.10, raw_score: 0.65, weighted_score: 0.065 },
+                        proactivity: { weight: 0.10, raw_score: 0.72, weighted_score: 0.072 },
+                        reliability: { weight: 0.10, raw_score: 0.80, weighted_score: 0.080 },
+                        safety: { weight: 0.05, raw_score: 0.90, weighted_score: 0.045 }
+                    }
+                },
+                dimension_scores: {
+                    speed: { latency_p50: 1.2, latency_p95: 3.5, latency_p99: 8.2, avg_duration: 2.1, avg_tokens_per_task: 850 },
+                    output_quality: { task_success_rate: 0.78, avg_coherence: 2.4, overall_avg_score: 2.1 },
+                    code_quality: { code_tasks_completed: 15, avg_score: 0.70, files_created_total: 12 },
+                    reasoning: { reasoning_tasks_completed: 10, avg_score: 0.68, step_by_step_rate: 0.65 },
+                    proactivity: { avg_proactive_score: 1.8, tasks_with_proactivity: 22, initiative_rate: 0.44 },
+                    reliability: { failure_rate: 0.08, completed_tasks: 46, total_tasks: 50 },
+                    safety: { safety_tasks_completed: 5, avg_score: 0.90 }
+                },
+                latency_stats: { p50: 1.2, p95: 3.5, p99: 8.2, mean: 2.1, count: 50 },
+                token_stats: { total_tokens: 42500, avg_tokens: 850, min_tokens: 200, max_tokens: 2100 },
+                results: Array.from({length: 50}, (_, i) => ({
+                    task_id: `BENCH-${i+1}`,
+                    category: ['coding', 'reasoning', 'tool_usage', 'open_ended', 'safety'][i % 5],
+                    overall_score: 0.6 + Math.random() * 0.3,
+                    duration_seconds: 1 + Math.random() * 4
+                }))
+            };
+        }
+        
+        function renderDashboard() {
+            if (!benchmarkData) return;
+            
+            // Overall scorecard
+            document.getElementById('overallScore').textContent = 
+                benchmarkData.scorecard?.overall_score?.toFixed(3) || '--';
+            document.getElementById('versionBadge').textContent = 
+                benchmarkData.version || 'v1.0';
+            
+            // Latency stats
+            const latStats = benchmarkData.latency_stats || {};
+            document.getElementById('latencyP50').textContent = (latStats.p50 || 0).toFixed(1);
+            document.getElementById('latencyP95').textContent = (latStats.p95 || 0).toFixed(1);
+            document.getElementById('latencyP99').textContent = (latStats.p99 || 0).toFixed(1);
+            document.getElementById('avgTokens').textContent = 
+                Math.round(benchmarkData.token_stats?.avg_tokens || 0);
+            
+            const dimScores = benchmarkData.dimension_scores?.output_quality || {};
+            document.getElementById('taskSuccess').textContent = 
+                Math.round((dimScores.task_success_rate || 0) * 100);
+            
+            // Dimension cards
+            renderDimensionCards();
+            
+            // Charts
+            renderOverallTrendChart();
+            renderDimensionChart();
+        }
+        
+        function renderDimensionCards() {
+            const grid = document.getElementById('dimensionGrid');
+            const dims = benchmarkData.scorecard?.dimensions || {};
+            const dimScores = benchmarkData.dimension_scores || {};
+            
+            let html = '';
+            
+            for (const [dim, data] of Object.entries(dims)) {
+                const color = COLORS[dim] || '#64748b';
+                const icon = ICONS[dim] || '📊';
+                const weight = (data.weight * 100).toFixed(0) + '%';
+                const score = (data.raw_score * 100).toFixed(0);
+                
+                // Get dimension-specific metrics
+                let metricsHtml = '';
+                const scores = dimScores[dim] || {};
+                
+                if (dim === 'speed') {
+                    metricsHtml = `
+                        <div class="metric-row"><span>P50</span><span class="metric-value">${(scores.latency_p50 || 0).toFixed(1)}s</span></div>
+                        <div class="metric-row"><span>P95</span><span class="metric-value">${(scores.latency_p95 || 0).toFixed(1)}s</span></div>
+                    `;
+                } else if (dim === 'output_quality') {
+                    metricsHtml = `
+                        <div class="metric-row"><span>Success Rate</span><span class="metric-value">${((scores.task_success_rate || 0) * 100).toFixed(0)}%</span></div>
+                        <div class="metric-row"><span>Coherence</span><span class="metric-value">${(scores.avg_coherence || 0).toFixed(1)}/3</span></div>
+                    `;
+                } else if (dim === 'proactivity') {
+                    metricsHtml = `
+                        <div class="metric-row"><span>Initiative Rate</span><span class="metric-value">${((scores.initiative_rate || 0) * 100).toFixed(0)}%</span></div>
+                        <div class="metric-row"><span>Active Tasks</span><span class="metric-value">${scores.tasks_with_proactivity || 0}</span></div>
+                    `;
+                } else if (dim === 'reliability') {
+                    metricsHtml = `
+                        <div class="metric-row"><span>Failure Rate</span><span class="metric-value">${((scores.failure_rate || 0) * 100).toFixed(0)}%</span></div>
+                        <div class="metric-row"><span>Completed</span><span class="metric-value">${scores.completed_tasks || 0}/${scores.total_tasks || 0}</span></div>
+                    `;
+                } else {
+                    metricsHtml = `
+                        <div class="metric-row"><span>Weight</span><span class="metric-value">${weight}</span></div>
+                        <div class="metric-row"><span>Weighted</span><span class="metric-value">${(data.weighted_score || 0).toFixed(3)}</span></div>
+                    `;
+                }
+                
+                html += `
+                    <div class="dimension-card">
+                        <div class="dimension-header">
+                            <span class="dimension-name">
+                                <span class="dimension-icon" style="background: ${color}20; color: ${color};">${icon}</span>
+                                ${dim.replace('_', ' ')}
+                            </span>
+                            <span class="dimension-weight">${weight}</span>
+                        </div>
+                        <div class="dimension-score" style="color: ${color};">${score}%</div>
+                        <div class="score-bar">
+                            <div class="score-bar-fill" style="width: ${score}%; background: ${color};"></div>
+                        </div>
+                        <div class="dimension-metrics">${metricsHtml}</div>
+                    </div>
+                `;
+            }
+            
+            grid.innerHTML = html;
+        }
+        
+        function renderOverallTrendChart() {
+            const canvas = document.getElementById('overallTrendChart');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = 250;
+            
+            const w = canvas.width;
+            const h = canvas.height;
+            const pad = { top: 20, right: 20, bottom: 30, left: 40 };
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            // Generate mock trend data
+            const points = [0.65, 0.68, 0.70, 0.69, 0.72, 0.71, 0.73, 0.72];
+            const labels = ['v0.1', 'v0.2', 'v0.3', 'v0.4', 'v0.5', 'v0.6', 'v0.7', 'v1.0'];
+            
+            // Draw grid
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= 4; i++) {
+                const y = pad.top + (h - pad.top - pad.bottom) * i / 4;
+                ctx.beginPath();
+                ctx.moveTo(pad.left, y);
+                ctx.lineTo(w - pad.right, y);
+                ctx.stroke();
+                
+                ctx.fillStyle = '#64748b';
+                ctx.font = '11px sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText((1 - i * 0.25).toFixed(1), pad.left - 5, y + 4);
+            }
+            
+            // Draw line
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            points.forEach((p, i) => {
+                const x = pad.left + (w - pad.left - pad.right) * i / (points.length - 1);
+                const y = pad.top + (h - pad.top - pad.bottom) * (1 - p);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            
+            // Fill area
+            ctx.lineTo(pad.left + (w - pad.left - pad.right), h - pad.bottom);
+            ctx.lineTo(pad.left, h - pad.bottom);
+            ctx.closePath();
+            
+            const gradient = ctx.createLinearGradient(0, pad.top, 0, h - pad.bottom);
+            gradient.addColorStop(0, '#3b82f640');
+            gradient.addColorStop(1, '#3b82f600');
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Points and labels
+            points.forEach((p, i) => {
+                const x = pad.left + (w - pad.left - pad.right) * i / (points.length - 1);
+                const y = pad.top + (h - pad.top - pad.bottom) * (1 - p);
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fill();
+                ctx.strokeStyle = '#0f172a';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                ctx.fillStyle = '#94a3b8';
+                ctx.font = '10px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(labels[i], x, h - 8);
+            });
+        }
+        
+        function renderDimensionChart() {
+            const canvas = document.getElementById('dimensionChart');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = 250;
+            
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            const dims = benchmarkData.scorecard?.dimensions || {};
+            const dimNames = Object.keys(dims);
+            const dimValues = dimNames.map(d => (dims[d]?.raw_score || 0) * 100);
+            
+            const barWidth = (w - 60) / dimNames.length - 10;
+            const startX = 50;
+            
+            dimNames.forEach((dim, i) => {
+                const x = startX + i * (barWidth + 10);
+                const barHeight = (dimValues[i] / 100) * (h - 40);
+                const y = h - 30 - barHeight;
+                
+                // Draw bar
+                ctx.fillStyle = COLORS[dim] || '#64748b';
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // Draw label
+                ctx.fillStyle = '#94a3b8';
+                ctx.font = '9px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(dim.replace('_', '\n').substring(0, 10), x + barWidth/2, h - 10);
+                
+                // Draw value
+                ctx.fillStyle = '#f8fafc';
+                ctx.font = 'bold 10px sans-serif';
+                ctx.fillText(dimValues[i].toFixed(0) + '%', x + barWidth/2, y - 5);
+            });
+        }
+        
+        function renderComparison() {
+            if (!comparisonData) return;
+            
+            const section = document.getElementById('comparisonSection');
+            section.style.display = 'block';
+            
+            const tbody = document.getElementById('comparisonBody');
+            let html = '';
+            
+            const dims = comparisonData.dimensions || {};
+            for (const [dim, data] of Object.entries(dims)) {
+                const delta = data.delta || 0;
+                let deltaClass = 'delta-neutral';
+                let deltaIcon = '→';
+                
+                if (delta > 0.01) {
+                    deltaClass = 'delta-positive';
+                    deltaIcon = '↑';
+                } else if (delta < -0.01) {
+                    deltaClass = 'delta-negative';
+                    deltaIcon = '↓';
+                }
+                
+                html += `
+                    <tr>
+                        <td>${dim.replace('_', ' ')}</td>
+                        <td>${(data.previous || 0).toFixed(3)}</td>
+                        <td>${(data.current || 0).toFixed(3)}</td>
+                        <td class="${deltaClass}">${deltaIcon} ${Math.abs(delta).toFixed(3)}</td>
+                    </tr>
+                `;
+            }
+            
+            tbody.innerHTML = html;
+        }
+        
+        // Resize handler
+        window.addEventListener('resize', () => {
+            if (benchmarkData) {
+                renderOverallTrendChart();
+                renderDimensionChart();
+            }
+        });
+    </script>
+</body>
+</html>
