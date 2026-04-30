@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pi Agent Optimus - Comprehensive Evaluation Dashboard</title>
+    <title>Pi Agent Optimus - Evaluation Dashboard</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -43,6 +43,16 @@
         .header h1 { font-size: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
         .header h1 span { color: var(--accent-blue); }
         .header-info { display: flex; gap: 1rem; align-items: center; }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .status-loading { background: var(--accent-yellow); color: #000; }
+        .status-error { background: var(--accent-red); color: #fff; }
+        .status-ok { background: var(--accent-green); color: #000; }
+        
         .refresh-btn {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -52,17 +62,16 @@
             cursor: pointer;
             font-size: 0.875rem;
         }
-        .refresh-btn:hover { background: var(--bg-tertiary); border-color: var(--accent-blue); }
-        .last-updated { color: var(--text-muted); font-size: 0.875rem; }
+        .refresh-btn:hover { background: var(--bg-tertiary); }
         
-        .scorecard {
+        .scorecard { 
             background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
             margin-bottom: 2rem;
-            text-align: center;
         }
+        .scorecard-main { text-align: center; }
         
         .overall-score {
             font-size: 4rem;
@@ -70,77 +79,36 @@
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         
         .overall-label { color: var(--text-secondary); font-size: 1rem; margin-top: 0.5rem; }
-        .version-badge {
-            display: inline-block;
-            background: var(--bg-primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin-top: 1rem;
-            color: var(--accent-green);
+        
+        .scorecard-comparison { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 2rem; 
+            margin-top: 1.5rem;
+            padding-top: 1.5rem; 
+            border-top: 1px solid var(--border); 
         }
         
-        .dimensions-section { margin-bottom: 2rem; }
-        .section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .comparison-item { text-align: center; }
+        .comparison-label { display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+        .comparison-value { font-size: 1.5rem; font-weight: 700; }
+        .comparison-arrow { color: var(--text-muted); font-size: 1.5rem; }
+        .improvement { color: var(--accent-green); }
+        .regression { color: var(--accent-red); }
         
-        .dimension-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-        }
-        
-        .dimension-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.25rem;
-            transition: all 0.3s;
-        }
-        
-        .dimension-card:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
-        
-        .dimension-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
-        .dimension-name { font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
-        
-        .dimension-icon {
-            width: 32px;
-            height: 32px;
+        .error-banner {
+            background: var(--accent-red);
+            color: white;
+            padding: 1rem;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: none;
         }
-        
-        .dimension-weight { font-size: 0.75rem; color: var(--text-muted); background: var(--bg-tertiary); padding: 0.2rem 0.5rem; border-radius: 4px; }
-        
-        .dimension-score { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-        
-        .score-bar { height: 6px; background: var(--bg-tertiary); border-radius: 3px; overflow: hidden; margin-bottom: 0.75rem; }
-        .score-bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
-        
-        .dimension-metrics { font-size: 0.75rem; color: var(--text-muted); }
-        .metric-row { display: flex; justify-content: space-between; padding: 0.2rem 0; }
-        .metric-value { color: var(--text-secondary); }
-        
-        .charts-section { margin-bottom: 2rem; }
-        .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 1.5rem; }
-        
-        .chart-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-        
-        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-        .chart-title { font-weight: 600; }
-        .chart-container { position: relative; height: 250px; }
-        .chart-canvas { width: 100%; height: 100%; }
+        .error-banner.show { display: block; }
         
         .latency-grid {
             display: grid;
@@ -156,32 +124,84 @@
             padding: 1rem;
             text-align: center;
         }
-        
         .latency-value { font-size: 1.5rem; font-weight: 700; color: var(--accent-cyan); }
         .latency-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
         
-        .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--text-muted); }
+        .section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        
+        .dimension-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .dimension-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+        
+        .dimension-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .dimension-name { font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+        
+        .dimension-icon {
+            width: 28px; height: 28px;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.875rem;
+        }
+        
+        .dimension-weight { font-size: 0.7rem; color: var(--text-muted); background: var(--bg-tertiary); padding: 0.15rem 0.4rem; border-radius: 4px; }
+        
+        .dimension-score { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+        
+        .score-bar { height: 5px; background: var(--bg-tertiary); border-radius: 3px; overflow: hidden; margin-bottom: 0.75rem; }
+        .score-bar-fill { height: 100%; border-radius: 3px; }
+        
+        .dimension-metrics { font-size: 0.7rem; color: var(--text-muted); }
+        .metric-row { display: flex; justify-content: space-between; padding: 0.15rem 0; }
+        
+        .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
+        .chart-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+        .chart-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .chart-title { font-weight: 600; }
+        .chart-note { font-size: 0.75rem; color: var(--text-muted); }
+        .chart-container { position: relative; height: 250px; }
+        
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
         
         @media (max-width: 768px) {
             body { padding: 1rem; }
             .charts-grid { grid-template-columns: 1fr; }
+            .scorecard-comparison { flex-wrap: wrap; gap: 1rem; }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>📊 <span>Pi Agent Optimus</span> - Comprehensive Evaluation</h1>
+        <h1>📊 <span>Pi Agent Optimus</span> - Evaluation Dashboard</h1>
         <div class="header-info">
-            <span class="last-updated" id="lastUpdated">Loading...</span>
+            <span class="status-badge" id="statusBadge">Loading...</span>
             <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
         </div>
     </div>
 
-    <div class="scorecard" id="scorecard">
+    <div class="error-banner" id="errorBanner">
+        <strong>Error:</strong> <span id="errorMessage"></span>
+        <button onclick="loadData()" style="margin-left: 1rem; padding: 0.25rem 0.5rem; cursor: pointer;">Retry</button>
+    </div>
+
+    <div class="scorecard">
         <div class="scorecard-main">
             <div class="overall-score" id="overallScore">--</div>
             <div class="overall-label">Overall Performance Score</div>
-            <div class="version-badge" id="versionBadge">v1.0</div>
+            <div class="version-badge" id="versionBadge" style="display: inline-block; background: var(--bg-tertiary); padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; margin-top: 0.5rem;">v1.0</div>
         </div>
         <div class="scorecard-comparison">
             <div class="comparison-item">
@@ -193,298 +213,242 @@
                 <span class="comparison-label">Current</span>
                 <span class="comparison-value" id="currentScore">--</span>
             </div>
-            <div class="comparison-item improvement">
+            <div class="comparison-item improvement" id="improvementItem">
                 <span class="comparison-label">Improvement</span>
                 <span class="comparison-value" id="improvementPercent">--</span>
             </div>
         </div>
     </div>
-    
-    <style>
-        .scorecard { 
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        .scorecard-main { text-align: center; }
-        .scorecard-comparison { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 1.5rem; 
-            margin-top: 1.5rem; 
-            padding-top: 1.5rem; 
-            border-top: 1px solid var(--border); 
-        }
-        .comparison-item { text-align: center; }
-        .comparison-label { 
-            display: block; 
-            font-size: 0.75rem; 
-            color: var(--text-muted); 
-            margin-bottom: 0.25rem; 
-        }
-        .comparison-value { 
-            font-size: 1.25rem; 
-            font-weight: 700; 
-        }
-        .comparison-arrow { 
-            color: var(--text-muted); 
-            font-size: 1.5rem; 
-        }
-        .improvement .comparison-value { color: var(--accent-green); }
-        .improvement.regression .comparison-value { color: var(--accent-red); }
-    </style>
 
     <div class="latency-grid" id="latencyGrid">
         <div class="latency-card">
             <div class="latency-value" id="latencyP50">--</div>
-            <div class="latency-label">P50 Latency (s)</div>
+            <div class="latency-label">P50 (s)</div>
         </div>
         <div class="latency-card">
             <div class="latency-value" id="latencyP95">--</div>
-            <div class="latency-label">P95 Latency (s)</div>
-        </div>
-        <div class="latency-card">
-            <div class="latency-value" id="latencyP99">--</div>
-            <div class="latency-label">P99 Latency (s)</div>
+            <div class="latency-label">P95 (s)</div>
         </div>
         <div class="latency-card">
             <div class="latency-value" id="avgTokens">--</div>
-            <div class="latency-label">Avg Tokens/Task</div>
+            <div class="latency-label">Avg Tokens</div>
         </div>
         <div class="latency-card">
             <div class="latency-value" id="taskSuccess">--</div>
-            <div class="latency-label">Success Rate %</div>
+            <div class="latency-label">Success %</div>
         </div>
     </div>
 
-    <div class="dimensions-section">
-        <h2 class="section-title">📊 Evaluation Dimensions</h2>
-        <div class="dimension-grid" id="dimensionGrid"></div>
+    <h2 class="section-title">📊 Dimensions</h2>
+    <div class="dimension-grid" id="dimensionGrid">
+        <div class="no-data">Loading dimensions...</div>
     </div>
 
-    <div class="charts-section">
-        <h2 class="section-title">📈 Performance Over Time</h2>
-        <div class="charts-grid">
-            <div class="chart-card">
-                <div class="chart-header">
-                    <span class="chart-title">Overall Score Trend</span>
-                    <span id="trendNote" style="font-size: 0.75rem; color: var(--text-muted);">9 runs</span>
-                </div>
-                <div class="chart-container">
-                    <canvas id="overallTrendChart" class="chart-canvas"></canvas>
-                </div>
+    <h2 class="section-title">📈 Trends</h2>
+    <div class="charts-grid">
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">Overall Score Trend</span>
+                <span class="chart-note" id="trendNote">--</span>
             </div>
-            <div class="chart-card">
-                <div class="chart-header">
-                    <span class="chart-title">Dimension Breakdown</span>
-                </div>
-                <div class="chart-container">
-                    <canvas id="dimensionChart" class="chart-canvas"></canvas>
-                </div>
+            <div class="chart-container">
+                <canvas id="overallTrendChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">Dimension Breakdown</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="dimensionChart"></canvas>
             </div>
         </div>
     </div>
 
     <script>
         const COLORS = {
-            speed: '#06b6d4',
-            output_quality: '#22c55e',
-            code_quality: '#3b82f6',
-            reasoning: '#a855f7',
-            adaptability: '#ec4899',
-            proactivity: '#f97316',
-            reliability: '#eab308',
-            tool_use: '#64748b',
-            user_experience: '#94a3b8',
-            safety: '#ef4444'
+            speed: '#06b6d4', output_quality: '#22c55e', code_quality: '#3b82f6',
+            reasoning: '#a855f7', adaptability: '#ec4899', proactivity: '#f97316',
+            reliability: '#eab308', tool_use: '#64748b', user_experience: '#94a3b8', safety: '#ef4444'
         };
         
         const ICONS = {
-            speed: '⚡',
-            output_quality: '✓',
-            code_quality: '💻',
-            reasoning: '🧠',
-            adaptability: '📈',
-            proactivity: '🚀',
-            reliability: '🔒',
-            tool_use: '🔧',
-            user_experience: '👤',
-            safety: '🛡️'
+            speed: '⚡', output_quality: '✓', code_quality: '💻',
+            reasoning: '🧠', adaptability: '📈', proactivity: '🚀',
+            reliability: '🔒', tool_use: '🔧', user_experience: '👤', safety: '🛡️'
         };
         
         let benchmarkData = null;
         let trendData = null;
         
-        document.addEventListener('DOMContentLoaded', loadData);
+        function setStatus(text, type = 'ok') {
+            const badge = document.getElementById('statusBadge');
+            badge.textContent = text;
+            badge.className = 'status-badge status-' + type;
+        }
+        
+        function showError(msg) {
+            document.getElementById('errorMessage').textContent = msg;
+            document.getElementById('errorBanner').classList.add('show');
+        }
+        
+        function hideError() {
+            document.getElementById('errorBanner').classList.remove('show');
+        }
         
         async function loadData() {
+            hideError();
+            setStatus('Loading...', 'loading');
+            
             try {
-                // Load latest benchmark results
-                const response = await fetch('benchmark/data/latest.json');
-                if (response.ok) {
-                    benchmarkData = await response.json();
-                } else {
-                    throw new Error('No latest.json');
-                }
+                console.log('Loading benchmark data...');
+                
+                // Load latest results
+                const res = await fetch('benchmark/data/latest.json');
+                if (!res.ok) throw new Error('Failed to load latest.json: ' + res.status);
+                benchmarkData = await res.json();
+                console.log('Loaded benchmark data, score:', benchmarkData?.scorecard?.overall_score);
                 
                 // Load trend data
                 try {
                     const trendRes = await fetch('benchmark/data/trend_data.json');
                     if (trendRes.ok) {
                         trendData = await trendRes.json();
+                        console.log('Loaded trend data, runs:', trendData?.runs?.length);
                     }
                 } catch (e) {
                     console.warn('No trend data:', e);
+                    trendData = null;
                 }
                 
-                renderDashboard();
-                document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleString()}`;
+                render();
+                setStatus('OK', 'ok');
                 
             } catch (error) {
-                console.error('Error loading data:', error);
-                document.getElementById('lastUpdated').textContent = 'Error loading - using baseline';
-                
-                // Try baseline
-                const baselineRes = await fetch('benchmark/data/baseline.json');
-                if (baselineRes.ok) {
-                    benchmarkData = await baselineRes.json();
-                    renderDashboard();
-                }
+                console.error('Load error:', error);
+                showError(error.message);
+                setStatus('Error', 'error');
             }
         }
         
-        function updateComparison() {
-            const firstRun = document.getElementById('firstRunScore');
-            const currentEl = document.getElementById('currentScore');
-            const improvementEl = document.getElementById('improvementPercent');
-            const comparisonItem = improvementEl.parentElement;
-            
-            if (trendData && trendData.runs && trendData.runs.length > 0) {
-                const runs = trendData.runs;
-                const firstScore = runs[0].overall_score;
-                const lastScore = runs[runs.length - 1].overall_score;
-                const pctChange = ((lastScore - firstScore) / firstScore * 100).toFixed(1);
-                
-                firstRun.textContent = firstScore.toFixed(3);
-                currentEl.textContent = lastScore.toFixed(3);
-                
-                if (pctChange >= 0) {
-                    improvementEl.textContent = `+${pctChange}%`;
-                    comparisonItem.classList.remove('regression');
-                    comparisonItem.classList.add('improvement');
-                } else {
-                    improvementEl.textContent = `${pctChange}%`;
-                    comparisonItem.classList.remove('improvement');
-                    comparisonItem.classList.add('regression');
-                }
-            } else {
-                // Use current score as both if no trend data
-                const score = benchmarkData.scorecard?.overall_score || 0;
-                firstRun.textContent = score.toFixed(3);
-                currentEl.textContent = score.toFixed(3);
-                improvementEl.textContent = '--';
-                comparisonItem.classList.remove('improvement', 'regression');
+        function render() {
+            if (!benchmarkData) {
+                showError('No benchmark data loaded');
+                return;
             }
-        }
-        
-        function renderDashboard() {
-            if (!benchmarkData) return;
             
-            // Overall scorecard
-            const score = benchmarkData.scorecard?.overall_score || benchmarkData.overall_score || 0;
+            console.log('Rendering with score:', benchmarkData.scorecard?.overall_score);
+            
+            // Overall score
+            const score = benchmarkData.scorecard?.overall_score ?? 0;
             document.getElementById('overallScore').textContent = score.toFixed(3);
             document.getElementById('versionBadge').textContent = benchmarkData.version || 'v1.0';
             
-            // Update comparison (from trend data)
+            // Comparison
             updateComparison();
             
-            // Latency stats
-            const latStats = benchmarkData.latency_stats || {};
-            document.getElementById('latencyP50').textContent = (latStats.p50 || 0).toFixed(1);
-            document.getElementById('latencyP95').textContent = (latStats.p95 || 0).toFixed(1);
-            document.getElementById('latencyP99').textContent = (latStats.p99 || 0).toFixed(1);
+            // Latency
+            const lat = benchmarkData.latency_stats || {};
+            document.getElementById('latencyP50').textContent = (lat.p50 || 0).toFixed(1);
+            document.getElementById('latencyP95').textContent = (lat.p95 || 0).toFixed(1);
             document.getElementById('avgTokens').textContent = Math.round(benchmarkData.token_stats?.avg_tokens || 0);
             
-            // Task success (from output_quality dimension)
-            const outputScore = benchmarkData.dimension_scores?.output_quality?.task_success_rate;
-            document.getElementById('taskSuccess').textContent = outputScore ? Math.round(outputScore * 100) : '--';
+            const successRate = benchmarkData.dimension_scores?.output_quality?.task_success_rate;
+            document.getElementById('taskSuccess').textContent = successRate ? Math.round(successRate * 100) : '--';
             
-            // Dimension cards
-            renderDimensionCards();
+            // Dimensions
+            renderDimensions();
             
             // Charts
-            renderOverallTrendChart();
+            renderTrendChart();
             renderDimensionChart();
             
-            // Update trend note
-            if (trendData && trendData.runs) {
+            // Trend note
+            if (trendData?.runs?.length) {
                 document.getElementById('trendNote').textContent = `${trendData.runs.length} runs`;
             }
         }
         
-        function renderDimensionCards() {
+        function updateComparison() {
+            const firstEl = document.getElementById('firstRunScore');
+            const currentEl = document.getElementById('currentScore');
+            const impEl = document.getElementById('improvementPercent');
+            const impItem = document.getElementById('improvementItem');
+            
+            if (trendData?.runs?.length > 0) {
+                const runs = trendData.runs;
+                const first = runs[0].overall_score;
+                const last = runs[runs.length - 1].overall_score;
+                const pct = ((last - first) / first * 100).toFixed(1);
+                
+                firstEl.textContent = first.toFixed(3);
+                currentEl.textContent = last.toFixed(3);
+                impEl.textContent = pct >= 0 ? `+${pct}%` : `${pct}%`;
+                
+                impItem.className = 'comparison-item ' + (pct >= 0 ? 'improvement' : 'regression');
+            } else {
+                const score = benchmarkData.scorecard?.overall_score ?? 0;
+                firstEl.textContent = score.toFixed(3);
+                currentEl.textContent = score.toFixed(3);
+                impEl.textContent = '--';
+                impItem.className = 'comparison-item';
+            }
+        }
+        
+        function renderDimensions() {
             const grid = document.getElementById('dimensionGrid');
-            const dims = benchmarkData.scorecard?.dimensions || benchmarkData.scorecard || {};
+            const dims = benchmarkData.scorecard?.dimensions;
+            
+            if (!dims || Object.keys(dims).length === 0) {
+                grid.innerHTML = '<div class="no-data">No dimension data available</div>';
+                return;
+            }
             
             let html = '';
-            
-            for (const [dim, data] of Object.entries(dims)) {
-                const color = COLORS[dim] || '#64748b';
-                const icon = ICONS[dim] || '📊';
-                const rawScore = data.raw_score || data || 0;
-                const weight = data.weight || 0.10;
-                const score = (rawScore * 100).toFixed(0);
-                const source = data.source || 'real';
+            for (const [name, data] of Object.entries(dims)) {
+                const raw = typeof data === 'object' ? (data.raw_score ?? 0) : data;
+                const weight = typeof data === 'object' ? (data.weight ?? 0.1) : 0.1;
+                const source = typeof data === 'object' ? (data.source ?? 'real') : 'real';
+                const color = COLORS[name] || '#64748b';
+                const icon = ICONS[name] || '📊';
                 
                 html += `
                     <div class="dimension-card">
                         <div class="dimension-header">
                             <span class="dimension-name">
-                                <span class="dimension-icon" style="background: ${color}20; color: ${color};">${icon}</span>
-                                ${dim.replace('_', ' ')}
+                                <span class="dimension-icon" style="background:${color}30;color:${color}">${icon}</span>
+                                ${name.replace('_', ' ')}
                             </span>
                             <span class="dimension-weight">${(weight * 100).toFixed(0)}%</span>
                         </div>
-                        <div class="dimension-score" style="color: ${color};">${score}%</div>
-                        <div class="score-bar">
-                            <div class="score-bar-fill" style="width: ${score}%; background: ${color};"></div>
-                        </div>
+                        <div class="dimension-score" style="color:${color}">${(raw * 100).toFixed(0)}%</div>
+                        <div class="score-bar"><div class="score-bar-fill" style="width:${(raw * 100).toFixed(0)}%;background:${color}"></div></div>
                         <div class="dimension-metrics">
-                            <div class="metric-row"><span>Raw Score</span><span class="metric-value">${rawScore.toFixed(3)}</span></div>
-                            <div class="metric-row"><span>Source</span><span class="metric-value">${source === 'real' ? '📊 Real' : '⚠️ Est'}</span></div>
+                            <div class="metric-row"><span>Raw</span><span>${raw.toFixed(3)}</span></div>
+                            <div class="metric-row"><span>Source</span><span>${source === 'real' ? '📊 Real' : '⚠️ Est'}</span></div>
                         </div>
                     </div>
                 `;
             }
             
-            grid.innerHTML = html;
+            grid.innerHTML = html || '<div class="no-data">No dimensions to display</div>';
         }
         
-        function renderOverallTrendChart() {
+        function renderTrendChart() {
             const canvas = document.getElementById('overallTrendChart');
             const ctx = canvas.getContext('2d');
-            
             canvas.width = canvas.parentElement.offsetWidth;
             canvas.height = 250;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            const w = canvas.width;
-            const h = canvas.height;
-            const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+            let points = [], labels = [];
             
-            ctx.clearRect(0, 0, w, h);
-            
-            // Get data
-            let points = [];
-            let labels = [];
-            
-            if (trendData && trendData.runs && trendData.runs.length > 0) {
+            if (trendData?.runs?.length > 0) {
                 points = trendData.runs.map(r => r.overall_score);
                 labels = trendData.runs.map(r => r.version || r.timestamp?.split('T')[0] || '');
-            } else if (benchmarkData) {
-                points = [benchmarkData.scorecard?.overall_score || 0.612];
+            } else {
+                const score = benchmarkData.scorecard?.overall_score ?? 0.5;
+                points = [score];
                 labels = [benchmarkData.version || 'current'];
             }
             
@@ -492,15 +456,15 @@
                 ctx.fillStyle = '#64748b';
                 ctx.font = '14px sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText('No historical data yet', w/2, h/2);
+                ctx.fillText('No trend data', canvas.width/2, canvas.height/2);
                 return;
             }
             
-            const min = 0;
-            const max = 1;
+            const pad = {top: 20, right: 20, bottom: 30, left: 40};
+            const w = canvas.width, h = canvas.height;
             
-            // Draw grid
-            ctx.strokeStyle = '#475569';
+            // Grid
+            ctx.strokeStyle = '#334155';
             ctx.lineWidth = 0.5;
             for (let i = 0; i <= 4; i++) {
                 const y = pad.top + (h - pad.top - pad.bottom) * i / 4;
@@ -508,127 +472,99 @@
                 ctx.moveTo(pad.left, y);
                 ctx.lineTo(w - pad.right, y);
                 ctx.stroke();
-                
                 ctx.fillStyle = '#64748b';
                 ctx.font = '11px sans-serif';
                 ctx.textAlign = 'right';
-                ctx.fillText((max - (max - min) * i / 4).toFixed(1), pad.left - 8, y + 4);
+                ctx.fillText((1 - i * 0.25).toFixed(1), pad.left - 5, y + 4);
             }
             
-            // X-axis labels (every point or every other)
-            const step = Math.max(1, Math.floor(labels.length / 6));
-            ctx.textAlign = 'center';
-            for (let i = 0; i < labels.length; i++) {
-                if (i % step === 0 || i === labels.length - 1) {
-                    const x = pad.left + (w - pad.left - pad.right) * i / Math.max(points.length - 1, 1);
-                    ctx.fillText(labels[i] || '', x, h - 10);
-                }
-            }
-            
-            // Draw line
+            // Line
             ctx.strokeStyle = '#3b82f6';
             ctx.lineWidth = 3;
             ctx.beginPath();
-            
             points.forEach((p, i) => {
                 const x = pad.left + (w - pad.left - pad.right) * i / Math.max(points.length - 1, 1);
-                const y = pad.top + (h - pad.top - pad.bottom) * (1 - (p - min) / (max - min || 1));
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
+                const y = pad.top + (h - pad.top - pad.bottom) * (1 - p);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
             });
             ctx.stroke();
             
-            // Fill area
+            // Area
             ctx.lineTo(pad.left + (w - pad.left - pad.right), h - pad.bottom);
             ctx.lineTo(pad.left, h - pad.bottom);
             ctx.closePath();
-            
-            const gradient = ctx.createLinearGradient(0, pad.top, 0, h - pad.bottom);
-            gradient.addColorStop(0, '#3b82f640');
-            gradient.addColorStop(1, '#3b82f600');
-            ctx.fillStyle = gradient;
+            const grad = ctx.createLinearGradient(0, pad.top, 0, h - pad.bottom);
+            grad.addColorStop(0, '#3b82f640');
+            grad.addColorStop(1, '#3b82f600');
+            ctx.fillStyle = grad;
             ctx.fill();
             
             // Points
             points.forEach((p, i) => {
                 const x = pad.left + (w - pad.left - pad.right) * i / Math.max(points.length - 1, 1);
-                const y = pad.top + (h - pad.top - pad.bottom) * (1 - (p - min) / (max - min || 1));
-                
+                const y = pad.top + (h - pad.top - pad.bottom) * (1 - p);
                 ctx.beginPath();
                 ctx.arc(x, y, 5, 0, Math.PI * 2);
                 ctx.fillStyle = '#3b82f6';
                 ctx.fill();
-                ctx.strokeStyle = '#0f172a';
-                ctx.lineWidth = 2;
-                ctx.stroke();
             });
             
-            // Current score annotation
-            if (points.length > 0) {
-                const lastX = pad.left + (w - pad.left - pad.right);
-                const lastY = pad.top + (h - pad.top - pad.bottom) * (1 - (points[points.length-1] - min) / (max - min || 1));
-                ctx.fillStyle = '#22c55e';
-                ctx.font = 'bold 12px sans-serif';
-                ctx.textAlign = 'left';
-                ctx.fillText(`${points[points.length-1].toFixed(3)}`, lastX + 8, lastY + 4);
-            }
+            // Labels
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '9px sans-serif';
+            ctx.textAlign = 'center';
+            const step = Math.max(1, Math.floor(labels.length / 6));
+            labels.forEach((l, i) => {
+                if (i % step === 0 || i === labels.length - 1) {
+                    const x = pad.left + (w - pad.left - pad.right) * i / Math.max(points.length - 1, 1);
+                    ctx.fillText(l || '', x, h - 8);
+                }
+            });
         }
         
         function renderDimensionChart() {
             const canvas = document.getElementById('dimensionChart');
             const ctx = canvas.getContext('2d');
-            
             canvas.width = canvas.parentElement.offsetWidth;
             canvas.height = 250;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            const w = canvas.width;
-            const h = canvas.height;
-            
-            ctx.clearRect(0, 0, w, h);
-            
-            const dims = benchmarkData.scorecard?.dimensions || {};
-            const dimNames = Object.keys(dims);
-            const dimValues = dimNames.map(d => (dims[d]?.raw_score || 0) * 100);
-            
-            if (dimNames.length === 0) {
+            const dims = benchmarkData.scorecard?.dimensions;
+            if (!dims || Object.keys(dims).length === 0) {
                 ctx.fillStyle = '#64748b';
                 ctx.font = '14px sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText('No dimension data', w/2, h/2);
+                ctx.fillText('No dimension data', canvas.width/2, canvas.height/2);
                 return;
             }
             
-            const barWidth = Math.min(60, (w - 60) / dimNames.length - 10);
-            const startX = 40;
+            const entries = Object.entries(dims);
+            const barW = Math.min(50, (canvas.width - 40) / entries.length - 8);
+            const startX = 35;
             
-            dimNames.forEach((dim, i) => {
-                const x = startX + i * (barWidth + 10);
-                const barHeight = (dimValues[i] / 100) * (h - 40);
-                const y = h - 30 - barHeight;
+            entries.forEach(([name, data], i) => {
+                const raw = typeof data === 'object' ? (data.raw_score ?? 0) : data;
+                const barH = raw * (canvas.height - 40);
+                const x = startX + i * (barW + 8);
+                const y = canvas.height - 30 - barH;
+                const color = COLORS[name] || '#64748b';
                 
-                ctx.fillStyle = COLORS[dim] || '#64748b';
-                ctx.fillRect(x, y, barWidth, barHeight);
+                ctx.fillStyle = color;
+                ctx.fillRect(x, y, barW, barH);
                 
                 ctx.fillStyle = '#94a3b8';
-                ctx.font = '9px sans-serif';
+                ctx.font = '8px sans-serif';
                 ctx.textAlign = 'center';
+                ctx.fillText(name.replace('_', '\n').substring(0, 8), x + barW/2, canvas.height - 10);
                 
-                // Rotate labels for readability
-                const label = dim.replace('_', '\n').substring(0, 10);
-                ctx.fillText(label, x + barWidth/2, h - 10);
-                
-                ctx.fillStyle = '#f8fafc';
-                ctx.font = 'bold 10px sans-serif';
-                ctx.fillText(dimValues[i].toFixed(0) + '%', x + barWidth/2, y - 5);
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 9px sans-serif';
+                ctx.fillText((raw * 100).toFixed(0) + '%', x + barW/2, y - 5);
             });
         }
         
-        window.addEventListener('resize', () => {
-            if (benchmarkData) {
-                renderOverallTrendChart();
-                renderDimensionChart();
-            }
-        });
+        // Load on start
+        document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
 </html>
