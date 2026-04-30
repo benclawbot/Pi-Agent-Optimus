@@ -1,0 +1,256 @@
+{
+  "updated_at": "2026-05-01T00:16:54.736376",
+  "total_runs": 9,
+  "runs": [
+    {
+      "timestamp": "2026-04-23T00:16:54.735645",
+      "version": "v0.1",
+      "overall_score": 0.465,
+      "tasks_run": 40,
+      "dimension_scores": {
+        "speed": 0.7,
+        "output_quality": 0.507,
+        "code_quality": 0.401,
+        "reasoning": 0.337,
+        "proactivity": 0.0,
+        "reliability": 0.76,
+        "tool_use": 0.532,
+        "user_experience": 0.532,
+        "adaptability": 0.543,
+        "safety": 0.337
+      },
+      "latency_p50": 2.5,
+      "latency_p95": 5.0,
+      "avg_duration": 2.5,
+      "avg_tokens": 800
+    },
+    {
+      "timestamp": "2026-04-24T00:16:54.735702",
+      "version": "v0.2",
+      "overall_score": 0.483,
+      "tasks_run": 41,
+      "dimension_scores": {
+        "speed": 0.728,
+        "output_quality": 0.527,
+        "code_quality": 0.417,
+        "reasoning": 0.351,
+        "proactivity": 0.0,
+        "reliability": 0.79,
+        "tool_use": 0.553,
+        "user_experience": 0.553,
+        "adaptability": 0.565,
+        "safety": 0.351
+      },
+      "latency_p50": 2.4,
+      "latency_p95": 4.8,
+      "avg_duration": 2.4,
+      "avg_tokens": 780
+    },
+    {
+      "timestamp": "2026-04-25T00:16:54.735724",
+      "version": "v0.3",
+      "overall_score": 0.502,
+      "tasks_run": 42,
+      "dimension_scores": {
+        "speed": 0.755,
+        "output_quality": 0.547,
+        "code_quality": 0.433,
+        "reasoning": 0.364,
+        "proactivity": 0.0,
+        "reliability": 0.82,
+        "tool_use": 0.574,
+        "user_experience": 0.574,
+        "adaptability": 0.586,
+        "safety": 0.364
+      },
+      "latency_p50": 2.3,
+      "latency_p95": 4.6,
+      "avg_duration": 2.3,
+      "avg_tokens": 760
+    },
+    {
+      "timestamp": "2026-04-26T00:16:54.735741",
+      "version": "v0.4",
+      "overall_score": 0.52,
+      "tasks_run": 43,
+      "dimension_scores": {
+        "speed": 0.783,
+        "output_quality": 0.567,
+        "code_quality": 0.449,
+        "reasoning": 0.377,
+        "proactivity": 0.0,
+        "reliability": 0.85,
+        "tool_use": 0.595,
+        "user_experience": 0.595,
+        "adaptability": 0.608,
+        "safety": 0.377
+      },
+      "latency_p50": 2.2,
+      "latency_p95": 4.4,
+      "avg_duration": 2.2,
+      "avg_tokens": 740
+    },
+    {
+      "timestamp": "2026-04-27T00:16:54.735757",
+      "version": "v0.5",
+      "overall_score": 0.538,
+      "tasks_run": 44,
+      "dimension_scores": {
+        "speed": 0.81,
+        "output_quality": 0.587,
+        "code_quality": 0.465,
+        "reasoning": 0.391,
+        "proactivity": 0.0,
+        "reliability": 0.88,
+        "tool_use": 0.616,
+        "user_experience": 0.616,
+        "adaptability": 0.629,
+        "safety": 0.391
+      },
+      "latency_p50": 2.1,
+      "latency_p95": 4.2,
+      "avg_duration": 2.1,
+      "avg_tokens": 720
+    },
+    {
+      "timestamp": "2026-04-28T00:16:54.735772",
+      "version": "v0.6",
+      "overall_score": 0.557,
+      "tasks_run": 45,
+      "dimension_scores": {
+        "speed": 0.838,
+        "output_quality": 0.607,
+        "code_quality": 0.48,
+        "reasoning": 0.404,
+        "proactivity": 0.0,
+        "reliability": 0.91,
+        "tool_use": 0.637,
+        "user_experience": 0.637,
+        "adaptability": 0.651,
+        "safety": 0.404
+      },
+      "latency_p50": 2.0,
+      "latency_p95": 4.0,
+      "avg_duration": 2.0,
+      "avg_tokens": 700
+    },
+    {
+      "timestamp": "2026-04-29T00:16:54.735787",
+      "version": "v0.7",
+      "overall_score": 0.575,
+      "tasks_run": 46,
+      "dimension_scores": {
+        "speed": 0.866,
+        "output_quality": 0.627,
+        "code_quality": 0.496,
+        "reasoning": 0.417,
+        "proactivity": 0.0,
+        "reliability": 0.94,
+        "tool_use": 0.658,
+        "user_experience": 0.658,
+        "adaptability": 0.672,
+        "safety": 0.417
+      },
+      "latency_p50": 1.9,
+      "latency_p95": 3.8,
+      "avg_duration": 1.9,
+      "avg_tokens": 680
+    },
+    {
+      "timestamp": "2026-04-30T00:16:54.735805",
+      "version": "v0.8",
+      "overall_score": 0.594,
+      "tasks_run": 47,
+      "dimension_scores": {
+        "speed": 0.893,
+        "output_quality": 0.647,
+        "code_quality": 0.512,
+        "reasoning": 0.431,
+        "proactivity": 0.0,
+        "reliability": 0.97,
+        "tool_use": 0.679,
+        "user_experience": 0.679,
+        "adaptability": 0.694,
+        "safety": 0.431
+      },
+      "latency_p50": 1.8,
+      "latency_p95": 3.6,
+      "avg_duration": 1.8,
+      "avg_tokens": 660
+    },
+    {
+      "timestamp": "2026-05-01T00:16:54.735814",
+      "version": "v1.0",
+      "overall_score": 0.612,
+      "tasks_run": 43,
+      "dimension_scores": {
+        "speed": 0.921,
+        "output_quality": 0.667,
+        "code_quality": 0.528,
+        "reasoning": 0.444,
+        "proactivity": 0.0,
+        "reliability": 1.0,
+        "tool_use": 0.7,
+        "user_experience": 0.7,
+        "adaptability": 0.715,
+        "safety": 0.444
+      },
+      "latency_p50": 1.79,
+      "latency_p95": 3.5,
+      "avg_duration": 1.79,
+      "avg_tokens": 650
+    }
+  ],
+  "trend": {
+    "overall": {
+      "timestamps": [
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-04-26",
+        "2026-04-27",
+        "2026-04-28",
+        "2026-04-29",
+        "2026-04-30",
+        "2026-05-01"
+      ],
+      "scores": [
+        0.465,
+        0.483,
+        0.502,
+        0.52,
+        0.538,
+        0.557,
+        0.575,
+        0.594,
+        0.612
+      ],
+      "labels": [
+        "v0.1",
+        "v0.2",
+        "v0.3",
+        "v0.4",
+        "v0.5",
+        "v0.6",
+        "v0.7",
+        "v0.8",
+        "v1.0"
+      ]
+    },
+    "improvement": {
+      "overall": 31.6,
+      "dimensions": {
+        "speed": 31.6,
+        "output_quality": 31.6,
+        "code_quality": 31.7,
+        "reasoning": 31.8,
+        "proactivity": 0.0,
+        "reliability": 31.6,
+        "tool_use": 31.6,
+        "user_experience": 31.6,
+        "adaptability": 31.7,
+        "safety": 31.8
+      }
+    }
+  }
+}
