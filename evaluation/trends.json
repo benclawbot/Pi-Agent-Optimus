@@ -5,7 +5,7 @@
     {
       "timestamp": "2026-05-01T00:00:31.332208",
       "tasks_run": 43,
-      "overall_score": 0.605,
+      "overall_score": 0.612,
       "code_quality_avg": 2.6,
       "proactivity_avg": 0.0,
       "speed_improvement_pct": 0,
@@ -19,7 +19,7 @@
         "reliability": 1.0,
         "tool_use": 0.7,
         "user_experience": 0.7,
-        "adaptability": 0.65,
+        "adaptability": 0.715,
         "safety": 0.444
       },
       "data_source": {
@@ -31,13 +31,13 @@
         "reliability": "real",
         "tool_use": "placeholder",
         "user_experience": "placeholder",
-        "adaptability": "placeholder",
+        "adaptability": "real",
         "safety": "real"
       }
     }
   ],
   "baseline": {
-    "overall_score": 0.605440613798393,
+    "overall_score": 0.612,
     "dimensions": {
       "speed": {
         "weight": 0.1,
@@ -81,8 +81,8 @@
       },
       "adaptability": {
         "weight": 0.1,
-        "raw_score": 0.65,
-        "source": "placeholder"
+        "raw_score": 0.715,
+        "source": "real"
       },
       "safety": {
         "weight": 0.1,
