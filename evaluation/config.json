@@ -9,50 +9,60 @@
   "benchmark": {
     "suiteName": "pi-agent-optimus-benchmark",
     "taskCount": 50,
-    "categories": ["coding", "reasoning", "summarization", "tool-usage", "open-ended"],
+    "categories": ["coding", "reasoning", "summarization", "tool_usage", "open_ended"],
     "timeoutSeconds": 300,
     "warmupRuns": 3
   },
   "dimensions": {
     "speed": {
-      "weight": 0.15,
-      "metrics": ["latency_p50", "latency_p95", "latency_p99", "throughput", "cost_per_task", "token_efficiency"]
+      "weight": 0.10,
+      "metrics": ["latency_p50", "latency_p95", "latency_p99", "throughput", "cost_per_task", "token_efficiency"],
+      "description": "Execution speed and resource efficiency"
     },
     "output_quality": {
-      "weight": 0.20,
-      "metrics": ["task_success_rate", "correctness_score", "coherence", "hallucination_rate"]
+      "weight": 0.10,
+      "metrics": ["task_success_rate", "correctness_score", "coherence", "hallucination_rate"],
+      "description": "Correctness and quality of output"
     },
     "code_quality": {
-      "weight": 0.15,
-      "metrics": ["test_pass_rate", "lint_score", "cyclomatic_complexity", "bug_density", "maintainability_index"]
+      "weight": 0.10,
+      "metrics": ["test_pass_rate", "lint_score", "cyclomatic_complexity", "bug_density", "maintainability_index"],
+      "description": "Quality of generated code"
     },
     "reasoning": {
-      "weight": 0.15,
-      "metrics": ["multi_step_accuracy", "chain_of_thought_score", "error_recovery_rate", "step_efficiency"]
+      "weight": 0.10,
+      "metrics": ["multi_step_accuracy", "chain_of_thought_score", "error_recovery_rate", "step_efficiency"],
+      "description": "Problem-solving and logical reasoning"
     },
     "adaptability": {
       "weight": 0.10,
-      "metrics": ["adaptation_score", "few_shot_efficiency", "cross_domain_transfer"]
+      "metrics": ["adaptation_score", "few_shot_efficiency", "cross_domain_transfer"],
+      "description": "Learning and adapting from feedback"
     },
     "proactivity": {
       "weight": 0.10,
-      "metrics": ["initiative_rate", "tool_usage_relevance", "task_decomposition_quality", "goal_completion_rate"]
+      "metrics": ["initiative_rate", "tool_usage_relevance", "task_decomposition_quality", "goal_completion_rate"],
+      "description": "Taking initiative without being asked"
     },
     "reliability": {
       "weight": 0.10,
-      "metrics": ["failure_rate", "recovery_rate", "consistency_score", "prompt_sensitivity"]
+      "metrics": ["failure_rate", "recovery_rate", "consistency_score", "prompt_sensitivity"],
+      "description": "Consistency and robustness"
     },
     "tool_use": {
-      "weight": 0.00,
-      "metrics": ["correct_tool_selection", "tool_call_success_rate", "tool_latency", "chaining_efficiency"]
+      "weight": 0.10,
+      "metrics": ["correct_tool_selection", "tool_call_success_rate", "tool_latency", "chaining_efficiency"],
+      "description": "Appropriate and efficient tool usage"
     },
     "user_experience": {
-      "weight": 0.00,
-      "metrics": ["time_to_usable_result", "iterations_required", "turns_count", "corrections_needed"]
+      "weight": 0.10,
+      "metrics": ["time_to_usable_result", "iterations_required", "turns_count", "corrections_needed"],
+      "description": "User satisfaction and ease of use"
     },
     "safety": {
-      "weight": 0.05,
-      "metrics": ["policy_violation_rate", "toxicity_score", "refusal_correctness", "data_leakage_risk"]
+      "weight": 0.10,
+      "metrics": ["policy_violation_rate", "toxicity_score", "refusal_correctness", "data_leakage_risk"],
+      "description": "Safe and aligned behavior"
     }
   },
   "scoring": {
