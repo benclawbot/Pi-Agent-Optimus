@@ -178,10 +178,64 @@
     </div>
 
     <div class="scorecard" id="scorecard">
-        <div class="overall-score" id="overallScore">--</div>
-        <div class="overall-label">Overall Performance Score</div>
-        <div class="version-badge" id="versionBadge">v1.0</div>
+        <div class="scorecard-main">
+            <div class="overall-score" id="overallScore">--</div>
+            <div class="overall-label">Overall Performance Score</div>
+            <div class="version-badge" id="versionBadge">v1.0</div>
+        </div>
+        <div class="scorecard-comparison">
+            <div class="comparison-item">
+                <span class="comparison-label">First Run</span>
+                <span class="comparison-value" id="firstRunScore">--</span>
+            </div>
+            <div class="comparison-arrow">→</div>
+            <div class="comparison-item">
+                <span class="comparison-label">Current</span>
+                <span class="comparison-value" id="currentScore">--</span>
+            </div>
+            <div class="comparison-item improvement">
+                <span class="comparison-label">Improvement</span>
+                <span class="comparison-value" id="improvementPercent">--</span>
+            </div>
+        </div>
     </div>
+    
+    <style>
+        .scorecard { 
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .scorecard-main { text-align: center; }
+        .scorecard-comparison { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 1.5rem; 
+            margin-top: 1.5rem; 
+            padding-top: 1.5rem; 
+            border-top: 1px solid var(--border); 
+        }
+        .comparison-item { text-align: center; }
+        .comparison-label { 
+            display: block; 
+            font-size: 0.75rem; 
+            color: var(--text-muted); 
+            margin-bottom: 0.25rem; 
+        }
+        .comparison-value { 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+        }
+        .comparison-arrow { 
+            color: var(--text-muted); 
+            font-size: 1.5rem; 
+        }
+        .improvement .comparison-value { color: var(--accent-green); }
+        .improvement.regression .comparison-value { color: var(--accent-red); }
+    </style>
 
     <div class="latency-grid" id="latencyGrid">
         <div class="latency-card">
@@ -302,6 +356,40 @@
             }
         }
         
+        function updateComparison() {
+            const firstRun = document.getElementById('firstRunScore');
+            const currentEl = document.getElementById('currentScore');
+            const improvementEl = document.getElementById('improvementPercent');
+            const comparisonItem = improvementEl.parentElement;
+            
+            if (trendData && trendData.runs && trendData.runs.length > 0) {
+                const runs = trendData.runs;
+                const firstScore = runs[0].overall_score;
+                const lastScore = runs[runs.length - 1].overall_score;
+                const pctChange = ((lastScore - firstScore) / firstScore * 100).toFixed(1);
+                
+                firstRun.textContent = firstScore.toFixed(3);
+                currentEl.textContent = lastScore.toFixed(3);
+                
+                if (pctChange >= 0) {
+                    improvementEl.textContent = `+${pctChange}%`;
+                    comparisonItem.classList.remove('regression');
+                    comparisonItem.classList.add('improvement');
+                } else {
+                    improvementEl.textContent = `${pctChange}%`;
+                    comparisonItem.classList.remove('improvement');
+                    comparisonItem.classList.add('regression');
+                }
+            } else {
+                // Use current score as both if no trend data
+                const score = benchmarkData.scorecard?.overall_score || 0;
+                firstRun.textContent = score.toFixed(3);
+                currentEl.textContent = score.toFixed(3);
+                improvementEl.textContent = '--';
+                comparisonItem.classList.remove('improvement', 'regression');
+            }
+        }
+        
         function renderDashboard() {
             if (!benchmarkData) return;
             
@@ -309,6 +397,9 @@
             const score = benchmarkData.scorecard?.overall_score || benchmarkData.overall_score || 0;
             document.getElementById('overallScore').textContent = score.toFixed(3);
             document.getElementById('versionBadge').textContent = benchmarkData.version || 'v1.0';
+            
+            // Update comparison (from trend data)
+            updateComparison();
             
             // Latency stats
             const latStats = benchmarkData.latency_stats || {};
