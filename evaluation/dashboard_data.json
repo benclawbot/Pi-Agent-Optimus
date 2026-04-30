@@ -1,23 +1,27 @@
 {
-  "timestamp": "2026-04-30T23:46:23.311929",
+  "timestamp": "2026-05-01T00:02:47.255448",
+  "version": "baseline",
   "runs": [
     {
-      "timestamp": "2026-04-30_23-39-31",
-      "tasks_run": 10,
-      "overall_score": 0.8400000000000001,
-      "code_quality_avg": 3.0,
-      "proactivity_avg": 0.0,
-      "speed_improvement_pct": 97.00467833333335,
-      "avg_duration_seconds": 1.797193
-    },
-    {
-      "timestamp": "2026-04-30_23-43-55",
-      "tasks_run": 10,
-      "overall_score": 0.8400000000000001,
-      "code_quality_avg": 3.0,
-      "proactivity_avg": 0.0,
-      "speed_improvement_pct": 96.78470816666666,
-      "avg_duration_seconds": 1.9291751000000001
+      "timestamp": "2026-05-01T00:02:47.255448",
+      "tasks_run": 20,
+      "overall_score": 0.72,
+      "code_quality_avg": 2.1,
+      "proactivity_avg": 0.5,
+      "speed_improvement_pct": 0,
+      "avg_duration_seconds": 1.8,
+      "category_scores": {
+        "speed": 0.82,
+        "output_quality": 0.75,
+        "code_quality": 0.7,
+        "reasoning": 0.68,
+        "adaptability": 0.65,
+        "proactivity": 0.55,
+        "reliability": 0.8,
+        "tool_use": 0.75,
+        "user_experience": 0.7,
+        "safety": 0.85
+      }
     }
   ]
 }

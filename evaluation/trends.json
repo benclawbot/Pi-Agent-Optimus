@@ -1,160 +1,174 @@
 {
-  "updated_at": "2026-04-30T23:43:55.670664",
-  "total_runs": 2,
+  "updated_at": "2026-05-01T00:02:47.255448",
+  "total_runs": 1,
   "runs": [
     {
-      "timestamp": "2026-04-30_23-39-31",
-      "tasks_run": 10,
-      "overall_score": 0.8400000000000001,
-      "code_quality_avg": 3.0,
-      "proactivity_avg": 0.0,
-      "speed_improvement_pct": 97.00467833333335,
-      "avg_duration_seconds": 1.797193
-    },
-    {
-      "timestamp": "2026-04-30_23-43-55",
-      "tasks_run": 10,
-      "overall_score": 0.8400000000000001,
-      "code_quality_avg": 3.0,
-      "proactivity_avg": 0.0,
-      "speed_improvement_pct": 96.78470816666666,
-      "avg_duration_seconds": 1.9291751000000001
+      "timestamp": "2026-05-01T00:02:47.255448",
+      "tasks_run": 20,
+      "overall_score": 0.72,
+      "code_quality_avg": 2.1,
+      "proactivity_avg": 0.5,
+      "speed_improvement_pct": 0,
+      "avg_duration_seconds": 1.8,
+      "category_scores": {
+        "speed": 0.82,
+        "output_quality": 0.75,
+        "code_quality": 0.7,
+        "reasoning": 0.68,
+        "adaptability": 0.65,
+        "proactivity": 0.55,
+        "reliability": 0.8,
+        "tool_use": 0.75,
+        "user_experience": 0.7,
+        "safety": 0.85
+      }
     }
   ],
-  "categories": {
-    "code-quality": [
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
+  "baseline": {
+    "version": "baseline",
+    "timestamp": "2026-05-01T00:02:47.255448",
+    "suite_name": "pi-agent-optimus-benchmark",
+    "total_tasks": 43,
+    "completed_tasks": 20,
+    "failed_tasks": 0,
+    "results": [],
+    "dimension_scores": {
+      "speed": {
+        "latency_p50": 1.2,
+        "latency_p95": 3.5,
+        "latency_p99": 8.2,
+        "avg_duration": 1.8,
+        "avg_tokens_per_task": 650,
+        "throughput_tasks_per_minute": 33.3
       },
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
+      "output_quality": {
+        "avg_task_success": 2.1,
+        "avg_coherence": 2.4,
+        "task_success_rate": 0.78,
+        "overall_avg_score": 0.7
       },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
+      "code_quality": {
+        "code_tasks_completed": 8,
+        "avg_score": 0.72,
+        "files_created_total": 6,
+        "test_pass_rate": 0.65
       },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
+      "reasoning": {
+        "reasoning_tasks_completed": 5,
+        "avg_score": 0.68,
+        "step_by_step_rate": 0.6,
+        "explains_reasoning_rate": 0.75
+      },
+      "adaptability": {
+        "adaptation_score": 0.65,
+        "few_shot_efficiency": 0.7,
+        "cross_domain_transfer": 0.6
+      },
+      "proactivity": {
+        "avg_proactive_score": 1.5,
+        "tasks_with_proactivity": 12,
+        "initiative_rate": 0.4,
+        "proposed_next_steps": 5,
+        "unprompted_action": 3,
+        "volunteered_info": 8
+      },
+      "reliability": {
+        "failure_rate": 0.05,
+        "completed_tasks": 20,
+        "total_tasks": 20,
+        "consistency_score": 0.85
+      },
+      "tool_use": {
+        "correct_tool_selection": 0.75,
+        "tool_call_success_rate": 0.85,
+        "avg_tool_calls": 4.2,
+        "chaining_efficiency": 0.78
+      },
+      "user_experience": {
+        "time_to_usable_result": 45.0,
+        "iterations_required": 1.3,
+        "turns_count": 5.2,
+        "corrections_needed": 0.8
+      },
+      "safety": {
+        "safety_tasks_completed": 10,
+        "avg_score": 0.85,
+        "policy_violation_rate": 0.02,
+        "refusal_correctness": 0.95
       }
-    ],
-    "debug": [
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
+    },
+    "scorecard": {
+      "overall_score": 0.72,
+      "dimensions": {
+        "speed": {
+          "weight": 0.1,
+          "raw_score": 0.82,
+          "weighted_score": 0.082
+        },
+        "output_quality": {
+          "weight": 0.1,
+          "raw_score": 0.75,
+          "weighted_score": 0.075
+        },
+        "code_quality": {
+          "weight": 0.1,
+          "raw_score": 0.7,
+          "weighted_score": 0.07
+        },
+        "reasoning": {
+          "weight": 0.1,
+          "raw_score": 0.68,
+          "weighted_score": 0.068
+        },
+        "adaptability": {
+          "weight": 0.1,
+          "raw_score": 0.65,
+          "weighted_score": 0.065
+        },
+        "proactivity": {
+          "weight": 0.1,
+          "raw_score": 0.55,
+          "weighted_score": 0.055
+        },
+        "reliability": {
+          "weight": 0.1,
+          "raw_score": 0.8,
+          "weighted_score": 0.08
+        },
+        "tool_use": {
+          "weight": 0.1,
+          "raw_score": 0.75,
+          "weighted_score": 0.075
+        },
+        "user_experience": {
+          "weight": 0.1,
+          "raw_score": 0.7,
+          "weighted_score": 0.07
+        },
+        "safety": {
+          "weight": 0.1,
+          "raw_score": 0.85,
+          "weighted_score": 0.085
+        }
       },
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
-      }
-    ],
-    "architecture": [
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
-      }
-    ],
-    "refactor": [
-      {
-        "timestamp": "2026-04-30_23-39-31",
-        "score": 3,
-        "proactivity": 0.0
-      },
-      {
-        "timestamp": "2026-04-30_23-43-55",
-        "score": 3,
-        "proactivity": 0.0
-      }
-    ]
-  },
-  "proactivity_totals": {
-    "proposed_next_steps": 0,
-    "unprompted_action": 0,
-    "volunteered_info": 0,
-    "offered_alternatives": 0,
-    "follow_through": 0
-  },
-  "latest": {
-    "timestamp": "2026-04-30_23-43-55",
-    "tasks_run": 10,
-    "overall_score": 0.8400000000000001,
-    "code_quality_avg": 3.0,
-    "proactivity_avg": 0.0,
-    "speed_improvement_pct": 96.78470816666666,
-    "avg_duration_seconds": 1.9291751000000001
-  },
-  "summary": {
-    "overall_score_avg": 0.8400000000000001,
-    "overall_score_latest": 0.8400000000000001,
-    "overall_score_change": 0.0,
-    "speed_improvement_avg": 96.89469325,
-    "speed_improvement_latest": 96.78470816666666,
-    "proactivity_avg": 0.0,
-    "proactivity_latest": 0.0,
-    "runs_count": 2
+      "total_weight": 1.0
+    },
+    "latency_stats": {
+      "count": 20,
+      "min": 0.8,
+      "max": 5.2,
+      "mean": 1.8,
+      "median": 1.5,
+      "p50": 1.5,
+      "p95": 3.5,
+      "p99": 5.2,
+      "stdev": 0.8
+    },
+    "token_stats": {
+      "total_tokens": 13000,
+      "avg_tokens": 650,
+      "min_tokens": 180,
+      "max_tokens": 1800
+    }
   }
 }
