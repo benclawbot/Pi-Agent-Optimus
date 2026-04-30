@@ -1,0 +1,16 @@
+{
+  "name": "Secure API Endpoint",
+  "category": "code-quality",
+  "description": "Create a secure Python Flask API endpoint that handles user authentication. The endpoint should validate input, use proper error handling, and avoid common security vulnerabilities.",
+  "requirements": [
+    "Validate all input parameters",
+    "Use parameterized queries if database involved",
+    "Return appropriate HTTP status codes",
+    "Log security-relevant events",
+    "No hardcoded credentials or secrets"
+  ],
+  "context": "Flask application with user authentication needed",
+  "expected": "Secure, well-documented endpoint with proper validation",
+  "difficulty": "medium",
+  "estimated_time_seconds": 120
+}

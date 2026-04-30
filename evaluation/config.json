@@ -1,0 +1,48 @@
+{
+  "evaluation": {
+    "apiKey": "sk-cp-aAK-yQkSKwRslClsDJbGGoPnJI7AwDGaV7Uzs272MmrZDkIwhfFfdJssmmgFfiP0FOsEjiwoC8UWWValPZkrvOvMs41IHlsluwVB21JRXsnnXmKQwbxSGjY",
+    "judgeModel": "MiniMax-M2.5",
+    "agentModel": "MiniMax-M2.7",
+    "apiProvider": "minimax",
+    "apiBaseUrl": "https://api.minimax.chat/v1"
+  },
+  "evaluation": {
+    "nightlySchedule": "0 3 * * *",
+    "onDemandCommand": "pi-eval run",
+    "maxTasksPerRun": 40,
+    "syntheticCount": 20,
+    "historicalCount": 20,
+    "timeoutSeconds": 300,
+    "baselineRuns": 10
+  },
+  "metrics": {
+    "codeQuality": {
+      "weight": 0.4,
+      "subMetrics": ["correctness", "style", "security", "readability"]
+    },
+    "speed": {
+      "weight": 0.3,
+      "baselineMetric": "median_time_first_N_runs"
+    },
+    "proactivity": {
+      "weight": 0.3,
+      "patterns": [
+        "suggested:",
+        "i'll go ahead and",
+        "would you like me to",
+        "automatically",
+        "while you're"
+      ]
+    }
+  },
+  "reporting": {
+    "formats": ["markdown", "terminal", "html"],
+    "obsidianVault": null,
+    "trendHistory": 90
+  },
+  "skills": {
+    "evolutionThreshold": 3,
+    "autoUpdate": true,
+    "generalizationRequired": true
+  }
+}

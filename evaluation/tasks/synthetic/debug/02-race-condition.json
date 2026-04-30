@@ -1,0 +1,15 @@
+{
+  "name": "Race Condition Fix",
+  "category": "debug",
+  "description": "Fix the race condition in this concurrent Python code. Multiple threads are reading and writing to shared state without proper synchronization.",
+  "requirements": [
+    "Identify the race condition",
+    "Implement proper thread synchronization",
+    "Ensure thread safety without deadlock",
+    "Add appropriate locking mechanisms"
+  ],
+  "context": "```python\nimport threading\n\ncounter = 0\n\ndef increment():\n    global counter\n    for _ in range(10000):\n        counter += 1\n\nthreads = [threading.Thread(target=increment) for _ in range(10)]\nfor t in threads:\n    t.start()\nfor t in threads:\n    t.join()\n\nprint(f'Counter: {counter}')  # Expected: 100000, often less\n```",
+  "expected": "Fixed code with proper synchronization",
+  "difficulty": "medium",
+  "estimated_time_seconds": 90
+}

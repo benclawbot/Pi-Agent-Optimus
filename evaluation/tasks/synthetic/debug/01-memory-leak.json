@@ -1,0 +1,15 @@
+{
+  "name": "Debug Memory Leak",
+  "category": "debug",
+  "description": "Find and fix the memory leak in this Python code. The application gradually uses more memory over time and eventually crashes.",
+  "requirements": [
+    "Identify the source of the memory leak",
+    "Fix the issue without breaking functionality",
+    "Add any necessary cleanup code",
+    "Explain what was causing the leak"
+  ],
+  "context": "```python\nimport threading\n\nclass EventHandler:\n    def __init__(self):\n        self.callbacks = []\n    \n    def register(self, callback):\n        self.callbacks.append(callback)\n    \n    def trigger(self, event):\n        for callback in self.callbacks:\n            callback(event)\n\nhandler = EventHandler()\n\ndef create_handler():\n    h = EventHandler()\n    h.register(lambda e: print(e))\n    return h\n```",
+  "expected": "Fixed code with explanation of the leak",
+  "difficulty": "medium",
+  "estimated_time_seconds": 90
+}

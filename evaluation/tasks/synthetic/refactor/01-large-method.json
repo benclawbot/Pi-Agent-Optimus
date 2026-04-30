@@ -1,0 +1,16 @@
+{
+  "name": "Large Method Refactor",
+  "category": "refactor",
+  "description": "Refactor this large, complex function into smaller, more manageable pieces. The current code works but is difficult to maintain and understand.",
+  "requirements": [
+    "Break into functions under 30 lines each",
+    "Each function should have a single responsibility",
+    "Maintain the original behavior",
+    "Add appropriate function names and comments",
+    "Extract constants and configurations"
+  ],
+  "context": "```python\ndef process_order(order_data):\n    # Validate order\n    if not order_data.get('items'):\n        raise ValueError('Order must have items')\n    if not order_data.get('customer_id'):\n        raise ValueError('Order must have customer_id')\n    \n    # Calculate totals\n    subtotal = 0\n    for item in order_data['items']:\n        subtotal += item['price'] * item['quantity']\n    \n    # Apply discounts\n    discount = 0\n    if subtotal > 100:\n        discount = subtotal * 0.1\n    elif subtotal > 50:\n        discount = subtotal * 0.05\n    \n    # Calculate tax\n    tax = (subtotal - discount) * 0.08\n    \n    # Calculate total\n    total = subtotal - discount + tax\n    \n    # Create order record\n    order = {\n        'customer_id': order_data['customer_id'],\n        'items': order_data['items'],\n        'subtotal': subtotal,\n        'discount': discount,\n        'tax': tax,\n        'total': total,\n        'status': 'pending'\n    }\n    \n    # Save order\n    db.orders.insert(order)\n    \n    # Send notification\n    email.send(order_data['customer_email'], 'Order confirmed', f'Your order total is ${total}')\n    \n    return order\n```",
+  "expected": "Refactored code with clear function responsibilities",
+  "difficulty": "medium",
+  "estimated_time_seconds": 120
+}

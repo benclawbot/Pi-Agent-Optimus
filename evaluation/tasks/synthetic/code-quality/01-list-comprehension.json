@@ -1,0 +1,15 @@
+{
+  "name": "Python List Comprehension Refactor",
+  "category": "code-quality",
+  "description": "Refactor this Python code to use list comprehensions where appropriate. The code should be idiomatic Python that follows PEP 8 style guidelines.",
+  "requirements": [
+    "Use list comprehension for data transformations",
+    "Follow PEP 8 naming conventions",
+    "Include type hints",
+    "Handle edge cases (empty lists, None values)"
+  ],
+  "context": "```python\ndef process_data(items):\n    results = []\n    for item in items:\n        if item is not None:\n            results.append(item * 2)\n    return results\n```",
+  "expected": "Refactored code with list comprehension, type hints, and proper error handling",
+  "difficulty": "easy",
+  "estimated_time_seconds": 60
+}

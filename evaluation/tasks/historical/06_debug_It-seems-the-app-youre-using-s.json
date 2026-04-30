@@ -1,0 +1,9 @@
+{
+  "name": "It seems the app youre using submitted a bad request If",
+  "category": "debug",
+  "description": "It seems the app you're using submitted a bad request. If you'd like to report this error to the app's developer, include the information below.\nMore details for developers\nInvalid client_id: Too long.",
+  "prompt": "It seems the app you're using submitted a bad request. If you'd like to report this error to the app's developer, include the information below.\nMore details for developers\nInvalid client_id: Too long.",
+  "source_session": "2026-04-30T04-45-45-011Z_019ddcb5-08b2-700f-aa71-9827d779884e.jsonl",
+  "timestamp": "2026-04-30T05:07:03.774Z",
+  "source": "historical"
+}

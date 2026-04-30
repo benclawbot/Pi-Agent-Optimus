@@ -1,0 +1,16 @@
+{
+  "name": "Microservices Architecture",
+  "category": "architecture",
+  "description": "Design a microservices architecture for a simple e-commerce platform. The system should handle products, orders, and users with proper service boundaries and communication patterns.",
+  "requirements": [
+    "Define 3-4 services with clear responsibilities",
+    "Choose appropriate communication patterns (sync vs async)",
+    "Design data ownership (which service owns which data)",
+    "Consider API gateway and service discovery",
+    "Include error handling and resilience patterns"
+  ],
+  "context": "E-commerce platform needs: product catalog, user management, order processing, payment integration",
+  "expected": "Architecture diagram description + service definitions",
+  "difficulty": "hard",
+  "estimated_time_seconds": 180
+}

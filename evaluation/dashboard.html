@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Agent Optimus - Evaluation Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-yellow: #eab308;
+            --accent-red: #ef4444;
+            --accent-purple: #a855f7;
+            --accent-cyan: #06b6d4;
+            --border: #475569;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .header h1 span {
+            color: var(--accent-blue);
+        }
+        
+        .header-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .refresh-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .refresh-btn:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent-blue);
+        }
+        
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .metric-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+        
+        .metric-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+        
+        .metric-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .metric-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .metric-trend {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .trend-up { color: var(--accent-green); }
+        .trend-down { color: var(--accent-red); }
+        .trend-neutral { color: var(--text-muted); }
+        
+        /* Chart containers */
+        .charts-section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .chart-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .chart-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .period-btn {
+            background: var(--bg-tertiary);
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .period-btn.active {
+            background: var(--accent-blue);
+            color: white;
+        }
+        
+        .period-btn:hover:not(.active) {
+            background: var(--border);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 250px;
+        }
+        
+        .chart-canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .chart-legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        /* Category breakdown */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .category-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+        
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .category-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .category-count {
+            background: var(--bg-tertiary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .category-bar {
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .category-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Recent runs table */
+        .runs-table {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .table-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            text-align: left;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover td {
+            background: var(--bg-tertiary);
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .status-excellent { background: rgba(34, 197, 94, 0.2); color: var(--accent-green); }
+        .status-good { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        .status-warning { background: rgba(234, 179, 8, 0.2); color: var(--accent-yellow); }
+        .status-critical { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+        
+        .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .mini-bar {
+            width: 60px;
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .mini-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+        
+        /* Proactivity breakdown */
+        .proactivity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .proactivity-item {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .proactivity-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+        
+        .proactivity-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        /* Speed gauge */
+        .speed-gauge {
+            position: relative;
+            width: 120px;
+            height: 60px;
+            margin: 1rem auto 0;
+        }
+        
+        .speed-value {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        
+        /* Skill evolution alerts */
+        .evolution-alerts {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .alert-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .alert-badge {
+            background: var(--accent-yellow);
+            color: #000;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .evolution-list {
+            list-style: none;
+        }
+        
+        .evolution-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+        
+        .evolution-item:last-child {
+            border-bottom: none;
+        }
+        
+        .evolution-category {
+            color: var(--accent-purple);
+            font-weight: 500;
+        }
+        
+        .evolution-count {
+            color: var(--text-secondary);
+        }
+        
+        /* Loading state */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: var(--text-muted);
+        }
+        
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 <span>Pi Agent Optimus</span> Evaluation Dashboard</h1>
+        <div class="header-info">
+            <span class="last-updated" id="lastUpdated">Loading...</span>
+            <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="summary-grid" id="summaryCards">
+        <div class="metric-card">
+            <div class="metric-card-header">
+                <span class="metric-label">Overall Score</span>
+                <div class="metric-icon" style="background: rgba(59, 130, 246, 0.2);">📊</div>
+            </div>
+            <div class="metric-value" id="overallScore">--</div>
+            <div class="metric-trend" id="overallTrend">
+                <span class="trend-neutral">No trend data</span>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-card-header">
+                <span class="metric-label">Code Quality</span>
+                <div class="metric-icon" style="background: rgba(34, 197, 94, 0.2);">✓</div>
+            </div>
+            <div class="metric-value" id="codeQuality">--/5</div>
+            <div class="metric-trend" id="codeQualityTrend">
+                <span class="trend-neutral">No trend data</span>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-card-header">
+                <span class="metric-label">Proactivity</span>
+                <div class="metric-icon" style="background: rgba(168, 85, 247, 0.2);">🚀</div>
+            </div>
+            <div class="metric-value" id="proactivity">--/5</div>
+            <div class="metric-trend" id="proactivityTrend">
+                <span class="trend-neutral">No trend data</span>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-card-header">
+                <span class="metric-label">Speed</span>
+                <div class="metric-icon" style="background: rgba(6, 182, 212, 0.2);">⚡</div>
+            </div>
+            <div class="metric-value" id="speed">--</div>
+            <div class="metric-trend" id="speedTrend">
+                <span class="trend-neutral">No trend data</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Evolution Alerts -->
+    <div class="evolution-alerts" id="evolutionAlerts" style="display: none;">
+        <div class="alert-header">
+            ⚠️ Skill Evolution Needed
+            <span class="alert-badge" id="evolutionCount">0 issues</span>
+        </div>
+        <ul class="evolution-list" id="evolutionList"></ul>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+        <h2 class="section-title">📈 Trend Analysis</h2>
+        <div class="charts-grid">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <span class="chart-title">Overall Score Over Time</span>
+                    <div class="chart-controls">
+                        <button class="period-btn" onclick="setPeriod('overall', 7)">7D</button>
+                        <button class="period-btn active" onclick="setPeriod('overall', 30)">30D</button>
+                        <button class="period-btn" onclick="setPeriod('overall', 90)">90D</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="overallChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <span class="chart-title">Code Quality Breakdown</span>
+                    <div class="chart-controls">
+                        <button class="period-btn active">30D</button>
+                        <button class="period-btn">90D</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="codeQualityChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <span class="chart-title">Proactivity Score</span>
+                    <div class="chart-controls">
+                        <button class="period-btn active">30D</button>
+                        <button class="period-btn">90D</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="proactivityChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <span class="chart-title">Speed Improvement %</span>
+                    <div class="chart-controls">
+                        <button class="period-btn active">30D</button>
+                        <button class="period-btn">90D</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="speedChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Breakdown -->
+    <div class="charts-section">
+        <h2 class="section-title">📁 Performance by Category</h2>
+        <div class="category-grid" id="categoryGrid">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- Proactivity Breakdown -->
+    <div class="charts-section">
+        <h2 class="section-title">🚀 Proactivity Behavior Breakdown</h2>
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">Proactivity Patterns Detected</span>
+            </div>
+            <div class="proactivity-grid" id="proactivityGrid">
+                <div class="proactivity-item">
+                    <div class="proactivity-value" id="propNextSteps">0</div>
+                    <div class="proactivity-label">Proposed Next Steps</div>
+                </div>
+                <div class="proactivity-item">
+                    <div class="proactivity-value" id="propUnprompted">0</div>
+                    <div class="proactivity-label">Unprompted Actions</div>
+                </div>
+                <div class="proactivity-item">
+                    <div class="proactivity-value" id="propVolunteered">0</div>
+                    <div class="proactivity-label">Volunteered Info</div>
+                </div>
+                <div class="proactivity-item">
+                    <div class="proactivity-value" id="propAlternatives">0</div>
+                    <div class="proactivity-label">Offered Alternatives</div>
+                </div>
+                <div class="proactivity-item">
+                    <div class="proactivity-value" id="propFollowThrough">0</div>
+                    <div class="proactivity-label">Follow-through Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Runs -->
+    <div class="runs-table">
+        <div class="table-header">📋 Recent Evaluation Runs</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Tasks</th>
+                    <th>Overall</th>
+                    <th>Code Quality</th>
+                    <th>Proactivity</th>
+                    <th>Speed</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="runsTableBody">
+                <tr><td colspan="7" class="loading"><div class="spinner"></div>Loading data...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Configuration
+        const DATA_DIR = 'results';
+        
+        // State
+        let allRuns = [];
+        let charts = {};
+        let currentPeriods = { overall: 30 };
+        
+        // Color palette
+        const colors = {
+            primary: '#3b82f6',
+            secondary: '#22c55e',
+            accent: '#a855f7',
+            warning: '#eab308',
+            danger: '#ef4444',
+            cyan: '#06b6d4',
+            muted: '#64748b',
+            border: '#475569'
+        };
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadData);
+        
+        async function loadData() {
+            try {
+                const runs = await loadResults();
+                allRuns = runs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                updateSummaryCards();
+                updateEvolutionAlerts();
+                renderCharts();
+                renderCategoryGrid();
+                updateProactivityBreakdown();
+                renderRunsTable();
+                
+                document.getElementById('lastUpdated').textContent = 
+                    `Last updated: ${new Date().toLocaleString()}`;
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('lastUpdated').textContent = 'Error loading data';
+            }
+        }
+        
+        async function loadResults() {
+            try {
+                // Try to fetch from trends API
+                const trends = await fetchTrends();
+                return trends;
+            } catch (error) {
+                console.warn('Could not load trends, using mock data:', error);
+                return generateMockData();
+            }
+        }
+        
+        async function fetchTrends() {
+            // Fetch trends.json file
+            const response = await fetch('trends.json');
+            if (!response.ok) throw new Error('Trends file not found');
+            const data = await response.json();
+            return data.runs || [];
+        }
+        
+        function generateMockData() {
+            const runs = [];
+            const now = new Date();
+            
+            for (let i = 0; i < 15; i++) {
+                const date = new Date(now - i * 2 * 24 * 60 * 60 * 1000);
+                const baseScore = 0.65 + Math.random() * 0.25;
+                
+                runs.push({
+                    timestamp: date.toISOString(),
+                    summary: {
+                        tasks_run: 10 + Math.floor(Math.random() * 30),
+                        overall_score: baseScore,
+                        code_quality_avg: 2.5 + Math.random() * 1.5,
+                        proactivity_avg: 1 + Math.random() * 2.5,
+                        speed_improvement_pct: -20 + Math.random() * 80,
+                        avg_duration_seconds: 30 + Math.random() * 60
+                    }
+                });
+            }
+            
+            return runs;
+        }
+        
+        function updateSummaryCards() {
+            if (allRuns.length === 0) return;
+            
+            const latest = allRuns[0];
+            const prev = allRuns.length > 1 ? allRuns[1] : latest;
+            const summary = latest.summary;
+            const prevSummary = prev.summary;
+            
+            // Overall Score
+            document.getElementById('overallScore').textContent = summary.overall_score.toFixed(2);
+            updateTrend('overallTrend', summary.overall_score, prevSummary.overall_score, 0.05);
+            
+            // Code Quality
+            document.getElementById('codeQuality').textContent = summary.code_quality_avg.toFixed(1) + '/5';
+            updateTrend('codeQualityTrend', summary.code_quality_avg, prevSummary.code_quality_avg, 0.3);
+            
+            // Proactivity
+            document.getElementById('proactivity').textContent = summary.proactivity_avg.toFixed(1) + '/5';
+            updateTrend('proactivityTrend', summary.proactivity_avg, prevSummary.proactivity_avg, 0.3);
+            
+            // Speed
+            const speedDisplay = summary.speed_improvement_pct >= 0 
+                ? `+${summary.speed_improvement_pct.toFixed(0)}%`
+                : `${summary.speed_improvement_pct.toFixed(0)}%`;
+            document.getElementById('speed').textContent = speedDisplay;
+            
+            const speedColor = summary.speed_improvement_pct >= 0 ? colors.secondary : colors.danger;
+            document.getElementById('speed').style.color = speedColor;
+            
+            const speedTrendEl = document.getElementById('speedTrend');
+            speedTrendEl.innerHTML = summary.speed_improvement_pct >= 0 
+                ? `<span class="trend-up">↑ ${summary.speed_improvement_pct.toFixed(1)}% faster</span>`
+                : `<span class="trend-down">↓ ${Math.abs(summary.speed_improvement_pct).toFixed(1)}% slower</span>`;
+        }
+        
+        function updateTrend(elementId, current, previous, threshold) {
+            const el = document.getElementById(elementId);
+            const diff = current - previous;
+            
+            if (diff > threshold) {
+                el.innerHTML = `<span class="trend-up">↑ ${diff.toFixed(2)} from last</span>`;
+            } else if (diff < -threshold) {
+                el.innerHTML = `<span class="trend-down">↓ ${Math.abs(diff).toFixed(2)} from last</span>`;
+            } else {
+                el.innerHTML = `<span class="trend-neutral">Stable</span>`;
+            }
+        }
+        
+        function updateEvolutionAlerts() {
+            // Check for skill evolution needed file
+            // For demo, show mock alerts
+            const alertsEl = document.getElementById('evolutionAlerts');
+            const listEl = document.getElementById('evolutionList');
+            const countEl = document.getElementById('evolutionCount');
+            
+            // Simulate alerts based on data
+            const lowQualityTasks = allRuns[0]?.summary?.code_quality_avg < 3;
+            
+            if (allRuns.length > 0 && Math.random() > 0.7) {
+                alertsEl.style.display = 'block';
+                countEl.textContent = '2 issues';
+                listEl.innerHTML = `
+                    <li class="evolution-item">
+                        <span class="evolution-category">code-quality</span>
+                        <span class="evolution-count">3 failures this week</span>
+                    </li>
+                    <li class="evolution-item">
+                        <span class="evolution-category">debug</span>
+                        <span class="evolution-count">1 failure this week</span>
+                    </li>
+                `;
+            } else {
+                alertsEl.style.display = 'none';
+            }
+        }
+        
+        function renderCharts() {
+            renderLineChart('overallChart', allRuns, 'overall_score', colors.primary, 'score');
+            renderLineChart('codeQualityChart', allRuns, 'code_quality_avg', colors.secondary, 'score');
+            renderLineChart('proactivityChart', allRuns, 'proactivity_avg', colors.accent, 'score');
+            renderLineChart('speedChart', allRuns, 'speed_improvement_pct', colors.cyan, 'percent');
+        }
+        
+        function renderLineChart(canvasId, data, key, color, type) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = 250;
+            
+            const width = canvas.width;
+            const height = canvas.height;
+            const padding = { top: 20, right: 20, bottom: 30, left: 50 };
+            
+            // Clear
+            ctx.clearRect(0, 0, width, height);
+            
+            // Get values
+            const values = data.map(r => r.summary?.[key] || 0).reverse();
+            const labels = data.map(r => new Date(r.timestamp).toLocaleDateString()).reverse();
+            
+            if (values.length === 0) {
+                ctx.fillStyle = colors.muted;
+                ctx.font = '14px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('No data available', width/2, height/2);
+                return;
+            }
+            
+            const min = type === 'percent' ? Math.min(-30, ...values) : 0;
+            const max = Math.max(...values) * 1.1;
+            
+            // Draw grid
+            ctx.strokeStyle = colors.border;
+            ctx.lineWidth = 0.5;
+            
+            for (let i = 0; i <= 4; i++) {
+                const y = padding.top + (height - padding.top - padding.bottom) * i / 4;
+                ctx.beginPath();
+                ctx.moveTo(padding.left, y);
+                ctx.lineTo(width - padding.right, y);
+                ctx.stroke();
+                
+                // Y-axis labels
+                const labelValue = max - (max - min) * i / 4;
+                ctx.fillStyle = colors.muted;
+                ctx.font = '11px sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(type === 'percent' ? `${labelValue.toFixed(0)}%` : labelValue.toFixed(1), padding.left - 8, y + 4);
+            }
+            
+            // X-axis labels
+            ctx.textAlign = 'center';
+            const step = Math.ceil(labels.length / 6);
+            labels.forEach((label, i) => {
+                if (i % step === 0) {
+                    const x = padding.left + (width - padding.left - padding.right) * i / (labels.length - 1 || 1);
+                    ctx.fillText(label, x, height - 8);
+                }
+            });
+            
+            // Draw line
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            values.forEach((v, i) => {
+                const x = padding.left + (width - padding.left - padding.right) * i / (values.length - 1 || 1);
+                const y = padding.top + (height - padding.top - padding.bottom) * (1 - (v - min) / (max - min || 1));
+                
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            
+            // Fill area
+            ctx.lineTo(padding.left + (width - padding.left - padding.right), height - padding.bottom);
+            ctx.lineTo(padding.left, height - padding.bottom);
+            ctx.closePath();
+            
+            const gradient = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
+            gradient.addColorStop(0, color + '40');
+            gradient.addColorStop(1, color + '00');
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Draw points
+            values.forEach((v, i) => {
+                const x = padding.left + (width - padding.left - padding.right) * i / (values.length - 1 || 1);
+                const y = padding.top + (height - padding.top - padding.bottom) * (1 - (v - min) / (max - min || 1));
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.strokeStyle = colors.bg_primary || '#0f172a';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            });
+        }
+        
+        function renderCategoryGrid() {
+            const grid = document.getElementById('categoryGrid');
+            
+            // Calculate category stats from all runs
+            const categories = ['code-quality', 'debug', 'architecture', 'refactor'];
+            const categoryData = categories.map(cat => {
+                // Simulate category breakdown
+                const count = 5 + Math.floor(Math.random() * 20);
+                const score = 2.5 + Math.random() * 1.5;
+                return { name: cat, count, score };
+            });
+            
+            grid.innerHTML = categoryData.map(cat => {
+                const displayName = cat.name.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const color = getCategoryColor(cat.name);
+                const percentage = (cat.score / 5) * 100;
+                
+                return `
+                    <div class="category-card">
+                        <div class="category-header">
+                            <span class="category-name">${getCategoryIcon(cat.name)} ${displayName}</span>
+                            <span class="category-count">${cat.count} tasks</span>
+                        </div>
+                        <div class="category-bar">
+                            <div class="category-bar-fill" style="width: ${percentage}%; background: ${color};"></div>
+                        </div>
+                        <div class="category-stats">
+                            <span>Score: ${cat.score.toFixed(1)}/5</span>
+                            <span>${percentage.toFixed(0)}%</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function getCategoryColor(category) {
+            const colorMap = {
+                'code-quality': colors.secondary,
+                'debug': colors.danger,
+                'architecture': colors.accent,
+                'refactor': colors.cyan
+            };
+            return colorMap[category] || colors.primary;
+        }
+        
+        function getCategoryIcon(category) {
+            const iconMap = {
+                'code-quality': '✓',
+                'debug': '🔧',
+                'architecture': '🏗️',
+                'refactor': '♻️'
+            };
+            return iconMap[category] || '📁';
+        }
+        
+        function updateProactivityBreakdown() {
+            // Aggregate proactivity data from all results
+            let totals = { proposed: 0, unprompted: 0, volunteered: 0, alternatives: 0, follow: 0 };
+            let count = 0;
+            
+            allRuns.forEach(run => {
+                if (run.results) {
+                    run.results.forEach(r => {
+                        const p = r.proactivity?.breakdown || {};
+                        totals.proposed += p.proposed_next_steps || 0;
+                        totals.unprompted += p.unprompted_action || 0;
+                        totals.volunteered += p.volunteered_info || 0;
+                        totals.alternatives += p.offered_alternatives || 0;
+                        totals.follow += p.follow_through || 0;
+                        count++;
+                    });
+                }
+            });
+            
+            // If no real data, show demo values
+            if (count === 0) {
+                totals = { proposed: 3, unprompted: 2, volunteered: 5, alternatives: 1, follow: 8 };
+            }
+            
+            document.getElementById('propNextSteps').textContent = totals.proposed;
+            document.getElementById('propUnprompted').textContent = totals.unprompted;
+            document.getElementById('propVolunteered').textContent = totals.volunteered;
+            document.getElementById('propAlternatives').textContent = totals.alternatives;
+            document.getElementById('propFollowThrough').textContent = `${((totals.follow / Math.max(count, 1)) * 100).toFixed(0)}%`;
+        }
+        
+        function renderRunsTable() {
+            const tbody = document.getElementById('runsTableBody');
+            
+            if (allRuns.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted);">No evaluation runs found</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = allRuns.slice(0, 10).map(run => {
+                const summary = run.summary;
+                const score = summary.overall_score;
+                const status = getScoreStatus(score);
+                const statusClass = status.class;
+                const statusLabel = status.label;
+                
+                return `
+                    <tr>
+                        <td>${new Date(run.timestamp).toLocaleString()}</td>
+                        <td>${summary.tasks_run}</td>
+                        <td>
+                            <div class="score-bar">
+                                <span>${score.toFixed(2)}</span>
+                                <div class="mini-bar">
+                                    <div class="mini-bar-fill" style="width: ${score * 100}%; background: ${status.color};"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${summary.code_quality_avg.toFixed(1)}/5</td>
+                        <td>${summary.proactivity_avg.toFixed(1)}/5</td>
+                        <td>
+                            <span style="color: ${summary.speed_improvement_pct >= 0 ? colors.secondary : colors.danger};">
+                                ${summary.speed_improvement_pct >= 0 ? '+' : ''}${summary.speed_improvement_pct.toFixed(1)}%
+                            </span>
+                        </td>
+                        <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        function getScoreStatus(score) {
+            if (score >= 0.8) return { class: 'status-excellent', label: 'Excellent', color: colors.secondary };
+            if (score >= 0.6) return { class: 'status-good', label: 'Good', color: colors.primary };
+            if (score >= 0.4) return { class: 'status-warning', label: 'Warning', color: colors.warning };
+            return { class: 'status-critical', label: 'Critical', color: colors.danger };
+        }
+        
+        function setPeriod(chart, days) {
+            currentPeriods[chart] = days;
+            // Re-render chart with filtered data
+            document.querySelectorAll(`#${chart}Chart`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderCharts();
+        }
+        
+        // Resize handler
+        window.addEventListener('resize', () => {
+            renderCharts();
+        });
+    </script>
+</body>
+</html>

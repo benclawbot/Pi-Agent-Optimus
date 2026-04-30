@@ -1,0 +1,9 @@
+{
+  "name": "1 I dont know but lets say my focus is on code quality",
+  "category": "code-quality",
+  "description": "1 I don't know, but let's say my focus is on code quality, speed of execution  and proactivity. I'll let you find relevant criteria/metrics for those. skills are a part of the harness, it's a test of the whole setup, not just LLM, not just skills, not just instructions/ tools, but everything in Pi. for skills they should be created and updated as I point more than once to an issue, by generalizing the skill (it shouldn't be project specific). you can use both historical prompts and synthetic tasks based on those interactions.  Maximize the use of LLM judges. even if using an inferior LLM judge compared to current model (for example using Minimax M2.5 to test Minimax M2.7",
+  "prompt": "1 I don't know, but let's say my focus is on code quality, speed of execution  and proactivity. I'll let you find relevant criteria/metrics for those. skills are a part of the harness, it's a test of the whole setup, not just LLM, not just skills, not just instructions/ tools, but everything in Pi. for skills they should be created and updated as I point more than once to an issue, by generalizing the skill (it shouldn't be project specific). you can use both historical prompts and synthetic tasks based on those interactions.  Maximize the use of LLM judges. even if using an inferior LLM judge compared to current model (for example using Minimax M2.5 to test Minimax M2.7",
+  "source_session": "2026-04-30T21-20-02-414Z_019de043-556d-75c8-8c80-7ce51ee74ac9.jsonl",
+  "timestamp": "2026-04-30T21:27:41.307Z",
+  "source": "historical"
+}

@@ -1,0 +1,553 @@
+{
+  "timestamp": "2026-04-30_23-39-31",
+  "summary": {
+    "tasks_run": 10,
+    "overall_score": 0.8400000000000001,
+    "code_quality_avg": 3.0,
+    "proactivity_avg": 0.0,
+    "avg_duration_seconds": 1.797193,
+    "speed_improvement_pct": 97.00467833333335
+  },
+  "results": [
+    {
+      "task_name": "the token is  sluAGf34LSF1x3COJx7wV8DKuX7h2EEedWO0dVOX",
+      "task_category": "debug",
+      "duration_seconds": 1.789248,
+      "metrics": {
+        "duration_seconds": 1.7888133525848389,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "skill namedecision-tracker locationhomethomaspi",
+      "task_category": "architecture",
+      "duration_seconds": 1.787145,
+      "metrics": {
+        "duration_seconds": 1.786534309387207,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "1 Sure for the proactivity its more a question of bei",
+      "task_category": "refactor",
+      "duration_seconds": 1.802187,
+      "metrics": {
+        "duration_seconds": 1.8018465042114258,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "It seems the app youre using submitted a bad request If",
+      "task_category": "debug",
+      "duration_seconds": 1.778555,
+      "metrics": {
+        "duration_seconds": 1.77821683883667,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "1 I dont know but lets say my focus is on code quality",
+      "task_category": "code-quality",
+      "duration_seconds": 1.805403,
+      "metrics": {
+        "duration_seconds": 1.8050448894500732,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "1 in pi agent optimus indeed and pushed to github with t",
+      "task_category": "architecture",
+      "duration_seconds": 1.817197,
+      "metrics": {
+        "duration_seconds": 1.8168153762817383,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "check for issues in obsidian content",
+      "task_category": "debug",
+      "duration_seconds": 1.763853,
+      "metrics": {
+        "duration_seconds": 1.7634646892547607,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "a little brainstorming session with me  how would create",
+      "task_category": "code-quality",
+      "duration_seconds": 1.841074,
+      "metrics": {
+        "duration_seconds": 1.8405930995941162,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "delete the vaul-fix-planmd file  not needed anymore",
+      "task_category": "debug",
+      "duration_seconds": 1.795097,
+      "metrics": {
+        "duration_seconds": 1.7945868968963623,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    },
+    {
+      "task_name": "any issues in obsidian",
+      "task_category": "debug",
+      "duration_seconds": 1.792171,
+      "metrics": {
+        "duration_seconds": 1.791783332824707,
+        "duration_formatted": "1.8s",
+        "tokens_used": {
+          "output_estimate": 0,
+          "trace_estimate": 16,
+          "total_estimate": 16
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.84
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "check for issues in obsidian content",
+  "category": "debug",
+  "description": "check for issues in obsidian content",
+  "prompt": "check for issues in obsidian content",
+  "source_session": "2026-04-29T21-07-51-717Z_019ddb11-d324-7418-b327-40ffcae1dd75.jsonl",
+  "timestamp": "2026-04-29T21:36:35.991Z",
+  "source": "historical"
+}
