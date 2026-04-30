@@ -1,26 +1,38 @@
 {
-  "timestamp": "2026-05-01T00:02:47.255448",
+  "timestamp": "2026-05-01T00:00:31.332208",
   "version": "baseline",
   "runs": [
     {
-      "timestamp": "2026-05-01T00:02:47.255448",
-      "tasks_run": 20,
-      "overall_score": 0.72,
-      "code_quality_avg": 2.1,
-      "proactivity_avg": 0.5,
+      "timestamp": "2026-05-01T00:00:31.332208",
+      "tasks_run": 43,
+      "overall_score": 0.605,
+      "code_quality_avg": 2.6,
+      "proactivity_avg": 0.0,
       "speed_improvement_pct": 0,
-      "avg_duration_seconds": 1.8,
+      "avg_duration_seconds": 1.79,
       "category_scores": {
-        "speed": 0.82,
-        "output_quality": 0.75,
-        "code_quality": 0.7,
-        "reasoning": 0.68,
-        "adaptability": 0.65,
-        "proactivity": 0.55,
-        "reliability": 0.8,
-        "tool_use": 0.75,
+        "speed": 0.921,
+        "output_quality": 0.667,
+        "code_quality": 0.528,
+        "reasoning": 0.444,
+        "proactivity": 0.0,
+        "reliability": 1.0,
+        "tool_use": 0.7,
         "user_experience": 0.7,
-        "safety": 0.85
+        "adaptability": 0.65,
+        "safety": 0.444
+      },
+      "data_source": {
+        "speed": "real",
+        "output_quality": "real",
+        "code_quality": "real",
+        "reasoning": "real",
+        "proactivity": "real",
+        "reliability": "real",
+        "tool_use": "placeholder",
+        "user_experience": "placeholder",
+        "adaptability": "placeholder",
+        "safety": "real"
       }
     }
   ]
