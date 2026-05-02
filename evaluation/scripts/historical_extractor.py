@@ -27,6 +27,11 @@ class HistoricalExtractor:
             "architecture": ["design", "architecture", "system", "service", "api", "microservice", "structure"],
             "refactor": ["refactor", "improve", "clean", "restructure", "rewrite", "simplify"]
         }
+        self.secret_patterns = [
+            re.compile(r"\bsl\.u\.[A-Za-z0-9_\-.]{40,}\b"),
+            re.compile(r"\b(?:sk|ghp|gho|github_pat|xox[baprs])-?[A-Za-z0-9_\-]{20,}\b"),
+            re.compile(r"\b[A-Za-z0-9_\-]{80,}\b"),
+        ]
     
     def extract(self, max_tasks: int = 20) -> List[Dict[str, Any]]:
         """
@@ -46,7 +51,7 @@ class HistoricalExtractor:
             
             session_tasks = self._extract_from_session(session_file, seen_prompts)
             tasks.extend(session_tasks)
-            seen_prompts.update(t['prompt'] for t in session_tasks)
+            seen_prompts.update(hash(t['prompt']) for t in session_tasks)
         
         return tasks[:max_tasks]
     
@@ -90,16 +95,20 @@ class HistoricalExtractor:
                             content = self._extract_content(msg.get("content", []))
                             
                             if content and len(content) > 20:  # Minimum length
-                                prompt_hash = hash(content)
+                                if self._looks_like_secret_dump(content):
+                                    continue
+
+                                safe_content = self._redact_secrets(content)
+                                prompt_hash = hash(safe_content)
                                 if prompt_hash not in seen_prompts:
-                                    category = self._classify(content)
+                                    category = self._classify(safe_content)
                                     
                                     if category:
                                         task = {
-                                            "name": self._generate_task_name(content),
+                                            "name": self._generate_task_name(safe_content),
                                             "category": category,
-                                            "description": content,
-                                            "prompt": content,
+                                            "description": safe_content,
+                                            "prompt": safe_content,
                                             "source_session": session_file.name,
                                             "timestamp": entry.get("timestamp"),
                                             "source": "historical"
@@ -113,6 +122,20 @@ class HistoricalExtractor:
             pass  # Skip problematic files
         
         return tasks
+
+    def _looks_like_secret_dump(self, text: str) -> bool:
+        """Reject prompts that are mainly credentials/tokens, not tasks."""
+        lowered = text.lower().strip()
+        if lowered.startswith(("the token is", "token is", "api key", "apikey", "secret is")):
+            return True
+        return any(pattern.search(text) for pattern in self.secret_patterns)
+
+    def _redact_secrets(self, text: str) -> str:
+        """Redact secret-looking substrings before saving historical tasks."""
+        redacted = text
+        for pattern in self.secret_patterns:
+            redacted = pattern.sub("[REDACTED_SECRET]", redacted)
+        return redacted
     
     def _extract_content(self, content: List[Dict]) -> str:
         """Extract text content from message."""

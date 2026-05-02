@@ -1,0 +1,355 @@
+{
+  "timestamp": "2026-05-02_06-00-05",
+  "summary": {
+    "tasks_run": 6,
+    "overall_score": 0.0,
+    "code_quality_avg": 0.0,
+    "proactivity_avg": 0.0,
+    "avg_duration_seconds": 0.0006828333333333334,
+    "speed_improvement_pct": 99.99886194444444
+  },
+  "results": [
+    {
+      "task_name": "Large Method Refactor",
+      "task_category": "refactor",
+      "duration_seconds": 0.001498,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 0.0009200572967529297,
+        "duration_formatted": "0.0s",
+        "tokens_used": {
+          "output_estimate": 13,
+          "trace_estimate": 28,
+          "total_estimate": 41
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge failed: [Errno 2] No such file or directory: 'pi'",
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Race Condition Fix",
+      "task_category": "debug",
+      "duration_seconds": 0.000624,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 0.0004303455352783203,
+        "duration_formatted": "0.0s",
+        "tokens_used": {
+          "output_estimate": 13,
+          "trace_estimate": 28,
+          "total_estimate": 41
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge failed: [Errno 2] No such file or directory: 'pi'",
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Debug Memory Leak",
+      "task_category": "debug",
+      "duration_seconds": 0.000528,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 0.00038695335388183594,
+        "duration_formatted": "0.0s",
+        "tokens_used": {
+          "output_estimate": 13,
+          "trace_estimate": 28,
+          "total_estimate": 41
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge failed: [Errno 2] No such file or directory: 'pi'",
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Microservices Architecture",
+      "task_category": "architecture",
+      "duration_seconds": 0.000481,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 0.00034689903259277344,
+        "duration_formatted": "0.0s",
+        "tokens_used": {
+          "output_estimate": 13,
+          "trace_estimate": 28,
+          "total_estimate": 41
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge failed: [Errno 2] No such file or directory: 'pi'",
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Python List Comprehension Refactor",
+      "task_category": "code-quality",
+      "duration_seconds": 0.00048,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 0.00034546852111816406,
+        "duration_formatted": "0.0s",
+        "tokens_used": {
+          "output_estimate": 13,
+          "trace_estimate": 28,
+          "total_estimate": 41
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge failed: [Errno 2] No such file or directory: 'pi'",
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Secure API Endpoint",
+      "task_category": "code-quality",
+      "duration_seconds": 0.000486,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 0.00032711029052734375,
+        "duration_formatted": "0.0s",
+        "tokens_used": {
+          "output_estimate": 13,
+          "trace_estimate": 28,
+          "total_estimate": 41
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge failed: [Errno 2] No such file or directory: 'pi'",
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.0
+    }
+  ]
+}

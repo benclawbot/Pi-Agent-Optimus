@@ -1,0 +1,17 @@
+{
+  "name": "Fix timeout Issue",
+  "category": "debug",
+  "description": "Debug and fix the timeout problem. Identify the root cause and implement a proper fix.",
+  "requirements": [
+    "Identify root cause",
+    "Fix without breaking existing functionality",
+    "Add test case for the bug",
+    "Explain the fix"
+  ],
+  "difficulty": "medium",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181089",
+  "triggered_by_failure": null,
+  "expected": "Fixed timeout with explanation of root cause",
+  "estimated_time_seconds": 120
+}

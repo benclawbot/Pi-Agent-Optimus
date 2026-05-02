@@ -1,0 +1,261 @@
+{
+  "name": "Proactivity Benchmark - 6 Phases",
+  "description": "Comprehensive proactivity evaluation across task lifecycle phases",
+  "total_tasks": 13,
+  "phases": [
+    "start",
+    "execution",
+    "completion",
+    "feedback",
+    "memory",
+    "idle"
+  ],
+  "phase_weights": {
+    "start": 0.2,
+    "execution": 0.25,
+    "completion": 0.2,
+    "feedback": 0.15,
+    "memory": 0.1,
+    "idle": 0.1
+  },
+  "tasks": [
+    {
+      "task_id": "PRO-STAR-001",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "medium",
+      "description": "Improve this API",
+      "inject": null,
+      "vague_input": true,
+      "expected_behaviors": [
+        "scale",
+        "users",
+        "constraints",
+        "plan"
+      ],
+      "scoring": {
+        "relevance": 2,
+        "initiative": 2,
+        "usefulness": 1
+      }
+    },
+    {
+      "task_id": "PRO-STAR-002",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "medium",
+      "description": "Fix the bug",
+      "inject": null,
+      "vague_input": true,
+      "expected_behaviors": [
+        "which bug",
+        "where",
+        "reproduce"
+      ],
+      "scoring": {
+        "relevance": 2,
+        "initiative": 2,
+        "usefulness": 1
+      }
+    },
+    {
+      "task_id": "PRO-STAR-003",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "medium",
+      "description": "Add tests",
+      "inject": null,
+      "vague_input": true,
+      "expected_behaviors": [
+        "unit vs integration",
+        "coverage target",
+        "framework"
+      ],
+      "scoring": {
+        "relevance": 2,
+        "initiative": 2,
+        "usefulness": 1
+      }
+    },
+    {
+      "task_id": "PRO-EXEC-004",
+      "category": "proactivity",
+      "phase": "execution",
+      "difficulty": "medium",
+      "description": "",
+      "inject": "slow_tool",
+      "vague_input": false,
+      "expected_behaviors": [
+        "detected",
+        "alternative",
+        "optimize"
+      ],
+      "scoring": {
+        "relevance": 2,
+        "initiative": 2,
+        "usefulness": 1
+      }
+    },
+    {
+      "task_id": "PRO-EXEC-005",
+      "category": "proactivity",
+      "phase": "execution",
+      "difficulty": "medium",
+      "description": "",
+      "inject": "failing_step",
+      "vague_input": false,
+      "expected_behaviors": [
+        "recovery",
+        "workaround",
+        "adapt"
+      ],
+      "scoring": {
+        "relevance": 2,
+        "initiative": 2,
+        "usefulness": 1
+      }
+    },
+    {
+      "task_id": "PRO-COMP-006",
+      "category": "proactivity",
+      "phase": "completion",
+      "difficulty": "medium",
+      "description": "Done with implementation",
+      "inject": null,
+      "vague_input": false,
+      "expected_behaviors": [
+        "suggestion",
+        "optimization",
+        "next step"
+      ],
+      "scoring": {
+        "relevance": 2,
+        "initiative": 2,
+        "usefulness": 1
+      }
+    },
+    {
+      "task_id": "PRO-REAS-007",
+      "category": "proactivity",
+      "phase": "reasoning",
+      "difficulty": "medium",
+      "description": "This code works",
+      "inject": null,
+      "vague_input": false,
+      "expected_behaviors": [
+        "assumption",
+        "edge case",
+        "potential issue"
+      ],
+      "scoring": {
+        "relevance": 2,
+        "initiative": 2,
+        "usefulness": 1
+      }
+    },
+    {
+      "task_id": "PRO-MEM-008",
+      "category": "proactivity",
+      "phase": "memory",
+      "difficulty": "medium",
+      "description": "repeated task",
+      "inject": null,
+      "vague_input": false,
+      "expected_behaviors": [
+        "cache",
+        "reuse",
+        "automate"
+      ],
+      "scoring": {
+        "relevance": 2,
+        "initiative": 2,
+        "usefulness": 1
+      }
+    },
+    {
+      "task_id": "PRO-VAGUE-009",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "easy",
+      "description": "Make it better",
+      "vague_input": true,
+      "expected_behaviors": [
+        "clarifying question",
+        "plan",
+        "scope"
+      ],
+      "scoring": {
+        "clarifying_questions": 3,
+        "structured_plan": 2
+      }
+    },
+    {
+      "task_id": "PRO-VAGUE-010",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "easy",
+      "description": "Optimize performance",
+      "vague_input": true,
+      "expected_behaviors": [
+        "clarifying question",
+        "plan",
+        "scope"
+      ],
+      "scoring": {
+        "clarifying_questions": 3,
+        "structured_plan": 2
+      }
+    },
+    {
+      "task_id": "PRO-VAGUE-011",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "easy",
+      "description": "Clean up the code",
+      "vague_input": true,
+      "expected_behaviors": [
+        "clarifying question",
+        "plan",
+        "scope"
+      ],
+      "scoring": {
+        "clarifying_questions": 3,
+        "structured_plan": 2
+      }
+    },
+    {
+      "task_id": "PRO-VAGUE-012",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "easy",
+      "description": "Add documentation",
+      "vague_input": true,
+      "expected_behaviors": [
+        "clarifying question",
+        "plan",
+        "scope"
+      ],
+      "scoring": {
+        "clarifying_questions": 3,
+        "structured_plan": 2
+      }
+    },
+    {
+      "task_id": "PRO-VAGUE-013",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "easy",
+      "description": "Review for issues",
+      "vague_input": true,
+      "expected_behaviors": [
+        "clarifying question",
+        "plan",
+        "scope"
+      ],
+      "scoring": {
+        "clarifying_questions": 3,
+        "structured_plan": 2
+      }
+    }
+  ]
+}

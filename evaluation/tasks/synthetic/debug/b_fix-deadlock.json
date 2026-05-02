@@ -1,0 +1,16 @@
+{
+  "name": "fix-deadlock",
+  "category": "debug",
+  "difficulty": "hard",
+  "description": "Fix the deadlock in this two-lock system. Thread A holds lock1 and waits for lock2, Thread B holds lock2 and waits for lock1.",
+  "requirements": [
+    "Eliminate deadlock",
+    "Preserve same functionality",
+    "Add deadlock-free test"
+  ],
+  "context": "import threading\nimport time\n\nclass TransferService:\n    def __init__(self, account_a, account_b):\n        self.account_a = account_a\n        self.account_b = account_b\n        self.lock_a = threading.Lock()\n        self.lock_b = threading.Lock()\n    \n    def transfer(self, amount):\n        with self.lock_a:\n            time.sleep(0.01)  # Simulate processing\n            with self.lock_b:\n                self.account_a.balance -= amount\n                self.account_b.balance += amount\n    \n    def reverse_transfer(self, amount):\n        with self.lock_b:  # DEADLOCK: reversed lock order!\n            time.sleep(0.01)\n            with self.lock_a:\n                self.account_b.balance -= amount\n                self.account_a.balance += amount",
+  "expected": "Fixed transfer service with consistent lock ordering or lock-free design",
+  "estimated_time_seconds": 120,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

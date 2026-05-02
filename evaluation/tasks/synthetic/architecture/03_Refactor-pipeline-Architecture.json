@@ -1,0 +1,17 @@
+{
+  "name": "Refactor pipeline Architecture",
+  "category": "architecture",
+  "description": "Current pipeline architecture has issues. Propose and implement a refactored design.",
+  "requirements": [
+    "Identify current problems",
+    "Propose improved architecture",
+    "Plan migration path",
+    "Maintain backward compatibility"
+  ],
+  "difficulty": "hard",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181105",
+  "triggered_by_failure": null,
+  "expected": "Designed pipeline with clear component boundaries",
+  "estimated_time_seconds": 180
+}

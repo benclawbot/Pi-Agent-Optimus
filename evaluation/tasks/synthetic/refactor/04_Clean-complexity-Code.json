@@ -1,0 +1,17 @@
+{
+  "name": "Clean complexity Code",
+  "category": "refactor",
+  "description": "Refactor the complexity code to improve readability and maintainability.",
+  "requirements": [
+    "Reduce complexity",
+    "Improve naming",
+    "Add documentation",
+    "Maintain behavior"
+  ],
+  "difficulty": "medium",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181134",
+  "triggered_by_failure": null,
+  "expected": "Refactored complexity with improved maintainability",
+  "estimated_time_seconds": 120
+}

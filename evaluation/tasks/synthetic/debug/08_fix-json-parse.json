@@ -1,0 +1,14 @@
+{
+  "name": "fix-json-parse",
+  "category": "debug",
+  "description": "Fix a JSON parser that crashes on valid input: '{\"key\": \"value with \\\"quotes\\\"\"}'. Handle escape sequences correctly.",
+  "requirements": [
+    "Parse escaped quotes",
+    "Handle nested objects",
+    "Error messages for malformed JSON"
+  ],
+  "expected": "json_helper.py",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.497101",
+  "estimated_time_seconds": 120
+}

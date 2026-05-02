@@ -1,0 +1,17 @@
+{
+  "name": "Design service System",
+  "category": "architecture",
+  "description": "Design an architecture for service. Define components, interactions, and data flow.",
+  "requirements": [
+    "Clear component boundaries",
+    "Scalable design",
+    "Consistent patterns",
+    "Consider failure modes"
+  ],
+  "difficulty": "hard",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181098",
+  "triggered_by_failure": null,
+  "expected": "Designed service with clear component boundaries",
+  "estimated_time_seconds": 180
+}

@@ -1,0 +1,14 @@
+{
+  "name": "simplify-nested-callbacks",
+  "category": "refactor",
+  "description": "Refactor deeply nested async callbacks into clean async/await code: callback(h1(response1(h2(error2())))). Use proper error handling.",
+  "requirements": [
+    "Flat async/await structure",
+    "Proper try/except",
+    "Equivalent behavior to original"
+  ],
+  "expected": "async_processor.py",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.498206",
+  "estimated_time_seconds": 120
+}

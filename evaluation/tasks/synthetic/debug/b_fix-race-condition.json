@@ -1,0 +1,17 @@
+{
+  "name": "fix-race-condition",
+  "category": "debug",
+  "difficulty": "medium",
+  "description": "Fix the race condition in this counter. Multiple threads incrementing cause incorrect totals.",
+  "requirements": [
+    "Thread-safe counter",
+    "Reproduce bug with test",
+    "Fix with Lock or atomic",
+    "Verify with concurrent test"
+  ],
+  "context": "import threading\nimport time\n\nclass Counter:\n    def __init__(self):\n        self.count = 0\n    \n    def increment(self):\n        # Race condition: read-modify-write is not atomic\n        current = self.count\n        time.sleep(0.001)  # Simulate work\n        self.count = current + 1\n    \n    def get(self):\n        return self.count",
+  "expected": "threadsafe_counter.py with Lock-based implementation and concurrent test",
+  "estimated_time_seconds": 90,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "extract-repeated-logic",
+  "category": "refactor",
+  "description": "Find and extract the duplication in these three similar functions: validate_email(), validate_username(), validate_password(). Create a shared validation framework.",
+  "requirements": [
+    "DRY principle",
+    "Composable validators",
+    "Clear error messages",
+    "Tests still pass"
+  ],
+  "expected": "validators.py with shared base",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.498430",
+  "estimated_time_seconds": 120
+}

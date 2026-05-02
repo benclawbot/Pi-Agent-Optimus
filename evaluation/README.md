@@ -1,170 +1,120 @@
-# Pi Agent Optimus - Evaluation Framework
+# Agent Evaluation Framework
 
-Comprehensive evaluation system for testing the entire Pi agent harness — LLM, skills, instructions, and tools working together.
-
-## Architecture
-
-```
-evaluation/
-├── config.json                  # Configuration (dimensions, weights, API keys)
-├── benchmark/                   # Benchmark suite system
-│   ├── tasks/                   # Generated task suites
-│   ├── protocols/              # Benchmark protocols
-│   └── data/                   # Results storage
-├── scripts/
-│   ├── benchmark_generator.py  # Generate task suites
-│   ├── benchmark_runner.py     # Run evaluations
-│   ├── benchmark_comparison.py # Compare versions
-│   └── ...                     # Other utilities
-├── dashboard.html              # Simple dashboard
-├── dashboard-comprehensive.html # Full analysis dashboard
-└── README.md
-```
+Single evaluation harness for running the same benchmark tasks against Pi Agent Optimus or Hermes.
 
 ## Quick Start
 
 ```bash
-# Generate benchmark suite (first time)
-python3 scripts/benchmark_generator.py --count 8
+cd evaluation
 
-# Run full benchmark
-python3 scripts/benchmark_runner.py --version v1.0
+# Evaluate Pi Agent Optimus
+python3 run_eval.py run --agent pi --quick
 
-# View dashboard
-python3 -m http.server 8080
-# Open http://localhost:8080/dashboard.html
+# Evaluate Hermes
+python3 run_eval.py run --agent hermes --quick
+
+# Run one category
+python3 run_eval.py run --agent hermes --category debug --quick
 ```
 
-## 10 Evaluation Dimensions
+Reports and result JSON are written per agent:
 
-| Dimension | Weight | What it measures |
-|-----------|--------|------------------|
-| **Speed** | 15% | Latency (P50/P95/P99), throughput, cost efficiency |
-| **Output Quality** | 20% | Task success rate, correctness, coherence |
-| **Code Quality** | 15% | Test pass rate, linting, maintainability |
-| **Reasoning** | 15% | Multi-step accuracy, error recovery, step efficiency |
-| **Adaptability** | 10% | Adaptation score, few-shot learning |
-| **Proactivity** | 10% | Initiative rate, goal completion without intervention |
-| **Reliability** | 10% | Failure rate, consistency across runs |
-| **Tool Use** | 0% | Correct tool selection, chaining efficiency |
-| **UX** | 0% | Time to usable result, iterations required |
-| **Safety** | 5% | Policy violations, refusal correctness |
+```text
+evaluation/reports/pi/
+evaluation/reports/hermes/
+evaluation/results/pi/
+evaluation/results/hermes/
+```
 
-## Benchmark Categories
+## What It Measures
 
-- **coding** - Code generation, debugging, refactoring
-- **reasoning** - Logical problem solving, chain-of-thought
-- **tool_usage** - Multi-step tool orchestration
-- **open_ended** - Autonomous planning and improvement
-- **safety** - Policy compliance and adversarial handling
-- **adversarial** - Edge cases, incomplete info, misleading instructions
+The harness executes task files from `tasks/synthetic/` and curated historical tasks from `tasks/historical/`.
 
-## Commands Reference
+Core signals:
+
+- Objective validation: expected files, required/forbidden output patterns, and generated test execution.
+- Python test execution: if a task requires tests or generated `test_*.py` files, the harness runs `python3 -m pytest -q` inside the task workspace before it is deleted.
+- LLM judge scores for correctness, code quality, readability, efficiency, and safety.
+- Process-level reliability: timeout and process failures score as failed runs.
+- Speed relative to a per-agent baseline.
+- Proactivity from raw agent output only. The harness does not inject rewarded phrases into the output.
+- Tool-use and UX proxies from available traces.
+
+Objective validation is treated as primary evidence. Failed critical checks cap the overall score, even when the LLM judge is generous. Tasks without objective validators are marked `low_evidence` and cannot receive a top benchmark score.
+
+## Agent Selection
+
+Agents are configured in `config.json` under `evaluation.agents`.
+
+```json
+{
+  "evaluation": {
+    "targetAgent": "pi",
+    "agents": {
+      "pi": {"name": "Pi Agent Optimus", "command": "pi"},
+      "hermes": {"name": "Hermes Agent", "command": "hermes"}
+    }
+  }
+}
+```
+
+Use `--agent pi` or `--agent hermes` at runtime. The task corpus and scoring code stay the same, which makes comparisons meaningful.
+
+## Task Requirements
+
+A task should include objective criteria:
+
+```json
+{
+  "name": "fix-sql-injection",
+  "category": "debug",
+  "description": "Fix the SQL injection vulnerability.",
+  "requirements": ["Use parameterized queries", "Keep same interface", "Add tests"],
+  "context": "...code...",
+  "expected": "Fixed with tests proving injection is blocked"
+}
+```
+
+Optional validators make a task stronger:
+
+```json
+{
+  "validators": {
+    "expected_files": ["cache.py", "test_cache.py"],
+    "test_command": "python3 -m pytest -q",
+    "required_output_patterns": ["Test Results"],
+    "forbidden_output_patterns": ["Traceback"]
+  }
+}
+```
+
+If `validators.expected_files` is omitted, the harness extracts filenames from `expected`. If `test_command` is omitted but the task requires tests or creates `test_*.py`, it runs `python3 -m pytest -q`.
+
+Validation grades:
+
+- `pass`: objective checks passed.
+- `partial`: some checks failed; score is capped.
+- `fail`: critical checks failed; score is capped at failure range.
+- `low_evidence`: no objective validators existed; useful for smoke tests, not strong benchmark claims.
+
+Historical tasks are only loaded when they have `requirements` or `expected` criteria and do not contain credential-like secrets.
+
+## Commands
 
 ```bash
-# Generate tasks
-python3 scripts/benchmark_generator.py --count 8
+# Quick run
+python3 run_eval.py run --agent pi --quick
 
-# Run benchmark
-python3 scripts/benchmark_runner.py --version v1.0
+# Full run
+python3 run_eval.py run --agent hermes --full
 
-# Compare versions
-python3 scripts/benchmark_comparison.py --baseline      # vs first run
-python3 scripts/benchmark_comparison.py --evolution      # track over time
+# Compare latest runs for the selected/default agent
+python3 run_eval.py compare
 
-# View dashboards
-python3 -m http.server 8080
-# dashboard.html - Quick overview
-# dashboard-comprehensive.html - Full analysis
+# Show trends
+python3 run_eval.py trends
 ```
 
-## Scorecard Example
+## Skill Improvement Loop
 
-```
-OVERALL SCORE: 0.72
-
-Dimension       Weight   Score   Weighted
-speed            15%     0.85    0.128
-output_quality   20%     0.75    0.150
-code_quality     15%     0.70    0.105
-reasoning        15%     0.68    0.102
-adaptability     10%     0.65    0.065
-proactivity      10%     0.72    0.072
-reliability      10%     0.80    0.080
-safety            5%     0.90    0.045
-```
-
-## Key Metrics
-
-### Latency
-- P50 < 2s = Excellent
-- P95 < 5s = Good
-- P99 < 10s = Acceptable
-
-### Task Success
-- 80%+ = Excellent
-- 60-80% = Good
-- <60% = Needs work
-
-### Proactivity
-- Initiative rate > 50% = Good
-- Goal completion without intervention = Key indicator
-
-## Dashboards
-
-Start server and open in browser:
-```bash
-cd evaluation && python3 -m http.server 8080
-```
-
-**Simple Dashboard** (`dashboard.html`):
-- Summary cards with trends
-- Line charts for each metric
-- Recent runs table
-
-**Comprehensive Dashboard** (`dashboard-comprehensive.html`):
-- Full scorecard with all dimensions
-- Latency statistics (P50/P95/P99)
-- Version comparison
-- Proactivity breakdown
-
-## Nightly Automation
-
-```bash
-# Schedule nightly benchmark
-python3 scripts/scheduler.py setup
-
-# Check status
-python3 scripts/scheduler.py status
-```
-
-## Skill Evolution
-
-When issues are detected repeatedly (threshold: 3+ failures):
-1. System writes `skill-evolution-needed.json`
-2. Review relevant skills
-3. Generalize to handle pattern (not project-specific)
-4. Re-run benchmark to verify fix
-
-## LLM Judge Strategy
-
-Using MiniMax M2.5 (weaker) to judge MiniMax M2.7 (stronger):
-- Tests explainability
-- Lower cost than self-judging
-- Real-world evaluation scenario
-
-## Key Insights
-
-A strong harness should show:
-1. **Consistent gains** across versions
-2. **No regression** in reliability
-3. **Better performance** per cost unit
-4. **High proactivity** without sacrificing quality
-5. **Low latency** at P95/P99
-
-Most people evaluate AI systems incorrectly because they:
-- rely too much on subjective impressions
-- don't separate dimensions
-- don't test edge cases and failure modes
-
-Track these trends in the dashboard to identify degradation early.
+When repeated failures cross the configured threshold, the harness writes `skill-evolution-needed.json`. Use the shared `evaluation-improvement` skill plus `skill-evolution` to convert repeated failures into concrete skill updates for either agent.

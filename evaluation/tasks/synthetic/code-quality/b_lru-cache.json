@@ -1,0 +1,17 @@
+{
+  "name": "lru-cache",
+  "category": "code-quality",
+  "difficulty": "medium",
+  "description": "Implement an LRU (Least Recently Used) cache with max size. When full, evict the least recently used item.",
+  "requirements": [
+    "O(1) get and set",
+    "Max size enforcement",
+    "Thread-safe",
+    "LRU eviction"
+  ],
+  "context": null,
+  "expected": "lru_cache.py with LRUCache class and tests",
+  "estimated_time_seconds": 120,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

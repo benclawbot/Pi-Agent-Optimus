@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-01T00:16:54.736376",
-  "total_runs": 9,
+  "updated_at": "2026-05-02T06:00:05.559376",
+  "total_runs": 10,
   "runs": [
     {
       "timestamp": "2026-04-23T00:16:54.735645",
@@ -199,6 +199,104 @@
       "latency_p95": 3.5,
       "avg_duration": 1.79,
       "avg_tokens": 650
+    },
+    {
+      "timestamp": "2026-05-01T08:48:00.478996",
+      "version": "current",
+      "overall_score": 0.7222282884730848,
+      "tasks_run": 43,
+      "dimension_scores": {
+        "speed": 0.8572828847308491,
+        "output_quality": 1.0,
+        "code_quality": 0.6666666666666666,
+        "reasoning": 0.6666666666666666,
+        "adaptability": 0.715,
+        "proactivity": 0.0,
+        "reliability": 1.0,
+        "tool_use": 0.625,
+        "user_experience": 0.7,
+        "safety": 0.6666666666666666
+      }
+    },
+    {
+      "timestamp": "2026-05-02T08:43:05.419549",
+      "version": "v3.0",
+      "overall_score": 0.44,
+      "tasks": 6,
+      "scorecard": {
+        "overall_score": 0.44,
+        "dimensions": {
+          "speed": {
+            "raw_score": 1.0,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "output_quality": {
+            "raw_score": 0.3,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "code_quality": {
+            "raw_score": 0.0,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "reasoning": {
+            "raw_score": 0.15,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "adaptability": {
+            "raw_score": 0.3,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "proactivity": {
+            "raw_score": 0.0,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "reliability": {
+            "raw_score": 0.5,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "tool_use": {
+            "raw_score": 0.7,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "user_experience": {
+            "raw_score": 1.0,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "safety": {
+            "raw_score": 0.0,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "token_efficiency": {
+            "raw_score": 0.635,
+            "weight": 0.0833,
+            "source": "real"
+          },
+          "memory_retrieval": {
+            "raw_score": 0.7,
+            "weight": 0.0833,
+            "source": "real"
+          }
+        },
+        "latency_stats": {
+          "p50": 0.0,
+          "p95": 0.0
+        },
+        "dimension_scores": {
+          "output_quality": {
+            "task_success_rate": 0.0
+          }
+        }
+      }
     }
   ],
   "trend": {
@@ -223,7 +321,7 @@
         0.557,
         0.575,
         0.594,
-        0.612
+        0.7222282884730848
       ],
       "labels": [
         "v0.1",
@@ -238,7 +336,7 @@
       ]
     },
     "improvement": {
-      "overall": 31.6,
+      "overall": 55.3,
       "dimensions": {
         "speed": 31.6,
         "output_quality": 31.6,

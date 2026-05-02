@@ -1,0 +1,17 @@
+{
+  "name": "rate-limiter-sliding-window",
+  "category": "code-quality",
+  "difficulty": "medium",
+  "description": "Implement a sliding window rate limiter. Allow N requests per M seconds per key, tracking exact request timestamps.",
+  "requirements": [
+    "Sliding window algorithm (not fixed window)",
+    "Per-key limits",
+    "Thread-safe",
+    "allow(key) returns bool"
+  ],
+  "context": null,
+  "expected": "rate_limiter.py with SlidingWindowRateLimiter class and tests",
+  "estimated_time_seconds": 120,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "circuit-breaker-design",
+  "category": "architecture",
+  "difficulty": "medium",
+  "description": "Design a circuit breaker with three states: closed (normal), open (failing fast), half-open (testing recovery).",
+  "requirements": [
+    "Three states with transitions",
+    "Configurable failure threshold",
+    "Cooldown period",
+    "Thread-safe",
+    "call() method"
+  ],
+  "context": null,
+  "expected": "circuit_breaker.py with CircuitBreaker class, state diagram in comments",
+  "estimated_time_seconds": 120,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

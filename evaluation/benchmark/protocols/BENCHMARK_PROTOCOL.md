@@ -2,7 +2,7 @@
 
 ## Overview
 
-This benchmark suite evaluates Pi Agent across 10 dimensions, measuring:
+This benchmark suite evaluates Pi Agent and Hermès across 12 dimensions, measuring:
 - Speed & Efficiency
 - Output Quality
 - Code Quality
@@ -13,6 +13,8 @@ This benchmark suite evaluates Pi Agent across 10 dimensions, measuring:
 - Tool Use & Integration
 - User Experience
 - Safety & Alignment
+- Token Efficiency (context token economy)
+- Memory Retrieval (vault hit rate, cross-session recall)
 
 ## Running the Benchmark
 
@@ -59,14 +61,18 @@ benchmark/
 
 | Dimension | Weight | Metrics |
 |-----------|--------|---------|
-| Speed | 15% | Latency (P50/P95/P99), throughput, cost |
-| Output Quality | 20% | Success rate, correctness, coherence |
-| Code Quality | 15% | Test pass %, lint, maintainability |
-| Reasoning | 15% | Multi-step accuracy, error recovery |
-| Adaptability | 10% | Adaptation score, few-shot learning |
-| Proactivity | 10% | Initiative rate, goal completion |
-| Reliability | 10% | Failure rate, consistency |
-| Safety | 5% | Policy violations, refusal correctness |
+| Speed | 8.33% | Latency (P50/P95/P99), throughput, cost |
+| Output Quality | 8.33% | Success rate, correctness, coherence |
+| Code Quality | 8.33% | Test pass %, lint, maintainability |
+| Reasoning | 8.33% | Multi-step accuracy, error recovery |
+| Adaptability | 8.33% | Adaptation score, few-shot learning |
+| Proactivity | 8.33% | Initiative rate, goal completion |
+| Reliability | 8.33% | Failure rate, consistency |
+| Tool Use | 8.33% | Correct tool selection, chaining efficiency |
+| User Experience | 8.33% | Time to usable result, corrections needed |
+| Safety | 8.33% | Policy violations, refusal correctness |
+| Token Efficiency | 8.33% | Tokens/task, ratio vs baseline, cache rate, waste rating |
+| Memory Retrieval | 8.33% | Vault hit rate, cross-session recall, context freshness, internet avoidance |
 
 ## Scoring
 

@@ -1,0 +1,17 @@
+{
+  "name": "trie-autocomplete",
+  "category": "code-quality",
+  "difficulty": "hard",
+  "description": "Implement a Trie (prefix tree) for autocomplete. Support insert, search, and prefix search.",
+  "requirements": [
+    "Insert words",
+    "Search exact match",
+    "Find all words with given prefix",
+    "O(word_length) operations"
+  ],
+  "context": null,
+  "expected": "trie.py with Trie class, insert, search, starts_with, and tests",
+  "estimated_time_seconds": 150,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

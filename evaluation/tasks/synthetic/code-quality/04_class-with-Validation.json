@@ -1,0 +1,17 @@
+{
+  "name": "class with Validation",
+  "category": "code-quality",
+  "description": "Create a class implementation with comprehensive input validation and error handling.",
+  "requirements": [
+    "Validate all inputs",
+    "Handle edge cases gracefully",
+    "Clear error messages",
+    "No hardcoded values"
+  ],
+  "difficulty": "medium",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181040",
+  "triggered_by_failure": null,
+  "expected": "Clean, well-documented class implementation",
+  "estimated_time_seconds": 120
+}

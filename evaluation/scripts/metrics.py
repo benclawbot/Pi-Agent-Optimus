@@ -15,7 +15,7 @@ class MetricsCollector:
     
     def __init__(self, config: Dict):
         self.config = config
-        self.metrics_config = config["metrics"]
+        self.metrics_config = config.get("metrics", {})
         self.results_dir = Path(__file__).parent.parent / "results"
         self.baseline_file = self.results_dir / "baseline.json"
     
@@ -27,6 +27,11 @@ class MetricsCollector:
             Dict with computed metrics
         """
         metrics = {}
+        trace = execution.get("trace", [])
+        timed_out = any(entry.get("type") == "timeout" for entry in trace if isinstance(entry, dict))
+        process_failed = any(entry.get("type") == "process_error" for entry in trace if isinstance(entry, dict))
+        metrics["timed_out"] = timed_out
+        metrics["execution_failed"] = timed_out or process_failed
         
         # Duration metrics
         metrics["duration_seconds"] = execution.get("duration", 0)
@@ -41,8 +46,20 @@ class MetricsCollector:
         metrics["step_count"] = len(tool_calls)
         metrics["tool_calls"] = self._summarize_tool_calls(tool_calls)
         
-        # Speed score (compared to baseline)
-        metrics["speed_score"] = self._compute_speed_score(execution.get("duration", 0))
+        # Turns used: count from trace (each assistant message = 1 turn)
+        turns = self._count_turns(trace, execution.get("output", ""))
+        metrics["turns_used"] = turns
+        metrics["first_response_time"] = self._estimate_first_response_time(trace)
+        
+        # UX: estimate feedback instances from tool patterns
+        metrics["feedback_instances"] = self._estimate_feedback_instances(
+            trace, tool_calls, execution.get("output", "")
+        )
+        metrics["tool_loops"] = self._count_tool_loops(trace)
+        
+        # Speed score (compared to baseline). Failed executions must not earn
+        # speed credit just because they stopped quickly or hit the timeout.
+        metrics["speed_score"] = 0 if metrics["execution_failed"] else self._compute_speed_score(execution.get("duration", 0))
         
         # Code quality proxies (automated)
         metrics["code_indicators"] = self._analyze_code_indicators(execution)
@@ -84,15 +101,10 @@ class MetricsCollector:
         Compute token efficiency score.
         Higher is better - more output per token.
         """
-        # This would need calibration based on actual token counts
-        # For now, return a normalized score
         total = tokens.get("total_estimate", 0)
         if total == 0:
             return 0.5
-        
-        # Efficiency: work done per token
-        # This is a placeholder - would need real API data
-        return 0.8  # Default reasonable score
+        return 0.8  # placeholder - real tracking via task_runner token_data
     
     def _summarize_tool_calls(self, tool_calls: List[Dict]) -> Dict[str, int]:
         """Summarize tool call patterns."""
@@ -100,8 +112,120 @@ class MetricsCollector:
         for call in tool_calls:
             tool_name = call.get("tool", "unknown")
             summary[tool_name] = summary.get(tool_name, 0) + 1
-        
         return summary
+    
+    def _count_turns(self, trace: List[Dict], output: str) -> int:
+        """
+        Count actual turns used from trace.
+        Each 'text_response' or 'assistant' event in trace = 1 turn.
+        Also counts tool-call loops as turns.
+        """
+        if not trace:
+            # Estimate from output: each major code block ≈ 1 turn
+            code_blocks = output.count("```")
+            return max(1, code_blocks // 2)
+
+        turns = 0
+        for entry in trace:
+            if entry.get("type") in ("text_response", "assistant", "response"):
+                turns += 1
+            elif entry.get("type") == "tool_call":
+                prev_idx = trace.index(entry) - 1
+                prev = trace[prev_idx] if prev_idx > 0 else {}
+                if prev.get("type") not in ("tool_call", "tool_result"):
+                    turns += 1
+
+        return max(1, turns)
+    
+    def _estimate_first_response_time(self, trace: List[Dict]) -> float:
+        """
+        Estimate time to first usable result (file creation or answer).
+        Returns fraction of total duration (0-1). Lower is better.
+        """
+        if not trace:
+            return 0.5
+
+        for i, entry in enumerate(trace):
+            if entry.get("type") == "tool_call":
+                tool = entry.get("name", "")
+                if tool in ("write_file", "write", "patch", "create"):
+                    return min(0.9, i / max(len(trace), 1))
+
+        return 0.3
+    
+    def _estimate_feedback_instances(self, trace: List[Dict], tool_calls: List[Dict], output: str) -> int:
+        """
+        Estimate how many times the user had to provide feedback/corrections.
+        
+        Signal: each read→modify loop suggests a correction.
+        Signal: repeated reads of same file after write = user corrected.
+        Signal: consecutive patch operations = iterative fixes.
+        Signal: "error" in output after execution = someone had to fix it.
+        """
+        if not trace:
+            return 0
+
+        instances = 0
+        file_reads = {}
+        consecutive_writes = 0
+
+        for entry in trace:
+            if entry.get("type") == "tool_call":
+                name = entry.get("name", "").lower()
+                args = entry.get("raw", "")
+
+                if name in ("read_file", "read", "patch"):
+                    path = args.split()[1] if len(args.split()) > 1 else ""
+                    if path:
+                        file_reads[path] = file_reads.get(path, 0) + 1
+
+                elif name in ("write_file", "write", "patch", "terminal"):
+                    consecutive_writes += 1
+                    if consecutive_writes >= 3:
+                        instances += 1
+                        consecutive_writes = 0
+                else:
+                    consecutive_writes = 0
+
+        # Multiple reads of same file = user feedback loops
+        for path, count in file_reads.items():
+            if count >= 2:
+                instances += count - 1
+
+        # "error" in output = someone had to fix it
+        if "error" in output.lower() or "failed" in output.lower():
+            instances += 1
+
+        return min(instances, 10)
+    
+    def _count_tool_loops(self, trace: List[Dict]) -> int:
+        """
+        Count tool call loops (read→write→read→write patterns).
+        Each loop = potential user feedback instance.
+        """
+        if not trace:
+            return 0
+
+        loops = 0
+        actions = []
+
+        for entry in trace:
+            if entry.get("type") == "tool_call":
+                name = entry.get("name", "").lower()
+                if name in ("read_file", "read"):
+                    actions.append("read")
+                elif name in ("write_file", "write", "patch"):
+                    actions.append("write")
+                elif name in ("terminal", "process", "run"):
+                    actions.append("run")
+
+        # Count R-W-R-W patterns (loops)
+        for i in range(len(actions) - 3):
+            if (actions[i] == "read" and actions[i+1] == "write" and
+                actions[i+2] == "read" and actions[i+3] == "write"):
+                loops += 1
+
+        return loops
     
     def _compute_speed_score(self, duration: float) -> float:
         """
@@ -112,10 +236,7 @@ class MetricsCollector:
         if baseline == 0:
             return 1.0
         
-        # Score = how much faster than baseline
         score = baseline / duration if duration > 0 else 1.0
-        
-        # Cap at 2.0 (2x baseline is "good enough")
         return min(score, 2.0)
     
     def _get_baseline_duration(self) -> float:
@@ -126,11 +247,9 @@ class MetricsCollector:
                 baseline = json.load(f)
                 return baseline.get("median_duration", 60)
         
-        # Try to compute from historical results
         results_files = sorted(self.results_dir.glob("*_results.json"))
         
         if len(results_files) >= 5:
-            # Use median of last 5 runs
             durations = []
             for f in results_files[-5:]:
                 data = json.load(open(f))
@@ -141,7 +260,7 @@ class MetricsCollector:
                 durations.sort()
                 return durations[len(durations) // 2]
         
-        return 60  # Default 60 second baseline
+        return 60
     
     def _analyze_code_indicators(self, execution: Dict[str, Any]) -> Dict[str, Any]:
         """Analyze code quality indicators from execution."""
@@ -161,7 +280,6 @@ class MetricsCollector:
     
     def update_baseline(self, duration: float):
         """Update baseline with new data point."""
-        
         baseline_data = {
             "median_duration": duration,
             "updated_at": datetime.now().isoformat()
@@ -172,12 +290,7 @@ class MetricsCollector:
 
 
 def compute_trend(results_dir: Path, metric: str, last_n: int = 10) -> List[Dict]:
-    """
-    Compute trend for a metric over last N runs.
-    
-    Returns:
-        List of {timestamp, value} dicts
-    """
+    """Compute trend for a metric over last N runs."""
     results_files = sorted(results_dir.glob("*_results.json"))[-last_n:]
     
     trend = []
@@ -191,33 +304,3 @@ def compute_trend(results_dir: Path, metric: str, last_n: int = 10) -> List[Dict
             })
     
     return trend
-
-
-if __name__ == "__main__":
-    # Test with sample execution
-    test_execution = {
-        "duration": 45.5,
-        "trace": [
-            {"type": "tool_call", "tool": "read", "args": {"path": "test.py"}},
-            {"type": "tool_call", "tool": "write", "args": {"path": "output.py", "content": "..."}}
-        ],
-        "output": "I created a Python file with a function that...",
-        "tool_calls": [
-            {"tool": "read", "args": {"path": "test.py"}, "timestamp": None},
-            {"tool": "write", "args": {"path": "output.py"}, "timestamp": None}
-        ]
-    }
-    
-    import sys
-    sys.path.insert(0, str(Path(__file__).parent))
-    
-    config = {
-        "metrics": {
-            "speed": {"baselineMetric": "median_time_first_N_runs"}
-        }
-    }
-    
-    collector = MetricsCollector(config)
-    metrics = collector.extract(test_execution)
-    
-    print(json.dumps(metrics, indent=2))

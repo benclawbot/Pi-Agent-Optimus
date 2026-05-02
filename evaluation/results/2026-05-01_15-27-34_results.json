@@ -1,0 +1,126 @@
+{
+  "timestamp": "2026-05-01_15-27-34",
+  "summary": {
+    "tasks_run": 2,
+    "overall_score": 0.475,
+    "code_quality_avg": 0.5,
+    "proactivity_avg": 0.0,
+    "avg_duration_seconds": 78.7089875,
+    "speed_improvement_pct": -31.181645833333345
+  },
+  "results": [
+    {
+      "task_name": "Python List Comprehension Refactor",
+      "task_category": "code-quality",
+      "duration_seconds": 37.387597,
+      "metrics": {
+        "duration_seconds": 37.387038469314575,
+        "duration_formatted": "37.4s",
+        "tokens_used": {
+          "output_estimate": 233,
+          "trace_estimate": 24790,
+          "total_estimate": 25023
+        },
+        "token_efficiency": 0.8,
+        "step_count": 2,
+        "tool_calls": {
+          "write": 1,
+          "bash": 1
+        },
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "API error: 401; pi fallback: Failed to parse judge response",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.4166666666666667
+    },
+    {
+      "task_name": "Secure API Endpoint",
+      "task_category": "code-quality",
+      "duration_seconds": 120.030378,
+      "metrics": {
+        "duration_seconds": 120.03010535240173,
+        "duration_formatted": "2m 0s",
+        "tokens_used": {
+          "output_estimate": 12,
+          "trace_estimate": 15,
+          "total_estimate": 27
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "speed_score": 1.1603966737434264,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": false,
+          "mentions_files": false,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 1.0,
+        "readability": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "safety": 1.0,
+        "reasoning": "No code was produced - the agent timed out before completing the task. All dimensions receive the minimum score of 1 as specified in the guidelines when no code output is available.",
+        "automated_checks": {
+          "has_code": false,
+          "mentioned_actions": false,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.5333333333333333
+    }
+  ]
+}

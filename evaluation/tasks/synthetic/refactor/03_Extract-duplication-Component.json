@@ -1,0 +1,17 @@
+{
+  "name": "Extract duplication Component",
+  "category": "refactor",
+  "description": "Extract the duplication functionality into a reusable component.",
+  "requirements": [
+    "Clear interface",
+    "Minimal dependencies",
+    "Comprehensive tests",
+    "Documentation"
+  ],
+  "difficulty": "medium",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181128",
+  "triggered_by_failure": null,
+  "expected": "Refactored duplication with improved maintainability",
+  "estimated_time_seconds": 120
+}

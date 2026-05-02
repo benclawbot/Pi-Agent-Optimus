@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pi Agent Dashboard - Simple</title>
+<style>
+body { font-family: Arial; background: #0f172a; color: #f8fafc; padding: 2rem; }
+h1 { color: #3b82f6; }
+.metric { background: #1e293b; padding: 1rem; margin: 0.5rem 0; border-radius: 8px; }
+.metric-name { font-size: 0.9rem; color: #94a3b8; }
+.metric-value { font-size: 1.5rem; font-weight: bold; color: #22c55e; }
+.error { background: #ef4444; padding: 1rem; color: white; }
+</style>
+</head>
+<body>
+<h1>📊 Pi Agent Evaluation Dashboard</h1>
+<div id="status" class="metric">Loading...</div>
+<div id="dimensions"></div>
+
+<script>
+// Simple status check
+document.getElementById('status').innerHTML = '<span style="color:#22c55e">✓ Page loaded, fetching data...</span>';
+
+async function load() {
+    try {
+        const res = await fetch('benchmark/data/latest.json');
+        if (!res.ok) throw new Error('Failed to load data');
+        const data = await res.json();
+        
+        const score = data.scorecard?.overall_score || 0;
+        document.getElementById('status').innerHTML = `
+            <div class="metric-name">Overall Score</div>
+            <div class="metric-value">${score.toFixed(3)}</div>
+            <div style="font-size:0.8rem;color:#94a3b8;margin-top:0.5rem">Version: ${data.version}</div>
+        `;
+        
+        // Show dimensions
+        const dims = data.scorecard?.dimensions || {};
+        const container = document.getElementById('dimensions');
+        let html = '<h2 style="margin-top:2rem">Dimensions</h2>';
+        
+        for (const [name, info] of Object.entries(dims)) {
+            const score = info.raw_score || 0;
+            const pct = (score * 100).toFixed(0);
+            html += `
+                <div class="metric">
+                    <div class="metric-name">${name.replace('_', ' ')}</div>
+                    <div class="metric-value">${pct}%</div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+        
+    } catch (e) {
+        document.getElementById('status').innerHTML = `<div class="error">Error: ${e.message}</div>`;
+    }
+}
+
+load();
+</script>
+</body>
+</html>

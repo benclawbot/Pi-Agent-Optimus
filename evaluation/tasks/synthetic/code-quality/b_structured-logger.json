@@ -1,0 +1,17 @@
+{
+  "name": "structured-logger",
+  "category": "code-quality",
+  "difficulty": "easy",
+  "description": "Create a structured logger that outputs JSON to stdout. Include timestamp, level, message, and extra fields.",
+  "requirements": [
+    "JSON output",
+    "Levels: DEBUG/INFO/WARN/ERROR",
+    "Extra fields dict support",
+    "Configurable level filter"
+  ],
+  "context": null,
+  "expected": "logger.py with StructuredLogger class, tests, example output",
+  "estimated_time_seconds": 90,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

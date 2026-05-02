@@ -1,94 +1,747 @@
 {
-  "updated_at": "2026-05-01T00:00:31.332208",
-  "total_runs": 9,
+  "updated_at": "2026-05-02T12:19:55.960885",
+  "total_runs": 15,
   "runs": [
     {
-      "timestamp": "2026-05-01T00:00:31.332208",
-      "tasks_run": 43,
-      "overall_score": 0.612,
-      "code_quality_avg": 2.64,
+      "timestamp": "2026-04-30_23-39-31",
+      "tasks_run": 10,
+      "overall_score": 0.8400000000000001,
+      "code_quality_avg": 3.0,
       "proactivity_avg": 0.0,
-      "speed_improvement_pct": 0,
-      "avg_duration_seconds": 1.79,
-      "category_scores": {
-        "speed": 0.921,
-        "output_quality": 0.667,
-        "code_quality": 0.528,
-        "reasoning": 0.444,
-        "proactivity": 0.0,
-        "reliability": 1.0,
-        "tool_use": 0.7,
-        "user_experience": 0.7,
-        "adaptability": 0.715,
-        "safety": 0.444
-      },
-      "data_source": {
-        "speed": "real",
-        "output_quality": "real",
-        "code_quality": "real",
-        "reasoning": "real",
-        "proactivity": "real",
-        "reliability": "real",
-        "tool_use": "placeholder",
-        "user_experience": "placeholder",
-        "adaptability": "real",
-        "safety": "real"
-      }
+      "speed_improvement_pct": 97.00467833333335,
+      "avg_duration_seconds": 1.797193
+    },
+    {
+      "timestamp": "2026-04-30_23-43-55",
+      "tasks_run": 10,
+      "overall_score": 0.8400000000000001,
+      "code_quality_avg": 3.0,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": 96.78470816666666,
+      "avg_duration_seconds": 1.9291751000000001
+    },
+    {
+      "timestamp": "2026-05-01_15-01-11",
+      "tasks_run": 2,
+      "overall_score": 0.6092285425023938,
+      "code_quality_avg": 3.0,
+      "proactivity_avg": 1.0,
+      "speed_improvement_pct": -132.13755833333332,
+      "avg_duration_seconds": 139.282535
+    },
+    {
+      "timestamp": "2026-05-01_15-09-22",
+      "tasks_run": 1,
+      "overall_score": 0.15788718846129682,
+      "code_quality_avg": 0.0,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": -163.90259333333333,
+      "avg_duration_seconds": 158.341556
+    },
+    {
+      "timestamp": "2026-05-01_15-17-08",
+      "tasks_run": 1,
+      "overall_score": 0.5406986059849895,
+      "code_quality_avg": 4.0,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": -462.8218666666667,
+      "avg_duration_seconds": 337.69312
+    },
+    {
+      "timestamp": "2026-05-01_15-27-34",
+      "tasks_run": 2,
+      "overall_score": 0.475,
+      "code_quality_avg": 0.5,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": -31.181645833333345,
+      "avg_duration_seconds": 78.7089875
+    },
+    {
+      "timestamp": "2026-05-01_15-32-59",
+      "tasks_run": 2,
+      "overall_score": 0.7666666666666666,
+      "code_quality_avg": 3.0,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": -42.72771833333333,
+      "avg_duration_seconds": 85.636631
+    },
+    {
+      "timestamp": "2026-05-01_15-37-16",
+      "tasks_run": 2,
+      "overall_score": 0.20833333333333334,
+      "code_quality_avg": 0.5,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": -18.600801666666676,
+      "avg_duration_seconds": 71.160481
+    },
+    {
+      "timestamp": "2026-05-01_15-42-22",
+      "tasks_run": 2,
+      "overall_score": 0.3833333333333333,
+      "code_quality_avg": 2.0,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": -19.78781333333333,
+      "avg_duration_seconds": 71.872688
+    },
+    {
+      "timestamp": "2026-05-01_16-03-06",
+      "tasks_run": 6,
+      "overall_score": 0.26940005169289954,
+      "code_quality_avg": 1.5,
+      "proactivity_avg": 0.08333333333333333,
+      "speed_improvement_pct": -102.41003333333332,
+      "avg_duration_seconds": 121.44601999999999
+    },
+    {
+      "timestamp": "2026-05-01_16-17-26",
+      "tasks_run": 6,
+      "overall_score": 0.0,
+      "code_quality_avg": 0.16666666666666666,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": -124.91171833333334,
+      "avg_duration_seconds": 134.947031
+    },
+    {
+      "timestamp": "2026-05-01_16-30-17",
+      "tasks_run": 6,
+      "overall_score": 0.16666666666666666,
+      "code_quality_avg": 1.0,
+      "proactivity_avg": 0.08333333333333333,
+      "speed_improvement_pct": -97.49838666666668,
+      "avg_duration_seconds": 118.499032
+    },
+    {
+      "timestamp": "2026-05-02_06-00-05",
+      "tasks_run": 6,
+      "overall_score": 0.0,
+      "code_quality_avg": 0.0,
+      "proactivity_avg": 0.0,
+      "speed_improvement_pct": 99.99886194444444,
+      "avg_duration_seconds": 0.0006828333333333334
+    },
+    {
+      "timestamp": "2026-05-02_10-12-23",
+      "tasks_run": 15,
+      "overall_score": 0.6780666666666666,
+      "code_quality_avg": 3.933333333333333,
+      "proactivity_avg": 3.3033333333333332,
+      "speed_improvement_pct": -22.11222777777775,
+      "avg_duration_seconds": 73.26733666666665
+    },
+    {
+      "timestamp": "2026-05-02_11-28-45",
+      "tasks_run": 43,
+      "overall_score": 0.1579767441860465,
+      "code_quality_avg": 0.8604651162790697,
+      "proactivity_avg": 3.2418604651162792,
+      "speed_improvement_pct": 28.083003372093017,
+      "avg_duration_seconds": 43.15019797674419
     }
   ],
-  "baseline": {
-    "overall_score": 0.612,
-    "dimensions": {
-      "speed": {
-        "weight": 0.1,
-        "raw_score": 0.921,
-        "source": "real"
+  "categories": {
+    "code-quality": [
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
       },
-      "output_quality": {
-        "weight": 0.1,
-        "raw_score": 0.667,
-        "source": "real"
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
       },
-      "code_quality": {
-        "weight": 0.1,
-        "raw_score": 0.528,
-        "source": "real"
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
       },
-      "reasoning": {
-        "weight": 0.1,
-        "raw_score": 0.444,
-        "source": "real"
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
       },
-      "proactivity": {
-        "weight": 0.1,
-        "raw_score": 0.0,
-        "source": "real"
+      {
+        "timestamp": "2026-05-01_15-01-11",
+        "score": 3,
+        "proactivity": 0.0
       },
-      "reliability": {
-        "weight": 0.1,
-        "raw_score": 1.0,
-        "source": "real"
+      {
+        "timestamp": "2026-05-01_15-01-11",
+        "score": 3,
+        "proactivity": 2.0
       },
-      "tool_use": {
-        "weight": 0.1,
-        "raw_score": 0.7,
-        "source": "placeholder"
+      {
+        "timestamp": "2026-05-01_15-27-34",
+        "score": 0,
+        "proactivity": 0.0
       },
-      "user_experience": {
-        "weight": 0.1,
-        "raw_score": 0.7,
-        "source": "placeholder"
+      {
+        "timestamp": "2026-05-01_15-27-34",
+        "score": 1.0,
+        "proactivity": 0.0
       },
-      "adaptability": {
-        "weight": 0.1,
-        "raw_score": 0.715,
-        "source": "real"
+      {
+        "timestamp": "2026-05-01_15-32-59",
+        "score": 5.0,
+        "proactivity": 0.0
       },
-      "safety": {
-        "weight": 0.1,
-        "raw_score": 0.444,
-        "source": "real"
+      {
+        "timestamp": "2026-05-01_15-32-59",
+        "score": 1.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_15-37-16",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_15-37-16",
+        "score": 1.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_15-42-22",
+        "score": 3.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_15-42-22",
+        "score": 1.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-03-06",
+        "score": 4.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-03-06",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-17-26",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-17-26",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-30-17",
+        "score": 5.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-30-17",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_06-00-05",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_06-00-05",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.5
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
       }
-    }
+    ],
+    "debug": [
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-03-06",
+        "score": 5.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-03-06",
+        "score": 0,
+        "proactivity": 0.5
+      },
+      {
+        "timestamp": "2026-05-01_16-17-26",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-17-26",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-30-17",
+        "score": 0,
+        "proactivity": 0.5
+      },
+      {
+        "timestamp": "2026-05-01_16-30-17",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_06-00-05",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_06-00-05",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 5.0,
+        "proactivity": 3.55
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 4.0,
+        "proactivity": 3.55
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 3.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 1.0,
+        "proactivity": 2.4
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 5.0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 5.0,
+        "proactivity": 2.9
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 3.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 4.0,
+        "proactivity": 3.55
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 1.0,
+        "proactivity": 3.1
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 5.0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_10-12-23",
+        "score": 5.0,
+        "proactivity": 3.7
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.5
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      }
+    ],
+    "architecture": [
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_15-09-22",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_15-17-08",
+        "score": 4.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-03-06",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-17-26",
+        "score": 1.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-30-17",
+        "score": 1.0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_06-00-05",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 0,
+        "proactivity": 3.2
+      }
+    ],
+    "refactor": [
+      {
+        "timestamp": "2026-04-30_23-39-31",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-04-30_23-43-55",
+        "score": 3,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-03-06",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-17-26",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-01_16-30-17",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_06-00-05",
+        "score": 0,
+        "proactivity": 0.0
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 1.0,
+        "proactivity": 2.9
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 1.0,
+        "proactivity": 2.9
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 5.0,
+        "proactivity": 3.6
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_11-28-45",
+        "score": 4.0,
+        "proactivity": 3.4
+      }
+    ]
+  },
+  "proactivity_totals": {
+    "proposed_next_steps": 633,
+    "unprompted_action": 2,
+    "volunteered_info": 0,
+    "offered_alternatives": 0,
+    "follow_through": 0
+  },
+  "latest": {
+    "timestamp": "2026-05-02_11-28-45",
+    "tasks_run": 43,
+    "overall_score": 0.1579767441860465,
+    "code_quality_avg": 0.8604651162790697,
+    "proactivity_avg": 3.2418604651162792,
+    "speed_improvement_pct": 28.083003372093017,
+    "avg_duration_seconds": 43.15019797674419
+  },
+  "summary": {
+    "overall_score_avg": 0.4062171866329528,
+    "overall_score_latest": 0.1579767441860465,
+    "overall_score_change": -0.6820232558139536,
+    "speed_improvement_avg": -59.74807411963824,
+    "speed_improvement_latest": 28.083003372093017,
+    "proactivity_avg": 0.514124031007752,
+    "proactivity_latest": 3.2418604651162792,
+    "runs_count": 15
   }
 }

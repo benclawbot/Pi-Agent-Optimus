@@ -1,0 +1,149 @@
+{
+  "timestamp": "2026-05-01_15-01-11",
+  "summary": {
+    "tasks_run": 2,
+    "overall_score": 0.6092285425023938,
+    "code_quality_avg": 3.0,
+    "proactivity_avg": 1.0,
+    "avg_duration_seconds": 139.282535,
+    "speed_improvement_pct": -132.13755833333332
+  },
+  "results": [
+    {
+      "task_name": "Python List Comprehension Refactor",
+      "task_category": "code-quality",
+      "duration_seconds": 32.961296,
+      "metrics": {
+        "duration_seconds": 32.96075773239136,
+        "duration_formatted": "33.0s",
+        "tokens_used": {
+          "output_estimate": 216,
+          "trace_estimate": 31289,
+          "total_estimate": 31505
+        },
+        "token_efficiency": 0.8,
+        "step_count": 2,
+        "tool_calls": {
+          "write": 1,
+          "bash": 1
+        },
+        "speed_score": 1.8203465007431097,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.7666666666666666
+    },
+    {
+      "task_name": "Secure API Endpoint",
+      "task_category": "code-quality",
+      "duration_seconds": 245.603774,
+      "metrics": {
+        "duration_seconds": 245.60268449783325,
+        "duration_formatted": "4m 5s",
+        "tokens_used": {
+          "output_estimate": 442,
+          "trace_estimate": 360328,
+          "total_estimate": 360770
+        },
+        "token_efficiency": 0.8,
+        "step_count": 26,
+        "tool_calls": {
+          "bash": 17,
+          "write": 4,
+          "read": 2,
+          "edit": 3
+        },
+        "speed_score": 0.2442970040114905,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 2.0,
+        "detected_patterns": {
+          "proposed_next_steps": [
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can ",
+            "I can "
+          ]
+        },
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 1.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 17,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 3,
+        "readability": 3,
+        "correctness": 3,
+        "efficiency": 3,
+        "safety": 3,
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.45179041833812106
+    }
+  ]
+}

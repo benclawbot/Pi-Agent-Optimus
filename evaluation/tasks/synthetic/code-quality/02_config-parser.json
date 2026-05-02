@@ -1,0 +1,15 @@
+{
+  "name": "config-parser",
+  "category": "code-quality",
+  "description": "Create a config parser that reads a YAML file and provides dot-notation access (e.g., cfg.database.host). Handle missing keys gracefully.",
+  "requirements": [
+    "YAML parsing",
+    "Dot notation access",
+    "Error handling for missing keys",
+    "Type coercion"
+  ],
+  "expected": "config_parser.py",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.495695",
+  "estimated_time_seconds": 120
+}

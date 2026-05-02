@@ -1,0 +1,15 @@
+{
+  "name": "design-plugin-system",
+  "category": "architecture",
+  "description": "Design a plugin system where plugins are discovered from a ~/.pi/plugins/ directory, loaded dynamically, and can register handlers for hooks.",
+  "requirements": [
+    "Dynamic discovery",
+    "Plugin interface/contract",
+    "Hook system",
+    "Safe loading with errors caught"
+  ],
+  "expected": "plugin_manager.py",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.497767",
+  "estimated_time_seconds": 120
+}

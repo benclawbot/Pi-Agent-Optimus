@@ -1,5 +1,5 @@
 {
-  "name": "pi-agent-optimus-benchmark",
+  "name": "agent-evaluation-benchmark",
   "generated_at": "2026-04-30T23:52:09.921386",
   "total_tasks": 43,
   "categories": [
@@ -34,7 +34,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-001",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921173"
     },
     {
@@ -60,7 +60,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-002",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921199"
     },
     {
@@ -86,7 +86,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-003",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921203"
     },
     {
@@ -111,7 +111,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-004",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921205"
     },
     {
@@ -136,7 +136,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-005",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921207"
     },
     {
@@ -162,7 +162,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-006",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921209"
     },
     {
@@ -188,7 +188,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-007",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921214"
     },
     {
@@ -214,7 +214,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-008",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921217"
     },
     {
@@ -239,7 +239,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-009",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921226"
     },
     {
@@ -264,7 +264,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-010",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921229"
     },
     {
@@ -290,7 +290,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-011",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921231"
     },
     {
@@ -315,7 +315,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-012",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921233"
     },
     {
@@ -340,7 +340,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-013",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921235"
     },
     {
@@ -366,7 +366,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-014",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921237"
     },
     {
@@ -391,7 +391,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-015",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921239"
     },
     {
@@ -417,7 +417,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-016",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921241"
     },
     {
@@ -442,7 +442,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-017",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921243"
     },
     {
@@ -467,7 +467,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-018",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921245"
     },
     {
@@ -493,7 +493,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-019",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921249"
     },
     {
@@ -515,7 +515,7 @@
       ],
       "adversarial": true,
       "id": "BENCH-020",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921251"
     },
     {
@@ -540,7 +540,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-021",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921253"
     },
     {
@@ -565,7 +565,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-022",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921255"
     },
     {
@@ -591,7 +591,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-023",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921256"
     },
     {
@@ -616,7 +616,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-024",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921258"
     },
     {
@@ -642,7 +642,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-025",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921260"
     },
     {
@@ -668,7 +668,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-026",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921262"
     },
     {
@@ -694,7 +694,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-027",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921264"
     },
     {
@@ -720,7 +720,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-028",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921266"
     },
     {
@@ -746,7 +746,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-029",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921270"
     },
     {
@@ -772,7 +772,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-030",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921272"
     },
     {
@@ -797,7 +797,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-031",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921274"
     },
     {
@@ -823,7 +823,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-032",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921276"
     },
     {
@@ -848,7 +848,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-033",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921278"
     },
     {
@@ -870,7 +870,7 @@
       ],
       "adversarial": true,
       "id": "BENCH-034",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921280"
     },
     {
@@ -896,7 +896,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-035",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921282"
     },
     {
@@ -922,7 +922,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-036",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921284"
     },
     {
@@ -948,7 +948,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-037",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921286"
     },
     {
@@ -973,7 +973,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-038",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921288"
     },
     {
@@ -998,7 +998,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-039",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921292"
     },
     {
@@ -1020,7 +1020,7 @@
       ],
       "adversarial": true,
       "id": "BENCH-040",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921294"
     },
     {
@@ -1046,7 +1046,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-041",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921296"
     },
     {
@@ -1071,7 +1071,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-042",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921298"
     },
     {
@@ -1096,7 +1096,7 @@
       ],
       "adversarial": false,
       "id": "BENCH-043",
-      "suite": "pi-agent-optimus-benchmark",
+      "suite": "agent-evaluation-benchmark",
       "generated_at": "2026-04-30T23:52:09.921300"
     }
   ]

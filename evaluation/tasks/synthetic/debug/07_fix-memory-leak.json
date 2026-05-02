@@ -1,0 +1,14 @@
+{
+  "name": "fix-memory-leak",
+  "category": "debug",
+  "description": "Find and fix the memory leak in a cache that stores parsed results but never evicts old entries when cache grows beyond 1000 items.",
+  "requirements": [
+    "Implement LRU eviction",
+    "Memory stays bounded",
+    "Add test showing eviction works"
+  ],
+  "expected": "fixed_cache.py with bounded memory",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.496895",
+  "estimated_time_seconds": 120
+}

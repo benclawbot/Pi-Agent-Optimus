@@ -31,6 +31,10 @@ class TrendsAPI:
             The updated trends data
         """
         result_files = sorted(self.results_dir.glob("*_results.json"))
+        # Also scan agent subdirectories
+        for agent_dir in self.results_dir.iterdir():
+            if agent_dir.is_dir():
+                result_files.extend(sorted(agent_dir.glob("*_results.json")))
         
         all_runs = []
         category_data = {cat: [] for cat in ["code-quality", "debug", "architecture", "refactor"]}

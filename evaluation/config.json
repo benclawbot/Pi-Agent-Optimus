@@ -1,68 +1,186 @@
 {
   "evaluation": {
-    "apiKey": "sk-cp-aAK-yQkSKwRslClsDJbGGoPnJI7AwDGaV7Uzs272MmrZDkIwhfFfdJssmmgFfiP0FOsEjiwoC8UWWValPZkrvOvMs41IHlsluwVB21JRXsnnXmKQwbxSGjY",
+    "apiKey": "***",
+    "targetAgent": "pi",
+    "agents": {
+      "pi": {
+        "name": "Pi Agent Optimus",
+        "command": "pi",
+        "model": "MiniMax-M2.7"
+      },
+      "hermes": {
+        "name": "Hermes Agent",
+        "command": "hermes",
+        "model": "default"
+      }
+    },
     "judgeModel": "MiniMax-M2.5",
     "agentModel": "MiniMax-M2.7",
     "apiProvider": "minimax",
-    "apiBaseUrl": "https://api.minimax.chat/v1"
+    "apiBaseUrl": "https://api.minimax.chat/v1",
+    "syntheticCount": 43
+  },
+  "metrics": {
+    "speed": {
+      "weight": 0.25,
+      "latency_weight": 0.5,
+      "throughput_weight": 0.25,
+      "cost_weight": 0.25
+    },
+    "quality": {
+      "weight": 0.35,
+      "correctness_weight": 0.4,
+      "completeness_weight": 0.3,
+      "coherence_weight": 0.3
+    },
+    "efficiency": {
+      "weight": 0.2,
+      "token_efficiency_weight": 0.5,
+      "tool_efficiency_weight": 0.5
+    },
+    "reliability": {
+      "weight": 0.2,
+      "failure_penalty": 0.1,
+      "recovery_bonus": 0.05
+    }
   },
   "benchmark": {
-    "suiteName": "pi-agent-optimus-benchmark",
+    "suiteName": "agent-evaluation-benchmark",
     "taskCount": 50,
-    "categories": ["coding", "reasoning", "summarization", "tool_usage", "open_ended"],
+    "categories": [
+      "coding",
+      "reasoning",
+      "summarization",
+      "tool_usage",
+      "open_ended"
+    ],
     "timeoutSeconds": 300,
     "warmupRuns": 3
   },
   "dimensions": {
     "speed": {
-      "weight": 0.10,
-      "metrics": ["latency_p50", "latency_p95", "latency_p99", "throughput", "cost_per_task", "token_efficiency"],
+      "weight": 0.0833,
+      "metrics": [
+        "latency_p50",
+        "latency_p95",
+        "latency_p99",
+        "throughput",
+        "cost_per_task",
+        "token_efficiency"
+      ],
       "description": "Execution speed and resource efficiency"
     },
     "output_quality": {
-      "weight": 0.10,
-      "metrics": ["task_success_rate", "correctness_score", "coherence", "hallucination_rate"],
+      "weight": 0.0833,
+      "metrics": [
+        "task_success_rate",
+        "correctness_score",
+        "coherence",
+        "hallucination_rate"
+      ],
       "description": "Correctness and quality of output"
     },
     "code_quality": {
-      "weight": 0.10,
-      "metrics": ["test_pass_rate", "lint_score", "cyclomatic_complexity", "bug_density", "maintainability_index"],
+      "weight": 0.0833,
+      "metrics": [
+        "test_pass_rate",
+        "lint_score",
+        "cyclomatic_complexity",
+        "bug_density",
+        "maintainability_index"
+      ],
       "description": "Quality of generated code"
     },
     "reasoning": {
-      "weight": 0.10,
-      "metrics": ["multi_step_accuracy", "chain_of_thought_score", "error_recovery_rate", "step_efficiency"],
+      "weight": 0.0833,
+      "metrics": [
+        "multi_step_accuracy",
+        "chain_of_thought_score",
+        "error_recovery_rate",
+        "step_efficiency"
+      ],
       "description": "Problem-solving and logical reasoning"
     },
     "adaptability": {
-      "weight": 0.10,
-      "metrics": ["adaptation_score", "few_shot_efficiency", "cross_domain_transfer"],
+      "weight": 0.0833,
+      "metrics": [
+        "adaptation_score",
+        "few_shot_efficiency",
+        "cross_domain_transfer"
+      ],
       "description": "Learning and adapting from feedback"
     },
     "proactivity": {
-      "weight": 0.10,
-      "metrics": ["initiative_rate", "tool_usage_relevance", "task_decomposition_quality", "goal_completion_rate"],
+      "weight": 0.0833,
+      "metrics": [
+        "initiative_rate",
+        "tool_usage_relevance",
+        "task_decomposition_quality",
+        "goal_completion_rate"
+      ],
       "description": "Taking initiative without being asked"
     },
     "reliability": {
-      "weight": 0.10,
-      "metrics": ["failure_rate", "recovery_rate", "consistency_score", "prompt_sensitivity"],
+      "weight": 0.0833,
+      "metrics": [
+        "failure_rate",
+        "recovery_rate",
+        "consistency_score",
+        "prompt_sensitivity"
+      ],
       "description": "Consistency and robustness"
     },
     "tool_use": {
-      "weight": 0.10,
-      "metrics": ["correct_tool_selection", "tool_call_success_rate", "tool_latency", "chaining_efficiency"],
+      "weight": 0.0833,
+      "metrics": [
+        "correct_tool_selection",
+        "tool_call_success_rate",
+        "tool_latency",
+        "chaining_efficiency"
+      ],
       "description": "Appropriate and efficient tool usage"
     },
     "user_experience": {
-      "weight": 0.10,
-      "metrics": ["time_to_usable_result", "iterations_required", "turns_count", "corrections_needed"],
+      "weight": 0.0833,
+      "metrics": [
+        "time_to_usable_result",
+        "iterations_required",
+        "turns_count",
+        "corrections_needed"
+      ],
       "description": "User satisfaction and ease of use"
     },
     "safety": {
-      "weight": 0.10,
-      "metrics": ["policy_violation_rate", "toxicity_score", "refusal_correctness", "data_leakage_risk"],
+      "weight": 0.0833,
+      "metrics": [
+        "policy_violation_rate",
+        "toxicity_score",
+        "refusal_correctness",
+        "data_leakage_risk"
+      ],
       "description": "Safe and aligned behavior"
+    },
+    "token_efficiency": {
+      "weight": 0.0833,
+      "metrics": [
+        "input_tokens",
+        "output_tokens",
+        "total_tokens",
+        "tokens_per_second",
+        "redundancy_rate"
+      ],
+      "description": "Economical use of context tokens \u2014 no wasted repetition, focused prompts"
+    },
+    "memory_retrieval": {
+      "weight": 0.0833,
+      "metrics": [
+        "context_load_ms",
+        "vault_hit_rate",
+        "cross_session_recall",
+        "freshness_score",
+        "internet_avoidance"
+      ],
+      "description": "Fast vault retrieval, cross-session continuity, avoiding redundant internet fetches"
     }
   },
   "scoring": {
@@ -90,7 +208,12 @@
     }
   },
   "reporting": {
-    "formats": ["markdown", "terminal", "html", "json"],
+    "formats": [
+      "markdown",
+      "terminal",
+      "html",
+      "json"
+    ],
     "dashboards": {
       "realtime": true,
       "historical": true,

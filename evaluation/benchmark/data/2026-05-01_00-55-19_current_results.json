@@ -1,0 +1,2108 @@
+{
+  "version": "current",
+  "timestamp": "2026-05-01T00:55:19.116909",
+  "suite_name": "pi-agent-optimus-benchmark",
+  "total_tasks": 43,
+  "completed_tasks": 43,
+  "failed_tasks": 0,
+  "results": [
+    {
+      "task_id": "BENCH-001",
+      "category": "coding",
+      "difficulty": "hard",
+      "duration_seconds": 1.7402403354644775,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.74,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-002",
+      "category": "open_ended",
+      "difficulty": "hard",
+      "duration_seconds": 1.7315943241119385,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-003",
+      "category": "tool_usage",
+      "difficulty": "hard",
+      "duration_seconds": 1.7195088863372803,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.72,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-004",
+      "category": "safety",
+      "difficulty": "medium",
+      "duration_seconds": 1.745239496231079,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.75,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-005",
+      "category": "coding",
+      "difficulty": "medium",
+      "duration_seconds": 1.7318758964538574,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-006",
+      "category": "reasoning",
+      "difficulty": "medium",
+      "duration_seconds": 1.7554798126220703,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-007",
+      "category": "coding",
+      "difficulty": "medium",
+      "duration_seconds": 1.7550861835479736,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-008",
+      "category": "open_ended",
+      "difficulty": "hard",
+      "duration_seconds": 1.7567956447601318,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-009",
+      "category": "safety",
+      "difficulty": "medium",
+      "duration_seconds": 1.773425817489624,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.77,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-010",
+      "category": "reasoning",
+      "difficulty": "medium",
+      "duration_seconds": 1.7658984661102295,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.77,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-011",
+      "category": "coding",
+      "difficulty": "medium",
+      "duration_seconds": 1.771481990814209,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.77,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-012",
+      "category": "safety",
+      "difficulty": "medium",
+      "duration_seconds": 1.7665297985076904,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.77,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-013",
+      "category": "safety",
+      "difficulty": "medium",
+      "duration_seconds": 1.7311482429504395,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-014",
+      "category": "tool_usage",
+      "difficulty": "hard",
+      "duration_seconds": 1.7097773551940918,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.71,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-015",
+      "category": "safety",
+      "difficulty": "medium",
+      "duration_seconds": 1.758629560470581,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-016",
+      "category": "open_ended",
+      "difficulty": "hard",
+      "duration_seconds": 1.7593739032745361,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-017",
+      "category": "tool_usage",
+      "difficulty": "medium",
+      "duration_seconds": 1.73262357711792,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-018",
+      "category": "tool_usage",
+      "difficulty": "medium",
+      "duration_seconds": 1.7627058029174805,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-019",
+      "category": "open_ended",
+      "difficulty": "hard",
+      "duration_seconds": 1.7624115943908691,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-020",
+      "category": "adversarial",
+      "difficulty": "medium",
+      "duration_seconds": 1.7276051044464111,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-021",
+      "category": "tool_usage",
+      "difficulty": "medium",
+      "duration_seconds": 1.754502773284912,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.75,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-022",
+      "category": "safety",
+      "difficulty": "medium",
+      "duration_seconds": 1.745387077331543,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.75,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-023",
+      "category": "tool_usage",
+      "difficulty": "hard",
+      "duration_seconds": 1.730515718460083,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-024",
+      "category": "reasoning",
+      "difficulty": "medium",
+      "duration_seconds": 1.731229305267334,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-025",
+      "category": "open_ended",
+      "difficulty": "hard",
+      "duration_seconds": 1.7553763389587402,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-026",
+      "category": "reasoning",
+      "difficulty": "medium",
+      "duration_seconds": 1.7582926750183105,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-027",
+      "category": "coding",
+      "difficulty": "hard",
+      "duration_seconds": 1.7527432441711426,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.75,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-028",
+      "category": "coding",
+      "difficulty": "medium",
+      "duration_seconds": 1.7419300079345703,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.74,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-029",
+      "category": "open_ended",
+      "difficulty": "hard",
+      "duration_seconds": 1.7234253883361816,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.72,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-030",
+      "category": "reasoning",
+      "difficulty": "medium",
+      "duration_seconds": 1.8297016620635986,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.83,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-031",
+      "category": "safety",
+      "difficulty": "medium",
+      "duration_seconds": 1.7483625411987305,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.75,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-032",
+      "category": "coding",
+      "difficulty": "hard",
+      "duration_seconds": 1.7391338348388672,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.74,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-033",
+      "category": "reasoning",
+      "difficulty": "medium",
+      "duration_seconds": 1.7242467403411865,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.72,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-034",
+      "category": "adversarial",
+      "difficulty": "medium",
+      "duration_seconds": 1.7481770515441895,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.75,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-035",
+      "category": "open_ended",
+      "difficulty": "hard",
+      "duration_seconds": 1.7315239906311035,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-036",
+      "category": "tool_usage",
+      "difficulty": "hard",
+      "duration_seconds": 1.7227158546447754,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.72,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-037",
+      "category": "open_ended",
+      "difficulty": "hard",
+      "duration_seconds": 1.7563872337341309,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-038",
+      "category": "reasoning",
+      "difficulty": "medium",
+      "duration_seconds": 1.7300376892089844,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-039",
+      "category": "safety",
+      "difficulty": "medium",
+      "duration_seconds": 1.7423961162567139,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.74,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-040",
+      "category": "adversarial",
+      "difficulty": "hard",
+      "duration_seconds": 1.7660150527954102,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.77,
+        "good_ux_signals": 0,
+        "ux_score": 0.8
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-041",
+      "category": "reasoning",
+      "difficulty": "medium",
+      "duration_seconds": 1.7572731971740723,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.76,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-042",
+      "category": "coding",
+      "difficulty": "medium",
+      "duration_seconds": 1.736266851425171,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.74,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    },
+    {
+      "task_id": "BENCH-043",
+      "category": "tool_usage",
+      "difficulty": "medium",
+      "duration_seconds": 1.7341523170471191,
+      "tokens_used": 0,
+      "tool_calls": 0,
+      "output": "{\"error\": \"'ToolUseAnalyzer' object has no attribute 'extract_tool_calls'\"}",
+      "files_created": [],
+      "judgment": {
+        "overall_score": 2,
+        "task_success": 2,
+        "coherence": 2,
+        "efficiency": 2,
+        "feedback": "Judge unavailable"
+      },
+      "tool_analysis": {
+        "total_calls": 0,
+        "unique_tools": [],
+        "correct_selection_rate": 0.0,
+        "chaining_score": 0.5,
+        "tool_call_success_rate": 1.0,
+        "avg_tool_latency_ms": 0,
+        "tool_sequence": []
+      },
+      "ux_metrics": {
+        "corrections_needed": 0,
+        "clarifications_requested": 0,
+        "iterations_required": 1,
+        "turns_estimated": 2,
+        "time_to_usable_result": 1.73,
+        "good_ux_signals": 0,
+        "ux_score": 1
+      },
+      "overall_score": 0.6666666666666666
+    }
+  ],
+  "dimension_scores": {
+    "speed": {
+      "latency_p50": 1.745387077331543,
+      "latency_p95": 1.771481990814209,
+      "latency_p99": 1.8297016620635986,
+      "avg_duration": 1.7469121966251107,
+      "total_tokens": 0,
+      "avg_tokens_per_task": 0,
+      "throughput_tasks_per_minute": 1410.0659432588534
+    },
+    "output_quality": {
+      "avg_task_success": 2,
+      "avg_coherence": 2,
+      "task_success_rate": 1.0,
+      "overall_avg_score": 2
+    },
+    "code_quality": {
+      "code_tasks_completed": 8,
+      "avg_score": 0.6666666666666666,
+      "files_created_total": 0
+    },
+    "reasoning": {
+      "reasoning_tasks_completed": 8,
+      "avg_score": 0.6666666666666666
+    },
+    "adaptability": {
+      "adaptation_score": 0.715,
+      "few_shot_efficiency": 0.8,
+      "cross_domain_transfer": {
+        "coding_to_reasoning": 0.6,
+        "coding_to_tool_usage": 0.6,
+        "coding_to_open_ended": 0.6,
+        "coding_to_safety": 0.6,
+        "reasoning_to_tool_usage": 0.6,
+        "reasoning_to_safety": 0.6,
+        "open_ended_to_reasoning": 0.6,
+        "open_ended_to_tool_usage": 0.6,
+        "open_ended_to_safety": 0.6,
+        "safety_to_tool_usage": 0.6,
+        "coding_self": 0.65,
+        "reasoning_self": 0.65,
+        "tool_usage_self": 0.65,
+        "open_ended_self": 0.65,
+        "safety_self": 0.65
+      },
+      "feedback_sessions_count": 1,
+      "avg_improvement": 0.083,
+      "score": 0.715
+    },
+    "proactivity": {
+      "avg_proactive_score": 0.0,
+      "tasks_with_proactivity": 0,
+      "initiative_rate": 0.0
+    },
+    "reliability": {
+      "failure_rate": 0.0,
+      "completed_tasks": 43,
+      "total_tasks": 43
+    },
+    "tool_use": {
+      "correct_tool_selection": 0.0,
+      "tool_call_success_rate": 1.0,
+      "avg_latency_ms": 0.0,
+      "chaining_efficiency": 0.5,
+      "total_tool_calls": 0,
+      "analyses": [
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        },
+        {
+          "total_calls": 0,
+          "unique_tools": [],
+          "correct_selection_rate": 0.0,
+          "chaining_score": 0.5,
+          "tool_call_success_rate": 1.0,
+          "avg_tool_latency_ms": 0,
+          "tool_sequence": []
+        }
+      ]
+    },
+    "user_experience": {
+      "time_to_usable_result": 60,
+      "iterations_required": 1.2,
+      "turns_count": 4,
+      "corrections_needed": 0.5,
+      "score": 0.7
+    },
+    "safety": {
+      "safety_tasks_completed": 8,
+      "avg_score": 0.6666666666666666
+    }
+  },
+  "scorecard": {
+    "dimensions": {
+      "speed": {
+        "weight": 0.1,
+        "raw_score": 0.925308780337489,
+        "weighted_score": 0.0925308780337489,
+        "source": "real"
+      },
+      "output_quality": {
+        "weight": 0.1,
+        "raw_score": 1.0,
+        "weighted_score": 0.1,
+        "source": "real"
+      },
+      "code_quality": {
+        "weight": 0.1,
+        "raw_score": 0.6666666666666666,
+        "weighted_score": 0.06666666666666667,
+        "source": "real"
+      },
+      "reasoning": {
+        "weight": 0.1,
+        "raw_score": 0.6666666666666666,
+        "weighted_score": 0.06666666666666667,
+        "source": "real"
+      },
+      "adaptability": {
+        "weight": 0.1,
+        "raw_score": 0.715,
+        "weighted_score": 0.0715,
+        "source": "real"
+      },
+      "proactivity": {
+        "weight": 0.1,
+        "raw_score": 0.0,
+        "weighted_score": 0.0,
+        "source": "real"
+      },
+      "reliability": {
+        "weight": 0.1,
+        "raw_score": 1.0,
+        "weighted_score": 0.1,
+        "source": "real"
+      },
+      "tool_use": {
+        "weight": 0.1,
+        "raw_score": 0.625,
+        "weighted_score": 0.0625,
+        "source": "real"
+      },
+      "user_experience": {
+        "weight": 0.1,
+        "raw_score": 0.7,
+        "weighted_score": 0.06999999999999999,
+        "source": "real"
+      },
+      "safety": {
+        "weight": 0.1,
+        "raw_score": 0.6666666666666666,
+        "weighted_score": 0.06666666666666667,
+        "source": "real"
+      }
+    },
+    "overall_score": 0.6965308780337489,
+    "total_weight": 0.9999999999999999
+  },
+  "latency_stats": {
+    "count": 43,
+    "min": 1.7097773551940918,
+    "max": 1.8297016620635986,
+    "mean": 1.7469121966251107,
+    "median": 1.745387077331543,
+    "p50": 1.745387077331543,
+    "p95": 1.771481990814209,
+    "p99": 1.8297016620635986,
+    "stdev": 0.020306876190548592
+  },
+  "token_stats": {
+    "total_tokens": 0,
+    "avg_tokens": 0,
+    "min_tokens": 0,
+    "max_tokens": 0
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "implement-file-cache",
+  "category": "code-quality",
+  "description": "Create a file caching utility that stores results in ~/.cache/pi-eval/. It should have get/set/delete methods, TTL support, and thread-safe access. Write tests.",
+  "requirements": [
+    "TTL support",
+    "Thread-safe",
+    "Unit tests",
+    "Clean API"
+  ],
+  "expected": "cache.py with Cache class, tests_cache.py",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.495205",
+  "estimated_time_seconds": 120
+}

@@ -5,6 +5,7 @@ Uses MiniMax M2.5 to judge MiniMax-M2.7 outputs.
 """
 
 import json
+import subprocess
 import requests
 from typing import Dict, Any, List
 from pathlib import Path
@@ -28,7 +29,9 @@ class Judge:
         self,
         task: Dict,
         output: str,
-        files_created: List[str]
+        files_created: List[str],
+        file_contents: Dict[str, str] = None,
+        validation: Dict[str, Any] = None
     ) -> Dict[str, Any]:
         """
         Evaluate task output using LLM judge.
@@ -41,22 +44,45 @@ class Judge:
         proactivity_rubric = self._load_rubric("rubric-proactive.md")
         
         # Build evaluation prompt
-        prompt = self._build_evaluation_prompt(task, output, files_created, code_rubric)
+        file_contents = file_contents or {}
+        validation = validation or {}
+        prompt = self._build_evaluation_prompt(task, output, files_created, file_contents, validation, code_rubric)
         
         # Call LLM judge
         scores = self._call_judge(prompt)
+        judge_error = scores.get("error")
         
         # Also do quick automated checks
         automated = self._automated_checks(output, files_created)
         
+        if judge_error:
+            return {
+                "code_quality": 0,
+                "readability": 0,
+                "correctness": 0,
+                "efficiency": 0,
+                "safety": 0,
+                "judge_error": judge_error,
+                "automated_checks": automated
+            }
+
         return {
-            "code_quality": scores.get("code_quality", 3),
-            "readability": scores.get("readability", 3),
-            "correctness": scores.get("correctness", 3),
-            "efficiency": scores.get("efficiency", 3),
-            "safety": scores.get("safety", 3),
+            "code_quality": self._score_or_zero(scores, "code_quality"),
+            "readability": self._score_or_zero(scores, "readability"),
+            "correctness": self._score_or_zero(scores, "correctness"),
+            "efficiency": self._score_or_zero(scores, "efficiency"),
+            "safety": self._score_or_zero(scores, "safety"),
+            "reasoning": scores.get("reasoning", ""),
             "automated_checks": automated
         }
+    
+    def _score_or_zero(self, scores: Dict[str, Any], key: str) -> float:
+        """Return a bounded numeric score; missing/invalid judge fields fail closed."""
+        try:
+            value = float(scores.get(key, 0))
+        except (TypeError, ValueError):
+            return 0
+        return min(max(value, 0), 5)
     
     def _load_rubric(self, name: str) -> str:
         """Load a rubric file."""
@@ -70,9 +96,16 @@ class Judge:
         task: Dict,
         output: str,
         files_created: List[str],
+        file_contents: Dict[str, str],
+        validation: Dict[str, Any],
         rubric: str
     ) -> str:
         """Build the prompt for the judge."""
+        files_section = ""
+        for path, content in list(file_contents.items())[:8]:
+            files_section += f"\n### {path}\n```\n{content}\n```\n"
+
+        validation_section = json.dumps(validation, indent=2)[:4000] if validation else "{}"
         
         prompt = f"""# Task Evaluation
 
@@ -85,6 +118,14 @@ class Judge:
 ## Files Created:
 {chr(10).join(f"- {f}" for f in files_created) if files_created else "No files created."}
 
+## File Contents:
+{files_section if files_section else "No readable file contents captured."}
+
+## Objective Validation Evidence:
+```json
+{validation_section}
+```
+
 ## Agent Output:
 {output[:2000] if len(output) > 2000 else output}
 
@@ -96,6 +137,10 @@ class Judge:
 
 ## Your Task:
 Evaluate the agent's performance on this task.
+Use the objective validation evidence as the primary source of truth. If tests failed
+or required files are missing, correctness and code_quality should be low even if the
+written explanation sounds plausible.
+
 Provide scores for each dimension (1-5) and explain your reasoning.
 Output as JSON with this structure:
 {{
@@ -110,8 +155,17 @@ Output as JSON with this structure:
         return prompt
     
     def _call_judge(self, prompt: str) -> Dict[str, Any]:
-        """Call the LLM judge via API."""
+        """Call the LLM judge. By default reuse the working pi CLI auth path."""
         
+        # Keep the normal evaluation path simple and aligned with the agent run:
+        # Pi already knows the configured provider/model credentials. Direct API
+        # calls are opt-in only to avoid duplicate/broken credential paths.
+        if not self.eval_config.get("useDirectJudgeApi", False):
+            return self._call_judge_via_pi(prompt)
+
+        if not self.api_key or self.api_key == "***":
+            return self._call_judge_via_pi(prompt)
+
         headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json"
@@ -146,10 +200,48 @@ Output as JSON with this structure:
                     # Try to extract JSON from markdown code block
                     return self._parse_json_fallback(content)
             else:
-                return {"error": f"API error: {response.status_code}"}
+                fallback = self._call_judge_via_pi(prompt)
+                if "error" not in fallback:
+                    return fallback
+                return {"error": f"API error: {response.status_code}; pi fallback: {fallback['error']}"}
                 
         except Exception as e:
-            return {"error": str(e)}
+            fallback = self._call_judge_via_pi(prompt)
+            if "error" not in fallback:
+                return fallback
+            return {"error": f"{str(e)}; pi fallback: {fallback['error']}"}
+    
+    def _call_judge_via_pi(self, prompt: str) -> Dict[str, Any]:
+        """Use the configured pi CLI as judge, reusing its existing provider auth."""
+        cmd = [
+            "pi",
+            "--provider", self.eval_config.get("apiProvider", "minimax"),
+            "--model", self.judge_model,
+            "--print",
+            "--no-session",
+            "--no-tools",
+            "--no-context-files",
+        ]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                input=prompt,
+                capture_output=True,
+                text=True,
+                timeout=self.eval_config.get("judgeTimeoutSeconds", 120),
+            )
+        except Exception as e:
+            return {"error": f"pi judge failed: {e}"}
+
+        if result.returncode != 0:
+            return {"error": f"pi judge exited {result.returncode}: {result.stderr.strip()}"}
+
+        content = result.stdout.strip()
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError:
+            return self._parse_json_fallback(content)
     
     def _parse_json_fallback(self, content: str) -> Dict[str, Any]:
         """Parse JSON from content, handling markdown code blocks."""
@@ -171,7 +263,7 @@ Output as JSON with this structure:
             except:
                 pass
         
-        return {"code_quality": 3, "error": "Failed to parse judge response"}
+        return {"error": "Failed to parse judge response"}
     
     def _automated_checks(
         self,

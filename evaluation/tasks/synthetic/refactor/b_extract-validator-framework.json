@@ -1,0 +1,17 @@
+{
+  "name": "extract-validator-framework",
+  "category": "refactor",
+  "difficulty": "medium",
+  "description": "Refactor these three similar validation functions into a composable validation framework. Eliminate duplication.",
+  "requirements": [
+    "DRY principle",
+    "Composable validators",
+    "Clear error messages",
+    "Equivalent behavior"
+  ],
+  "context": "def validate_email(email):\n    if not email:\n        return False, \"Email cannot be empty\"\n    if \"@\" not in email:\n        return False, \"Email must contain @\"\n    parts = email.split(\"@\")\n    if len(parts) != 2:\n        return False, \"Email must have exactly one @\"\n    local, domain = parts\n    if not local:\n        return False, \"Email local part cannot be empty\"\n    if not domain or \".\" not in domain:\n        return False, \"Email domain must be valid\"\n    return True, \"\"\n\ndef validate_username(username):\n    if not username:\n        return False, \"Username cannot be empty\"\n    if len(username) < 3:\n        return False, \"Username must be at least 3 chars\"\n    if len(username) > 20:\n        return False, \"Username must be at most 20 chars\"\n    if not username.replace(\"_\", \"\").isalnum():\n        return False, \"Username must be alphanumeric or underscore\"\n    return True, \"\"\n\ndef validate_password(password):\n    if not password:\n        return False, \"Password cannot be empty\"\n    if len(password) < 8:\n        return False, \"Password must be at least 8 chars\"\n    if len(password) > 128:\n        return False, \"Password must be at most 128 chars\"\n    has_upper = any(c.isupper() for c in password)\n    has_lower = any(c.islower() for c in password)\n    has_digit = any(c.isdigit() for c in password)\n    if not (has_upper and has_lower and has_digit):\n        return False, \"Password must have upper, lower, and digit\"\n    return True, \"\"",
+  "expected": "validators.py with shared base, individual validators, tests",
+  "estimated_time_seconds": 120,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

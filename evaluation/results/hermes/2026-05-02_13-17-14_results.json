@@ -1,0 +1,2339 @@
+{
+  "timestamp": "2026-05-02_13-17-14",
+  "summary": {
+    "tasks_run": 15,
+    "overall_score": 0.6508,
+    "code_quality_avg": 3.8666666666666667,
+    "proactivity_avg": 3.216666666666667,
+    "validation_avg": 0.5973333333333334,
+    "objective_pass_rate": 0.4666666666666667,
+    "avg_duration_seconds": 64.42783866666666,
+    "speed_improvement_pct": -7.379731111111099
+  },
+  "results": [
+    {
+      "task_name": "Race Condition Fix",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 76.544227,
+      "files_created": [
+        "test_thread_safe_counter.py",
+        "thread_safe_counter.py",
+        "__pycache__/thread_safe_counter.cpython-313.pyc",
+        "__pycache__/test_thread_safe_counter.cpython-313.pyc"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 76.54151129722595,
+        "duration_formatted": "1m 16s",
+        "tokens_used": {
+          "output_estimate": 1163,
+          "trace_estimate": 4743,
+          "total_estimate": 5906
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 1.5481668703906908,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "2 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "2 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 8,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 4.0,
+        "safety": 5.0,
+        "reasoning": "The agent correctly fixed the race condition by using threading.Lock() to protect the shared counter during read-modify-write operations. The code is well-structured with clear variable names and explanatory comments. All 3 tests pass (100000, 20000, and 21 expected values). Efficiency gets a 4 instead of 5 because while the locking approach is correct, it could be slightly optimized by doing local increments and then adding to the shared counter in batch - but the current solution is acceptable and functionally correct.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 3824,
+        "output_tokens": 50,
+        "total_tokens": 3874,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1971
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 3
+      },
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n...                                                                      [100%]\n3 passed in 0.09s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.719,
+        "total_tokens": 3874,
+        "input_baseline": 1389,
+        "output_baseline": 2778,
+        "ratio": 0.93,
+        "density": 0.01,
+        "cache_rate": 0.67,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.99,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 3,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.893
+    },
+    {
+      "task_name": "fix-null-pointer",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 70.072617,
+      "files_created": [
+        "test_greet.py",
+        "greet.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/greet.cpython-313.pyc",
+        "__pycache__/test_greet.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 70.06783533096313,
+        "duration_formatted": "1m 10s",
+        "tokens_used": {
+          "output_estimate": 1358,
+          "trace_estimate": 4906,
+          "total_estimate": 6264
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 1.6912044084175526,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 11,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 5.0,
+        "reasoning": "The agent fixed the null pointer crash by implementing proper input validation for all edge cases: user being None, missing name, missing org, and missing org.name. The code uses clear variable names, follows Python idioms (getattr with default), and raises descriptive ValueError messages. All 5 tests pass, confirming the fix handles each crash scenario correctly.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 3773,
+        "output_tokens": 47,
+        "total_tokens": 3820,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1909
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 3
+      },
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n.....                                                                    [100%]\n5 passed in 0.01s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.718,
+        "total_tokens": 3820,
+        "input_baseline": 852,
+        "output_baseline": 1704,
+        "ratio": 1.49,
+        "density": 0.01,
+        "cache_rate": 0.68,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.99,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 3,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.88
+    },
+    {
+      "task_name": "fix-memory-leak",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 72.20503,
+      "files_created": [
+        "parsed_cache.py"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 72.20172548294067,
+        "duration_formatted": "1m 12s",
+        "tokens_used": {
+          "output_estimate": 1691,
+          "trace_estimate": 5330,
+          "total_estimate": 7021
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 1.6412216080348125,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 1,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 5,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "2 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 4,
+          "parallel_announcements": 2,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 1.0,
+        "readability": 3.0,
+        "correctness": 1.0,
+        "efficiency": 2.0,
+        "safety": 3.0,
+        "reasoning": "The agent created a new file (parsed_cache.py) instead of fixing the existing cache and naming it 'fixed_cache.py' as required. No test files were created despite the task requiring tests. The code itself appears implement a bounded LRU cache correctly, but the fundamental misunderstanding of the task (creating new vs fixing existing, wrong filename, missing tests) results in all critical dimensions failing.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 3732,
+        "output_tokens": 50,
+        "total_tokens": 3782,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1861
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:fixed_cache.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file fixed_cache.py; created files: parsed_cache.py"
+          },
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.507,
+        "total_tokens": 3782,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 2.52,
+        "density": 0.01,
+        "cache_rate": 0.69,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "Debug Memory Leak",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 75.007398,
+      "files_created": [
+        "test_event_handler.py",
+        "event_handler.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/event_handler.cpython-313.pyc",
+        "__pycache__/test_event_handler.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 75.00250148773193,
+        "duration_formatted": "1m 15s",
+        "tokens_used": {
+          "output_estimate": 2604,
+          "trace_estimate": 5835,
+          "total_estimate": 8439
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 1.5799343975131648,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 2.9,
+        "waited_for_user": true,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "1 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "1 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 13,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 1.0,
+        "readability": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "safety": 1.0,
+        "reasoning": "Agent produced no code changes. The memory leak in event_handler.py (strong references to lambdas/closures preventing garbage collection) remains unfixed. The test output shows 1 failed, 3 passed - the core memory leak issue was not addressed.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 3826,
+        "output_tokens": 47,
+        "total_tokens": 3873,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1990
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": true,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": false,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 1\nSTDOUT:\n.F..                                                                     [100%]\n=================================== FAILURES ===================================\n______ test_subscription_unregister_removes_callback_and_releases_capture ______\n\n    def test_subscription_unregister_removes_callback_and_releases_capture():\n        handler = EventHandler()\n        payload = bytearray(1024 * 1024)\n>       payload_ref = weakref.ref(payload)\n                      ^^^^^^^^^^^^^^^^^^^^\nE       TypeError: cannot create weak reference to 'bytearray' object\n\ntest_event_handler.py:20: TypeError\n=========================== short test summary info ============================\nFAILED test_event_handler.py::test_subscription_unregister_removes_callback_and_releases_capture\n1 failed, 3 passed in 0.05s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.718,
+        "total_tokens": 3873,
+        "input_baseline": 1593,
+        "output_baseline": 3186,
+        "ratio": 0.81,
+        "density": 0.01,
+        "cache_rate": 0.67,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 1.0,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": true,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "fix-resource-leak",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 58.618339,
+      "files_created": [
+        "test_log_processor.py",
+        "log_processor.py"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 58.61258625984192,
+        "duration_formatted": "58.6s",
+        "tokens_used": {
+          "output_estimate": 2107,
+          "trace_estimate": 5302,
+          "total_estimate": 7409
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 2.9,
+        "waited_for_user": true,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 12,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 4.0,
+        "safety": 5.0,
+        "reasoning": "All tests pass. The implementation correctly uses Python context managers ('with' statements) to ensure file handles are automatically closed even when exceptions occur during read or write operations. This is the idiomatic and correct solution for the resource leak bug. Code is clean, readable, and properly handles errors.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 3806,
+        "output_tokens": 53,
+        "total_tokens": 3859,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1941
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 5
+      },
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n....                                                                     [100%]\n4 passed in 0.01s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.719,
+        "total_tokens": 3859,
+        "input_baseline": 1245,
+        "output_baseline": 2490,
+        "ratio": 1.03,
+        "density": 0.01,
+        "cache_rate": 0.67,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.99,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 5,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.872
+    },
+    {
+      "task_name": "fix-timeout-race",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 63.233929,
+      "files_created": [
+        "test_counter.py",
+        "counter.py"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 63.22950577735901,
+        "duration_formatted": "1m 3s",
+        "tokens_used": {
+          "output_estimate": 2186,
+          "trace_estimate": 5324,
+          "total_estimate": 7510
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 1.8741097299930454,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 21,
+          "parallel_announcements": 2,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 3.0,
+        "efficiency": 4.0,
+        "safety": 5.0,
+        "reasoning": "The ThreadSafeCounter implementation correctly uses threading.Lock for synchronization, handles atomic operations, and all tests pass. However, the task failed because it expected a file named 'thread_counter.py' but the agent created 'counter.py' and 'test_counter.py' instead - this is a critical file naming error. The implementation logic is sound and idiomatic (using context manager for lock), but the wrong filename caused the critical failure.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 3733,
+        "output_tokens": 52,
+        "total_tokens": 3785,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1865
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 0.49,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:thread_counter.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file thread_counter.py; created files: test_counter.py, counter.py"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n...                                                                      [100%]\n3 passed in 0.03s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.507,
+        "total_tokens": 3785,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 2.52,
+        "density": 0.01,
+        "cache_rate": 0.69,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "Fix timeout Issue",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 48.962867,
+      "files_created": [
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 48.96084141731262,
+        "duration_formatted": "49.0s",
+        "tokens_used": {
+          "output_estimate": 1210,
+          "trace_estimate": 5157,
+          "total_estimate": 6367
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 2.4,
+        "waited_for_user": true,
+        "files_created": 0,
+        "has_done_block": false,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 0,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 4,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 11,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 1.0,
+        "readability": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "safety": 1.0,
+        "reasoning": "No code or tests were produced. The agent was still exploring the environment (finding files, troubleshooting terminal commands) when the task ended. No timeout fix was implemented. Since no Python test files were created as required, the task failed completely.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 3727,
+        "output_tokens": 50,
+        "total_tokens": 3777,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1858
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.507,
+        "total_tokens": 3777,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 2.52,
+        "density": 0.01,
+        "cache_rate": 0.69,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "fix-null-ref",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 47.033733,
+      "files_created": [
+        "test_greet.py",
+        "greet.py",
+        "__pycache__/greet.cpython-313.pyc",
+        "__pycache__/test_greet.cpython-313.pyc"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 47.03134751319885,
+        "duration_formatted": "47.0s",
+        "tokens_used": {
+          "output_estimate": 1269,
+          "trace_estimate": 5021,
+          "total_estimate": 6290
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 15,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 5.0,
+        "reasoning": "The agent correctly implemented null checks for user, user.name, and user.org, all 4 tests pass, and the code is clean and straightforward. Handles all edge cases properly and raises meaningful ValueError messages as required.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 3759,
+        "output_tokens": 49,
+        "total_tokens": 3808,
+        "cached_tokens": 1536,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1891
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n....                                                                     [100%]\n4 passed in 0.01s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.633,
+        "total_tokens": 3808,
+        "input_baseline": 672,
+        "output_baseline": 1344,
+        "ratio": 1.89,
+        "density": 0.01,
+        "cache_rate": 0.41,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.865
+    },
+    {
+      "task_name": "Handle-exception-Error",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 68.830833,
+      "files_created": [
+        "test_database.py",
+        "database.py",
+        "__pycache__/database.cpython-313.pyc",
+        "__pycache__/test_database.cpython-313.pyc"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 68.8262836933136,
+        "duration_formatted": "1m 8s",
+        "tokens_used": {
+          "output_estimate": 2094,
+          "trace_estimate": 5747,
+          "total_estimate": 7841
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 1.721711904830219,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "2 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 7,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 4.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "The implementation in database.py is correct and handles all required exceptions (TypeError, OperationalError, ProgrammingError). It validates input, logs errors, and properly closes connections. The test failure is due to a test code bug (assertion placed outside the patch context), not the implementation. 3/4 tests pass, with all exception-handling tests passing correctly.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 3859,
+        "output_tokens": 53,
+        "total_tokens": 3912,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1993
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 3
+      },
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": false,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 1\nSTDOUT:\n...F                                                                     [100%]\n=================================== FAILURES ===================================\n_____________ FetchUserTests.test_returns_user_when_query_succeeds _____________\n\nself = <test_database.FetchUserTests testMethod=test_returns_user_when_query_succeeds>\n\n    def test_returns_user_when_query_succeeds(self):\n        row = (1, \"Ada\")\n        conn = MagicMock()\n        cursor = conn.cursor.return_value\n        cursor.fetchone.return_value = row\n    \n        with patch(\"sqlite3.connect\", return_value=conn):\n            self.assertEqual(fetch_user(1), row)\n    \n>       sqlite3.connect.assert_called_once_with(\"app.db\")\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       AttributeError: 'builtin_function_or_method' object has no attribute 'assert_called_once_with'\n\ntest_database.py:18: AttributeError\n=========================== short test summary info ============================\nFAILED test_database.py::FetchUserTests::test_returns_user_when_query_succeeds\n1 failed, 3 passed in 0.03s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.719,
+        "total_tokens": 3912,
+        "input_baseline": 1809,
+        "output_baseline": 3618,
+        "ratio": 0.72,
+        "density": 0.01,
+        "cache_rate": 0.66,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.99,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 3,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "fix-json-escaping",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 82.579347,
+      "files_created": [
+        "test_json_serializer.py",
+        "json_serializer.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/json_serializer.cpython-313.pyc",
+        "__pycache__/test_json_serializer.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 82.57558703422546,
+        "duration_formatted": "1m 22s",
+        "tokens_used": {
+          "output_estimate": 2018,
+          "trace_estimate": 4914,
+          "total_estimate": 6932
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 1.4350371127350894,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 2.9,
+        "waited_for_user": true,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "2 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "4 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 9,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 5.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "The code functionally works correctly - all 20 tests pass, handling quotes, newlines, backslashes, control characters, and special floats properly. The implementation is well-structured with clear type hints, good comments, and follows Python conventions. The only critical failure is creating the wrong filename (json_serializer.py instead of robust_json.py), which caused the task to fail overall despite the code being correct and functional.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 3830,
+        "output_tokens": 50,
+        "total_tokens": 3880,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1977
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 0.49,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:robust_json.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file robust_json.py; created files: test_json_serializer.py, json_serializer.py, .pytest_cache/CACHEDIR.TAG, .pytest_cache/README.md, __pycache__/json_serializer.cpython-313.pyc, __pycache__/test_json_serializer.cpython-313-pytest-9.0.3.pyc, .pytest_cache/v/cache/nodeids"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n....................                                                     [100%]\n20 passed in 0.04s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.719,
+        "total_tokens": 3880,
+        "input_baseline": 1614,
+        "output_baseline": 3228,
+        "ratio": 0.8,
+        "density": 0.01,
+        "cache_rate": 0.67,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "fix-race-condition",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 55.11015,
+      "files_created": [
+        "test_counter.py",
+        "counter.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/counter.cpython-313.pyc",
+        "__pycache__/test_counter.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 55.107563972473145,
+        "duration_formatted": "55.1s",
+        "tokens_used": {
+          "output_estimate": 1289,
+          "trace_estimate": 4783,
+          "total_estimate": 6072
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 12,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 3.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "The thread-safe implementation is functionally correct (uses Lock properly, both increment and get methods are protected). Tests pass. However, the agent failed a critical requirement: the file must be named 'threadsafe_counter.py' but was created as 'counter.py'. Code quality is solid but not perfect (minor room for improvement). Readability is good with clear structure and comments. Efficiency is appropriate for the task. Safety is good with proper thread synchronization.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 3809,
+        "output_tokens": 51,
+        "total_tokens": 3860,
+        "cached_tokens": 1536,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1949
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 0.49,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:threadsafe_counter.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file threadsafe_counter.py; created files: test_counter.py, counter.py, .pytest_cache/CACHEDIR.TAG, .pytest_cache/README.md, __pycache__/counter.cpython-313.pyc, __pycache__/test_counter.cpython-313-pytest-9.0.3.pyc, .pytest_cache/v/cache/nodeids"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n..                                                                       [100%]\n2 passed in 1.26s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.715,
+        "total_tokens": 3860,
+        "input_baseline": 1281,
+        "output_baseline": 2562,
+        "ratio": 1.0,
+        "density": 0.01,
+        "cache_rate": 0.4,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "fix-json-parse",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 90.231783,
+      "files_created": [
+        "test_json_parser.py",
+        "json_parser.py",
+        "__pycache__/json_parser.cpython-313.pyc",
+        "__pycache__/test_json_parser.cpython-313.pyc"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 90.22724175453186,
+        "duration_formatted": "1m 30s",
+        "tokens_used": {
+          "output_estimate": 2041,
+          "trace_estimate": 5156,
+          "total_estimate": 7197
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 1.3133398483174636,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "2 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "1 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 13,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 3.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "All 9 tests pass, demonstrating correct handling of escape sequences, Unicode escapes, nested objects/arrays, numbers, and error cases. The code is well-structured with proper class organization and error handling. However, the critical failure was using wrong filename (json_parser.py instead of expected json_helper.py), which caused the evaluation to fail despite functional correctness.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 3727,
+        "output_tokens": 49,
+        "total_tokens": 3776,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1858
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 0.49,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:json_helper.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file json_helper.py; created files: test_json_parser.py, json_parser.py, __pycache__/json_parser.cpython-313.pyc, __pycache__/test_json_parser.cpython-313.pyc"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n.........                                                                [100%]\n9 passed in 0.01s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.507,
+        "total_tokens": 3776,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 2.52,
+        "density": 0.01,
+        "cache_rate": 0.69,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "fix-sql-injection",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 58.071952,
+      "files_created": [
+        "test_users.py",
+        "users.py",
+        "__pycache__/users.cpython-313.pyc",
+        "__pycache__/test_users.cpython-313.pyc"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 58.06925129890442,
+        "duration_formatted": "58.1s",
+        "tokens_used": {
+          "output_estimate": 1911,
+          "trace_estimate": 5487,
+          "total_estimate": 7398
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.55,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "5 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 15,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 1,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 4.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 5.0,
+        "reasoning": "The code is already correctly implemented using parameterized queries with ? placeholders for both SELECT and DELETE operations. This is the proper way to prevent SQL injection in Python's sqlite3 module. All 5 tests pass, including specific tests that verify injection attempts are treated as literal values. The code is clean, well-structured with proper docstrings, and idiomatic. No changes were needed since the original code was already secure.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 3826,
+        "output_tokens": 52,
+        "total_tokens": 3878,
+        "cached_tokens": 1536,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1961
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 5
+      },
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "required_file_pattern:*.py:execute\\([^\\n]*\\?",
+            "passed": true,
+            "critical": true,
+            "detail": "Required pattern should appear in files matching *.py. Matches: users.py"
+          },
+          {
+            "name": "forbidden_file_pattern:*.py:SELECT.*\\{",
+            "passed": true,
+            "critical": true,
+            "detail": "Forbidden pattern should not appear in files matching *.py. Matches: none"
+          },
+          {
+            "name": "forbidden_file_pattern:*.py:DELETE.*\\{",
+            "passed": true,
+            "critical": true,
+            "detail": "Forbidden pattern should not appear in files matching *.py. Matches: none"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n.....                                                                    [100%]\n5 passed in 0.01s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.715,
+        "total_tokens": 3878,
+        "input_baseline": 1479,
+        "output_baseline": 2958,
+        "ratio": 0.87,
+        "density": 0.01,
+        "cache_rate": 0.4,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.99,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 5,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.895
+    },
+    {
+      "task_name": "fix-deadlock",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 44.310553,
+      "files_created": [
+        "test_transfer_service.py",
+        "transfer_service.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/transfer_service.cpython-313.pyc",
+        "__pycache__/test_transfer_service.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 44.30787181854248,
+        "duration_formatted": "44.3s",
+        "tokens_used": {
+          "output_estimate": 1017,
+          "trace_estimate": 4615,
+          "total_estimate": 5632
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 7,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 4.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 5.0,
+        "reasoning": "The agent correctly fixed the classic deadlock by ensuring both transfer() and reverse_transfer() acquire locks in the same consistent order (lock_a then lock_b), preventing circular waiting. The test passed with a score of 1.0, confirming the fix works. Code uses proper Python idioms (context managers with 'with' statements), variable names are clear, and there's a helpful comment explaining the fix. Minor deduction in readability for not adding more documentation about lock ordering best practices.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 3896,
+        "output_tokens": 51,
+        "total_tokens": 3947,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 2055
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n.                                                                        [100%]\n1 passed in 0.42s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.719,
+        "total_tokens": 3947,
+        "input_baseline": 2628,
+        "output_baseline": 5256,
+        "ratio": 0.5,
+        "density": 0.01,
+        "cache_rate": 0.66,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.885
+    },
+    {
+      "task_name": "fix-crash-Issue",
+      "task_category": "debug",
+      "agent": "hermes",
+      "duration_seconds": 55.604822,
+      "files_created": [
+        "test_process_data.py",
+        "process_data.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/process_data.cpython-313.pyc",
+        "__pycache__/test_process_data.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 55.60229563713074,
+        "duration_formatted": "55.6s",
+        "tokens_used": {
+          "output_estimate": 1701,
+          "trace_estimate": 5069,
+          "total_estimate": 6770
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "read_file": 1,
+          "write_file": 1,
+          "terminal": 1,
+          "patch": 1,
+          "search": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 6,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "2 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "1 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 9,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 5.0,
+        "reasoning": "The code handles all edge cases correctly: None input, missing 'value' key, None value, non-mapping data, non-numeric values (strings), and boolean values. All 8 tests pass. The implementation is well-structured with clear variable names, proper docstring, and appropriate use of standard library abstractions (numbers.Number, collections.abc.Mapping). Validation order is logical and efficient without redundant operations.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 3824,
+        "output_tokens": 48,
+        "total_tokens": 3872,
+        "cached_tokens": 2560,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 1951
+      },
+      "memory_data": {
+        "vault_reads": 0,
+        "vault_read_ms": 0,
+        "context_load_ms": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_freshness": 0.952,
+        "memory_references": 1
+      },
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n........                                                                 [100%]\n8 passed in 0.02s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.718,
+        "total_tokens": 3872,
+        "input_baseline": 1359,
+        "output_baseline": 2718,
+        "ratio": 0.95,
+        "density": 0.01,
+        "cache_rate": 0.67,
+        "waste": "ideal"
+      },
+      "memory_retrieval": {
+        "score": 0.89,
+        "vault_reads": 0,
+        "cache_hit": true,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 1,
+        "context_freshness": 0.952
+      },
+      "overall_score": 0.872
+    }
+  ]
+}

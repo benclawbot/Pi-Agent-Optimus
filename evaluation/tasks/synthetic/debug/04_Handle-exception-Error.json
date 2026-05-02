@@ -1,0 +1,18 @@
+{
+  "name": "Handle-exception-Error",
+  "category": "debug",
+  "description": "Fix fetch_user to handle all exception cases. Never crash on bad input or DB errors.",
+  "requirements": [
+    "Handle OperationalError",
+    "Handle ProgrammingError",
+    "Handle TypeError",
+    "Return None + log errors"
+  ],
+  "difficulty": "medium",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181083",
+  "triggered_by_failure": null,
+  "expected": "Fixed exception with explanation of root cause",
+  "estimated_time_seconds": 120,
+  "context": "def fetch_user(user_id):\n    \"\"\"Fetch user from database - crashes on connection error\"\"\"\n    import sqlite3\n    conn = sqlite3.connect(\"app.db\")  # Fails if db doesn't exist\n    cursor = conn.cursor()\n    cursor.execute(\"SELECT * FROM users WHERE id=?\", (user_id,))\n    return cursor.fetchone()\n\n# The bug: no try/except. Fix it.\n# Requirements:\n# - Handle sqlite3.OperationalError (locked db)\n# - Handle sqlite3.ProgrammingError (bad query)\n# - Handle TypeError (bad user_id)\n# - Return None on failure, log the error"
+}

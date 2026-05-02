@@ -1,0 +1,17 @@
+{
+  "name": "Clean legacy code Code",
+  "category": "refactor",
+  "description": "Refactor the legacy code code to improve readability and maintainability.",
+  "requirements": [
+    "Reduce complexity",
+    "Improve naming",
+    "Add documentation",
+    "Maintain behavior"
+  ],
+  "difficulty": "medium",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181122",
+  "triggered_by_failure": null,
+  "expected": "Refactored legacy code with improved maintainability",
+  "estimated_time_seconds": 120
+}

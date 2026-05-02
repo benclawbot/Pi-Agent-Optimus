@@ -39,7 +39,8 @@
     "~/.pi/agent/skills/tech-stack-detector",
     "~/.pi/agent/skills/skill-marketplace",
     "~/.pi/agent/skills/skill-memory-sharing",
-    "~/.pi/agent/skills/chain-of-thought"
+    "~/.pi/agent/skills/chain-of-thought",
+    "~/.pi/agent/skills/skill-health"
   ],
   "enableSkillCommands": true
 }

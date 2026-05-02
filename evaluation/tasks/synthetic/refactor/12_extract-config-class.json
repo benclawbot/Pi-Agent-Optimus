@@ -1,0 +1,15 @@
+{
+  "name": "extract-config-class",
+  "category": "refactor",
+  "description": "Refactor this procedural code into an object-oriented design:\n\n```\ndb_host = os.environ.get('DB_HOST', 'localhost')\ndb_port = int(os.environ.get('DB_PORT', '5432'))\ncache_url = os.environ.get('REDIS_URL', 'redis://localhost:6379')\ntimeout = int(os.environ.get('TIMEOUT', '30'))\n```\n\nCreate a Config class with validation and defaults.",
+  "requirements": [
+    "OOP design",
+    "Validation",
+    "Type safety",
+    "Environment variable parsing"
+  ],
+  "expected": "config.py refactored class",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.497970",
+  "estimated_time_seconds": 120
+}

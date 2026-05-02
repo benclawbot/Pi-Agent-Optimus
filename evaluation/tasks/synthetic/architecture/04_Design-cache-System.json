@@ -1,0 +1,17 @@
+{
+  "name": "Design cache System",
+  "category": "architecture",
+  "description": "Design an architecture for cache. Define components, interactions, and data flow.",
+  "requirements": [
+    "Clear component boundaries",
+    "Scalable design",
+    "Consistent patterns",
+    "Consider failure modes"
+  ],
+  "difficulty": "hard",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181114",
+  "triggered_by_failure": null,
+  "expected": "Designed cache with clear component boundaries",
+  "estimated_time_seconds": 180
+}

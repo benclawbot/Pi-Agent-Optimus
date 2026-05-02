@@ -1,0 +1,17 @@
+{
+  "name": "decouple-data-pipeline",
+  "category": "refactor",
+  "difficulty": "hard",
+  "description": "Refactor this monolithic data pipeline into separate classes with single responsibilities.",
+  "requirements": [
+    "Single responsibility per class",
+    "Loose coupling",
+    "Easy to test",
+    "Clear interfaces"
+  ],
+  "context": "class DataPipeline:\n    def __init__(self, source, destination):\n        self.source = source\n        self.destination = destination\n        self.filters = []\n        self.transformations = []\n    \n    def add_filter(self, condition):\n        self.filters.append(condition)\n    \n    def add_transform(self, func):\n        self.transformations.append(func)\n    \n    def add_validation(self, validator):\n        # Mixed concerns - also does validation\n        self.transformations.append(validator)\n    \n    def run(self):\n        # Monolithic: reads, filters, transforms, validates, writes - all in one\n        data = self.source.read()\n        for f in self.filters:\n            data = [row for row in data if f(row)]\n        for t in self.transformations:\n            data = [t(row) for row in data]\n        for row in data:\n            if not self._validate(row):\n                continue  # Silently skips invalid rows\n        self.destination.write(data)\n    \n    def _validate(self, row):\n        # Scattered validation\n        return row and len(row) > 0\n    \n    def get_stats(self):\n        # Mixed reporting with processing\n        return {\"rows\": len(self.data) if hasattr(self, 'data') else 0}",
+  "expected": "pipeline/ directory with Source, Filter, Transformer, Validator, Sink, Pipeline classes",
+  "estimated_time_seconds": 150,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

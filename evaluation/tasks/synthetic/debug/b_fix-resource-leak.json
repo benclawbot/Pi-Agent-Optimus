@@ -1,0 +1,16 @@
+{
+  "name": "fix-resource-leak",
+  "category": "debug",
+  "difficulty": "medium",
+  "description": "Fix the resource leak. File handles are never closed when exceptions occur.",
+  "requirements": [
+    "Use context managers (with statement)",
+    "Handle exceptions",
+    "Keep same interface"
+  ],
+  "context": "def process_log(log_path, output_path):\n    \"\"\"Process a log file and write results - but leaks file handles!\"\"\"\n    f = open(log_path, 'r')\n    lines = f.readlines()\n    f.close()\n    \n    out = open(output_path, 'w')\n    for line in lines:\n        if 'ERROR' in line:\n            out.write(line)\n    out.close()\n    \n    return len(lines)",
+  "expected": "Fixed with 'with open()' statements, handles exceptions",
+  "estimated_time_seconds": 60,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

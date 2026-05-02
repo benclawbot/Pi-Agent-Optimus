@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Agent - Evaluation Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-tertiary: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --accent-green: #4ade80;
+            --accent-yellow: #facc15;
+            --accent-red: #f87171;
+            --accent-purple: #c084fc;
+            --accent-orange: #fb923c;
+            --border: #374151;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header h1 { font-size: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .header h1 span { color: var(--accent-cyan); }
+        .header-info { display: flex; gap: 1rem; align-items: center; }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .status-loading { background: var(--accent-yellow); color: #000; }
+        .status-error { background: var(--accent-red); color: #fff; }
+        .status-ok { background: var(--accent-green); color: #000; }
+        
+        .refresh-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .refresh-btn:hover { background: var(--bg-tertiary); }
+        
+        .error-banner {
+            background: var(--accent-red);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .error-banner.show { display: block; }
+        
+        /* Scorecard */
+        .scorecard { 
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .scorecard::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+        }
+        .scorecard-main { text-align: center; }
+        
+        .overall-score {
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .overall-label { color: var(--text-secondary); font-size: 1rem; margin-top: 0.5rem; }
+        
+        /* 12-metric grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .metric-card {
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            padding: 0.75rem 0.5rem;
+            text-align: center;
+        }
+        .metric-value { font-size: 1.25rem; font-weight: 700; color: var(--accent-cyan); }
+        .metric-label { font-size: 0.6rem; color: var(--text-muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        
+        /* Judge dimensions */
+        .section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        
+        .judge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .judge-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+        
+        .judge-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .judge-name { font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+        .judge-icon {
+            width: 28px; height: 28px;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.875rem;
+        }
+        .judge-score { font-size: 1.75rem; font-weight: 700; }
+        
+        .score-bar { height: 5px; background: var(--bg-tertiary); border-radius: 3px; overflow: hidden; margin-bottom: 0.5rem; }
+        .score-bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+        
+        .judge-range { font-size: 0.7rem; color: var(--text-muted); }
+        
+        /* Score distribution */
+        .dist-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .dist-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+        .dist-title { font-weight: 600; margin-bottom: 1rem; }
+        
+        .dist-bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+        .dist-label { width: 50px; font-size: 0.7rem; color var(--text-muted); }
+        .dist-bar { flex: 1; height: 18px; background: var(--bg-tertiary); border-radius: 4px; overflow: hidden; }
+        .dist-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.4rem; font-size: 0.65rem; font-weight: 600; }
+        .dist-count { width: 24px; text-align: right; font-size: 0.7rem; color: var(--text-muted); }
+        
+        /* Charts */
+        .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        .chart-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+        .chart-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .chart-title { font-weight: 600; }
+        .chart-note { font-size: 0.75rem; color: var(--text-muted); }
+        .chart-container { position: relative; height: 220px; }
+        
+        /* Failure analysis */
+        .failure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .failure-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+        .failure-title { font-weight: 600; color: var(--accent-red); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .failure-count { 
+            background: var(--accent-red); 
+            color: white; 
+            padding: 0.1rem 0.4rem; 
+            border-radius: 10px; 
+            font-size: 0.7rem;
+        }
+        .failure-tasks { font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; }
+        .failure-tasks span { color: var(--text-secondary); }
+        
+        /* Task table */
+        .task-section { margin-bottom: 2rem; }
+        .task-table { 
+            background: var(--bg-secondary); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            overflow: hidden; 
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th { 
+            text-align: left; 
+            padding: 0.875rem 1rem; 
+            border-bottom: 1px solid var(--border); 
+            color: var(--text-muted); 
+            font-weight: 500; 
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background: var(--bg-tertiary); }
+        
+        .score-cell { font-weight: 600; }
+        .pass { color: var(--accent-green); }
+        .fail { color: var(--accent-red); }
+        .partial { color: var(--accent-yellow); }
+        
+        .duration-cell { display: flex; align-items: center; gap: 0.5rem; }
+        .duration-bar { width: 50px; height: 4px; background: var(--bg-tertiary); border-radius: 2px; overflow: hidden; }
+        .duration-fill { height: 100%; border-radius: 2px; }
+        
+        .badge { 
+            display: inline-block; 
+            padding: 0.15rem 0.4rem; 
+            border-radius: 4px; 
+            font-size: 0.6rem; 
+            background: var(--bg-tertiary); 
+            color: var(--text-muted);
+        }
+        
+        /* Footer */
+        .footer { 
+            text-align: center; 
+            color: var(--text-muted); 
+            margin-top: 2rem; 
+            padding-top: 1rem; 
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+        }
+        
+        .no-data { text-align: center; padding: 3rem; color: var(--text-muted); }
+        
+        @media (max-width: 1024px) {
+            .metrics-grid { grid-template-columns: repeat(6, 1fr); }
+            .dist-grid { grid-template-columns: 1fr; }
+            .charts-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .metrics-grid { grid-template-columns: repeat(4, 1fr); }
+            .overall-score { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 <span>Hermes Agent</span> - Evaluation Dashboard</h1>
+        <div class="header-info">
+            <span class="status-badge" id="statusBadge">Loading...</span>
+            <span class="badge" id="versionBadge">v0.12.0</span>
+            <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
+        </div>
+    </div>
+
+    <div class="error-banner" id="errorBanner">
+        <strong>Error:</strong> <span id="errorMessage"></span>
+        <button onclick="loadData()" style="margin-left: 1rem; padding: 0.25rem 0.5rem; cursor: pointer; background: white; border: none; border-radius: 4px;">Retry</button>
+    </div>
+
+    <!-- Scorecard -->
+    <div class="scorecard">
+        <div class="scorecard-main">
+            <div class="overall-score" id="overallScore">--</div>
+            <div class="overall-label">Overall Performance Score</div>
+        </div>
+        <div class="metrics-grid" id="metricsGrid">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
+    <!-- Judge Dimensions -->
+    <h2 class="section-title">⚖️ Judge Dimensions</h2>
+    <div class="judge-grid" id="judgeGrid">
+        <div class="no-data">Loading...</div>
+    </div>
+
+    <!-- Score Distribution -->
+    <h2 class="section-title">📊 Score Distribution</h2>
+    <div class="dist-grid">
+        <div class="dist-card">
+            <div class="dist-title">By Score Band</div>
+            <div id="distByBand"></div>
+        </div>
+        <div class="dist-card">
+            <div class="dist-title">By Judge Dimension</div>
+            <div id="distByJudge"></div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid">
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">Score vs Duration</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="scatterChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">Judge Dimensions Radar</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="radarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Failure Analysis -->
+    <h2 class="section-title">🔍 Failure Analysis</h2>
+    <div class="failure-grid" id="failureGrid">
+        <div class="no-data">No failures to analyze</div>
+    </div>
+
+    <!-- Task Results -->
+    <div class="task-section">
+        <h2 class="section-title">📋 Task Results</h2>
+        <div class="task-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Task</th>
+                        <th>Score</th>
+                        <th>Judge</th>
+                        <th>Proactivity</th>
+                        <th>Duration</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="taskBody">
+                    <tr><td colspan="7" class="no-data">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        Hermes Agent Evaluation Framework | Debug Category (15 tasks) | 2026-05-02
+    </div>
+
+    <script>
+        const JUDGE_COLORS = {
+            code_quality: '#38bdf8',
+            readability: '#4ade80',
+            correctness: '#f87171',
+            efficiency: '#fbbf24',
+            safety: '#c084fc'
+        };
+        
+        const JUDGE_ICONS = {
+            code_quality: '💻',
+            readability: '📖',
+            correctness: '✓',
+            efficiency: '⚡',
+            safety: '🛡️'
+        };
+        
+        let resultsData = null;
+        
+        function setStatus(text, type = 'ok') {
+            const badge = document.getElementById('statusBadge');
+            badge.textContent = text;
+            badge.className = 'status-badge status-' + type;
+        }
+        
+        function showError(msg) {
+            document.getElementById('errorMessage').textContent = msg;
+            document.getElementById('errorBanner').classList.add('show');
+        }
+        
+        function hideError() {
+            document.getElementById('errorBanner').classList.remove('show');
+        }
+        
+        async function loadData() {
+            hideError();
+            setStatus('Loading...', 'loading');
+            
+            try {
+                const res = await fetch('results/hermes/2026-05-02_10-12-23_results.json');
+                if (!res.ok) throw new Error('Failed to load results: ' + res.status);
+                resultsData = await res.json();
+                render();
+                setStatus('OK', 'ok');
+            } catch (error) {
+                console.error('Load error:', error);
+                showError(error.message);
+                setStatus('Error', 'error');
+            }
+        }
+        
+        function median(vals) {
+            const sorted = [...vals].sort((a,b)=>a-b);
+            const mid = Math.floor(sorted.length/2);
+            return sorted.length % 2 ? sorted[mid] : (sorted[mid-1]+sorted[mid])/2;
+        }
+        
+        function render() {
+            if (!resultsData) { showError('No data loaded'); return; }
+            
+            const summary = resultsData.summary || {};
+            const results = resultsData.results || [];
+            
+            // Overall score
+            document.getElementById('overallScore').textContent = ((summary.overall_score || 0) * 100).toFixed(1) + '%';
+            document.getElementById('versionBadge').textContent = 'hermes ' + (resultsData.version || 'v0.12.0');
+            
+            // Compute all 12 metrics
+            const passRate = (summary.objective_pass_rate || 0) * 100;
+            const judgeAvg = summary.code_quality_avg || 0;
+            const valAvg = summary.validation_avg || 0;
+            const procAvg = summary.proactivity_avg || 0;
+            const durAvg = summary.avg_duration_seconds || 0;
+            const durMedian = median(results.map(r => r.duration_seconds || 0));
+            const durMax = Math.max(...results.map(r => r.duration_seconds || 0));
+            const teAvg = results.reduce((s,r) => s + (r.token_efficiency?.score||0), 0) / results.length;
+            const memAvg = results.reduce((s,r) => s + (r.memory_retrieval?.score||0), 0) / results.length;
+            const cacheRate = results.filter(r => r.memory_data?.cache_hit).length / results.length * 100;
+            const stepsAvg = results.reduce((s,r) => s + (r.metrics?.step_count||0), 0) / results.length;
+            const toolsAvg = results.reduce((s,r) => s + Object.values(r.metrics?.tool_calls||{}).reduce((a,b)=>a+b,0), 0) / results.length;
+            
+            const metrics = [
+                { label: 'Pass Rate', value: Math.round(passRate)+'%', color: passRate >= 80 ? '#4ade80' : passRate >= 50 ? '#fbbf24' : '#f87171' },
+                { label: 'Judge Avg', value: judgeAvg.toFixed(2), color: '#38bdf8' },
+                { label: 'Validation', value: (valAvg*100).toFixed(0)+'%', color: valAvg >= 0.8 ? '#4ade80' : '#fbbf24' },
+                { label: 'Proactivity', value: procAvg.toFixed(2), color: '#c084fc' },
+                { label: 'Avg Duration', value: durAvg.toFixed(0)+'s', color: '#fbbf24' },
+                { label: 'Median Duration', value: durMedian.toFixed(0)+'s', color: '#fb923c' },
+                { label: 'Max Duration', value: durMax.toFixed(0)+'s', color: '#f87171' },
+                { label: 'Token Eff', value: (teAvg*100).toFixed(0)+'%', color: '#22d3ee' },
+                { label: 'Memory', value: (memAvg*100).toFixed(0)+'%', color: '#4ade80' },
+                { label: 'Cache Hit', value: cacheRate.toFixed(0)+'%', color: cacheRate === 100 ? '#4ade80' : '#fbbf24' },
+                { label: 'Steps/Task', value: stepsAvg.toFixed(1), color: '#94a3af' },
+                { label: 'Tools/Task', value: toolsAvg.toFixed(1), color: '#94a3af' },
+            ];
+            
+            document.getElementById('metricsGrid').innerHTML = metrics.map(m => `
+                <div class="metric-card">
+                    <div class="metric-value" style="color:${m.color}">${m.value}</div>
+                    <div class="metric-label">${m.label}</div>
+                </div>
+            `).join('');
+            
+            // Judge dimensions
+            renderJudgeDimensions(results);
+            
+            // Distributions
+            renderDistributions(results);
+            
+            // Charts
+            renderScatterChart(results);
+            renderRadarChart(results);
+            
+            // Failures
+            renderFailures(results);
+            
+            // Task table
+            renderTaskTable(results);
+        }
+        
+        function renderJudgeDimensions(results) {
+            const grid = document.getElementById('judgeGrid');
+            const dims = { code_quality: [], readability: [], correctness: [], efficiency: [], safety: [] };
+            results.forEach(r => {
+                Object.keys(dims).forEach(d => { if (r.judge_scores?.[d]) dims[d].push(r.judge_scores[d]); });
+            });
+            
+            let html = '';
+            for (const [name, vals] of Object.entries(dims)) {
+                const a = vals.length ? vals.reduce((x,y)=>x+y,0)/vals.length : 0;
+                const m = vals.length ? Math.min(...vals) : 0;
+                const x = vals.length ? Math.max(...vals) : 0;
+                const color = JUDGE_COLORS[name];
+                const icon = JUDGE_ICONS[name];
+                const pct = (a / 5 * 100).toFixed(0);
+                
+                html += `
+                    <div class="judge-card">
+                        <div class="judge-header">
+                            <span class="judge-name">
+                                <span class="judge-icon" style="background:${color}25;color:${color}">${icon}</span>
+                                ${name.replace('_', ' ')}
+                            </span>
+                        </div>
+                        <div class="judge-score" style="color:${color}">${a.toFixed(2)}<span style="font-size:1rem;color:var(--text-muted)">/5</span></div>
+                        <div class="score-bar"><div class="score-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+                        <div class="judge-range">min ${m.toFixed(1)} · max ${x.toFixed(1)}</div>
+                    </div>
+                `;
+            }
+            grid.innerHTML = html;
+        }
+        
+        function renderDistributions(results) {
+            const bands = { '0.9+': 0, '0.8+': 0, '0.7+': 0, '0.6+': 0, '0.5+': 0, '<0.5': 0 };
+            results.forEach(r => {
+                const s = r.overall_score || 0;
+                if (s >= 0.9) bands['0.9+']++;
+                else if (s >= 0.8) bands['0.8+']++;
+                else if (s >= 0.7) bands['0.7+']++;
+                else if (s >= 0.6) bands['0.6+']++;
+                else if (s >= 0.5) bands['0.5+']++;
+                else bands['<0.5']++;
+            });
+            
+            const bandColors = { '0.9+': '#4ade80', '0.8+': '#38bdf8', '0.7+': '#22d3ee', '0.6+': '#fbbf24', '0.5+': '#fb923c', '<0.5': '#f87171' };
+            let html = '';
+            for (const [band, count] of Object.entries(bands)) {
+                const pct = (count / results.length * 100).toFixed(0);
+                html += `
+                    <div class="dist-bar-row">
+                        <div class="dist-label">${band}</div>
+                        <div class="dist-bar">
+                            <div class="dist-fill" style="width:${pct}%;background:${bandColors[band]}">${count > 0 ? count : ''}</div>
+                        </div>
+                        <div class="dist-count">${count}</div>
+                    </div>
+                `;
+            }
+            document.getElementById('distByBand').innerHTML = html;
+            
+            // Judge dist
+            const judgeAvgs = { 'Code Quality': 0, 'Readability': 0, 'Correctness': 0, 'Efficiency': 0, 'Safety': 0 };
+            results.forEach(r => {
+                const j = r.judge_scores || {};
+                judgeAvgs['Code Quality'] += j.code_quality || 0;
+                judgeAvgs['Readability'] += j.readability || 0;
+                judgeAvgs['Correctness'] += j.correctness || 0;
+                judgeAvgs['Efficiency'] += j.efficiency || 0;
+                judgeAvgs['Safety'] += j.safety || 0;
+            });
+            const jcolors = ['#38bdf8', '#4ade80', '#f87171', '#fbbf24', '#c084fc'];
+            let jhtml = '';
+            let i = 0;
+            for (const [name, total] of Object.entries(judgeAvgs)) {
+                const avg = total / results.length;
+                const pct = (avg / 5 * 100).toFixed(0);
+                jhtml += `
+                    <div class="dist-bar-row">
+                        <div class="dist-label">${name}</div>
+                        <div class="dist-bar">
+                            <div class="dist-fill" style="width:${pct}%;background:${jcolors[i]}">${avg.toFixed(1)}</div>
+                        </div>
+                        <div class="dist-count">${avg.toFixed(1)}</div>
+                    </div>
+                `;
+                i++;
+            }
+            document.getElementById('distByJudge').innerHTML = jhtml;
+        }
+        
+        function renderScatterChart(results) {
+            const canvas = document.getElementById('scatterChart');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = 220;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const pad = {top: 20, right: 20, bottom: 30, left: 40};
+            const w = canvas.width, h = canvas.height;
+            const maxDur = Math.max(...results.map(r => r.duration_seconds || 0));
+            
+            ctx.strokeStyle = '#374151';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= 4; i++) {
+                const y = pad.top + (h - pad.top - pad.bottom) * i / 4;
+                ctx.beginPath();
+                ctx.moveTo(pad.left, y);
+                ctx.lineTo(w - pad.right, y);
+                ctx.stroke();
+                ctx.fillStyle = '#6b7280';
+                ctx.font = '10px sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(((1 - i * 0.25)*100).toFixed(0)+'%', pad.left - 5, y + 3);
+            }
+            
+            ctx.fillStyle = '#6b7280';
+            ctx.font = '10px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('0s', pad.left, h - 5);
+            ctx.fillText(Math.round(maxDur)+'s', w - pad.right, h - 5);
+            ctx.fillText('Duration', w/2, h - 2);
+            
+            results.forEach((r, idx) => {
+                const x = pad.left + ((r.duration_seconds || 0) / maxDur) * (w - pad.left - pad.right);
+                const y = pad.top + (1 - (r.overall_score || 0)) * (h - pad.top - pad.bottom);
+                const color = r.overall_score >= 0.8 ? '#4ade80' : r.overall_score >= 0.5 ? '#fbbf24' : '#f87171';
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 6, 0, Math.PI * 2);
+                ctx.fillStyle = color + '40';
+                ctx.fill();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                ctx.fillStyle = '#9ca3af';
+                ctx.font = '8px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText((idx + 1).toString(), x, y - 10);
+            });
+        }
+        
+        function renderRadarChart(results) {
+            const canvas = document.getElementById('radarChart');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = 220;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const labels = ['Code Quality', 'Readability', 'Correctness', 'Efficiency', 'Safety'];
+            const keys = ['code_quality', 'readability', 'correctness', 'efficiency', 'safety'];
+            
+            const avgs = keys.map(k => {
+                const vals = results.map(r => r.judge_scores?.[k] || 0).filter(v => v > 0);
+                return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : 0;
+            });
+            
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const r = Math.min(cx, cy) - 45;
+            
+            ctx.strokeStyle = '#374151';
+            ctx.lineWidth = 0.5;
+            for (let level = 1; level <= 5; level++) {
+                ctx.beginPath();
+                for (let i = 0; i <= 5; i++) {
+                    const angle = (Math.PI * 2 * i / 5) - Math.PI/2;
+                    const pr = (level / 5) * r;
+                    const x = cx + pr * Math.cos(angle);
+                    const y = cy + pr * Math.sin(angle);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.stroke();
+            }
+            
+            ctx.strokeStyle = '#4b5563';
+            for (let i = 0; i < 5; i++) {
+                const angle = (Math.PI * 2 * i / 5) - Math.PI/2;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + r * Math.cos(angle), cy + r * Math.sin(angle));
+                ctx.stroke();
+            }
+            
+            ctx.beginPath();
+            avgs.forEach((v, i) => {
+                const angle = (Math.PI * 2 * i / 5) - Math.PI/2;
+                const pr = (v / 5) * r;
+                const x = cx + pr * Math.cos(angle);
+                const y = cy + pr * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            });
+            ctx.closePath();
+            ctx.fillStyle = '#38bdf820';
+            ctx.fill();
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            avgs.forEach((v, i) => {
+                const angle = (Math.PI * 2 * i / 5) - Math.PI/2;
+                const pr = (v / 5) * r;
+                ctx.beginPath();
+                ctx.arc(cx + pr * Math.cos(angle), cy + pr * Math.sin(angle), 4, 0, Math.PI * 2);
+                ctx.fillStyle = JUDGE_COLORS[keys[i]];
+                ctx.fill();
+            });
+            
+            ctx.fillStyle = '#9ca3af';
+            ctx.font = '9px sans-serif';
+            ctx.textAlign = 'center';
+            labels.forEach((label, i) => {
+                const angle = (Math.PI * 2 * i / 5) - Math.PI/2;
+                const lr = r + 18;
+                ctx.fillText(label, cx + lr * Math.cos(angle), cy + lr * Math.sin(angle) + 3);
+            });
+        }
+        
+        function renderFailures(results) {
+            const grid = document.getElementById('failureGrid');
+            const failures = results.filter(r => (r.overall_score || 0) < 0.8);
+            if (failures.length === 0) {
+                grid.innerHTML = '<div class="no-data">All tasks passed</div>';
+                return;
+            }
+            
+            const categories = {};
+            failures.forEach(r => {
+                const reason = r.validation?.checks?.find(c => !c.passed && c.critical)?.name || 'unknown';
+                if (!categories[reason]) categories[reason] = [];
+                categories[reason].push(r.task_name);
+            });
+            
+            const catColors = {
+                'wrong_filename': '#fbbf24',
+                'no_files_created': '#f87171',
+                'test_py3_13_incompatible': '#fb923c',
+                'unknown': '#6b7280'
+            };
+            
+            let html = '';
+            for (const [reason, tasks] of Object.entries(categories)) {
+                const color = catColors[reason] || '#6b7280';
+                html += `
+                    <div class="failure-card">
+                        <div class="failure-title">
+                            <span style="color:${color}">■</span>
+                            ${reason.replace('_', ' ')}
+                            <span class="failure-count">${tasks.length}</span>
+                        </div>
+                        <div class="failure-tasks">
+                            ${tasks.map(t => '<span>' + t + '</span>').join('<br>')}
+                        </div>
+                    </div>
+                `;
+            }
+            grid.innerHTML = html;
+        }
+        
+        function renderTaskTable(results) {
+            const tbody = document.getElementById('taskBody');
+            let html = '';
+            results.forEach((r, idx) => {
+                const score = r.overall_score || 0;
+                const judge = r.judge_scores || {};
+                const jAvg = (['code_quality','readability','correctness','efficiency','safety']
+                    .map(k => judge[k] || 0).filter(v => v > 0)
+                    .reduce((a,b)=>a+b,0) / 5).toFixed(1);
+                const proc = (r.proactivity?.score || 0).toFixed(1);
+                const dur = (r.duration_seconds || 0).toFixed(0);
+                const durColor = dur > 200 ? '#f87171' : dur > 100 ? '#fbbf24' : '#4ade80';
+                const durPct = Math.min(100, dur/3);
+                const status = score >= 0.8 ? 'pass' : score >= 0.5 ? 'partial' : 'fail';
+                const statusIcon = status === 'pass' ? '✓' : status === 'partial' ? '◐' : '✗';
+                
+                html += `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td><strong>${r.task_name}</strong></td>
+                        <td class="score-cell ${status}">${(score * 100).toFixed(0)}%</td>
+                        <td>${jAvg}/5</td>
+                        <td>${proc}/5</td>
+                        <td>
+                            <div class="duration-cell">
+                                <div class="duration-bar">
+                                    <div class="duration-fill" style="width:${durPct}%;background:${durColor}"></div>
+                                </div>
+                                ${dur}s
+                            </div>
+                        </td>
+                        <td class="${status}">${statusIcon}</td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

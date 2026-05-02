@@ -1,0 +1,18 @@
+{
+  "name": "fix-crash-Issue",
+  "category": "debug",
+  "description": "Fix the crash in process_data when input is None or missing 'value' key. Handle all edge cases.",
+  "requirements": [
+    "Handle None data",
+    "Handle missing 'value' key",
+    "Raise clear ValueError",
+    "Add unit tests"
+  ],
+  "difficulty": "medium",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:04.181074",
+  "triggered_by_failure": null,
+  "expected": "Fixed crash with explanation of root cause",
+  "estimated_time_seconds": 120,
+  "context": "def process_data(data):\n    \"\"\"Process data and return result\"\"\"\n    result = data[\"value\"] * 2  # Crashes if data is None or missing \"value\" key\n    return result\n\n# The bug: no null check. Fix it properly.\n# Requirements:\n# - Handle None input\n# - Handle missing \"value\" key\n# - Return appropriate default or raise clear error\n# - Write tests for all cases"
+}

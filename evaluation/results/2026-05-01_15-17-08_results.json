@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-05-01_15-17-08",
+  "summary": {
+    "tasks_run": 1,
+    "overall_score": 0.5406986059849895,
+    "code_quality_avg": 4.0,
+    "proactivity_avg": 0.0,
+    "avg_duration_seconds": 337.69312,
+    "speed_improvement_pct": -462.8218666666667
+  },
+  "results": [
+    {
+      "task_name": "Microservices Architecture",
+      "task_category": "architecture",
+      "duration_seconds": 337.69312,
+      "metrics": {
+        "duration_seconds": 337.69208574295044,
+        "duration_formatted": "5m 37s",
+        "tokens_used": {
+          "output_estimate": 509,
+          "trace_estimate": 243265,
+          "total_estimate": 243774
+        },
+        "token_efficiency": 0.8,
+        "step_count": 11,
+        "tool_calls": {
+          "read": 2,
+          "write": 6,
+          "bash": 3
+        },
+        "speed_score": 0.17767665436397495,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 4.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "The resilience patterns are production-quality with proper circuit breaker state machines, exponential backoff with jitter, and bulkhead isolation. Domain models are solid but lack edge case validation. The architecture documentation and visualization are comprehensive.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.5406986059849895
+    }
+  ]
+}

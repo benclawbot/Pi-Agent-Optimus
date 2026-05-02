@@ -1,0 +1,38 @@
+{
+  "name": "fix-sql-injection",
+  "category": "debug",
+  "difficulty": "medium",
+  "description": "Fix the SQL injection vulnerability in this code. Never trust raw string formatting for SQL.",
+  "requirements": [
+    "Use parameterized queries",
+    "Prevent SQL injection",
+    "Keep same interface",
+    "Add tests"
+  ],
+  "context": "import sqlite3\n\ndef get_user_by_name(conn, name):\n    \"\"\"Get user by name - VULNERABLE to SQL injection!\"\"\"\n    query = f\"SELECT * FROM users WHERE name = '{name}'\"\n    cursor = conn.execute(query)\n    return cursor.fetchone()\n\ndef delete_user(conn, user_id):\n    \"\"\"Delete user by id - also vulnerable\"\"\"\n    query = f\"DELETE FROM users WHERE id = {user_id}\"\n    conn.execute(query)\n    conn.commit()",
+  "expected": "Fixed with parameterized queries, tests proving injection is blocked",
+  "validators": {
+    "required_file_patterns": [
+      {
+        "file": "*.py",
+        "pattern": "execute\\([^\\n]*\\?",
+        "critical": true
+      }
+    ],
+    "forbidden_file_patterns": [
+      {
+        "file": "*.py",
+        "pattern": "SELECT.*\\{",
+        "critical": true
+      },
+      {
+        "file": "*.py",
+        "pattern": "DELETE.*\\{",
+        "critical": true
+      }
+    ]
+  },
+  "estimated_time_seconds": 90,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

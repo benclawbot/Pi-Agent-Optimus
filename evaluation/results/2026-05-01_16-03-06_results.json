@@ -1,0 +1,379 @@
+{
+  "timestamp": "2026-05-01_16-03-06",
+  "summary": {
+    "tasks_run": 6,
+    "overall_score": 0.26940005169289954,
+    "code_quality_avg": 1.5,
+    "proactivity_avg": 0.08333333333333333,
+    "avg_duration_seconds": 121.44601999999999,
+    "speed_improvement_pct": -102.41003333333332
+  },
+  "results": [
+    {
+      "task_name": "Large Method Refactor",
+      "task_category": "refactor",
+      "duration_seconds": 39.544411,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 39.54395151138306,
+        "duration_formatted": "39.5s",
+        "tokens_used": {
+          "output_estimate": 267,
+          "trace_estimate": 34016,
+          "total_estimate": 34283
+        },
+        "token_efficiency": 0.8,
+        "step_count": 1,
+        "tool_calls": {
+          "write": 1
+        },
+        "speed_score": 1.9904178639644288,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "Failed to parse judge response",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": false,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Race Condition Fix",
+      "task_category": "debug",
+      "duration_seconds": 219.025587,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 219.02500128746033,
+        "duration_formatted": "3m 39s",
+        "tokens_used": {
+          "output_estimate": 268,
+          "trace_estimate": 166944,
+          "total_estimate": 167212
+        },
+        "token_efficiency": 0.8,
+        "step_count": 15,
+        "tool_calls": {
+          "write": 7,
+          "bash": 8
+        },
+        "speed_score": 0.3593607443777528,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": false,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 5.0,
+        "reasoning": "The fix correctly identifies the race condition (non-atomic counter += 1) and applies the standard threading.Lock() pattern to protect the critical section. The code is clean, minimal, and idiomatic Python: uses context manager (with lock:), proper thread lifecycle (start/join), and minimal critical section. The lock ensures mutual exclusion so counter will always reach exactly 100000. No deadlocks possible, no exception safety issues since the lock is released automatically by the with statement.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": false,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.7330669768240637
+    },
+    {
+      "task_name": "Debug Memory Leak",
+      "task_category": "debug",
+      "duration_seconds": 76.49833,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 76.49792671203613,
+        "duration_formatted": "1m 16s",
+        "tokens_used": {
+          "output_estimate": 431,
+          "trace_estimate": 78827,
+          "total_estimate": 79258
+        },
+        "token_efficiency": 0.8,
+        "step_count": 6,
+        "tool_calls": {
+          "write": 2,
+          "read": 1,
+          "edit": 1,
+          "bash": 2
+        },
+        "speed_score": 1.0289035387362464,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": false,
+          "has_error": true,
+          "mentions_test": false,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 0.5,
+        "detected_patterns": {
+          "unprompted_action": [
+            "Automatically"
+          ]
+        },
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.2,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 1,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "Failed to parse judge response",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": false,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Microservices Architecture",
+      "task_category": "architecture",
+      "duration_seconds": 206.621695,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 206.62121295928955,
+        "duration_formatted": "3m 26s",
+        "tokens_used": {
+          "output_estimate": 455,
+          "trace_estimate": 161220,
+          "total_estimate": 161675
+        },
+        "token_efficiency": 0.8,
+        "step_count": 4,
+        "tool_calls": {
+          "read": 1,
+          "write": 2,
+          "bash": 1
+        },
+        "speed_score": 0.38093372104783835,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "Failed to parse judge response",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Python List Comprehension Refactor",
+      "task_category": "code-quality",
+      "duration_seconds": 34.158434,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 34.1580753326416,
+        "duration_formatted": "34.2s",
+        "tokens_used": {
+          "output_estimate": 297,
+          "trace_estimate": 29909,
+          "total_estimate": 30206
+        },
+        "token_efficiency": 0.8,
+        "step_count": 4,
+        "tool_calls": {
+          "bash": 3,
+          "write": 1
+        },
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 4.0,
+        "reasoning": "The list comprehension refactoring is correct and idiomatic Python. The type hints are appropriate. However, the shown code snippet is incomplete - it uses List and Optional in type hints but doesn't show the import statement. The agent claims to have added Google-style docstrings but none are visible in the displayed code. Otherwise, the core refactoring from manual loop to list comprehension is well-executed: filtering None values correctly with 'if item is not None', doubling values with 'item * 2', and proper function naming following PEP 8.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.8833333333333334
+    },
+    {
+      "task_name": "Secure API Endpoint",
+      "task_category": "code-quality",
+      "duration_seconds": 152.827663,
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 152.8271894454956,
+        "duration_formatted": "2m 32s",
+        "tokens_used": {
+          "output_estimate": 456,
+          "trace_estimate": 181396,
+          "total_estimate": 181852
+        },
+        "token_efficiency": 0.8,
+        "step_count": 8,
+        "tool_calls": {
+          "write": 2,
+          "bash": 6
+        },
+        "speed_score": 0.515019531443198,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "Failed to parse judge response",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "overall_score": 0.0
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "evaluation",
+  "version": "1.0.0",
+  "description": "Comprehensive evaluation system for testing the entire Pi agent harness — LLM, skills, instructions, and tools working together.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.59.1"
+  }
+}

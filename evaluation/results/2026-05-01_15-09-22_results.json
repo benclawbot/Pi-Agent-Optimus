@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-05-01_15-09-22",
+  "summary": {
+    "tasks_run": 1,
+    "overall_score": 0.15788718846129682,
+    "code_quality_avg": 0.0,
+    "proactivity_avg": 0.0,
+    "avg_duration_seconds": 158.341556,
+    "speed_improvement_pct": -163.90259333333333
+  },
+  "results": [
+    {
+      "task_name": "Microservices Architecture",
+      "task_category": "architecture",
+      "duration_seconds": 158.341556,
+      "metrics": {
+        "duration_seconds": 158.34090304374695,
+        "duration_formatted": "2m 38s",
+        "tokens_used": {
+          "output_estimate": 344,
+          "trace_estimate": 186040,
+          "total_estimate": 186384
+        },
+        "token_efficiency": 0.8,
+        "step_count": 7,
+        "tool_calls": {
+          "read": 2,
+          "bash": 2,
+          "write": 3
+        },
+        "speed_score": 0.37892925230711233,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": false,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 0.0,
+        "detected_patterns": {},
+        "skill_activations_unprompted": 0,
+        "proactive_ratio": 0.0,
+        "waited_for_user": false,
+        "breakdown": {
+          "proposed_next_steps": 0,
+          "unprompted_action": 0,
+          "volunteered_info": 0,
+          "parallel_action": 0,
+          "offered_alternatives": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "API error: 401",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "overall_score": 0.15788718846129682
+    }
+  ]
+}

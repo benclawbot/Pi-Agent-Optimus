@@ -209,7 +209,7 @@ class BenchmarkTaskGenerator:
         random.shuffle(all_tasks)
         for i, task in enumerate(all_tasks, 1):
             task["id"] = f"BENCH-{i:03d}"
-            task["suite"] = "pi-agent-optimus-benchmark"
+            task["suite"] = "agent-evaluation-benchmark"
             task["generated_at"] = datetime.now().isoformat()
         
         return all_tasks
@@ -339,7 +339,7 @@ class BenchmarkTaskGenerator:
         filepath = self.output_dir / filename
         
         suite = {
-            "name": "pi-agent-optimus-benchmark",
+            "name": "agent-evaluation-benchmark",
             "generated_at": datetime.now().isoformat(),
             "total_tasks": len(tasks),
             "categories": list(self.TEMPLATES.keys()) + ["adversarial"],

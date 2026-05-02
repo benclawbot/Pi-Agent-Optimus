@@ -1,0 +1,126 @@
+{
+  "name": "Proactivity Benchmark Suite",
+  "description": "Comprehensive proactivity evaluation across 6 phases",
+  "tasks": [
+    {
+      "id": "PRO-001",
+      "category": "proactivity",
+      "phase": "start",
+      "difficulty": "medium",
+      "description": "User says: 'Improve this repository'",
+      "expected_proactivity": [
+        "asks about scale, users, constraints",
+        "proposes structured plan",
+        "identifies missing information"
+      ],
+      "scoring": {
+        "clarifying_questions": 2,
+        "structured_plan": 2,
+        "ambiguity_detection": 1
+      }
+    },
+    {
+      "id": "PRO-002",
+      "category": "proactivity",
+      "phase": "execution",
+      "difficulty": "hard",
+      "description": "Multi-step task where a tool is slow - does it detect and adapt?",
+      "inject_friction": "slow_tool",
+      "expected_proactivity": [
+        "detects inefficiency",
+        "proposes better approach",
+        "switches strategy"
+      ],
+      "scoring": {
+        "inefficiency_detection": 2,
+        "adaptation_score": 2,
+        "strategy_switch": 1
+      }
+    },
+    {
+      "id": "PRO-003",
+      "category": "proactivity",
+      "phase": "completion",
+      "difficulty": "easy",
+      "description": "Task completes successfully",
+      "expected_proactivity": [
+        "suggests improvements",
+        "proposes next steps",
+        "highlights risks"
+      ],
+      "scoring": {
+        "improvement_suggestions": 2,
+        "next_steps": 2,
+        "risk_identification": 1
+      }
+    },
+    {
+      "id": "PRO-004",
+      "category": "proactivity",
+      "phase": "feedback",
+      "difficulty": "medium",
+      "description": "User corrects the agent's approach",
+      "expected_proactivity": [
+        "generalizes feedback",
+        "applies to future steps",
+        "proposes system-level fix"
+      ],
+      "scoring": {
+        "generalization": 2,
+        "future_application": 2,
+        "system_improvement": 1
+      }
+    },
+    {
+      "id": "PRO-005",
+      "category": "proactivity",
+      "phase": "memory",
+      "difficulty": "medium",
+      "description": "Similar task appears again after previous session",
+      "expected_proactivity": [
+        "references prior work",
+        "applies learned patterns",
+        "suggests optimizations"
+      ],
+      "scoring": {
+        "prior_reference": 2,
+        "pattern_reuse": 2,
+        "optimization_proposal": 1
+      }
+    },
+    {
+      "id": "PRO-006",
+      "category": "proactivity",
+      "phase": "idle",
+      "difficulty": "hard",
+      "description": "No explicit task, but context has optimization opportunities",
+      "expected_proactivity": [
+        "detects optimization opportunity",
+        "identifies anomaly",
+        "proposes automation"
+      ],
+      "scoring": {
+        "opportunity_detection": 2,
+        "anomaly_identification": 2,
+        "automation_proposal": 1
+      }
+    }
+  ],
+  "scoring_rubric": {
+    "precision": "useful_suggestions / total_suggestions",
+    "initiative_rate": "proactive_events / total_tasks",
+    "phase_weights": {
+      "start": 0.20,
+      "execution": 0.25,
+      "completion": 0.20,
+      "feedback": 0.15,
+      "memory": 0.10,
+      "idle": 0.10
+    }
+  },
+  "anti_patterns": {
+    "hallucination_risk": "proactivity increases hallucinations",
+    "reliability_risk": "may reduce reliability if poorly tuned",
+    "user_annoyance": "over-proactivity can annoy users"
+  }
+}

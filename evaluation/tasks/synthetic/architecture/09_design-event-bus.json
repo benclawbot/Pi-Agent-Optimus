@@ -1,0 +1,15 @@
+{
+  "name": "design-event-bus",
+  "category": "architecture",
+  "description": "Design an event bus system where components can publish events and subscribe to patterns. Include: publish(event), subscribe(pattern, handler), unsubscribe. Should be async-friendly.",
+  "requirements": [
+    "Pub/sub pattern",
+    "Pattern matching for subscriptions",
+    "Async support",
+    "Unsubscribe capability"
+  ],
+  "expected": "event_bus.py with design doc in comments",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.497331",
+  "estimated_time_seconds": 120
+}

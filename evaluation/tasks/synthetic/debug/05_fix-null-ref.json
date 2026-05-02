@@ -1,0 +1,15 @@
+{
+  "name": "fix-null-ref",
+  "category": "debug",
+  "description": "Debug this function that crashes when user is None:\n\n```\ndef greet_user(user):\n    return f\"Hello {user.name.title()}, welcome to {user.org.name}!\"\n```\n\nAdd null checks and raise a meaningful error instead of AttributeError.",
+  "requirements": [
+    "Handle None user",
+    "Handle None user.name",
+    "Handle None user.org",
+    "Raise ValueError with clear message"
+  ],
+  "expected": "Fixed function that handles all None cases",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.496443",
+  "estimated_time_seconds": 120
+}

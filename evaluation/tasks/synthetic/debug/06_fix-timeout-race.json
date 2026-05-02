@@ -1,0 +1,14 @@
+{
+  "name": "fix-timeout-race",
+  "category": "debug",
+  "description": "Fix the race condition in this code: a counter incremented by multiple threads sometimes shows wrong totals. Use proper synchronization.",
+  "requirements": [
+    "Thread-safe counter",
+    "Reproduce the bug with a test",
+    "Fix with Lock or atomic operations"
+  ],
+  "expected": "thread_counter.py with working solution",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.496684",
+  "estimated_time_seconds": 120
+}

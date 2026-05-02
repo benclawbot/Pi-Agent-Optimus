@@ -1,0 +1,15 @@
+{
+  "name": "design-retry-circuit-breaker",
+  "category": "architecture",
+  "description": "Design a circuit breaker that trips after N failures and recovers after a cooldown period. Include states: closed (normal), open (failing fast), half-open (testing).",
+  "requirements": [
+    "Three states with transitions",
+    "Configurable thresholds",
+    "Thread-safe",
+    "Call counting"
+  ],
+  "expected": "circuit_breaker.py",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.497563",
+  "estimated_time_seconds": 120
+}

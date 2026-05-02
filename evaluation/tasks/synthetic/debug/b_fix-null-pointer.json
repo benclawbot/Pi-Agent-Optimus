@@ -1,0 +1,17 @@
+{
+  "name": "fix-null-pointer",
+  "category": "debug",
+  "difficulty": "easy",
+  "description": "Fix the crash in this Python code. It crashes when user is None or has missing attributes.",
+  "requirements": [
+    "Handle None user",
+    "Handle missing user.name",
+    "Handle missing user.org",
+    "Raise clear ValueError"
+  ],
+  "context": "def greet_user(user):\n    return f\"Hello {user.name.title()}, welcome to {user.org.name}!\"\n\n# The above crashes with AttributeError when user is None\n# Fix it to handle all None cases gracefully",
+  "expected": "greet_user handles None gracefully, raises ValueError with clear message",
+  "estimated_time_seconds": 60,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

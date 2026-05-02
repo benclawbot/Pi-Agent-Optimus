@@ -375,24 +375,21 @@
             const impEl = document.getElementById('improvementPercent');
             const impItem = document.getElementById('improvementItem');
             
+            // Get current score from latest.json (always dynamic)
+            const currentScore = benchmarkData.scorecard?.overall_score ?? 0;
+            
+            // Get baseline from trend data if available
+            let firstScore = currentScore;
             if (trendData?.runs?.length > 0) {
-                const runs = trendData.runs;
-                const first = runs[0].overall_score;
-                const last = runs[runs.length - 1].overall_score;
-                const pct = ((last - first) / first * 100).toFixed(1);
-                
-                firstEl.textContent = first.toFixed(3);
-                currentEl.textContent = last.toFixed(3);
-                impEl.textContent = pct >= 0 ? `+${pct}%` : `${pct}%`;
-                
-                impItem.className = 'comparison-item ' + (pct >= 0 ? 'improvement' : 'regression');
-            } else {
-                const score = benchmarkData.scorecard?.overall_score ?? 0;
-                firstEl.textContent = score.toFixed(3);
-                currentEl.textContent = score.toFixed(3);
-                impEl.textContent = '--';
-                impItem.className = 'comparison-item';
+                firstScore = trendData.runs[0].overall_score;
             }
+            
+            const pct = ((currentScore - firstScore) / firstScore * 100).toFixed(1);
+            
+            firstEl.textContent = firstScore.toFixed(3);
+            currentEl.textContent = currentScore.toFixed(3);
+            impEl.textContent = pct >= 0 ? `+${pct}%` : `${pct}%`;
+            impItem.className = 'comparison-item ' + (pct >= 0 ? 'improvement' : 'regression');
         }
         
         function renderDimensions() {

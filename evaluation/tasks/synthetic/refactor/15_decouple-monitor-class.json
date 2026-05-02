@@ -1,0 +1,15 @@
+{
+  "name": "decouple-monitor-class",
+  "category": "refactor",
+  "description": "This FileMonitor class does too much: reads files, parses content, sends notifications, and tracks state. Extract into separate classes with single responsibilities.",
+  "requirements": [
+    "Single responsibility per class",
+    "Loose coupling",
+    "Easy to test",
+    "Clear interfaces"
+  ],
+  "expected": "monitor/ directory with modular classes",
+  "source": "synthetic",
+  "generated_at": "2026-05-01T18:51:55.498623",
+  "estimated_time_seconds": 120
+}

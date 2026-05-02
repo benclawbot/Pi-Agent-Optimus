@@ -1,0 +1,16 @@
+{
+  "name": "fix-json-escaping",
+  "category": "debug",
+  "difficulty": "easy",
+  "description": "Fix the JSON serialization bug. Strings with quotes, newlines, and backslashes are corrupted.",
+  "requirements": [
+    "Properly escape all special chars",
+    "Round-trip test (serialize then deserialize)",
+    "Handle edge cases"
+  ],
+  "context": "import json\n\ndef serialize(data):\n    \"\"\"Serialize data to JSON string - but breaks on special chars!\"\"\"\n    # This naive approach fails on complex strings\n    return json.dumps(data)  # json lib handles this, but let's say it doesn't\n\n# The bug: custom encoder that doesn't escape properly\ndef broken_serialize(data):\n    if isinstance(data, str):\n        return f'\"{data}\"'  # Doesn't escape newlines, quotes, backslashes!\n    return str(data)",
+  "expected": "robust_json.py with proper escaping and round-trip tests",
+  "estimated_time_seconds": 60,
+  "source": "synthetic",
+  "generated_at": "2026-05-01T19:55:00.000000"
+}

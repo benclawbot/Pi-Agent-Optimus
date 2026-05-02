@@ -1,0 +1,5465 @@
+{
+  "timestamp": "2026-05-02_11-28-45",
+  "summary": {
+    "tasks_run": 43,
+    "overall_score": 0.1579767441860465,
+    "code_quality_avg": 0.8604651162790697,
+    "proactivity_avg": 3.2418604651162792,
+    "validation_avg": 0.3597674418604651,
+    "objective_pass_rate": 0.13953488372093023,
+    "avg_duration_seconds": 43.15019797674419,
+    "speed_improvement_pct": 28.083003372093017
+  },
+  "results": [
+    {
+      "task_name": "simplify-nested-callbacks",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 46.70607,
+      "files_created": [
+        "test_async_refactored.py",
+        "async_refactored.py",
+        "nested_callbacks.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/async_refactored.cpython-313.pyc",
+        "__pycache__/test_async_refactored.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 46.70415544509888,
+        "duration_formatted": "46.7s",
+        "tokens_used": {
+          "output_estimate": 191,
+          "trace_estimate": 88453,
+          "total_estimate": 88644
+        },
+        "token_efficiency": 0.8,
+        "step_count": 6,
+        "tool_calls": {
+          "bash": 3,
+          "write": 3
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 3,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 4,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 5.0,
+        "correctness": 3.0,
+        "efficiency": 5.0,
+        "safety": 4.0,
+        "reasoning": "The refactored async/await code is functionally correct (all 15 tests pass), well-structured, readable, and idiomatic. However, the critical objective failure was a filename mismatch: expected 'async_processor.py' but created 'async_refactored.py'. This caused the objective validation to fail despite the code being technically sound. The error handling with try/except is present but could be more specific (catches all Exception rather than specific types). Overall good refactoring work on the callback hell, but missed the file naming requirement.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.49,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:async_processor.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file async_processor.py; created files: test_async_refactored.py, async_refactored.py, nested_callbacks.py, .pytest_cache/CACHEDIR.TAG, .pytest_cache/README.md, __pycache__/async_refactored.cpython-313.pyc, __pycache__/test_async_refactored.cpython-313-pytest-9.0.3.pyc, .pytest_cache/v/cache/nodeids"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n...............                                                          [100%]\n15 passed in 0.02s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "decouple-monitor-class",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 188.263696,
+      "files_created": [
+        "test_refactored_file_monitor.py",
+        "refactored_file_monitor.py",
+        "file_monitor.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/refactored_file_monitor.cpython-313.pyc",
+        "__pycache__/test_refactored_file_monitor.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 188.26278138160706,
+        "duration_formatted": "3m 8s",
+        "tokens_used": {
+          "output_estimate": 280,
+          "trace_estimate": 153718,
+          "total_estimate": 153998
+        },
+        "token_efficiency": 0.8,
+        "step_count": 6,
+        "tool_calls": {
+          "bash": 3,
+          "write": 3
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 0.6294341936859175,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 4,
+          "risk_flags": "0 (not applicable)",
+          "security_flags": "1 (not applicable)",
+          "perf_hints": "1 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "2 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 3,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 4.0,
+        "safety": 5.0,
+        "reasoning": "All 25 tests pass with flying colors. The refactoring successfully extracted the monolithic FileMonitor into 6 single-responsibility classes (FileReader, ContentParser, StateTracker, ContentHashCalculator, NotificationService, Notification data class) plus a MonitorBuilder for fluent configuration. Interface abstract base classes enforce contracts. Code is clean, well-organized with clear section headers, uses type hints throughout, and follows Python idioms. Efficiency is good (4) with only minor potential for caching hash results. Safety is solid with proper input validation, error handling via try/except, and no security issues. The overall design demonstrates strong understanding of SOLID principles.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n.........................                                                [100%]\n25 passed in 0.05s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.782
+    },
+    {
+      "task_name": "decouple-data-pipeline",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 64.424124,
+      "files_created": [
+        "test_helpers.py",
+        "test_pipeline.py",
+        "pipeline.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/test_helpers.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/test_pipeline.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/pipeline.cpython-313.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 64.42335534095764,
+        "duration_formatted": "1m 4s",
+        "tokens_used": {
+          "output_estimate": 212,
+          "trace_estimate": 159719,
+          "total_estimate": 159931
+        },
+        "token_efficiency": 0.8,
+        "step_count": 8,
+        "tool_calls": {
+          "bash": 4,
+          "write": 3,
+          "edit": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 1.839380010135289,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 3,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "0 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 4,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 4.0,
+        "reasoning": "The refactoring successfully decomposes a monolithic pipeline into 6 focused classes with clear single responsibilities: DataSource/DataDestination (I/O abstraction), RowFilter/RowTransformer (processing), RowValidator/CompositeValidator (validation), and PipelineStats (reporting). All 14 tests pass, confirming correctness. Code is highly readable with clear section headers, good docstrings, and descriptive names. O(n) complexity is optimal for data pipelines. Builder pattern usage is idiomatic Python. Minor deduction for safety: while validators exist, there's no explicit input sanitization for external data sources\u2014though this is a minor concern for a refactoring task focused on structure.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n..............                                                           [100%]\n14 passed in 0.02s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 3882,
+        "output_baseline": 7764,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.788
+    },
+    {
+      "task_name": "Clean legacy code Code",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 23.016376,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 23.015792846679688,
+        "duration_formatted": "23.0s",
+        "tokens_used": {
+          "output_estimate": 184,
+          "trace_estimate": 20334,
+          "total_estimate": 20518
+        },
+        "token_efficiency": 0.8,
+        "step_count": 3,
+        "tool_calls": {
+          "bash": 3
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 2.9,
+        "waited_for_user": false,
+        "files_created": 0,
+        "has_done_block": false,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 0,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "0 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 2,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 1.0,
+        "readability": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "safety": 1.0,
+        "reasoning": "No code was produced. The agent correctly identified that the working directory was empty and reported the absence of legacy code to refactor. Since there is no actual code output to evaluate, all dimensions score the minimum (1). The agent handled the situation appropriately by not generating placeholder code, but the task objective was not achieved.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.566
+    },
+    {
+      "task_name": "Clean complexity Code",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 11.561527,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 11.561123371124268,
+        "duration_formatted": "11.6s",
+        "tokens_used": {
+          "output_estimate": 157,
+          "trace_estimate": 13907,
+          "total_estimate": 14064
+        },
+        "token_efficiency": 0.8,
+        "step_count": 2,
+        "tool_calls": {
+          "bash": 2
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 2.9,
+        "waited_for_user": false,
+        "files_created": 0,
+        "has_done_block": false,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 0,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "0 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 3,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 1.0,
+        "readability": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "safety": 1.0,
+        "reasoning": "The agent correctly identified that the working directory was empty and no code was present to refactor. The agent's diagnosis was accurate - there was genuinely no code to work with. However, since no actual refactoring was performed (the task could not be completed due to missing input files), all score dimensions must be 1. The agent appropriately reported the empty directory issue rather than producing fake or placeholder code.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.566
+    },
+    {
+      "task_name": "Extract duplication Component",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 158.566278,
+      "files_created": [
+        "test_duplication.py",
+        "duplication.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/duplication.cpython-313.pyc",
+        "__pycache__/test_duplication.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 158.5655837059021,
+        "duration_formatted": "2m 38s",
+        "tokens_used": {
+          "output_estimate": 180,
+          "trace_estimate": 391689,
+          "total_estimate": 391869
+        },
+        "token_efficiency": 0.8,
+        "step_count": 18,
+        "tool_calls": {
+          "bash": 7,
+          "write": 2,
+          "edit": 8,
+          "read": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 0.7473187385970519,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 4,
+          "risk_flags": "0 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 2,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 4.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "The code passes all 30 tests, demonstrating correct functionality for duplicate detection. It follows good Python practices with dataclasses, generic types, and comprehensive docstrings. The algorithm uses O(n) complexity with hash-based lookups rather than nested loops. It handles edge cases (empty lists, unhashable types) and has options for case sensitivity and custom keys. Minor deduction for truncated output in the provided snippet where some methods appear incomplete - but tests passing indicates full implementation exists.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n..............................                                           [100%]\n30 passed in 0.03s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.764
+    },
+    {
+      "task_name": "extract-config-class",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 83.748884,
+      "files_created": [
+        "test_config.py",
+        "config.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/config.cpython-313.pyc",
+        "__pycache__/test_config.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 83.74812197685242,
+        "duration_formatted": "1m 23s",
+        "tokens_used": {
+          "output_estimate": 187,
+          "trace_estimate": 78297,
+          "total_estimate": 78484
+        },
+        "token_efficiency": 0.8,
+        "step_count": 4,
+        "tool_calls": {
+          "write": 2,
+          "bash": 2
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 1.414945543886376,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 4,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 5.0,
+        "reasoning": "The agent created a well-structured Config dataclass with proper __post_init__ validation for port range (1-65535), timeout range (1-3600), and non-empty host strings. The from_env() factory method correctly parses environment variables with type checking and bounds validation. All 20 tests pass covering defaults, custom values, validation boundaries, type errors, and env var parsing. Code follows Python idiom with dataclasses, private validation methods, and class methods. No security concerns.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "expected_file:config.py",
+            "passed": true,
+            "critical": true,
+            "detail": "Expected file config.py; created files: test_config.py, config.py, .pytest_cache/CACHEDIR.TAG, .pytest_cache/README.md, __pycache__/config.cpython-313.pyc, __pycache__/test_config.cpython-313-pytest-9.0.3.pyc, .pytest_cache/v/cache/nodeids"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n....................                                                     [100%]\n20 passed in 0.03s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1002,
+        "output_baseline": 2004,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.825
+    },
+    {
+      "task_name": "Large Method Refactor",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 62.004716,
+      "files_created": [
+        "test_order_processing.py",
+        "order_processing.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/test_order_processing.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/order_processing.cpython-313.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 62.00376844406128,
+        "duration_formatted": "1m 2s",
+        "tokens_used": {
+          "output_estimate": 190,
+          "trace_estimate": 106413,
+          "total_estimate": 106603
+        },
+        "token_efficiency": 0.8,
+        "step_count": 7,
+        "tool_calls": {
+          "bash": 4,
+          "write": 2,
+          "edit": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 1.91115854686974,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.6,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "1 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 1,
+          "test_generation": 5,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "The refactoring successfully extracted 8 single-responsibility functions from a monolithic design, with constants moved to named variables at the module level. All 14 tests pass. Code is highly readable with clear function names, comprehensive docstrings, and logical structure. Minor deduction on efficiency due to `calculate_totals` recomputing `calculate_subtotal` internally when the result could be passed through; a micro-optimization opportunity, not a flaw. Safety\u6263\u5206 due to lack of type hints and no validation of item prices/quantities being non-negative (edge case that could cause issues).",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n..............                                                           [100%]\n14 passed in 0.02s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 3855,
+        "output_baseline": 7710,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.812
+    },
+    {
+      "task_name": "extract-validator-framework",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 134.694824,
+      "files_created": [
+        "test_validators.py",
+        "validators.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/test_validators.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/validators.cpython-313.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 134.69394493103027,
+        "duration_formatted": "2m 14s",
+        "tokens_used": {
+          "output_estimate": 238,
+          "trace_estimate": 333200,
+          "total_estimate": 333438
+        },
+        "token_efficiency": 0.8,
+        "step_count": 11,
+        "tool_calls": {
+          "write": 2,
+          "bash": 4,
+          "edit": 4,
+          "read": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 0.8797651005075036,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "3 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 3,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 4.0,
+        "reasoning": "The code is well-structured and all 33 tests pass, demonstrating correctness. The Validator class and primitive rules (required, min_length, max_length, pattern, char_types, custom) are highly readable with clear naming and organization. Efficiency is optimal - validation stops at the first error with O(n) complexity. Idiomaticity is strong with proper use of type hints, Callable, __call__ magic method, and Python conventions - slightly docked for some inconsistent naming (_email_validator vs validate_email). Safety is good with proper error handling, though there's a minor risk if None is passed directly to rule functions without the required() wrapper wrapping it first.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "expected_file:validators.py",
+            "passed": true,
+            "critical": true,
+            "detail": "Expected file validators.py; created files: test_validators.py, validators.py, .pytest_cache/CACHEDIR.TAG, .pytest_cache/README.md, __pycache__/test_validators.cpython-313-pytest-9.0.3.pyc, __pycache__/validators.cpython-313.pyc, .pytest_cache/v/cache/lastfailed, .pytest_cache/v/cache/nodeids"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n.................................                                        [100%]\n33 passed in 0.04s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 4701,
+        "output_baseline": 9402,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.79
+    },
+    {
+      "task_name": "extract-repeated-logic",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 136.619148,
+      "files_created": [
+        "test_validation.py",
+        "validation.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/test_validation.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/validation.cpython-313.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 136.61812615394592,
+        "duration_formatted": "2m 16s",
+        "tokens_used": {
+          "output_estimate": 344,
+          "trace_estimate": 167120,
+          "total_estimate": 167464
+        },
+        "token_efficiency": 0.8,
+        "step_count": 9,
+        "tool_calls": {
+          "bash": 6,
+          "write": 2,
+          "edit": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 0.8673741569729282,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 16,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 4,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "3 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "1 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 4,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 5.0,
+        "correctness": 3.0,
+        "efficiency": 5.0,
+        "safety": 4.0,
+        "reasoning": "The validation framework is well-designed with composable rules following DRY principles, and all 30 tests pass. However, the agent created 'validation.py' instead of the expected 'validators.py' file - a critical file naming failure. The code is readable with clear structure, follows Python idioms, and is efficient. Minor safety note about null input handling, but overall sound.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.49,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:validators.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file validators.py; created files: test_validation.py, validation.py, .pytest_cache/CACHEDIR.TAG, .pytest_cache/README.md, __pycache__/test_validation.cpython-313-pytest-9.0.3.pyc, __pycache__/validation.cpython-313.pyc, .pytest_cache/v/cache/lastfailed, .pytest_cache/v/cache/nodeids"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n..............................                                           [100%]\n30 passed in 0.03s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.45
+    },
+    {
+      "task_name": "Race Condition Fix",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 58.482976,
+      "files_created": [
+        "test_race_condition_fix.py",
+        "race_condition_fix.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/race_condition_fix.cpython-313.pyc",
+        "__pycache__/test_race_condition_fix.cpython-313-pytest-9.0.3.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 58.481488943099976,
+        "duration_formatted": "58.5s",
+        "tokens_used": {
+          "output_estimate": 57970,
+          "trace_estimate": 59323,
+          "total_estimate": 117293
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "bash": 3,
+          "write": 2
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 83,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 269,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f009d1f143c273d47add6c259ea5\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": false,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 1\nSTDOUT:\n..F.                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_multiple_operations_protected ______________________\n\n    def test_multiple_operations_protected():\n        \"\"\"Test that compound operations are atomic.\"\"\"\n        counter = 0\n        lock = threading.Lock()\n        results = []\n    \n        def compound_increment():\n            global counter\n            for _ in range(100):\n                with lock:\n                    old = counter\n                    counter = old + 1\n                results.append(counter)\n    \n        threads = [threading.Thread(target=compound_increment) for _ in range(5)]\n        for t in threads:\n            t.start()\n        for t in threads:\n            t.join()\n    \n>       assert counter == 500, f\"Expected 500, got {counter}\"\nE       AssertionError: Expected 500, got 0\nE       assert 0 == 500\n\ntest_race_condition_fix.py:81: AssertionError\n=========================== short test summary info ============================\nFAILED test_race_condition_fix.py::test_multiple_operations_protected - Asser...\n1 failed, 3 passed in 0.18s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1389,
+        "output_baseline": 2778,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-null-pointer",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.833032,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.83121681213379,
+        "duration_formatted": "27.8s",
+        "tokens_used": {
+          "output_estimate": 4973,
+          "trace_estimate": 5041,
+          "total_estimate": 10014
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f03fa3620abf51db0064afb259f2\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 852,
+        "output_baseline": 1704,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-memory-leak",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 28.117063,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 28.115541219711304,
+        "duration_formatted": "28.1s",
+        "tokens_used": {
+          "output_estimate": 4829,
+          "trace_estimate": 4899,
+          "total_estimate": 9728
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 21,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f0755e3639c18ee7ab0ee766bd80\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:fixed_cache.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file fixed_cache.py; created files: none"
+          },
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Debug Memory Leak",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.952791,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.95143723487854,
+        "duration_formatted": "28.0s",
+        "tokens_used": {
+          "output_estimate": 5215,
+          "trace_estimate": 5284,
+          "total_estimate": 10499
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "18 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f0ab70627ea19a7aea7ddfe73043\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1593,
+        "output_baseline": 3186,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-resource-leak",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.705739,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.704484701156616,
+        "duration_formatted": "27.7s",
+        "tokens_used": {
+          "output_estimate": 5069,
+          "trace_estimate": 5139,
+          "total_estimate": 10208
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f0e3e35e97bba1e6370c8af1d4cd\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1245,
+        "output_baseline": 2490,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-timeout-race",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 28.087392,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 28.08636713027954,
+        "duration_formatted": "28.1s",
+        "tokens_used": {
+          "output_estimate": 4840,
+          "trace_estimate": 4909,
+          "total_estimate": 9749
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f11aad600dee9a50d5343705800d\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:thread_counter.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file thread_counter.py; created files: none"
+          },
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Fix timeout Issue",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.590923,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.589473009109497,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 4821,
+          "trace_estimate": 4891,
+          "total_estimate": 9712
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "18 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 21,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f150b53cbf9ce23db550f1dad60d\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-null-ref",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.92554,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.924222707748413,
+        "duration_formatted": "27.9s",
+        "tokens_used": {
+          "output_estimate": 4920,
+          "trace_estimate": 4989,
+          "total_estimate": 9909
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f18676cac3d4f7e5fc39798fad4a\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 672,
+        "output_baseline": 1344,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Handle-exception-Error",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.736247,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.734793424606323,
+        "duration_formatted": "27.7s",
+        "tokens_used": {
+          "output_estimate": 5231,
+          "trace_estimate": 5293,
+          "total_estimate": 10524
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f1bbb118d932d50e5476d409419b\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1809,
+        "output_baseline": 3618,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-json-escaping",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.891224,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.88977289199829,
+        "duration_formatted": "27.9s",
+        "tokens_used": {
+          "output_estimate": 5178,
+          "trace_estimate": 5247,
+          "total_estimate": 10425
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 21,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f1f191ec1b176d9872893f4aa1ef\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:robust_json.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file robust_json.py; created files: none"
+          },
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1614,
+        "output_baseline": 3228,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-race-condition",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.346423,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.345242738723755,
+        "duration_formatted": "27.3s",
+        "tokens_used": {
+          "output_estimate": 5093,
+          "trace_estimate": 5163,
+          "total_estimate": 10256
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f22788020dedef21845419541d07\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:threadsafe_counter.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file threadsafe_counter.py; created files: none"
+          },
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1281,
+        "output_baseline": 2562,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-json-parse",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.539332,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.538197994232178,
+        "duration_formatted": "27.5s",
+        "tokens_used": {
+          "output_estimate": 4824,
+          "trace_estimate": 4891,
+          "total_estimate": 9715
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f25dda7e81b0027427dc3d8072d9\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:json_helper.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file json_helper.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-sql-injection",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.628351,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.62712836265564,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 5139,
+          "trace_estimate": 5199,
+          "total_estimate": 10338
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.5,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "27 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 3,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f29356651c33913ddc58713fdf7b\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.49,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "required_file_pattern:*.py:execute\\([^\\n]*\\?",
+            "passed": false,
+            "critical": true,
+            "detail": "Required pattern should appear in files matching *.py. Matches: none"
+          },
+          {
+            "name": "forbidden_file_pattern:*.py:SELECT.*\\{",
+            "passed": true,
+            "critical": true,
+            "detail": "Forbidden pattern should not appear in files matching *.py. Matches: none"
+          },
+          {
+            "name": "forbidden_file_pattern:*.py:DELETE.*\\{",
+            "passed": true,
+            "critical": true,
+            "detail": "Forbidden pattern should not appear in files matching *.py. Matches: none"
+          },
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1479,
+        "output_baseline": 2958,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-deadlock",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.766699,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.76448678970337,
+        "duration_formatted": "27.8s",
+        "tokens_used": {
+          "output_estimate": 5410,
+          "trace_estimate": 5479,
+          "total_estimate": 10889
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f2c93b2382a20c704f0597700d44\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 2628,
+        "output_baseline": 5256,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "fix-crash-Issue",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 27.64339,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.64216160774231,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 5106,
+          "trace_estimate": 5170,
+          "total_estimate": 10276
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 21,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f2fef305ede77b29fddfa64ec3a5\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 1359,
+        "output_baseline": 2718,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "event-bus-design",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 27.842527,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.841309547424316,
+        "duration_formatted": "27.8s",
+        "tokens_used": {
+          "output_estimate": 4853,
+          "trace_estimate": 4923,
+          "total_estimate": 9776
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "9 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f3358a6b8a5a24329bb50a839a46\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:event_bus.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file event_bus.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "circuit-breaker-design",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 27.948258,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.947392225265503,
+        "duration_formatted": "27.9s",
+        "tokens_used": {
+          "output_estimate": 4865,
+          "trace_estimate": 4935,
+          "total_estimate": 9800
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "9 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f36b246de06a3e14f7936d76fa60\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:circuit_breaker.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file circuit_breaker.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Design cache System",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 27.535161,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.534050226211548,
+        "duration_formatted": "27.5s",
+        "tokens_used": {
+          "output_estimate": 4809,
+          "trace_estimate": 4879,
+          "total_estimate": 9688
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "15 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f3a066747c548cd42247856a4d6e\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "design-event-bus",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 27.631976,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.630840063095093,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 4884,
+          "trace_estimate": 4954,
+          "total_estimate": 9838
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "9 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f3d632651df3185af1be8105c52d\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:event_bus.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file event_bus.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 546,
+        "output_baseline": 1092,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "design-retry-circuit-breaker",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 27.587324,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.5863618850708,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 4874,
+          "trace_estimate": 4944,
+          "total_estimate": 9818
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "9 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f40cb829901995cec38d87225beb\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:circuit_breaker.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file circuit_breaker.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Refactor pipeline Architecture",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 27.588208,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.58718729019165,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 4836,
+          "trace_estimate": 4906,
+          "total_estimate": 9742
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "21 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "9 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f442af53c04e7567ec1f7c4d8af7\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Design service System",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 28.107356,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 28.106593132019043,
+        "duration_formatted": "28.1s",
+        "tokens_used": {
+          "output_estimate": 4812,
+          "trace_estimate": 4882,
+          "total_estimate": 9694
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "15 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f47850fab93417d22a0eb2ed7cd6\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "design-plugin-system",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 27.601221,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.60013771057129,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 4856,
+          "trace_estimate": 4926,
+          "total_estimate": 9782
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "9 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f4ae01a46e2acf3b19433d876ae8\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:plugin_manager.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file plugin_manager.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Microservices Architecture",
+      "task_category": "architecture",
+      "agent": "pi",
+      "duration_seconds": 27.349752,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.348488092422485,
+        "duration_formatted": "27.3s",
+        "tokens_used": {
+          "output_estimate": 5101,
+          "trace_estimate": 5170,
+          "total_estimate": 10271
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "15 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f4e445d4f9e699aeb89a8d8a233e\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 837,
+        "output_baseline": 1674,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "rate-limiter",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.88618,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.88485050201416,
+        "duration_formatted": "27.9s",
+        "tokens_used": {
+          "output_estimate": 4829,
+          "trace_estimate": 4899,
+          "total_estimate": 9728
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f51a2d6160a5cf56baa4a917e0b5\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:rate_limiter.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file rate_limiter.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Python List Comprehension Refactor",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.522779,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.521148443222046,
+        "duration_formatted": "27.5s",
+        "tokens_used": {
+          "output_estimate": 5051,
+          "trace_estimate": 5121,
+          "total_estimate": 10172
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": true,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.5,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 21,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 3,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f5506a3bf15f75254a7ea71c454c\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 921,
+        "output_baseline": 1842,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "structured-logger",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.507858,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.50655770301819,
+        "duration_formatted": "27.5s",
+        "tokens_used": {
+          "output_estimate": 4842,
+          "trace_estimate": 4912,
+          "total_estimate": 9754
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f5860f33116643b27f83526f5b14\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:logger.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file logger.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "Secure API Endpoint",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.879056,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.878212451934814,
+        "duration_formatted": "27.9s",
+        "tokens_used": {
+          "output_estimate": 5006,
+          "trace_estimate": 5076,
+          "total_estimate": 10082
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "18 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f5bc41d2ba2349dd4b1f6ef1b680\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 690,
+        "output_baseline": 1380,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "class with Validation",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.840805,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.83960771560669,
+        "duration_formatted": "27.8s",
+        "tokens_used": {
+          "output_estimate": 4817,
+          "trace_estimate": 4887,
+          "total_estimate": 9704
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 21,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f5f35590ea2f1f57aa87f3f9d58b\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "config-parser",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.555201,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.553754568099976,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 4841,
+          "trace_estimate": 4911,
+          "total_estimate": 9752
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f62991940cc503cff7ea571f4789\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:config_parser.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file config_parser.py; created files: none"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "module Implementation",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.598544,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.597176551818848,
+        "duration_formatted": "27.6s",
+        "tokens_used": {
+          "output_estimate": 4849,
+          "trace_estimate": 4918,
+          "total_estimate": 9767
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f65f80ebe3e300b46ea2b2101a8c\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "function Implementation",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.885083,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.883211135864258,
+        "duration_formatted": "27.9s",
+        "tokens_used": {
+          "output_estimate": 4852,
+          "trace_estimate": 4921,
+          "total_estimate": 9773
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f695a23651222af87ea22810184b\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    },
+    {
+      "task_name": "implement-file-cache",
+      "task_category": "code-quality",
+      "agent": "pi",
+      "duration_seconds": 27.738459,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 27.73661994934082,
+        "duration_formatted": "27.7s",
+        "tokens_used": {
+          "output_estimate": 4838,
+          "trace_estimate": 4908,
+          "total_estimate": 9746
+        },
+        "token_efficiency": 0.8,
+        "step_count": 0,
+        "tool_calls": {},
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.2,
+        "waited_for_user": true,
+        "files_created": 22,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 15,
+          "risk_flags": "9 (not applicable)",
+          "security_flags": "15 (not applicable)",
+          "perf_hints": "12 (not applicable)",
+          "breaking_notes": "15 (not applicable)",
+          "scan_similar": "6 (not applicable)",
+          "arch_observations": "6 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 15,
+          "test_generation": 18,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 0,
+        "readability": 0,
+        "correctness": 0,
+        "efficiency": 0,
+        "safety": 0,
+        "judge_error": "pi judge exited 1: Warning: Model \"MiniMax-M2.5\" not found for provider \"minimax\". Using custom model id.\n429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"usage limit exceeded, 5-hour usage limit reached for Token Plan Starter (1500/1500 used), resets at 2026-05-02T10:00:00Z (2056)\"},\"request_id\":\"0644f6cbffdf9e58f778b03af53ca1fc\"}",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {},
+      "memory_data": {},
+      "validation": {
+        "score": 0.0,
+        "grade": "fail",
+        "checks": [
+          {
+            "name": "expected_file:cache.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file cache.py; created files: none"
+          },
+          {
+            "name": "expected_file:tests_cache.py",
+            "passed": false,
+            "critical": true,
+            "detail": "Expected file tests_cache.py; created files: none"
+          },
+          {
+            "name": "tests_present",
+            "passed": false,
+            "critical": true,
+            "detail": "Task requires tests, but no Python test files were created."
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 0,
+        "input_baseline": 500,
+        "output_baseline": 1000,
+        "ratio": 0,
+        "density": 0,
+        "cache_rate": 0,
+        "waste": "no data"
+      },
+      "memory_retrieval": {
+        "score": 0.6,
+        "vault_reads": 0,
+        "cache_hit": false,
+        "cross_session_recall": false,
+        "internet_fetched": false,
+        "context_load_ms": 0,
+        "memory_references": 0,
+        "context_freshness": 0.0
+      },
+      "overall_score": 0.0
+    }
+  ]
+}
