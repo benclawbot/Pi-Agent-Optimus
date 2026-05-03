@@ -1,6 +1,6 @@
 {
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-20250514",
+  "defaultProvider": "minimax",
+  "defaultModel": "MiniMax-M2.7",
   "defaultThinkingLevel": "medium",
   "theme": "dark",
   "compaction": {
