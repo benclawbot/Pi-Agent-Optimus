@@ -1,0 +1,44 @@
+{
+  "lessons": [
+    {
+      "id": "filename-extraction-001",
+      "lesson": "When task specifies expected_file:<filename>, create that exact filename. Wrong filename = fail regardless of code correctness.",
+      "context": "Benchmark showed 5+ failures due to filename mismatch despite passing tests",
+      "confidence": "high"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "filename-extraction-001",
+      "description": "Agent consistently creates wrong filename when task specifies exact filename. Examples: expected async_processor.py -> created nested_callbacks_async.py, expected validators.py -> created validation.py",
+      "severity": "high",
+      "discovered": "2026-05-03",
+      "source": "benchmark-2026-05-02"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "filename-mismatch",
+      "trigger": "Task specifies expected_filename in validator but agent ignores it",
+      "frequency": "5+ times in 43 tasks",
+      "impact": "Causes objective validation failure despite passing tests"
+    }
+  ],
+  "evaluations": [],
+  "sessions": [],
+  "evolutions": [
+    {
+      "skill": "context-memory",
+      "date": "2026-05-03",
+      "improvement": "Added Task Validators Are Law section to Gotchas",
+      "baseline_score": 60.0,
+      "new_score": 72.0
+    },
+    {
+      "skill": "task-validator",
+      "date": "2026-05-03",
+      "action": "created_new_skill",
+      "description": "New skill for enforcing task validator rules (filename, function name, test command)"
+    }
+  ]
+}

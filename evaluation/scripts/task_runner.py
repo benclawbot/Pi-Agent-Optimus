@@ -169,6 +169,14 @@ class TaskRunner:
         # When the task definition specifies expected_files, the agent MUST create
         # files with those exact names — name mismatches cause critical validation failures.
         expected_files = task.get("validators", {}).get("expected_files", [])
+        if not expected_files:
+            # Fallback: extract from task.expected (plain string or regex pattern)
+            expected_text = str(task.get("expected", ""))
+            expected_files = re.findall(r"\b[\w.-]+\.(?:py|js|ts|tsx|jsx|json|md|html|css)\b", expected_text)
+            # Also check requirements for filenames
+            for req in task.get("requirements", []):
+                expected_files.extend(re.findall(r"\b[\w.-]+\.(?:py|js|ts|tsx|jsx|json|md|html|css)\b", str(req)))
+            expected_files = list(dict.fromkeys(expected_files))  # dedupe preserve order
         if expected_files:
             filenames = ", ".join(f"`{f}`" for f in expected_files)
             prompt_parts.insert(-1, f"""
