@@ -1,0 +1,133 @@
+{
+  "chunk_index": 21,
+  "timestamp": "2026-05-03T12:08:33.216351",
+  "results": [
+    {
+      "task_name": "the token is  sluAGf34LSF1x3COJx7wV8DKuX7h2EEedWO0dVOX",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 56.58514,
+      "files_created": [],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 56.5822970867157,
+        "duration_formatted": "56.6s",
+        "tokens_used": {
+          "output_estimate": 171,
+          "trace_estimate": 49573,
+          "total_estimate": 49744
+        },
+        "token_efficiency": 0.8,
+        "step_count": 1,
+        "tool_calls": {
+          "bash": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 2.9,
+        "waited_for_user": false,
+        "files_created": 0,
+        "has_done_block": false,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 0,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 2,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 2,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 1.0,
+        "readability": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "safety": 1.0,
+        "reasoning": "No code was produced. The agent correctly identified that the working directory was empty and there were no files to debug. According to the scoring guidelines: 'If no code was produced, score all dimensions as 1.' The task had no objective validators available, and the agent's response was appropriate to the situation (identifying the empty directory and requesting files), but no debuggable code was present to evaluate.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": false,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 8674,
+        "output_tokens": 1089,
+        "total_tokens": 9763,
+        "cached_tokens": 0,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 0
+      },
+      "memory_data": {},
+      "validation": {
+        "score": 0.5,
+        "grade": "low_evidence",
+        "checks": [],
+        "notes": [
+          "No objective validators were available for this task."
+        ]
+      },
+      "token_efficiency": {
+        "score": 0.7164437840515107,
+        "total_tokens": 9763,
+        "ratio": 2.4177810797424466,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.5,
+        "cache_hit": false
+      },
+      "overall_score": 0.553
+    }
+  ],
+  "summary": {
+    "tasks_run": 1,
+    "overall_score": 0.553,
+    "code_quality_avg": 1.0,
+    "proactivity_avg": 2.9,
+    "validation_avg": 0.5,
+    "objective_pass_rate": 0.0,
+    "avg_duration_seconds": 56.58514
+  }
+}

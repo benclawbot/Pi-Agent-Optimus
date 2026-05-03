@@ -1,0 +1,150 @@
+{
+  "chunk_index": 13,
+  "timestamp": "2026-05-03T11:58:36.363226",
+  "results": [
+    {
+      "task_name": "Debug Memory Leak",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 94.636254,
+      "files_created": [
+        "demo_leak_fix.py",
+        "memory_leak_fixed.py",
+        "test_memory_leak.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/test_memory_leak.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/memory_leak_fixed.cpython-313.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 94.63428163528442,
+        "duration_formatted": "1m 34s",
+        "tokens_used": {
+          "output_estimate": 210,
+          "trace_estimate": 108020,
+          "total_estimate": 108230
+        },
+        "token_efficiency": 0.8,
+        "step_count": 7,
+        "tool_calls": {
+          "write": 3,
+          "bash": 3,
+          "edit": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 1.2521787026047186,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 3,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "2 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 4,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 5.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "The agent successfully identified and fixed the memory leak. The solution adds duplicate prevention, unregister/clear methods, and thread safety. All 11 tests pass. The code is well-structured with clear method names and proper locking. Minor deduction: the implementation could benefit from more comments explaining why the changes prevent the memory leak, and there could be input validation for None callbacks.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 7917,
+        "output_tokens": 1554,
+        "total_tokens": 9471,
+        "cached_tokens": 0,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 0
+      },
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n...........                                                              [100%]\n11 passed in 0.05s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 9471,
+        "ratio": 5.9453860640301315,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.5,
+        "cache_hit": false
+      },
+      "overall_score": 0.782
+    }
+  ],
+  "summary": {
+    "tasks_run": 1,
+    "overall_score": 0.782,
+    "code_quality_avg": 4.0,
+    "proactivity_avg": 3.4,
+    "validation_avg": 1.0,
+    "objective_pass_rate": 1.0,
+    "avg_duration_seconds": 94.636254
+  }
+}

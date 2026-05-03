@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-02T12:19:55.960885",
-  "total_runs": 15,
+  "updated_at": "2026-05-02T14:02:46.988086",
+  "total_runs": 16,
   "runs": [
     {
       "timestamp": "2026-04-30_23-39-31",
@@ -127,6 +127,15 @@
       "proactivity_avg": 3.3033333333333332,
       "speed_improvement_pct": -22.11222777777775,
       "avg_duration_seconds": 73.26733666666665
+    },
+    {
+      "timestamp": "2026-05-02_13-17-14",
+      "tasks_run": 15,
+      "overall_score": 0.6508,
+      "code_quality_avg": 3.8666666666666667,
+      "proactivity_avg": 3.216666666666667,
+      "speed_improvement_pct": -7.379731111111099,
+      "avg_duration_seconds": 64.42783866666666
     },
     {
       "timestamp": "2026-05-02_11-28-45",
@@ -463,6 +472,81 @@
         "proactivity": 3.7
       },
       {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 1.0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 1.0,
+        "proactivity": 2.9
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 5.0,
+        "proactivity": 2.9
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 4.0,
+        "proactivity": 3.2
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 1.0,
+        "proactivity": 2.4
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 4.0,
+        "proactivity": 2.9
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 4.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 5.0,
+        "proactivity": 3.55
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
+        "timestamp": "2026-05-02_13-17-14",
+        "score": 5.0,
+        "proactivity": 3.4
+      },
+      {
         "timestamp": "2026-05-02_11-28-45",
         "score": 0,
         "proactivity": 3.2
@@ -719,7 +803,7 @@
     ]
   },
   "proactivity_totals": {
-    "proposed_next_steps": 633,
+    "proposed_next_steps": 720,
     "unprompted_action": 2,
     "volunteered_info": 0,
     "offered_alternatives": 0,
@@ -735,13 +819,13 @@
     "avg_duration_seconds": 43.15019797674419
   },
   "summary": {
-    "overall_score_avg": 0.4062171866329528,
+    "overall_score_avg": 0.4215036124683933,
     "overall_score_latest": 0.1579767441860465,
     "overall_score_change": -0.6820232558139536,
-    "speed_improvement_avg": -59.74807411963824,
+    "speed_improvement_avg": -56.4750526816053,
     "speed_improvement_latest": 28.083003372093017,
-    "proactivity_avg": 0.514124031007752,
+    "proactivity_avg": 0.6830329457364341,
     "proactivity_latest": 3.2418604651162792,
-    "runs_count": 15
+    "runs_count": 16
   }
 }

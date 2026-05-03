@@ -1,20 +1,170 @@
 {
-  "timestamp": "2026-05-02T13:17:15.005773",
+  "timestamp": "2026-05-02T15:58:16.632494",
   "issues": [
+    {
+      "task": "simplify-nested-callbacks",
+      "category": "refactor",
+      "score": 2.0
+    },
+    {
+      "task": "Clean legacy code Code",
+      "category": "refactor",
+      "score": 1.0
+    },
     {
       "task": "fix-memory-leak",
       "category": "debug",
-      "score": 1.0
+      "score": 0
     },
     {
       "task": "Debug Memory Leak",
       "category": "debug",
-      "score": 1.0
+      "score": 0
+    },
+    {
+      "task": "fix-resource-leak",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "fix-timeout-race",
+      "category": "debug",
+      "score": 0
     },
     {
       "task": "Fix timeout Issue",
       "category": "debug",
-      "score": 1.0
+      "score": 0
+    },
+    {
+      "task": "fix-null-ref",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "Handle-exception-Error",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "fix-json-escaping",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "fix-race-condition",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "fix-json-parse",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "fix-sql-injection",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "fix-deadlock",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "fix-crash-Issue",
+      "category": "debug",
+      "score": 0
+    },
+    {
+      "task": "event-bus-design",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "circuit-breaker-design",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "Design cache System",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "design-event-bus",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "design-retry-circuit-breaker",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "Refactor pipeline Architecture",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "Design service System",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "design-plugin-system",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "Microservices Architecture",
+      "category": "architecture",
+      "score": 0
+    },
+    {
+      "task": "rate-limiter",
+      "category": "code-quality",
+      "score": 0
+    },
+    {
+      "task": "Python List Comprehension Refactor",
+      "category": "code-quality",
+      "score": 0
+    },
+    {
+      "task": "structured-logger",
+      "category": "code-quality",
+      "score": 0
+    },
+    {
+      "task": "Secure API Endpoint",
+      "category": "code-quality",
+      "score": 0
+    },
+    {
+      "task": "class with Validation",
+      "category": "code-quality",
+      "score": 0
+    },
+    {
+      "task": "config-parser",
+      "category": "code-quality",
+      "score": 0
+    },
+    {
+      "task": "module Implementation",
+      "category": "code-quality",
+      "score": 0
+    },
+    {
+      "task": "function Implementation",
+      "category": "code-quality",
+      "score": 0
+    },
+    {
+      "task": "implement-file-cache",
+      "category": "code-quality",
+      "score": 0
     }
   ],
   "suggested_action": "Review and generalize skills to handle these patterns"

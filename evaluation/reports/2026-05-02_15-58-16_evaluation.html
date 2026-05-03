@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Agent Optimus - Evaluation Report</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #f8fafc; margin-bottom: 0.5rem; }
+        .timestamp { color: #94a3b8; margin-bottom: 2rem; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .metric-card { background: #1e293b; border-radius: 12px; padding: 1.5rem; border: 1px solid #334155; }
+        .metric-label { font-size: 0.875rem; color: #94a3b8; margin-bottom: 0.5rem; }
+        .metric-value { font-size: 2rem; font-weight: 600; color: #ef4444; }
+        .metric-value.speed { color: #22c55e; }
+        .section { background: #1e293b; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #334155; }
+        h2 { color: #f8fafc; margin-bottom: 1rem; font-size: 1.25rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 0.75rem; border-bottom: 1px solid #334155; color: #94a3b8; font-weight: 500; }
+        td { padding: 0.75rem; border-bottom: 1px solid #334155; }
+        .score { font-weight: 600; }
+        .pass { color: #22c55e; }
+        .fail { color: #ef4444; }
+        .badge { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; background: #334155; color: #94a3b8; }
+        .footer { text-align: center; color: #64748b; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #334155; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pi Agent Optimus Evaluation Report</h1>
+        <p class="timestamp">Generated: 2026-05-02 15:58 | Agent: Pi Agent Optimus | Tasks: 43</p>
+        
+        <div class="summary-grid">
+            <div class="metric-card">
+                <div class="metric-label">Overall Score</div>
+                <div class="metric-value">0.20</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Code Quality (avg)</div>
+                <div class="metric-value">1.14/5</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Objective Pass Rate</div>
+                <div class="metric-value">19%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Proactivity (avg)</div>
+                <div class="metric-value">3.26/5</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Speed Improvement</div>
+                <div class="metric-value speed">+10.8%</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Task Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Code Quality</th>
+                        <th>Proactivity</th>
+                        <th>Duration</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>simplify-nested-callbacks</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score fail">0.45</td>
+                        <td>2.0/5</td>
+                        <td>3.4/5</td>
+                        <td>225.1s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>decouple-monitor-class</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score pass">0.79</td>
+                        <td>5.0/5</td>
+                        <td>3.4/5</td>
+                        <td>71.7s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>decouple-data-pipeline</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score pass">0.85</td>
+                        <td>5.0/5</td>
+                        <td>3.4/5</td>
+                        <td>65.5s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>Clean legacy code Code</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score fail">0.56</td>
+                        <td>1.0/5</td>
+                        <td>2.9/5</td>
+                        <td>18.3s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Clean complexity Code</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score pass">0.63</td>
+                        <td>4.0/5</td>
+                        <td>3.1/5</td>
+                        <td>299.7s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>Extract duplication Component</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score pass">0.81</td>
+                        <td>5.0/5</td>
+                        <td>3.4/5</td>
+                        <td>132.2s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>extract-config-class</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score pass">0.85</td>
+                        <td>5.0/5</td>
+                        <td>3.4/5</td>
+                        <td>31.3s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>Large Method Refactor</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score pass">0.86</td>
+                        <td>5.0/5</td>
+                        <td>3.4/5</td>
+                        <td>74.1s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>extract-validator-framework</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score pass">0.84</td>
+                        <td>4.0/5</td>
+                        <td>3.5/5</td>
+                        <td>132.4s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>extract-repeated-logic</td>
+                        <td><span class="badge">refactor</span></td>
+                        <td class="score fail">0.45</td>
+                        <td>3.0/5</td>
+                        <td>3.4/5</td>
+                        <td>235.0s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Race Condition Fix</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score pass">0.84</td>
+                        <td>5.0/5</td>
+                        <td>3.4/5</td>
+                        <td>73.5s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-null-pointer</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score pass">0.82</td>
+                        <td>5.0/5</td>
+                        <td>3.4/5</td>
+                        <td>21.1s</td>
+                        <td class="pass">✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-memory-leak</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.4/5</td>
+                        <td>76.4s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Debug Memory Leak</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.9s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-resource-leak</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.3s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-timeout-race</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.8s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Fix timeout Issue</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.0s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-null-ref</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.8s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Handle-exception-Error</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.6s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-json-escaping</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.0s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-race-condition</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.9s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-json-parse</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.1s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-sql-injection</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.5/5</td>
+                        <td>28.0s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-deadlock</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.9s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>fix-crash-Issue</td>
+                        <td><span class="badge">debug</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.2s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>event-bus-design</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.7s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>circuit-breaker-design</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.9s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Design cache System</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.9s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>design-event-bus</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.9s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>design-retry-circuit-breaker</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.8s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Refactor pipeline Architecture</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.5s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Design service System</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.6s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>design-plugin-system</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.7s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Microservices Architecture</td>
+                        <td><span class="badge">architecture</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.1s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>rate-limiter</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.3s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Python List Comprehension Refactor</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.5/5</td>
+                        <td>28.6s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>structured-logger</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.4s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>Secure API Endpoint</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.8s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>class with Validation</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.1s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>config-parser</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.9s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>module Implementation</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.5s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>function Implementation</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>28.3s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                    <tr>
+                        <td>implement-file-cache</td>
+                        <td><span class="badge">code-quality</span></td>
+                        <td class="score fail">0.00</td>
+                        <td>0.0/5</td>
+                        <td>3.2/5</td>
+                        <td>27.9s</td>
+                        <td class="fail">✗</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            Generated by {self.framework_name}
+        </div>
+    </div>
+</body>
+</html>

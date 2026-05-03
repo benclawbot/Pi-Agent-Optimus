@@ -1,0 +1,149 @@
+{
+  "chunk_index": 20,
+  "timestamp": "2026-05-03T12:07:29.294887",
+  "results": [
+    {
+      "task_name": "fix-race-condition",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 41.421722,
+      "files_created": [
+        "test_threadsafe_counter.py",
+        "threadsafe_counter.py",
+        "__pycache__/threadsafe_counter.cpython-313.pyc"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 41.41964507102966,
+        "duration_formatted": "41.4s",
+        "tokens_used": {
+          "output_estimate": 240,
+          "trace_estimate": 38196,
+          "total_estimate": 38436
+        },
+        "token_efficiency": 0.8,
+        "step_count": 4,
+        "tool_calls": {
+          "write": 2,
+          "bash": 2
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "3 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "2 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 4,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 4.0,
+        "safety": 5.0,
+        "reasoning": "The solution correctly fixes the race condition by using threading.Lock() to protect the read-modify-write operation. The code is clean, well-structured with good variable names, and follows Python idioms. Tests pass confirming correctness. Efficiency is slightly reduced due to lock overhead, but this is the standard and correct approach for Python thread safety. No security concerns.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 7946,
+        "output_tokens": 215,
+        "total_tokens": 8161,
+        "cached_tokens": 0,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 0
+      },
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "expected_file:threadsafe_counter.py",
+            "passed": true,
+            "critical": true,
+            "detail": "Expected file threadsafe_counter.py; created files: test_threadsafe_counter.py, threadsafe_counter.py, __pycache__/threadsafe_counter.cpython-313.pyc"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n..                                                                       [100%]\n=============================== warnings summary ===============================\ntest_threadsafe_counter.py::test_original_race_condition\n  /home/thomas/.local/lib/python3.13/site-packages/_pytest/python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but test_threadsafe_counter.py::test_original_race_condition returned <class 'int'>.\n  Did you mean to use `assert` instead of `return`?\n  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.\n    warnings.warn(\n\ntest_threadsafe_counter.py::test_fixed_counter\n  /home/thomas/.local/lib/python3.13/site-packages/_pytest/python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but test_threadsafe_counter.py::test_fixed_counter returned <class 'int'>.\n  Did you mean to use `assert` instead of `return`?\n  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n2 passed, 2 warnings in 0.15s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 8161,
+        "ratio": 6.370804059328649,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.5,
+        "cache_hit": false
+      },
+      "overall_score": 0.807
+    }
+  ],
+  "summary": {
+    "tasks_run": 1,
+    "overall_score": 0.807,
+    "code_quality_avg": 5.0,
+    "proactivity_avg": 3.4,
+    "validation_avg": 1.0,
+    "objective_pass_rate": 1.0,
+    "avg_duration_seconds": 41.421722
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "chunk_index": 17,
+  "timestamp": "2026-05-03T12:04:58.953268",
+  "results": [
+    {
+      "task_name": "fix-null-ref",
+      "task_category": "debug",
+      "agent": "pi",
+      "duration_seconds": 42.011099,
+      "files_created": [
+        "greet_user.py",
+        "test_greet_user.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/test_greet_user.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/greet_user.cpython-313.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 42.00908136367798,
+        "duration_formatted": "42.0s",
+        "tokens_used": {
+          "output_estimate": 170,
+          "trace_estimate": 50405,
+          "total_estimate": 50575
+        },
+        "token_efficiency": 0.8,
+        "step_count": 6,
+        "tool_calls": {
+          "bash": 3,
+          "write": 3
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 1,
+        "tool_loops": 0,
+        "speed_score": 2.0,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": true,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "0 (not applicable)",
+          "breaking_notes": "0 (not applicable)",
+          "scan_similar": "2 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 3,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 5.0,
+        "reasoning": "The agent correctly added null checks for user, user.name, and user.org, raising ValueError with descriptive messages. The code is clean, well-structured, and all 4 tests pass. The sequential null checks are in logical order, variable names are clear, and no redundant operations exist.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": true
+        }
+      },
+      "token_data": {
+        "input_tokens": 7845,
+        "output_tokens": 115,
+        "total_tokens": 7960,
+        "cached_tokens": 0,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 0
+      },
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n....                                                                     [100%]\n4 passed in 0.01s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 7960,
+        "ratio": 11.845238095238095,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.5,
+        "cache_hit": false
+      },
+      "overall_score": 0.807
+    }
+  ],
+  "summary": {
+    "tasks_run": 1,
+    "overall_score": 0.807,
+    "code_quality_avg": 5.0,
+    "proactivity_avg": 3.4,
+    "validation_avg": 1.0,
+    "objective_pass_rate": 1.0,
+    "avg_duration_seconds": 42.011099
+  }
+}
