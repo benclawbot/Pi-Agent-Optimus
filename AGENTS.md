@@ -84,6 +84,18 @@ Run verification command first, show output, confirm matches claim.
 3. Verify — test hypothesis before implementing
 4. Fix — target root cause, not symptom
 
+### Targeted Investigation
+For config, extension, or MCP-related issues:
+1. First check the primary config file directly (e.g., `settings.json`, `*.config.ts`)
+2. Then look for related directories (extensions/, mcp/, skills/)
+3. Use path-based search with `rg` rather than broad content searches when the target is known
+4. Check name variants — configs may use camelCase (`loopDetection`), kebab-case (`loop-detection`), or snake_case (`loop_detection`)
+
+For unknown issues:
+1. Start broad, then narrow based on results
+2. Check relevant log files for error patterns
+3. Verify the issue exists before extensive searching
+
 ### Delegate to Subagents
 
 **Available Agents:**

@@ -37,14 +37,8 @@
   "extensions": [
     "+extensions/btw/index.ts",
     "+extensions/reload/index.ts",
-    "+extensions/todos/index.ts",
-    "+extensions/loop-detection/index.ts"
+    "+extensions/todos/index.ts"
   ],
-  "loopDetection": {
-    "enabled": true,
-    "maxRepeats": 3,
-    "timeWindowMs": 10000
-  },
   "lastChangelogVersion": "0.74.0",
   "terminal": {
     "showTerminalProgress": false
