@@ -24,6 +24,22 @@
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
         }
       ]
+    },
+    "nvidia": {
+      "baseUrl": "https://integrate.api.nvidia.com/v1",
+      "api": "openai-completions",
+      "apiKey": "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",
+      "models": [
+        {
+          "id": "minimaxai/minimax-m2.7",
+          "name": "MiniMax M2.7 (NVIDIA)",
+          "reasoning": false,
+          "input": ["text", "image"],
+          "contextWindow": 200000,
+          "maxTokens": 8192,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
+        }
+      ]
     }
   }
 }

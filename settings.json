@@ -1,6 +1,6 @@
 {
   "defaultProvider": "minimax",
-  "defaultModel": "MiniMax-M2.5",
+  "defaultModel": "MiniMax/M2.7",
   "defaultThinkingLevel": "off",
   "hideThinkingBlock": true,
   "theme": "dark",
@@ -29,22 +29,24 @@
   },
   "skills": [
     "~/.pi/agent/skills/startup",
-    "~/.pi/agent/skills/context-memory",
-    "~/.pi/agent/skills/skill-evolution",
     "~/.pi/agent/skills/quick-ref",
-    "~/.pi/agent/skills/write-todos"
+    "~/.pi/agent/skills/commit",
+    "~/.pi/agent/skills/caveman"
   ],
   "enableSkillCommands": true,
   "extensions": [
     "+extensions/btw/index.ts",
-    "+extensions/status/index.ts",
-    "+extensions/cmux/index.ts",
     "+extensions/reload/index.ts",
-    "+extensions/auto-commit/index.ts",
-    "+extensions/commit-review/index.ts",
-    "+extensions/compact-tools/index.ts",
     "+extensions/todos/index.ts",
-    "+extensions/telegram/index.ts"
+    "+extensions/loop-detection/index.ts"
   ],
-  "lastChangelogVersion": "0.70.2"
+  "loopDetection": {
+    "enabled": true,
+    "maxRepeats": 3,
+    "timeWindowMs": 10000
+  },
+  "lastChangelogVersion": "0.74.0",
+  "terminal": {
+    "showTerminalProgress": false
+  }
 }
