@@ -1,50 +1,47 @@
 {
   "chunk_index": 2,
-  "timestamp": "2026-05-03T11:39:22.153422",
+  "timestamp": "2026-05-12T00:28:51.932280",
   "results": [
     {
-      "task_name": "decouple-data-pipeline",
+      "task_name": "extract-config-class",
       "task_category": "refactor",
       "agent": "pi",
-      "duration_seconds": 139.357283,
+      "duration_seconds": 16.615467,
       "files_created": [
-        "test_data_pipeline.py",
-        "data_pipeline.py",
+        "test_config.py",
+        "config.py",
         ".pytest_cache/CACHEDIR.TAG",
         ".pytest_cache/README.md",
-        "__pycache__/data_pipeline.cpython-313.pyc",
-        "__pycache__/test_data_pipeline.cpython-313-pytest-9.0.3.pyc",
-        ".pytest_cache/v/cache/lastfailed",
+        "__pycache__/config.cpython-313.pyc",
+        "__pycache__/test_config.cpython-313-pytest-9.0.3.pyc",
         ".pytest_cache/v/cache/nodeids"
       ],
       "metrics": {
         "timed_out": false,
         "execution_failed": false,
-        "duration_seconds": 139.35537815093994,
-        "duration_formatted": "2m 19s",
+        "duration_seconds": 16.614603519439697,
+        "duration_formatted": "16.6s",
         "tokens_used": {
-          "output_estimate": 195,
-          "trace_estimate": 213435,
-          "total_estimate": 213630
+          "output_estimate": 186,
+          "trace_estimate": 47272,
+          "total_estimate": 47458
         },
         "token_efficiency": 0.8,
-        "step_count": 8,
+        "step_count": 3,
         "tool_calls": {
-          "bash": 3,
-          "write": 3,
-          "edit": 1,
-          "read": 1
+          "write": 2,
+          "bash": 1
         },
         "turns_used": 1,
         "first_response_time": 0.3,
-        "feedback_instances": 1,
+        "feedback_instances": 0,
         "tool_loops": 0,
-        "speed_score": 0.8503369842795029,
+        "speed_score": 2.0,
         "code_indicators": {
           "has_code_block": false,
           "has_explanation": true,
           "mentions_files": true,
-          "has_error": true,
+          "has_error": false,
           "mentions_test": true,
           "mentions_refactor": true
         }
@@ -73,10 +70,10 @@
           "summary": 1,
           "rollback": 1,
           "proposed_next_steps": 3,
-          "risk_flags": "0 (not applicable)",
+          "risk_flags": "2 (not applicable)",
           "security_flags": "0 (not applicable)",
           "perf_hints": "4 (not applicable)",
-          "breaking_notes": "0 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
           "scan_similar": "0 (not applicable)",
           "arch_observations": "1 (not applicable)",
           "unprompted_actions": 0,
@@ -94,20 +91,161 @@
         "readability": 5.0,
         "correctness": 5.0,
         "efficiency": 5.0,
-        "safety": 4.0,
-        "reasoning": "Excellent refactoring that properly decouples the monolithic pipeline into single-responsibility classes. All 24 tests pass. The code uses clear naming, good docstrings, type hints, and logical grouping with section comments. Uses generators (iterators) for memory efficiency - O(n) complexity. Properly uses ABCs for abstraction. Minor deduction for safety: validation error messages could be more descriptive, and Pipeline.run() could have more graceful error handling (though it's functional). The implementation achieves the refactoring goal cleanly.",
+        "safety": 5.0,
+        "reasoning": "The agent created a clean OOP design using Python dataclasses with proper separation of concerns (DatabaseConfig, CacheConfig, Config). All 11 tests pass, including validations for integer parsing, port bounds (1-65535), and timeout constraints (>=1). The code uses standard Python idioms, includes proper type hints, has clear documentation, and handles edge cases appropriately.",
         "automated_checks": {
           "has_code": true,
           "mentioned_actions": true,
           "files_created_match": true,
-          "error_mentioned": true
+          "error_mentioned": false
         }
       },
       "token_data": {
-        "input_tokens": 8127,
-        "output_tokens": 329,
-        "total_tokens": 8456,
-        "cached_tokens": 0,
+        "input_tokens": 5841,
+        "output_tokens": 616,
+        "total_tokens": 6489,
+        "cached_tokens": 32,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 0
+      },
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "expected_file:config.py",
+            "passed": true,
+            "critical": true,
+            "detail": "Expected file config.py; created files: test_config.py, config.py, .pytest_cache/CACHEDIR.TAG, .pytest_cache/README.md, __pycache__/config.cpython-313.pyc, __pycache__/test_config.cpython-313-pytest-9.0.3.pyc, .pytest_cache/v/cache/nodeids"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n...........                                                              [100%]\n11 passed in 0.03s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.3,
+        "total_tokens": 6489,
+        "ratio": 6.476047904191617,
+        "waste": "verbose"
+      },
+      "memory_retrieval": {
+        "score": 0.5,
+        "cache_hit": false
+      },
+      "overall_score": 0.807
+    },
+    {
+      "task_name": "Large Method Refactor",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 88.58955,
+      "files_created": [
+        "test_order_processing.py",
+        "order_processing.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/test_order_processing.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/order_processing.cpython-313.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 88.5886070728302,
+        "duration_formatted": "1m 28s",
+        "tokens_used": {
+          "output_estimate": 218,
+          "trace_estimate": 200524,
+          "total_estimate": 200742
+        },
+        "token_efficiency": 0.8,
+        "step_count": 18,
+        "tool_calls": {
+          "bash": 6,
+          "write": 2,
+          "edit": 9,
+          "read": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 1.3376328617807471,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": true
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 4,
+          "risk_flags": "1 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "2 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 4,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 5.0,
+        "readability": 5.0,
+        "correctness": 5.0,
+        "efficiency": 5.0,
+        "safety": 4.0,
+        "reasoning": "All 15 tests pass. The monolithic function was successfully refactored into 9 focused functions with single responsibilities (validation, subtotal, discount, tax, order creation, persistence, notifications, totals calculation, main processing). Configuration constants extracted to module level. Good docstrings and variable names. O(n) complexity. Minor deduction in safety for type validation - could add checks for negative prices/quantities but core validation is present.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 5865,
+        "output_tokens": 311,
+        "total_tokens": 6368,
+        "cached_tokens": 192,
         "tokens_per_second": 0.0,
         "context_size_chars": 0
       },
@@ -120,31 +258,171 @@
             "name": "test_command",
             "passed": true,
             "critical": true,
-            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n........................                                                 [100%]\n24 passed in 0.03s\n\nSTDERR:\n"
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n...............                                                          [100%]\n15 passed in 0.04s\n\nSTDERR:\n"
           }
         ],
         "notes": []
       },
       "token_efficiency": {
-        "score": 0.764348274085523,
-        "total_tokens": 8456,
-        "ratio": 2.1782586295723854,
-        "waste": "verbose"
+        "score": 0.8696238651102465,
+        "total_tokens": 6368,
+        "ratio": 1.6518806744487677,
+        "waste": "brief"
       },
       "memory_retrieval": {
         "score": 0.5,
         "cache_hit": false
       },
-      "overall_score": 0.816
+      "overall_score": 0.837
+    },
+    {
+      "task_name": "extract-validator-framework",
+      "task_category": "refactor",
+      "agent": "pi",
+      "duration_seconds": 96.55084,
+      "files_created": [
+        "test_validators.py",
+        "validators.py",
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        "__pycache__/test_validators.cpython-313-pytest-9.0.3.pyc",
+        "__pycache__/validators.cpython-313.pyc",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids"
+      ],
+      "metrics": {
+        "timed_out": false,
+        "execution_failed": false,
+        "duration_seconds": 96.54989886283875,
+        "duration_formatted": "1m 36s",
+        "tokens_used": {
+          "output_estimate": 177,
+          "trace_estimate": 273253,
+          "total_estimate": 273430
+        },
+        "token_efficiency": 0.8,
+        "step_count": 5,
+        "tool_calls": {
+          "write": 2,
+          "bash": 2,
+          "edit": 1
+        },
+        "turns_used": 1,
+        "first_response_time": 0.3,
+        "feedback_instances": 0,
+        "tool_loops": 0,
+        "speed_score": 1.2273346051697347,
+        "code_indicators": {
+          "has_code_block": false,
+          "has_explanation": true,
+          "mentions_files": true,
+          "has_error": false,
+          "mentions_test": true,
+          "mentions_refactor": false
+        }
+      },
+      "proactivity": {
+        "score": 3.4,
+        "waited_for_user": false,
+        "files_created": 2,
+        "has_done_block": true,
+        "has_test_results": true,
+        "has_next_steps": true,
+        "has_summary": true,
+        "has_rollback": true,
+        "context_applicable": {
+          "has_risks": false,
+          "has_security": false,
+          "has_perf": false,
+          "has_breaking": false,
+          "has_scan": false,
+          "has_arch": false
+        },
+        "breakdown": {
+          "done_block": 1,
+          "test_results": 1,
+          "next_steps": 1,
+          "summary": 1,
+          "rollback": 1,
+          "proposed_next_steps": 3,
+          "risk_flags": "2 (not applicable)",
+          "security_flags": "0 (not applicable)",
+          "perf_hints": "4 (not applicable)",
+          "breaking_notes": "1 (not applicable)",
+          "scan_similar": "0 (not applicable)",
+          "arch_observations": "0 (not applicable)",
+          "unprompted_actions": 0,
+          "quality_cleanup": 0,
+          "test_generation": 3,
+          "parallel_announcements": 0,
+          "alternatives": 0,
+          "strategy_adaptation": 0,
+          "auto_validation": 0,
+          "commit_draft": 0
+        }
+      },
+      "judge_scores": {
+        "code_quality": 4.0,
+        "readability": 4.0,
+        "correctness": 5.0,
+        "efficiency": 4.0,
+        "safety": 4.0,
+        "reasoning": "The solution successfully refactors three similar validation functions into a clean composable framework. All 32 tests pass, and backward compatibility is preserved through wrapper functions. Base validators (not_empty, min_length, max_length, contains, predicate, count) extract common patterns, while combinators (all_of, any_of, chain) enable composition. The code follows Python conventions with appropriate type hints and docstrings. Minor improvements possible: the email validator calls v.split('@') multiple times in separate predicates, which could be optimized to split once and reuse. The overall implementation is solid and achieves the refactoring objective.",
+        "automated_checks": {
+          "has_code": true,
+          "mentioned_actions": true,
+          "files_created_match": true,
+          "error_mentioned": false
+        }
+      },
+      "token_data": {
+        "input_tokens": 6150,
+        "output_tokens": 1543,
+        "total_tokens": 7693,
+        "cached_tokens": 0,
+        "tokens_per_second": 0.0,
+        "context_size_chars": 0
+      },
+      "memory_data": {},
+      "validation": {
+        "score": 1.0,
+        "grade": "pass",
+        "checks": [
+          {
+            "name": "expected_file:validators.py",
+            "passed": true,
+            "critical": true,
+            "detail": "Expected file validators.py; created files: test_validators.py, validators.py, .pytest_cache/CACHEDIR.TAG, .pytest_cache/README.md, __pycache__/test_validators.cpython-313-pytest-9.0.3.pyc, __pycache__/validators.cpython-313.pyc, .pytest_cache/v/cache/lastfailed, .pytest_cache/v/cache/nodeids"
+          },
+          {
+            "name": "test_command",
+            "passed": true,
+            "critical": true,
+            "detail": "python3 -m pytest -q exited 0\nSTDOUT:\n................................                                         [100%]\n32 passed in 0.06s\n\nSTDERR:\n"
+          }
+        ],
+        "notes": []
+      },
+      "token_efficiency": {
+        "score": 0.8727079344820251,
+        "total_tokens": 7693,
+        "ratio": 1.6364603275898746,
+        "waste": "brief"
+      },
+      "memory_retrieval": {
+        "score": 0.5,
+        "cache_hit": false
+      },
+      "overall_score": 0.829
     }
   ],
   "summary": {
-    "tasks_run": 1,
-    "overall_score": 0.816,
-    "code_quality_avg": 5.0,
+    "tasks_run": 3,
+    "overall_score": 0.8243333333333333,
+    "code_quality_avg": 4.666666666666667,
     "proactivity_avg": 3.4,
     "validation_avg": 1.0,
     "objective_pass_rate": 1.0,
-    "avg_duration_seconds": 139.357283
+    "avg_duration_seconds": 67.25195233333334
   }
 }
