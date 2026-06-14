@@ -24,6 +24,7 @@ On Windows, run `.\setup.ps1`. The installer merges settings and preserves local
 | **todos** | Full TUI todo manager |
 | **todo-panel** | Persistent above-editor todo progress panel |
 | **subagent** | Restricted delegated Pi process |
+| **fusion** | Parallel MiniMax M2.7/M3 coding deliberation with an M3 judge |
 | **repo-map** | Bounded repository map |
 | **long-task** | Persistent long-task checkpoints |
 | **load-skill** | Load skill instructions on demand |
@@ -67,6 +68,15 @@ The persistent todo widget appears above the interactive editor, including when 
 ```
 
 The panel is a TUI widget and therefore does not render in `--mode text` or `--mode rpc`.
+
+## MiniMax Fusion
+
+The `fusion` tool runs independent MiniMax coding analyses in parallel, asks M3 to identify consensus, contradictions, unique insights, and blind spots, then returns the judged synthesis to the lead agent.
+
+- `profile="lite"` is the default: M2.7 analyst + M3 critic + M3 judge.
+- `profile="full"` adds a second independent M2.7 path.
+- Use it for architecture, difficult debugging, risky migrations, security review, and expensive decisions.
+- Avoid it for straightforward edits; lite Fusion plus the lead answer uses roughly four model completions, while full Fusion uses roughly five.
 
 ---
 

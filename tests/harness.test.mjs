@@ -149,3 +149,19 @@ test("installer reproduces the harness without replacing user settings", async (
   await access(path.join(temp, "extensions", "todo-panel", "index.ts"));
   await access(path.join(temp, "tests", "harness.test.mjs"));
 });
+
+test("fusion uses parallel MiniMax panelists and an M3 judge", async () => {
+  const settings = JSON.parse(await source("settings.json"));
+  const fusion = await source("extensions/fusion/index.ts");
+
+  assert.ok(settings.extensions?.includes("+extensions/fusion/index.ts"));
+  assert.match(fusion, /Promise\.allSettled/);
+  assert.match(fusion, /minimax\/MiniMax-M2\.7/);
+  assert.match(fusion, /minimax\/MiniMax-M3/);
+  assert.match(fusion, /profile.*lite/);
+  assert.match(fusion, /FULL_PANEL/);
+  assert.match(fusion, /--no-extensions/);
+  assert.match(fusion, /consensus/i);
+  assert.match(fusion, /contradictions/i);
+  assert.match(fusion, /blind spots/i);
+});
