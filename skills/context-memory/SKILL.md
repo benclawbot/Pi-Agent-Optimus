@@ -28,6 +28,14 @@ Project memory lives at `.pi/memory.md` in the project root. If it doesn't exist
 ## Patterns
 <!-- Reusable code patterns, templates, examples -->
 
+## SVG/Diagram Conventions
+<!-- Layout rules for SVGs and diagrams -->
+
+- **No empty space at bottom**: viewBox height should end right after the last element (footer). Content should be balanced with ~40px gap at top between title and diagram.
+- **Tight viewBox**: viewBox height = last element y-position + ~20px buffer. NOT excessive padding.
+- **Header breathing room**: Title at y=35-40, subtitle at y=55-60, diagram content starts at y=75-80 minimum
+- **Compression over gaps**: If content doesn't fit, compress elements (smaller boxes, tighter spacing) rather than expanding viewBox height
+
 ## Gotchas
 <!-- Common pitfalls, known workarounds -->
 ```

@@ -1,0 +1,13 @@
+{
+  "name": "pi-config",
+  "version": "1.0.0",
+  "description": "Personal pi coding agent configuration — clone to ~/.pi/agent/",
+  "scripts": {
+    "curate:skills": "node scripts/curate-skills.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:harness": "node --test tests/harness.test.mjs"
+  },
+  "keywords": ["pi-package"],
+  "author": "HazAT",
+  "license": "MIT"
+}

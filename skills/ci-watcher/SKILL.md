@@ -2,6 +2,7 @@
 name: ci-watcher
 description: Monitor CI runs and alert on failures. Use when "check CI", "CI status", "watch CI", "build status", "pipeline monitor", or "notify on CI failure".
 allowed-tools: Read,Bash,execute_command
+disable-model-invocation: true
 ---
 
 # CI Watcher

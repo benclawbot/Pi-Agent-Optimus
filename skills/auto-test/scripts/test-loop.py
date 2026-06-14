@@ -23,8 +23,10 @@ TEST_PATTERNS = [
     lambda f: Path(str(f).replace(Path(f).suffix, ".spec" + Path(f).suffix)),
     # __tests__ directory
     lambda f: Path(str(f).replace(str(Path(f).parent), str(Path(f).parent / "__tests__"))),
-    # tests/ directory (root level)
-    lambda f: Path("tests" / Path(f).name),
+    # tests/ directory with test_ prefix
+    lambda f: Path("tests") / f"test_{Path(f).stem}{Path(f).suffix}",
+    # tests/ directory (root level) - same filename
+    lambda f: Path("tests") / Path(f).name,
     # spec/ directory
     lambda f: Path(str(f).replace(str(Path(f).parent), str(Path(f).parent / "spec"))),
 ]
@@ -32,7 +34,7 @@ TEST_PATTERNS = [
 
 def find_tests_for_file(file_path: str) -> list[Path]:
     """Find test files that cover a given source file."""
-    source = Path(file_path)
+    source = Path(file_path).resolve()
 
     if not source.exists():
         return []
@@ -43,6 +45,24 @@ def find_tests_for_file(file_path: str) -> list[Path]:
         test_path = pattern_fn(source)
         if test_path.exists():
             found.append(test_path)
+
+    # Python project pattern: look for tests/structure/test_*.py
+    # e.g., src/pkg/module.py -> tests/pkg/test_module.py
+    if source.suffix == ".py":
+        stem = source.stem
+        parent = source.parent
+        # Try various common Python test directory structures
+        for parent_path in [parent, parent.parent, parent.parent.parent]:
+            if parent_path is None or str(parent_path) == ".":
+                continue
+            test_candidates = [
+                parent_path / "tests" / parent.name / f"test_{stem}.py",
+                parent_path / "tests" / f"test_{stem}.py",
+                parent_path / "test" / f"test_{stem}.py",
+            ]
+            for tc in test_candidates:
+                if tc.exists() and tc not in found:
+                    found.append(tc)
 
     return found
 

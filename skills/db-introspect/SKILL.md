@@ -2,6 +2,7 @@
 name: db-introspect
 description: Introspect database schemas without running the app. Use when "show tables", "schema", "database structure", "columns", "indexes", or "introspect database".
 allowed-tools: Read,Bash
+disable-model-invocation: true
 ---
 
 # Database Introspection

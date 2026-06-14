@@ -2,6 +2,7 @@
 name: auto-test
 description: Run tests automatically based on file changes, show test results for changed code. Use when "run tests", "test this file", "test changes", "which tests cover this", "test pattern", or running test suite.
 allowed-tools: Read,Bash,execute_command
+disable-model-invocation: true
 ---
 
 # Auto Test
