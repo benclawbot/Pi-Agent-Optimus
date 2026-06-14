@@ -1,6 +1,6 @@
 ---
 name: verify-done
-description: Pre-commit verification ritual. Use before claiming any code change is done, before closing any todo, and before any "fixed" / "shipped" / "ready" claim. The 5-step gate that catches the most common agent failure mode: declaring victory without running the test.
+description: 'Pre-commit verification ritual. Use before claiming any code change is done, before closing any todo, and before any "fixed" / "shipped" / "ready" claim. The 5-step gate that catches the most common agent failure mode: declaring victory without running the test.'
 ---
 
 # verify-done

@@ -121,6 +121,10 @@ test("all local skills have valid frontmatter", async () => {
     assert.match(skill, /^---\r?\n/);
     assert.match(skill, /^name:\s*\S+/m);
     assert.match(skill, /^description:\s*\S+/m);
+    const description = skill.match(/^description:\s*(.+)$/m)?.[1] ?? "";
+    if (!/^['"]/.test(description)) {
+      assert.doesNotMatch(description, /:\s/, `${entry.name} description must quote YAML-significant colons`);
+    }
   }
 });
 

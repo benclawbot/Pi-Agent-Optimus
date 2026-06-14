@@ -1,6 +1,6 @@
 ---
 name: deep-research
-description: End-to-end research-to-deliverable workflow. Use when the user asks for deep research, a literature review, a synthesis report, a market scan, or a beautifully designed PDF/web report. Handles parallel source gathering, knowledge-base indexing, structured synthesis, and unique-design document generation. Triggers: "deep research", "research and produce", "make a report", "synthesize these sources", "write me a brief on", "research X and give me a PDF", "literature review", "build a report on".
+description: 'End-to-end research-to-deliverable workflow. Use when the user asks for deep research, a literature review, a synthesis report, a market scan, or a beautifully designed PDF/web report. Handles parallel source gathering, knowledge-base indexing, structured synthesis, and unique-design document generation. Triggers: "deep research", "research and produce", "make a report", "synthesize these sources", "write me a brief on", "research X and give me a PDF", "literature review", "build a report on".'
 ---
 
 # Deep Research & Beautiful Deliverable
