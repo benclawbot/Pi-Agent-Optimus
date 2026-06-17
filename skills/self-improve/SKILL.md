@@ -105,19 +105,7 @@ For each Tier A fix:
 
 1. Compute the diff (use `git diff <file>` to capture current state).
 2. Apply the edit.
-3. Write a `~/.pi/agent/guardrails/<rule-slug>.md` recipe:
-   ```markdown
-   # <rule name>
-
-   **Triggered by**: <error class>
-   **Prevents**: <what would have gone wrong>
-
-   ## Verify
-
-   Run: <one-line command or scenario>
-   Expect: <what should happen if the guardrail works>
-   ```
-4. Add a row to the ledger (see A10).
+3. Add a row to the ledger (see A10). The ledger entry includes a one-line "Verify" recipe inline — no separate file.
 
 Cap at 3 Tier A fixes per invocation. If more survive the filters, push the rest to Tier B for approval.
 
@@ -186,7 +174,7 @@ Append every auto-applied fix. Format:
 - old
 + new
 ```
-**Verify recipe**: ~/.pi/agent/guardrails/foo.md
+**Verify**: <one-line: how to confirm the rule fires>
 **Reason**: <one-line>
 ```
 
@@ -194,7 +182,7 @@ The ledger file lives at `~/.pi/agent/improve-log.md` (this repo). Every entry i
 
 ```bash
 cd ~/.pi/agent
-git add skills/ AGENTS.md memory*.md improve-log.md guardrails/
+git add skills/ AGENTS.md memory*.md improve-log.md
 git commit -m "self-improve: <one-line summary of auto-applied fix>"
 ```
 
@@ -210,7 +198,7 @@ After Phase A and Phase B, print one summary:
 ## Self-Improve Report
 
 ### Auto-applied (Tier A)
-- [A1] Fixed "git init parent-dir confusion" in github-commit-push skill — confidence 0.95, verify: ~/.pi/agent/guardrails/git-init-verify.md
+- [A1] Fixed "git init parent-dir confusion" in github-commit-push skill — confidence 0.95
 
 ### Awaiting approval (Tier B)
 - [B1] Add pre-tool-use hook blocking `git add .` outside project root — cluster: same data-loss class

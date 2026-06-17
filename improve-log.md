@@ -22,5 +22,5 @@ Append-only log of auto-applied guardrail fixes. Each entry is git-committed; ro
 +  auto-load on context match", not "ignore slash command invocations".
 ```
 
-**Verify recipe**: `~/.pi/agent/guardrails/slash-command-invocation.md`
+**Verify**: type `/self-improve` → agent should run Phase A immediately, not ask "do you want me to run this?"
 **Reason**: User typed `/self-improve`, skill loaded, agent responded "say the word if you want me to run it" — wrong, the slash command is the word.
