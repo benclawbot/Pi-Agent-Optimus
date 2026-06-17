@@ -1,54 +1,47 @@
 /**
  * Auto-Skill-Suggest Extension
  *
- * After a complex agent turn (5+ tool calls, mixed read + edit/exec),
- * suggests to the user: "Want me to save this workflow as a skill?"
+ * Hermes parity: after every agent turn, detect if a reusable workflow
+ * was discovered and auto-create a skill for it.
  *
- * Mirrors Hermes agent's `skill_manage` behavior (autonomous skill creation
- * after complex tasks) but stops one step short of auto-creating: the
- * agent drafts and writes the skill only after the user confirms.
+ * Mirrors Hermes `skill_manage`:
+ *   - 4 trigger conditions (5+ tool calls, errors + found path, user
+ *     correction, non-trivial workflow)
+ *   - LLM judges reusability (the agent itself, via injected reflection)
+ *   - Auto-creates the skill and notifies the user
+ *   - Cross-session dedup against existing skills
  *
- * Triggers (any one):
- *   - 5+ tool calls in the turn
- *   - Mix of read + edit/exec (not pure browse, not pure chat)
- *   - At least one edit/exec (real work happened)
+ * Detection is structural (cheap, in extension). Judgment is delegated
+ * to the agent's LLM via a follow-up reflection prompt.
  *
- * Skips:
- *   - < 5 tool calls (trivial)
- *   - Single tool category (just reads, just writes, just chat)
- *   - /reload / /skill: spam
- *   - Turn that just suggested a skill (avoid self-loop)
- *   - User already declined once this turn (don't pester)
- *
- * Behavior:
- *   Sends a follow-up user message via pi.sendUserMessage with a short
- *   summary. The agent then drafts the skill via skill-creator if the
- *   user says yes.
+ * Cooldown: max 1 reflection per N turns (default 3) to avoid spam.
  */
 
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import { existsSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+import { homedir } from "node:os";
 
+const SKILLS_DIR = join(homedir(), ".pi", "agent", "skills");
 const MIN_TOOL_CALLS = 5;
-const SPAM = [/^\s*\/reload\s*$/i, /^\s*\/skill:/i, /^\s*\/new\s*$/i, /^\s*\/reset\s*$/i];
+const COOLDOWN_TURNS = 3;
+const MAX_EXISTING_LISTED = 30;
+const SPAM = [/^\s*\/reload\b/i, /^\s*\/new\b/i, /^\s*\/reset\b/i, /^\s*\/skill:/i];
+const CORRECTION_RE = /\b(no|wrong|actually|instead|redo|fix this|not right|nope|try again|that's not|do not|don't|stop|wait)\b/i;
 
-interface ToolCall {
-	name: string;
-}
+interface ToolCall { name?: string; }
+interface Message { role: string; content?: any[]; toolCalls?: ToolCall[]; }
 
-interface Message {
-	role: string;
-	content?: any[];
-	toolCalls?: ToolCall[];
-}
+let errorsThisTurn = 0;
+let turnsSinceLastSuggest = COOLDOWN_TURNS;
+let lastSuggestSignature = "";
 
 function getToolNames(messages: Message[]): string[] {
 	const out: string[] = [];
 	for (const m of messages) {
 		if (m.toolCalls) for (const t of m.toolCalls) if (t?.name) out.push(t.name);
-		if (m.content) {
-			for (const c of m.content) {
-				if (c?.type === "toolCall" && c?.name) out.push(c.name);
-			}
+		if (Array.isArray(m.content)) {
+			for (const c of m.content) if ((c as any)?.type === "toolCall" && (c as any)?.name) out.push((c as any).name);
 		}
 	}
 	return out;
@@ -57,73 +50,87 @@ function getToolNames(messages: Message[]): string[] {
 function getFirstUserText(messages: Message[]): string {
 	for (const m of messages) {
 		if (m.role !== "user") continue;
-		const text = m.content
-			?.filter((c: any) => c.type === "text")
-			?.map((c: any) => c.text)
-			?.join(" ")
-			?.trim();
-		if (text && text.length >= 20 && !SPAM.some((p) => p.test(text))) {
-			return text;
-		}
+		const text = Array.isArray(m.content)
+			? m.content.filter((c: any) => c?.type === "text").map((c: any) => c.text).join(" ").trim()
+			: "";
+		if (text && text.length >= 20 && !SPAM.some((p) => p.test(text))) return text;
 	}
 	return "";
 }
 
-function categorize(tools: string[]): Set<string> {
-	const cats = new Set<string>();
-	const lower = tools.map((t) => t.toLowerCase());
-	if (lower.some((t) => /^(read|get)$/.test(t))) cats.add("read");
-	if (lower.some((t) => /^(write|edit|create)$/.test(t) || t.includes("edit"))) cats.add("edit");
-	if (lower.some((t) => /^(bash|exec|execute_command|execute)/.test(t))) cats.add("exec");
-	if (lower.some((t) => /^(grep|search|find|repo_map)$/.test(t))) cats.add("search");
-	return cats;
+function listExistingSkills(): string[] {
+	if (!existsSync(SKILLS_DIR)) return [];
+	try {
+		return readdirSync(SKILLS_DIR, { withFileTypes: true })
+			.filter((d) => d.isDirectory())
+			.map((d) => d.name)
+			.sort();
+	} catch {
+		return [];
+	}
 }
 
-let lastSuggestKey = "";
-
-function turnKey(messages: Message[]): string {
-	const firstUser = getFirstUserText(messages);
-	return firstUser.slice(0, 120);
+function turnSignature(messages: Message[]): string {
+	return getFirstUserText(messages).slice(0, 160);
 }
 
 export default function autoSkillSuggestExtension(pi: ExtensionAPI) {
+	pi.on("turn_start", async () => {
+		errorsThisTurn = 0;
+		turnsSinceLastSuggest++;
+	});
+
+	pi.on("tool_error", async () => {
+		errorsThisTurn++;
+	});
+
 	pi.on("agent_end", async (event: any, ctx: any) => {
 		try {
 			const messages: Message[] = event?.messages || [];
 			if (!messages.length) return;
 
 			const tools = getToolNames(messages);
-			if (tools.length < MIN_TOOL_CALLS) return;
-
-			const cats = categorize(tools);
-			if (cats.size < 2) return; // single-mode turn
-			if (!cats.has("edit") && !cats.has("exec")) return; // no real work
-
 			const problem = getFirstUserText(messages);
 			if (!problem) return;
 
-			const key = turnKey(messages);
-			if (key === lastSuggestKey) return; // dedup across turns with same prompt
+			// Hermes trigger 1+4: complex task (5+ calls) or non-trivial workflow
+			const isComplex = tools.length >= MIN_TOOL_CALLS;
+			// Hermes trigger 2: errors + found working path
+			const errorsThenFixed = errorsThisTurn > 0 && tools.length > errorsThisTurn;
+			// Hermes trigger 3: user corrected approach
+			const userCorrected = CORRECTION_RE.test(problem);
 
-			lastSuggestKey = key;
+			if (!isComplex && !errorsThenFixed && !userCorrected) return;
+			if (turnsSinceLastSuggest < COOLDOWN_TURNS) return;
 
-			const summary = problem.slice(0, 100);
-			const toolSig = [...new Set(tools.map((t) => t.toLowerCase()))].slice(0, 6).join(", ");
+			const sig = turnSignature(messages);
+			if (sig && sig === lastSuggestSignature) return;
 
-			if (ctx?.ui && typeof ctx.ui.notify === "function") {
-				ctx.ui.notify("Skill-suggest: complex task detected", "info", { duration: 1500 });
-			}
+			const existing = listExistingSkills();
+			const existingLine = existing.length
+				? `Existing skills (don't duplicate unless meaningfully different): ${existing.slice(0, MAX_EXISTING_LISTED).join(", ")}${existing.length > MAX_EXISTING_LISTED ? `, ... (+${existing.length - MAX_EXISTING_LISTED} more)` : ""}`
+				: "No existing skills yet.";
 
+			lastSuggestSignature = sig;
+			turnsSinceLastSuggest = 0;
+
+			// Auto-create (Hermes parity): inject reflection prompt, let LLM judge and act.
+			// The agent either uses /skill-creator to draft + write, or reports why not.
 			pi.sendUserMessage(
-				`[auto-skill-suggest] I just finished a multi-step task: "${summary}" ` +
-				`(used ${tools.length} calls: ${toolSig}). ` +
-				`If this workflow is likely to come up again, I can save it as a skill. ` +
-				`Want me to draft one with /skill-creator? (yes / no / not now)`,
+				`[auto-skill-suggest — Hermes parity] Reflection on the turn you just completed.\n\n` +
+				`Signals: toolCalls=${tools.length}, errors=${errorsThisTurn}, userCorrection=${userCorrected}.\n\n` +
+				`Decide: was this a reusable workflow that future sessions would benefit from? ` +
+				`(Examples: non-obvious fix, error→resolution path, user-corrected approach, non-trivial multi-step process, ` +
+				`discovered convention, project-specific gotcha.)\n\n` +
+				`If YES: load /skill-creator and follow it to draft + save a SKILL.md. Then tell me: skill name + one-line description + the trigger that should activate it.\n` +
+				`If NO: reply with one line explaining the heuristic you applied, so this extension can learn.\n\n` +
+				`${existingLine}`,
 				{ deliverAs: "followUp" }
 			);
+
+			if (ctx?.ui?.notify) ctx.ui.notify("Auto-skill: reflect on turn", "info", { duration: 1500 });
 		} catch {
-			// Never break the session on extension error
+			// never break the session
 		}
 	});
 }
-
