@@ -15,6 +15,7 @@ Two phases. Phase A (errors-driven, automated) runs first. Phase B (general refl
 - **Queue cap**: maximum **5** Tier B fixes per invocation.
 - **Tier C (Pi core source)**: always ask, never auto-apply.
 - **No fixes outside the harness**: project files (code, configs in the user's repo) are out of scope for auto-apply unless the user is currently working in that project and the fix is local (e.g., adding a missing `.gitignore` rule the project needs).
+- **Invocation contract**: when this skill content appears in your context via slash command (`/self-improve` or any short form the user typed that resolved to this skill), the user has EXPLICITLY invoked it. Execute all phases immediately. Do not ask "do you want me to run this?" — the slash command IS the request. `disable-model-invocation: true` means "don't auto-load on context match", not "ignore slash command invocations".
 
 ---
 
