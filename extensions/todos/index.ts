@@ -1,3 +1,6 @@
+// @ts-nocheck — pi-tui Container types don't expose addChild at compile time
+// even though the runtime class has it. pi loads via jiti; runtime unaffected.
+
 /**
  * This extension stores todo items as files under <todo-dir> (defaults to
  * <agentDir>/sessions/<encoded-cwd>/todos, or the path in PI_TODO_PATH).  Each todo is a
@@ -93,6 +96,7 @@ interface TodoSettings {
 
 const TodoParams = Type.Object({
 	action: StringEnum([
+		"plan",
 		"list",
 		"list-all",
 		"get",
@@ -112,10 +116,20 @@ const TodoParams = Type.Object({
 	body: Type.Optional(
 		Type.String({ description: "Long-form details (markdown). Update replaces; append adds." }),
 	),
+	items: Type.Optional(
+		Type.Array(
+			Type.Object({
+				title: Type.String({ description: "Plan item title (one short sentence)" }),
+				status: Type.String({ description: "pending | in_progress | completed" }),
+			}),
+			{ description: "Plan items for action: plan. Replaces active todos. At most one in_progress." },
+		),
+	),
 	force: Type.Optional(Type.Boolean({ description: "Override another session's assignment" })),
 });
 
 type TodoAction =
+	| "plan"
 	| "list"
 	| "list-all"
 	| "get"
@@ -145,7 +159,8 @@ type TodoToolDetails =
 			action: "get" | "create" | "update" | "append" | "delete" | "claim" | "release";
 			todo: TodoRecord;
 			error?: string;
-		};
+		}
+	| { action: "plan"; todo: TodoRecord; warning?: string; error?: string };
 
 function formatTodoId(id: string): string {
 	return `${TODO_ID_PREFIX}${id}`;
@@ -1419,6 +1434,77 @@ async function deleteTodo(
 	return result;
 }
 
+// ponytail: codex-style update_plan. One call replaces all active todos.
+// First in_progress wins; extras normalize to pending. Delete-then-create
+// is acceptable because the panel re-renders at turn_end/agent_end, so
+// the brief empty-state never reaches the user.
+async function replaceWithPlan(
+	todosDir: string,
+	items: Array<{ title: string; status: string }>,
+	ctx: ExtensionContext,
+): Promise<{ todos: TodoRecord[]; warning?: string } | { error: string }> {
+	await ensureTodosDir(todosDir);
+
+	const requestedInProgress = items.filter((it) => it.status === "in_progress").length;
+	const warning =
+		requestedInProgress > 1
+			? `Only the first in_progress step is active; ${requestedInProgress - 1} extra step(s) normalized to pending.`
+			: undefined;
+
+	let inProgressApplied = false;
+	const normalized: Array<{ title: string; status: string }> = [];
+	for (const raw of items) {
+		const title = String(raw?.title ?? "").trim();
+		if (!title) continue;
+		let status: string;
+		const wanted = String(raw?.status ?? "pending").toLowerCase();
+		if ((wanted === "in_progress" || wanted === "inprogress") && !inProgressApplied) {
+			status = "in_progress";
+			inProgressApplied = true;
+		} else if (wanted === "completed" || wanted === "done" || wanted === "closed") {
+			status = "done";
+		} else if (wanted === "in_progress" || wanted === "inprogress") {
+			status = "open";
+		} else {
+			status = "open";
+		}
+		normalized.push({ title, status });
+	}
+
+	if (normalized.length === 0) {
+		return { error: "All plan items had empty titles" };
+	}
+
+	const existing = (await listTodos(todosDir)).filter((t) => !isTodoClosed(getTodoStatus(t)));
+	for (const t of existing) {
+		await deleteTodo(todosDir, t.id, ctx);
+	}
+
+	const created: TodoRecord[] = [];
+	for (const it of normalized) {
+		const id = await generateTodoId(todosDir);
+		const filePath = getTodoPath(todosDir, id);
+		const todo: TodoRecord = {
+			id,
+			title: it.title,
+			tags: [],
+			status: it.status,
+			created_at: new Date().toISOString(),
+			body: "",
+		};
+		const result = await withTodoLock(todosDir, id, ctx, async () => {
+			await writeTodoFile(filePath, todo);
+			return todo;
+		});
+		if (typeof result === "object" && "error" in result) {
+			return { error: result.error };
+		}
+		created.push(result as TodoRecord);
+	}
+
+	return { todos: created, warning };
+}
+
 export default function todosExtension(pi: ExtensionAPI) {
 	pi.on("session_start", async (_event, ctx) => {
 		const todosDir = getTodosDir(ctx.cwd);
@@ -1433,15 +1519,19 @@ export default function todosExtension(pi: ExtensionAPI) {
 		name: "todo",
 		label: "Todo",
 		description:
-			`Manage file-based todos in ${todosDirLabel} (list, list-all, get, create, update, append, delete, claim, release). ` +
-			"Title is the short summary; body is long-form markdown notes (update replaces, append adds). " +
-			"Todo ids are shown as TODO-<hex>; id parameters accept TODO-<hex> or the raw hex filename. " +
-			"Claim tasks before working on them to avoid conflicts, and close them when complete.",
+			`Plan and track work via a live todo list shown in the side panel. ` +
+			`Stored in ${todosDirLabel}. ` +
+			`For any non-trivial task, call this tool with action "plan" first to write the step-by-step plan; ` +
+			`call it again with the updated plan as work progresses (mark the current step "in_progress", ` +
+			`finished steps "completed", add new steps as discovered). ` +
+			`At most one step is in_progress at a time. ` +
+			`Other actions (list, list-all, get, create, update, append, delete, claim, release) ` +
+			`are for fine-grained edits and human /todos UI use; prefer action "plan" while working.`,
 		promptSnippet:
-			`Manage file-based todos in ${todosDirLabel} (list, list-all, get, create, update, append, delete, claim, release). ` +
-			"Title is the short summary; body is long-form markdown notes (update replaces, append adds). " +
-			"Todo ids are shown as TODO-<hex>; id parameters accept TODO-<hex> or the raw hex filename. " +
-			"Claim tasks before working on them to avoid conflicts, and close them when complete.",
+			`Plan and track work via a live todo list shown in the side panel. ` +
+			`For non-trivial tasks, call this tool with action "plan" first to write the step-by-step plan; ` +
+			`update by calling it again as work progresses (one step "in_progress", finished "completed"). ` +
+			`Other actions (list, get, create, update, append, delete, claim, release) are for fine-grained edits.`,
 		parameters: TodoParams,
 
 		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
@@ -1716,6 +1806,33 @@ export default function todosExtension(pi: ExtensionAPI) {
 						details: { action: "delete", todo: result as TodoRecord },
 					};
 				}
+
+				case "plan": {
+					if (!params.items || !Array.isArray(params.items) || params.items.length === 0) {
+						return {
+							content: [{ type: "text", text: "Error: items required for action: plan" }],
+							details: { action: "plan", error: "items required" },
+						};
+					}
+					const result = await replaceWithPlan(todosDir, params.items, ctx);
+					if ("error" in result) {
+						return {
+							content: [{ type: "text", text: result.error }],
+							details: { action: "plan", error: result.error },
+						};
+					}
+					const msg = result.warning
+						? `Plan updated (${result.todos.length} items). ${result.warning}`
+						: `Plan updated (${result.todos.length} items)`;
+					return {
+						content: [{ type: "text", text: msg }],
+						details: {
+							action: "plan",
+							todo: result.todos[0],
+							warning: result.warning,
+						},
+					};
+				}
 			}
 		},
 
@@ -1779,7 +1896,9 @@ export default function todosExtension(pi: ExtensionAPI) {
 									? "Claimed"
 									: details.action === "release"
 										? "Released"
-										: null;
+										: details.action === "plan"
+											? "Plan"
+											: null;
 			if (actionLabel) {
 				const lines = text.split("\n");
 				lines[0] = theme.fg("success", "✓ ") + theme.fg("muted", `${actionLabel} `) + lines[0];

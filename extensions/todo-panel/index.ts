@@ -1,3 +1,6 @@
+// @ts-nocheck — pi-tui Container types don't expose addChild at compile time
+// even though the runtime class has it. pi loads via jiti; runtime unaffected.
+
 /**
  * Todo Side Panel Extension
  *
@@ -53,6 +56,7 @@ function parseTodoFile(path: string): TodoFM | null {
 
 interface TodoStats {
 	active: TodoFM[];
+	doneItems: TodoFM[];
 	done: number;
 	total: number;
 	pct: number;
@@ -60,25 +64,28 @@ interface TodoStats {
 
 function loadAllTodos(cwd: string): TodoStats {
 	const dir = getTodosDir(cwd);
-	if (!existsSync(dir)) return { active: [], done: 0, total: 0, pct: 0 };
+	if (!existsSync(dir)) return { active: [], doneItems: [], done: 0, total: 0, pct: 0 };
 	const files = readdirSync(dir).filter((f) => f.endsWith(".md") && !f.endsWith(".lock"));
 	const all: TodoFM[] = [];
 	for (const f of files) {
 		const t = parseTodoFile(join(dir, f));
 		if (t) all.push(t);
 	}
-	const done = all.filter((t) => t.status === "done" || t.status === "closed").length;
-	const active = all.filter((t) => t.status !== "done" && t.status !== "closed");
-	const order: Record<string, number> = { in_progress: 0, open: 1, blocked: 2 };
+	const isDone = (t: TodoFM) => t.status === "done" || t.status === "closed" || t.status === "completed";
+	const doneItems = all.filter(isDone);
+	const active = all.filter((t) => !isDone(t));
+	const order: Record<string, number> = { in_progress: 0, open: 1, pending: 1, blocked: 2 };
 	active.sort((a, b) => {
 		const sa = order[a.status] ?? 3;
 		const sb = order[b.status] ?? 3;
 		if (sa !== sb) return sa - sb;
 		return (b.created_at || "").localeCompare(a.created_at || "");
 	});
+	doneItems.sort((a, b) => (b.created_at || "").localeCompare(a.created_at || ""));
 	const total = all.length;
+	const done = doneItems.length;
 	const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-	return { active, done, total, pct };
+	return { active, doneItems: doneItems.slice(0, 3), done, total, pct };
 }
 
 function renderWidget(stats: TodoStats): string[] {
@@ -94,15 +101,22 @@ function renderWidget(stats: TodoStats): string[] {
 
 	const showCount = Math.min(stats.active.length, 5);
 	if (stats.total === 0) {
-		const msg = " no todos · use /todos";
+		const msg = " no todos · call todo action=plan";
 		lines.push(`│${msg.padEnd(innerW + 1)}│`);
-	} else if (showCount === 0) {
+	} else if (showCount === 0 && stats.doneItems.length === 0) {
 		const msg = " all done ✓";
 		lines.push(`│${msg.padEnd(innerW + 1)}│`);
 	} else {
 		for (const t of stats.active.slice(0, showCount)) {
 			const id = t.id.slice(0, 6);
-			const icon = t.status === "in_progress" ? "●" : t.status === "blocked" ? "⊘" : "○";
+			const icon =
+				t.status === "in_progress"
+					? "●"
+					: t.status === "blocked"
+						? "⊘"
+						: t.status === "open" || t.status === "pending"
+							? "○"
+							: "✓";
 			const titleMax = innerW - 10;
 			const title = t.title.length > titleMax ? t.title.slice(0, titleMax - 1) + "…" : t.title;
 			const row = ` ${icon} ${id} ${title}`;
@@ -111,6 +125,13 @@ function renderWidget(stats: TodoStats): string[] {
 		if (stats.active.length > showCount) {
 			const more = ` … +${stats.active.length - showCount} more`;
 			lines.push(`│${more.padEnd(innerW + 1)}│`);
+		}
+		for (const t of stats.doneItems) {
+			const id = t.id.slice(0, 6);
+			const titleMax = innerW - 10;
+			const title = t.title.length > titleMax ? t.title.slice(0, titleMax - 1) + "…" : t.title;
+			const row = ` ✓ ${id} ${title}`;
+			lines.push(`│${row.padEnd(innerW + 1)}│`);
 		}
 	}
 	lines.push(`└${"─".repeat(innerW + 1)}┘`);

@@ -68,9 +68,11 @@ The YAML frontmatter **must** be the first thing in the file. No comments or bla
 ```yaml
 ---
 name: <skill-name>
-description: <what it does>. Use when <trigger phrases>. <key capabilities>.
+description: '<what it does>. Use when <trigger phrases>. <key capabilities>.'
 ---
 ```
+
+**Always quote the description value** — wrap in single quotes. Descriptions contain colons (`Use when:`, `Trigger on:`), slashes, and parentheses that break YAML flow parsing if left bare. Use double quotes only if the description contains an apostrophe.
 
 **Required fields:**
 - `name` — must match the directory name exactly
@@ -251,6 +253,7 @@ Run through this checklist before finishing:
 - [ ] `name` matches directory name
 - [ ] `name` uses only lowercase letters, digits, hyphens (no leading/trailing/consecutive hyphens)
 - [ ] `description` is under 1024 characters, no angle brackets
+- [ ] `description` value is wrapped in single quotes (or double quotes if it contains `'`)
 - [ ] `description` is in third person and includes trigger keywords
 - [ ] All "when to use" info is in description, not in body
 - [ ] No content before the opening `---`
