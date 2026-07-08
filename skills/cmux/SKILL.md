@@ -5,6 +5,7 @@ description: |
   for dev servers, test runners, background tasks, and embedded browsers.
   Read output, send commands, interact with web pages, and orchestrate
   multi-terminal workflows.
+disable-model-invocation: true
 ---
 
 # cmux Terminal & Browser Management

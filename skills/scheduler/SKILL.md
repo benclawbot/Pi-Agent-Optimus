@@ -2,6 +2,7 @@
 name: scheduler
 description: Schedule reminders and alerts. Use when "remind me", "set a timer", "schedule", "alert me later", or "notify".
 allowed-tools: Read,Bash,write
+disable-model-invocation: true
 ---
 
 # Scheduler

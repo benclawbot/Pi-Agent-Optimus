@@ -3,8 +3,17 @@
     "minimax": {
       "baseUrl": "https://api.minimax.io/anthropic",
       "api": "anthropic-messages",
-      "apiKey": "sk-cp-aAK-yQkSKwRslClsDJbGGoPnJI7AwDGaV7Uzs272MmrZDkIwhfFfdJssmmgFfiP0FOsEjiwoC8UWWValPZkrvOvMs41IHlsluwVB21JRXsnnXmKQwbxSGjY",
+      "_apiKeySource": "env:MINIMAX_API_KEY",
       "models": [
+        {
+          "id": "MiniMax/M3",
+          "name": "MiniMax M3",
+          "reasoning": false,
+          "input": ["text", "image"],
+          "contextWindow": 200000,
+          "maxTokens": 8192,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
+        },
         {
           "id": "MiniMax/M2.7",
           "name": "MiniMax M2.7",
@@ -28,7 +37,7 @@
     "nvidia": {
       "baseUrl": "https://integrate.api.nvidia.com/v1",
       "api": "openai-completions",
-      "apiKey": "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",
+      "_apiKeySource": "env:NVIDIA_API_KEY",
       "models": [
         {
           "id": "minimaxai/minimax-m2.7",

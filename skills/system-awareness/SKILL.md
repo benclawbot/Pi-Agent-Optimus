@@ -2,6 +2,7 @@
 name: system-awareness
 description: Track running processes, dev servers, and open ports. Use when "what's running", "kill server", "check ports", "running processes", "dev servers", "stop dev", or "restart server".
 allowed-tools: Read,Bash,execute_command
+disable-model-invocation: true
 ---
 
 # System Awareness

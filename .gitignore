@@ -1,10 +1,19 @@
 # Sensitive - don't sync
 auth.json
+trust.json
+# Local upgrade-time snapshots that may contain plaintext API keys
+.pre-upgrade-backup-*/
 
 # Local state - don't sync
 .pi/
+.pi-progress/
+.memory/
 sessions/
 bin/
+npm/
+telegram-poller.lock
+# Third-party deps for collectors
+collectors/node_modules/
 
 
 pi-crash.log
@@ -18,6 +27,18 @@ session-manager-config.toml
 
 # Extension dependencies (install locally)
 extensions/*/node_modules/
+# Top-level and hub node_modules — never commit third-party deps
+node_modules/
+hub/node_modules/
+# IDE history / cache directories
+.history/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# One-off artefacts from session runs
+.cache/
+.pi-progress/
 
 # OS files
 .DS_Store

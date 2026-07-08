@@ -12,7 +12,7 @@
  */
 
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { existsSync, readFileSync, appendFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, appendFileSync, writeFileSync, mkdirSync, statSync, unlinkSync, renameSync } from "node:fs";
 import path from "node:path";
 import os from "node:os";
 
@@ -33,6 +33,22 @@ function getBtwFile(): string {
 
 function getReasoningStateFile(): string {
 	return path.join(getBtwDir(), "reasoning-state.json");
+}
+
+const BTW_MAX_SIZE = 1 * 1024 * 1024; // 1MB
+
+function rotateIfNeeded(file: string): void {
+	try {
+		const stats = statSync(file);
+		if (stats.size > BTW_MAX_SIZE) {
+			if (existsSync(`${file}.1`)) {
+				unlinkSync(`${file}.1`);
+			}
+			renameSync(file, `${file}.1`);
+		}
+	} catch {
+		// File doesn't exist yet, skip rotation
+	}
 }
 
 interface ReasoningState {
@@ -76,6 +92,7 @@ export default function btwExtension(pi: ExtensionAPI) {
 			const timestamp = new Date().toLocaleString();
 
 			// Append to the btw file for persistence
+			rotateIfNeeded(btwFile);
 			const entry = `**${timestamp}:** ${message}\n`;
 			appendFileSync(btwFile, entry, "utf8");
 

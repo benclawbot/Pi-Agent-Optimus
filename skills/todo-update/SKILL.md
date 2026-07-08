@@ -1,6 +1,7 @@
 ---
 name: todo-update
 description: Update and close todos with automatic summary. Use when "close todo", "done with todo", "mark complete", "update todo status", or finishing a todo task.
+disable-model-invocation: true
 ---
 
 # Todo Update

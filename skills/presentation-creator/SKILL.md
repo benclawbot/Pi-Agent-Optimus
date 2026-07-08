@@ -1,6 +1,7 @@
 ---
 name: presentation-creator
 description: Create data-driven presentation slides using React, Vite, and Recharts with Sentry branding. Use when asked to "create a presentation", "build slides", "make a deck", "create a data presentation", "build a Sentry presentation". Scaffolds a complete slide-based app with charts, animations, and single-file HTML output.
+disable-model-invocation: true
 ---
 
 # Sentry Presentation Builder

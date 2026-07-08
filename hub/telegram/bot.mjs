@@ -4,12 +4,12 @@
  * Polls for new pending proposals and sends them to the user
  * for approval. Handles [Approve] [Modify] [Dismiss] callbacks.
  *
- * Skills are saved to: ~/.memory/skills/{id}/
- * Skills registry at:   ~/.memory/skills/registry.json
+ * Skills are saved to: {SKILLS_DIR}/{id}/SKILL.md
+ * Skills registry at:   {SKILLS_DIR}/registry.json
  *
  * Usage:
- *   TELEGRAM_BOT_TOKEN=... node bot.mjs
- *   TELEGRAM_BOT_TOKEN=... node bot.mjs --approve-all  ← for testing
+ *   TELEGRAM_BOT_TOKEN=... node bot.mjs --skills-dir ~/Omni-Memory/skills
+ *   TELEGRAM_BOT_TOKEN=... node bot.mjs --skills-dir ~/Omni-Memory/skills --approve-all
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -26,7 +26,11 @@ if (!TOKEN) {
   process.exit(1);
 }
 
-const SKILLS_DIR = path.join(os.homedir(), ".memory", "skills");
+// CLI args
+const args = process.argv.slice(2);
+const SKILLS_DIR = args.includes("--skills-dir")
+  ? args[args.indexOf("--skills-dir") + 1]
+  : path.join(os.homedir(), "Omni-Memory", "skills");
 const REGISTRY_PATH = path.join(SKILLS_DIR, "registry.json");
 const Proposals_PATH = path.join(os.homedir(), ".memory", "hub", "proposals.db");
 

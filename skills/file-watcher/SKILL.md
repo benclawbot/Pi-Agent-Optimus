@@ -2,6 +2,7 @@
 name: file-watcher
 description: Watch files for changes and trigger actions. Use when "watch files", "auto-test on save", "run on change", "file watcher", or "monitor changes".
 allowed-tools: Read,Bash,execute_command
+disable-model-invocation: true
 ---
 
 # File Watcher

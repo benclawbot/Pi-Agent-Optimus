@@ -14,7 +14,7 @@ import betterSqlite3 from "better-sqlite3";
 
 const EXPORT_DIR = process.argv.includes("--export-dir")
   ? process.argv[process.argv.indexOf("--export-dir") + 1]
-  : path.join(os.homedir(), ".memory", "exports");
+  : path.join(os.homedir(), "Omni-Memory", "exports");
 
 const DB_PATH = path.join(os.homedir(), ".memory", "hub", "events.db");
 

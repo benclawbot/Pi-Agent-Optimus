@@ -2,6 +2,7 @@
 name: architecture-diagram
 description: Create professional, dark-themed architecture diagrams as standalone HTML files with SVG graphics. Use when "architecture diagram", "system diagram", "infrastructure diagram", "cloud diagram", "system design", or "component map" is requested. Generates self-contained HTML files.
 location: C:\Users\thoma\.pi\agent\skills\architecture-diagram\SKILL.md
+disable-model-invocation: true
 ---
 
 # Architecture Diagram Skill

@@ -1,12 +1,75 @@
 {
   "defaultProvider": "minimax",
-  "defaultModel": "MiniMax/M2.7",
-  "defaultThinkingLevel": "off",
+  "defaultModel": "MiniMax-M3",
+  "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "theme": "dark",
   "shellCommandPrefix": "shopt -s expand_aliases",
   "hooks": {
     "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [
@@ -28,19 +91,84 @@
     "maxRetries": 2
   },
   "skills": [
+    "~/.pi/agent/skills/verify-done",
+    "~/.pi/agent/skills/deep-research",
     "~/.pi/agent/skills/startup",
     "~/.pi/agent/skills/quick-ref",
     "~/.pi/agent/skills/commit",
-    "~/.pi/agent/skills/caveman"
+    "~/.pi/agent/skills/caveman",
+    "~/.agents/skills",
+    "~/.agents/skills/api-and-interface-design",
+    "~/.agents/skills/browser-testing-with-devtools",
+    "~/.agents/skills/ci-cd-and-automation",
+    "~/.agents/skills/code-review-and-quality",
+    "~/.agents/skills/code-simplification",
+    "~/.agents/skills/context-engineering",
+    "~/.agents/skills/debugging-and-error-recovery",
+    "~/.agents/skills/deprecation-and-migration",
+    "~/.agents/skills/documentation-and-adrs",
+    "~/.agents/skills/doubt-driven-development",
+    "~/.agents/skills/frontend-ui-engineering",
+    "~/.agents/skills/git-workflow-and-versioning",
+    "~/.agents/skills/idea-refine",
+    "~/.agents/skills/incremental-implementation",
+    "~/.agents/skills/interview-me",
+    "~/.agents/skills/observability-and-instrumentation",
+    "~/.agents/skills/performance-optimization",
+    "~/.agents/skills/planning-and-task-breakdown",
+    "~/.agents/skills/security-and-hardening",
+    "~/.agents/skills/shipping-and-launch",
+    "~/.agents/skills/source-driven-development",
+    "~/.agents/skills/spec-driven-development",
+    "~/.agents/skills/test-driven-development",
+    "~/.agents/skills/using-agent-skills",
+    "~/.pi/agent/skills/skill-evolution",
+    "~/.pi/agent/skills/project-health",
+    "~/.pi/agent/skills/system-awareness",
+    "~/.pi/agent/skills/auto-test",
+    "~/.pi/agent/skills/file-watcher",
+    "~/.pi/agent/skills/ci-watcher",
+    "~/.pi/agent/skills/architecture-diagram",
+    "~/.pi/agent/skills/scheduler",
+    "~/.pi/agent/skills/db-introspect",
+    "~/.pi/agent/skills/auto-recover",
+    "~/.pi/agent/skills/context-memory",
+    "~/.pi/agent/skills/self-optimization-loop",
+    "~/.pi/agent/skills/github-commit-push",
+    "~/.pi/agent/skills/extend-not-duplicate",
+    "~/.pi/agent/skills/pi-extension-build"
   ],
   "enableSkillCommands": true,
   "extensions": [
     "+extensions/btw/index.ts",
     "+extensions/reload/index.ts",
-    "+extensions/todos/index.ts"
+    "+extensions/todos/index.ts",
+    "+extensions/todo-panel/index.ts",
+    "+extensions/telegram/index.ts",
+    "+extensions/load-skill/index.ts",
+    "+extensions/subagent/index.ts",
+    "+extensions/fusion/index.ts",
+    "+extensions/repo-map/index.ts",
+    "+extensions/long-task/index.ts",
+    "+extensions/cost/index.ts",
+    "+extensions/status/index.ts",
+    "+extensions/execute-command/index.ts",
+    "+extensions/commit-review/index.ts",
+    "+extensions/auto-skill-suggest/index.ts",
+    "+extensions/goal-loop/index.ts",
+    "+extensions/session-notes/index.ts",
+    "+extensions/skill-auto-evolve/index.ts",
+    "+extensions/branch-cleanup/index.ts",
+    "+extensions/local-ollama/index.ts"
   ],
-  "lastChangelogVersion": "0.74.0",
+  "lastChangelogVersion": "0.80.3",
   "terminal": {
     "showTerminalProgress": false
-  }
+  },
+  "packages": [
+    "npm:context-mode",
+    "git:github.com/DietrichGebert/ponytail",
+    "npm:pi-sidebar-tui"
+  ],
+  "doubleEscapeAction": "fork"
 }

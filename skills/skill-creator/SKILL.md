@@ -1,6 +1,7 @@
 ---
 name: skill-creator
 description: Create new agent skills following the Agent Skills specification. Use when asked to "create a skill", "add a new skill", "write a skill", "make a skill", "build a skill", or scaffold a new skill with SKILL.md. Guides through requirements, planning, writing, registration, and verification.
+disable-model-invocation: true
 ---
 
 # Create a New Skill

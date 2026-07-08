@@ -1,58 +1,60 @@
 #!/usr/bin/env bash
-# agent-pull.sh — pull approved skills on agent startup
-# Run from ~/.pi/agent/ or wherever the agent's home is.
+# agent-pull.sh — pull approved skills on agent startup.
+# Skills come from the Omni-Memory/skills folder in your git repo.
 #
-# Usage: ./agent-pull.sh
-#   SKILLS_REPO=https://github.com/you/memory-skills  (default from env or hardcoded)
-#   AGENT_DIR=~/.pi/agent                            (where to install skills)
+# Usage:
+#   AGENT_DIR=~/.pi/agent bash ~/Omni-Memory/skills/agent-pull.sh
+#   Or run from your pi/agent dir: bash ../Omni-Memory/skills/agent-pull.sh
 #
 set -euo pipefail
 
 AGENT_DIR="${AGENT_DIR:-$HOME/.pi/agent}"
-SKILLS_REPO="${SKILLS_REPO:-git@github.com:you/memory-skills.git}"
-SKILLS_TMP="/tmp/memory-skills-pull-$$"
+SKILLS_REPO_DIR="${SKILLS_REPO_DIR:-$HOME/Omni-Memory}"
+SKILLS_SOURCE="$SKILLS_REPO_DIR/skills"
 SKILLS_TARGET="$AGENT_DIR/skills"
 
-# GitHub SSH known hosts
+# GitHub SSH known hosts (first run only)
 mkdir -p ~/.ssh && chmod 700 ~/.ssh
 
-echo "[agent-pull] Pulling skills from $SKILLS_REPO"
+echo "[agent-pull] Pulling skills from $SKILLS_SOURCE"
 
-# Clone to tmp
-git clone --depth=1 "$SKILLS_REPO" "$SKILLS_TMP" 2>/dev/null || {
-  echo "[agent-pull] No skills repo or no network — skipping"
-  exit 0
-}
+if [[ ! -d "$SKILLS_SOURCE" ]]; then
+  echo "[agent-pull] Omni-Memory repo not cloned yet — cloning..."
+  GIT_REPO="https://github.com/benclawbot/Omni-Memory.git"
+  git clone --depth=1 "$GIT_REPO" "$SKILLS_REPO_DIR" 2>/dev/null || {
+    echo "[agent-pull] Clone failed — check SSH key and network"
+    exit 0
+  }
+fi
+
+# Pull latest skills
+cd "$SKILLS_REPO_DIR"
+git pull --ff-only 2>/dev/null || echo "[agent-pull] Pull failed — using cached skills"
 
 # Read registry
-REGISTRY="$SKILLS_TMP/registry.json"
+REGISTRY="$SKILLS_SOURCE/registry.json"
 if [[ ! -f "$REGISTRY" ]]; then
-  echo "[agent-pull] No registry.json in skills repo — skipping"
-  rm -rf "$SKILLS_TMP"
+  echo "[agent-pull] No registry.json — no skills to install"
   exit 0
 fi
 
-# Load skill IDs from registry
 SKILL_IDS=$(python3 -c "import json,sys; r=json.load(open('$REGISTRY')); print('\n'.join(s['id'] for s in r.get('skills',[]) if s.get('status')=='active'))" 2>/dev/null || echo "")
 
 if [[ -z "$SKILL_IDS" ]]; then
-  echo "[agent-pull] No active skills — skipping"
-  rm -rf "$SKILLS_TMP"
+  echo "[agent-pull] No active skills"
   exit 0
 fi
 
-# Copy each skill's SKILL.md to the agent's skills dir
 COPIED=0
 for SKILL_ID in $SKILL_IDS; do
-  SRC_SKILL="$SKILLS_TMP/$SKILL_ID/SKILL.md"
-  DST_SKILL="$SKILLS_TARGET/$SKILL_ID/SKILL.md"
-  if [[ -f "$SRC_SKILL" ]]; then
-    mkdir -p "$(dirname "$DST_SKILL")"
-    cp "$SRC_SKILL" "$DST_SKILL"
-    echo "[agent-pull] Installed skill: $SKILL_ID"
+  SRC="$SKILLS_SOURCE/$SKILL_ID/SKILL.md"
+  DST="$SKILLS_TARGET/$SKILL_ID/SKILL.md"
+  if [[ -f "$SRC" ]]; then
+    mkdir -p "$(dirname "$DST")"
+    cp "$SRC" "$DST"
+    echo "[agent-pull] Installed: $SKILL_ID"
     COPIED=$((COPIED+1))
   fi
 done
 
-rm -rf "$SKILLS_TMP"
 echo "[agent-pull] Done — $COPIED skills installed to $SKILLS_TARGET"

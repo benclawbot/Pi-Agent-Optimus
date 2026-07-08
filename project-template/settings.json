@@ -1,0 +1,6 @@
+{
+  "_comment": "Drop into any project's .pi/settings.json to make the addyosmani/agent-skills available for that project (in addition to global skills).",
+  "skills": [
+    "~/.agents/skills"
+  ]
+}

@@ -1,6 +1,7 @@
 ---
 name: 5-why
 description: Drill down from symptom to root cause by asking "why" 5 times. Use when "root cause", "5 why", "why is this happening", or troubleshooting issues. Always implement fixes after the analysis.
+disable-model-invocation: true
 ---
 
 # 5 Why Root Cause Analysis

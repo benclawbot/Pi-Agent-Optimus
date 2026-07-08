@@ -1,6 +1,7 @@
 ---
 name: add-mcp-server
 description: Add an MCP server to pi. Use when asked to "add mcp server", "configure mcp", "add mcp", "new mcp server", "setup mcp", "connect mcp server", or "register mcp server". Handles both global and project-local configurations.
+disable-model-invocation: true
 ---
 
 # Add an MCP Server
