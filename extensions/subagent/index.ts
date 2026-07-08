@@ -16,34 +16,11 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
 import { spawn } from "node:child_process";
-import { existsSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { dirname } from "node:path";
+import { resolvePiEntry } from "../_shared/pi-resolve";
 
 const READ_HEAVY_TOOLS = "read,grep,find,ls";
 const READ_AND_WRITE_TOOLS = "read,grep,find,ls,bash,edit,write";
-
-/**
- * Resolve the absolute path to the `pi` CLI entry script.
- * The `pi` shim is a shell wrapper, so spawning it directly fails on Windows
- * without the .cmd suffix. We bypass the shim and spawn node with the actual
- * CLI script from the global node_modules.
- */
-function resolvePiEntry(): { command: string; prefixArgs: string[] } | null {
-	const candidates = [
-		// Global install: ~/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/cli.js
-		join(process.env.APPDATA || "", "npm", "node_modules", "@earendil-works", "pi-coding-agent", "dist", "cli.js"),
-		// Bun install location fallback
-		join(process.env.HOME || "", ".bun", "install", "global", "node_modules", "@earendil-works", "pi-coding-agent", "dist", "cli.js"),
-		// Cwd-local
-		join(process.cwd(), "node_modules", "@earendil-works", "pi-coding-agent", "dist", "cli.js"),
-	];
-	for (const c of candidates) {
-		if (c && existsSync(c)) {
-			return { command: process.execPath, prefixArgs: [c] };
-		}
-	}
-	return null;
-}
 
 interface SubagentResult {
 	stdout: string;
@@ -104,8 +81,14 @@ function runSubagent(args: {
 			stdio: ["ignore", "pipe", "pipe"],
 		});
 
-		let stdout = "";
-		let stderr = "";
+		const STDOUT_MAX = 500_000;
+		const STDERR_MAX = 50_000;
+		let stdoutHead = 0;
+		let stderrHead = 0;
+		const stdoutRing: string[] = [];
+		const stderrRing: string[] = [];
+		let stdoutSize = 0;
+		let stderrSize = 0;
 		let killed = false;
 
 		const killTimer = setTimeout(() => {
@@ -115,14 +98,27 @@ function runSubagent(args: {
 		}, args.maxDurationMs);
 
 		child.stdout.on("data", (chunk: Buffer) => {
-			stdout += chunk.toString("utf8");
-			// Cap stdout to avoid OOM
-			if (stdout.length > 500_000) stdout = stdout.slice(-500_000);
+			const s = chunk.toString("utf8");
+			stdoutRing.push(s);
+			stdoutSize += s.length;
+			while (stdoutSize > STDOUT_MAX && stdoutRing.length > 0) {
+				const evicted = stdoutRing.shift()!;
+				stdoutSize -= evicted.length;
+				stdoutHead += evicted.length;
+			}
 		});
 		child.stderr.on("data", (chunk: Buffer) => {
-			stderr += chunk.toString("utf8");
-			if (stderr.length > 50_000) stderr = stderr.slice(-50_000);
+			const s = chunk.toString("utf8");
+			stderrRing.push(s);
+			stderrSize += s.length;
+			while (stderrSize > STDERR_MAX && stderrRing.length > 0) {
+				const evicted = stderrRing.shift()!;
+				stderrSize -= evicted.length;
+				stderrHead += evicted.length;
+			}
 		});
+
+		const assemble = (ring: string[], size: number): string => ring.join("");
 
 		child.on("error", (err) => {
 			clearTimeout(killTimer);
@@ -130,6 +126,8 @@ function runSubagent(args: {
 		});
 		child.on("close", (code) => {
 			clearTimeout(killTimer);
+			const stdout = assemble(stdoutRing, stdoutSize);
+			const stderr = assemble(stderrRing, stderrSize);
 			resolve({
 				stdout,
 				stderr,
@@ -160,6 +158,7 @@ export default function subagentExtension(pi: ExtensionAPI) {
 			"Pass the full task in `goal`. The subagent has no memory of the parent session.",
 			"Use mode='read' for analysis (default), mode='read-write' when the subagent must edit files.",
 			"Results are truncated to ~50k chars. Ask the subagent to summarize, not dump.",
+			"mode='read-write' grants bash access. Only use with trusted goals. Prefer read-only mode for untrusted or external-project tasks.",
 		],
 		parameters: Type.Object({
 			goal: Type.String({

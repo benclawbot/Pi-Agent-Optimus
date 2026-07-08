@@ -17,6 +17,8 @@ MANDATORY before:
 
 ## The 5-step gate
 
+Before step 1, re-read the request and make a requirements ledger: requested outcomes, constraints, expected artifacts, and the evidence that will prove each one.
+
 ### 1. Did I run the change?
 
 If the change is a script, command, or test — **run it**. Show the exit code and last 20 lines of output. If you can't run it, say so explicitly.
@@ -63,6 +65,12 @@ In ONE short paragraph, state:
 - The exit code / outcome
 - Any caveat the user should know
 
+Before passing the gate:
+- Re-check every item in the requirements ledger
+- Verify requested artifacts exist at the expected paths and open, parse, or run as appropriate
+- Prefer runtime or test evidence over source inspection, documentation, or memory
+- Remember that absence of evidence is not evidence of absence
+
 If you cannot fill in all four fields, you have not verified.
 
 ## Anti-patterns
@@ -80,6 +88,8 @@ The change is **not done**. Three options:
 1. **Fix it** — debug, re-run, re-verify
 2. **Roll it back** — `git checkout -- <file>` if the change made things worse
 3. **Tell the user** — be honest about what didn't work, what you tried, and what's left
+
+Treat the failure as evidence. Change the hypothesis or method before retrying; do not repeat the same failed action unchanged.
 
 Never close a todo as done while the verification gate is red.
 

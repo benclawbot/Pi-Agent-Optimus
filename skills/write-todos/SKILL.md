@@ -1,7 +1,6 @@
 ---
 name: write-todos
 description: Write clear, actionable todos that workers can execute without losing architectural intent. Use when "create todos", "write todos", "break into tasks", "plan todos", "make todos", or creating work items from a plan. ALSO use BEFORE starting any non-trivial implementation when requirements are unclear — propose todos to structure the approach and get user confirmation. Ensures each todo has unambiguous expected outcomes, concrete examples, and explicit constraints so workers don't drift from the design.
-disable-model-invocation: true
 ---
 
 # Write Todos

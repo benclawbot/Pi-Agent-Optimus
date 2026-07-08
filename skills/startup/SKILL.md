@@ -13,7 +13,7 @@ Loads user preferences and project memory at session start with optimized startu
 This skill implements 4 optimizations for faster startup on large codebases:
 
 1. **Project Index Cache** - Pre-scanned structure cached to disk
-2. **Parallel Scanning** - Convention files scanned concurrently
+2. **Parallel Scanning** - Convention files scanned concurrently  
 3. **Selective Loading** - Only relevant directories scanned
 4. **Incremental Updates** - Cache invalidated only when files change
 
@@ -74,7 +74,7 @@ If no cache hit, scan conventions in parallel:
 ```bash
 if [ "$CACHE_HIT" = "false" ]; then
   mkdir -p "$CACHE_DIR"
-
+  
   # Run scans in parallel, merge results
   {
     echo "=== CLAUDE MD ===" && [ -f CLAUDE.md ] && head -50 CLAUDE.md
@@ -82,7 +82,7 @@ if [ "$CACHE_HIT" = "false" ]; then
     echo "=== CURSOR RULES ===" && [ -d .cursor/rules ] && ls .cursor/rules/ 2>/dev/null | head -20
     echo "=== PROJECT STRUCTURE ===" && ls -d */ 2>/dev/null | head -20
   } > "$CACHE_DIR/conventions.json"
-
+  
   # Store scan timestamp
   date -u +"%Y-%m-%dT%H:%M:%SZ" > "$CACHE_DIR/last-scan.txt"
 fi

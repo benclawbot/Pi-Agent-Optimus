@@ -17,8 +17,8 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
-import { readFileSync, writeFileSync, existsSync, renameSync, mkdirSync, readdirSync, statSync } from "node:fs";
-import { join, isAbsolute } from "node:path";
+import { readFileSync, writeFileSync, existsSync, renameSync, mkdirSync, readdirSync, statSync, realpathSync } from "node:fs";
+import { join, isAbsolute, dirname } from "node:path";
 
 const PROGRESS_FILENAME = ".pi-progress.md";
 const PROGRESS_DIR = ".pi-progress";
@@ -69,12 +69,16 @@ function serializeProgress(state: ProgressState): string {
 }
 
 function findExistingProgress(cwd: string): string | null {
-	// Check cwd, then walk up
-	let dir = cwd;
+	let dir: string;
+	try {
+		dir = realpathSync(cwd);
+	} catch {
+		dir = cwd;
+	}
 	for (let i = 0; i < 5; i++) {
 		const p = join(dir, PROGRESS_FILENAME);
 		if (existsSync(p)) return p;
-		const parent = join(dir, "..");
+		const parent = dirname(dir);
 		if (parent === dir) break;
 		dir = parent;
 	}

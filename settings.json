@@ -1,7 +1,7 @@
 {
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-20250514",
-  "defaultThinkingLevel": "medium",
+  "defaultProvider": "minimax",
+  "defaultModel": "MiniMax/M2.7",
+  "defaultThinkingLevel": "off",
   "hideThinkingBlock": true,
   "theme": "dark",
   "shellCommandPrefix": "shopt -s expand_aliases",
@@ -15,95 +15,23 @@
             "command": "rtk hook claude"
           }
         ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
       }
     ]
   },
   "compaction": {
     "enabled": true,
-    "reserveTokens": 16384,
-    "keepRecentTokens": 20000
+    "reserveTokens": 8192,
+    "keepRecentTokens": 15000
   },
   "retry": {
     "enabled": true,
-    "maxRetries": 3
+    "maxRetries": 2
   },
   "skills": [
-    "~/.pi/agent/skills/verify-done",
-    "~/.pi/agent/skills/deep-research",
     "~/.pi/agent/skills/startup",
     "~/.pi/agent/skills/quick-ref",
     "~/.pi/agent/skills/commit",
     "~/.pi/agent/skills/caveman",
-    "~/.agents/skills",
-    "~/.agents/skills/api-and-interface-design",
-    "~/.agents/skills/browser-testing-with-devtools",
-    "~/.agents/skills/ci-cd-and-automation",
-    "~/.agents/skills/code-review-and-quality",
-    "~/.agents/skills/code-simplification",
-    "~/.agents/skills/context-engineering",
-    "~/.agents/skills/debugging-and-error-recovery",
-    "~/.agents/skills/deprecation-and-migration",
-    "~/.agents/skills/documentation-and-adrs",
-    "~/.agents/skills/doubt-driven-development",
-    "~/.agents/skills/frontend-ui-engineering",
-    "~/.agents/skills/git-workflow-and-versioning",
-    "~/.agents/skills/idea-refine",
-    "~/.agents/skills/incremental-implementation",
-    "~/.agents/skills/interview-me",
-    "~/.agents/skills/observability-and-instrumentation",
-    "~/.agents/skills/performance-optimization",
-    "~/.agents/skills/planning-and-task-breakdown",
-    "~/.agents/skills/security-and-hardening",
-    "~/.agents/skills/shipping-and-launch",
-    "~/.agents/skills/source-driven-development",
-    "~/.agents/skills/spec-driven-development",
-    "~/.agents/skills/test-driven-development",
-    "~/.agents/skills/using-agent-skills",
     "~/.pi/agent/skills/skill-evolution",
     "~/.pi/agent/skills/project-health",
     "~/.pi/agent/skills/system-awareness",
@@ -114,26 +42,32 @@
     "~/.pi/agent/skills/scheduler",
     "~/.pi/agent/skills/db-introspect",
     "~/.pi/agent/skills/auto-recover",
-    "~/.pi/agent/skills/context-memory"
+    "~/.pi/agent/skills/context-memory",
+    "~/.pi/agent/skills/proactive-context",
+    "~/.pi/agent/skills/quick-context",
+    "~/.pi/agent/skills/skill-chain",
+    "~/.pi/agent/skills/improvement-tracker",
+    "~/.pi/agent/skills/task-continuity",
+    "~/.pi/agent/skills/decision-tracker",
+    "~/.pi/agent/skills/daily-standup",
+    "~/.pi/agent/skills/quick-project-switch",
+    "~/.pi/agent/skills/task-linker",
+    "~/.pi/agent/skills/intent-classifier",
+    "~/.pi/agent/skills/memory-summarizer",
+    "~/.pi/agent/skills/tech-stack-detector",
+    "~/.pi/agent/skills/skill-marketplace",
+    "~/.pi/agent/skills/skill-memory-sharing",
+    "~/.pi/agent/skills/chain-of-thought",
+    "~/.pi/agent/skills/self-optimization-loop"
   ],
   "enableSkillCommands": true,
   "extensions": [
     "+extensions/btw/index.ts",
     "+extensions/reload/index.ts",
-    "+extensions/todos/index.ts",
-    "+extensions/todo-panel/index.ts",
-    "+extensions/telegram/index.ts",
-    "+extensions/load-skill/index.ts",
-    "+extensions/subagent/index.ts",
-    "+extensions/fusion/index.ts",
-    "+extensions/repo-map/index.ts",
-    "+extensions/long-task/index.ts"
+    "+extensions/todos/index.ts"
   ],
-  "lastChangelogVersion": "0.79.3",
+  "lastChangelogVersion": "0.74.0",
   "terminal": {
     "showTerminalProgress": false
-  },
-  "packages": [
-    "npm:context-mode"
-  ]
+  }
 }

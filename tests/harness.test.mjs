@@ -85,6 +85,20 @@ test("specialist skills are hidden from the default model prompt", async () => {
   }
 });
 
+test("agent instructions enforce the error-prevention protocol", async () => {
+  const agents = await source("AGENTS.md");
+  const verifyDone = await source("skills/verify-done/SKILL.md");
+
+  assert.match(agents, /requirements ledger/i);
+  assert.match(agents, /Absence of evidence is not evidence of absence/i);
+  assert.match(agents, /cheapest decisive check/i);
+  assert.match(agents, /do not repeat the same failed action unchanged/i);
+  assert.match(agents, /never simulate a tool action/i);
+  assert.match(agents, /open, parse, or run at the expected path/i);
+  assert.match(verifyDone, /Re-check every item in the requirements ledger/i);
+  assert.match(verifyDone, /Verify requested artifacts exist at the expected paths/i);
+});
+
 test("Telegram bridge is enabled and guarded by a single-instance lock", async () => {
   const settings = JSON.parse(await source("settings.json"));
   const telegram = await source("extensions/telegram/index.ts");

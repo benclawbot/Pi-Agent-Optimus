@@ -18,12 +18,11 @@ export default function reloadExtension(pi: ExtensionAPI) {
 			properties: {},
 		},
 		async execute(_toolCallId, _params, _signal, _onUpdate, _ctx) {
-			// Trigger the actual reload via the runtime API.
-			// Do NOT use sendUserMessage("/reload", { deliverAs: "followUp" }) — that
-			// re-injects /reload as a new user turn, which the model then answers by
-			// calling pi_reload again, creating an infinite loop.
-			await pi.reload();
-			return { content: [{ type: "text", text: "Reloaded." }] };
+			// Queue /reload as a follow-up command to trigger the reload
+			pi.sendUserMessage("/reload", { deliverAs: "followUp" });
+			return {
+				content: [{ type: "text", text: "Reload queued." }],
+			};
 		},
 	});
 }

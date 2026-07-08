@@ -2,7 +2,6 @@
 name: skill-evolution
 description: Captures usage feedback and improves skills based on experience. Use when "learn from this", "improve this skill", "capture this pattern", "remember what worked", or after discovering effective approaches. Monitors skill effectiveness, stores lessons, and suggests updates.
 allowed-tools: Read,Bash,execute_command,write,todo
-disable-model-invocation: true
 ---
 
 # Skill Evolution
