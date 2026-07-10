@@ -269,10 +269,24 @@ function wrapSummary(summary: string, snap: Snapshot, inject: boolean): string {
 	return `${ref}\n\n${summary}`;
 }
 
-function readSettings(pi: ExtensionAPI): typeof DEFAULTS {
-	// ponytail: read from ctx.model registry config? Simpler: hard defaults, expose via flag later
-	void pi;
-	return DEFAULTS;
+function readSettings(): typeof DEFAULTS {
+	// Settings resolved from process.env so they survive settings.json drift:
+	//   PI_PRE_COMPACT_ENABLED=0      -> disable
+	//   PI_PRE_COMPACT_MAX=10         -> override maxSnapshots
+	//   PI_PRE_COMPACT_INJECT_REF=0   -> disable <snapshot-ref> injection
+	const env = (typeof process !== "undefined" && process.env) || {};
+	const num = (k, d) => {
+		const raw = env[k];
+		if (raw === undefined) return d;
+		const n = Number(raw);
+		return Number.isFinite(n) ? n : d;
+	};
+	const enabledRaw = env.PI_PRE_COMPACT_ENABLED;
+	return {
+		enabled: enabledRaw === undefined ? DEFAULTS.enabled : enabledRaw !== "0" && enabledRaw !== "false",
+		maxSnapshots: num("PI_PRE_COMPACT_MAX", DEFAULTS.maxSnapshots),
+		injectRef: env.PI_PRE_COMPACT_INJECT_REF === undefined ? DEFAULTS.injectRef : env.PI_PRE_COMPACT_INJECT_REF !== "0",
+	};
 }
 
 function listSnapshots(dir: string): { id: string; takenAt: string; trigger: string; tokens: number }[] {
@@ -295,7 +309,7 @@ function listSnapshots(dir: string): { id: string; takenAt: string; trigger: str
 }
 
 export default function preCompactSnapshotExtension(pi: ExtensionAPI) {
-	const settings = readSettings(pi);
+	const settings = readSettings();
 
 	pi.on("session_before_compact", async (event, ctx) => {
 		if (!settings.enabled) return;

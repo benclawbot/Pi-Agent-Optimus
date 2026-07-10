@@ -1,75 +1,12 @@
 {
   "defaultProvider": "minimax",
-  "defaultModel": "MiniMax-M3",
+  "defaultModel": "minimax/MiniMax-M3",
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "theme": "dark",
   "shellCommandPrefix": "shopt -s expand_aliases",
   "hooks": {
     "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      },
       {
         "matcher": "Bash",
         "hooks": [
@@ -161,12 +98,11 @@
     "+extensions/branch-cleanup/index.ts",
     "+extensions/local-ollama/index.ts"
   ],
-  "lastChangelogVersion": "0.80.3",
+  "lastChangelogVersion": "0.80.5",
   "terminal": {
     "showTerminalProgress": false
   },
   "packages": [
-    "npm:context-mode",
     "git:github.com/DietrichGebert/ponytail",
     "npm:pi-sidebar-tui"
   ],
