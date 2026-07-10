@@ -31,12 +31,20 @@ const manualSkills = [
 for (const name of manualSkills) {
   const skillPath = path.join(root, "skills", name, "SKILL.md");
   let contents = await readFile(skillPath, "utf8");
-  if (/^disable-model-invocation:/m.test(contents)) {
-    contents = contents.replace(/^disable-model-invocation:.*$/m, "disable-model-invocation: true");
+  // Find the FIRST horizontal rule after the opening fence. The frontmatter is
+  // delimited by `---` on its own line; later `---` blocks inside the body must
+  // not be matched (the previous indexOf heuristic broke on body HRs).
+  const openEnd = contents.indexOf("\n---", 0);
+  if (openEnd < 0) throw new Error(`Missing frontmatter in ${skillPath}`);
+  const headerStart = openEnd + 1;
+  const headerEnd = contents.indexOf("\n---", headerStart + 4);
+  if (headerEnd < 0) throw new Error(`Missing frontmatter in ${skillPath}`);
+  const header = contents.slice(0, headerEnd);
+  const body = contents.slice(headerEnd);
+  if (/^disable-model-invocation:/m.test(header)) {
+    contents = header.replace(/^disable-model-invocation:.*$/m, "disable-model-invocation: true") + body;
   } else {
-    const closing = contents.indexOf("\n---", 4);
-    if (closing < 0) throw new Error(`Missing frontmatter in ${skillPath}`);
-    contents = `${contents.slice(0, closing)}\ndisable-model-invocation: true${contents.slice(closing)}`;
+    contents = `${header}\ndisable-model-invocation: true\n${body}`;
   }
   await writeFile(skillPath, contents);
 }

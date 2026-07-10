@@ -2,27 +2,12 @@ import { cp, mkdir, readFile, realpath, rename, writeFile } from "node:fs/promis
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { merge } from "./_merge.mjs";
 
 const sourceRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const targetRoot = path.resolve(process.argv[2] || path.join(os.homedir(), ".pi", "agent"));
 const directories = ["agents", "extensions", "project-template", "scripts", "skills", "templates", "tests"];
 const files = [".gitignore", "AGENTS.md", "LICENSE", "README.md", "package.json", "setup.ps1", "setup.sh"];
-
-function merge(defaults, current) {
-  if (Array.isArray(defaults) && Array.isArray(current)) return [...new Set([...defaults, ...current])];
-  if (
-    defaults && current &&
-    typeof defaults === "object" && typeof current === "object" &&
-    !Array.isArray(defaults) && !Array.isArray(current)
-  ) {
-    const result = { ...defaults };
-    for (const [key, value] of Object.entries(current)) {
-      result[key] = key in defaults ? merge(defaults[key], value) : value;
-    }
-    return result;
-  }
-  return current ?? defaults;
-}
 
 async function samePath(left, right) {
   try {

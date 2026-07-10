@@ -1,7 +1,7 @@
 {
   "defaultProvider": "minimax",
-  "defaultModel": "MiniMax/M2.7",
-  "defaultThinkingLevel": "off",
+  "defaultModel": "minimax/MiniMax-M3",
+  "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "theme": "dark",
   "shellCommandPrefix": "shopt -s expand_aliases",
@@ -43,21 +43,6 @@
     "~/.pi/agent/skills/db-introspect",
     "~/.pi/agent/skills/auto-recover",
     "~/.pi/agent/skills/context-memory",
-    "~/.pi/agent/skills/proactive-context",
-    "~/.pi/agent/skills/quick-context",
-    "~/.pi/agent/skills/skill-chain",
-    "~/.pi/agent/skills/improvement-tracker",
-    "~/.pi/agent/skills/task-continuity",
-    "~/.pi/agent/skills/decision-tracker",
-    "~/.pi/agent/skills/daily-standup",
-    "~/.pi/agent/skills/quick-project-switch",
-    "~/.pi/agent/skills/task-linker",
-    "~/.pi/agent/skills/intent-classifier",
-    "~/.pi/agent/skills/memory-summarizer",
-    "~/.pi/agent/skills/tech-stack-detector",
-    "~/.pi/agent/skills/skill-marketplace",
-    "~/.pi/agent/skills/skill-memory-sharing",
-    "~/.pi/agent/skills/chain-of-thought",
     "~/.pi/agent/skills/self-optimization-loop"
   ],
   "enableSkillCommands": true,
@@ -66,7 +51,7 @@
     "+extensions/reload/index.ts",
     "+extensions/todos/index.ts"
   ],
-  "lastChangelogVersion": "0.74.0",
+  "lastChangelogVersion": "0.80.5",
   "terminal": {
     "showTerminalProgress": false
   }
