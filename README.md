@@ -50,7 +50,7 @@ On Windows, run `.\setup.ps1`. The installer merges settings and preserves local
 
 ## Telegram Bot
 
-The Telegram extension lets you chat with pi via @Ben2clawbot.
+The Telegram extension lets you chat with pi via the bot configured in `telegram-config.json`.
 
 ```
 /telegram              — start the exclusive poller and show status

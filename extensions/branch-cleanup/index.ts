@@ -8,9 +8,10 @@
  *   Add "+extensions/branch-cleanup/index.ts" to settings.json extensions array
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { exec } from "node:child_process";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { exec, execFile } from "node:child_process";
 import { promisify } from "node:util";
+const execFileAsync = promisify(execFile);
 
 const execAsync = promisify(exec);
 
@@ -111,7 +112,10 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 			}
 
 			if (action === "delete") {
-				const toDelete = mergedBranches.filter(b => !b.includes(currentBranch) && b !== currentBranch);
+				const force = Boolean(params.force);
+				const WHITELIST = /^[A-Za-z0-9._/-\[]]+$/;
+				const safeBranches = .filter(b => !b.includes(currentBranch) && b !== currentBranch)
+					.filter(b => WHITELIST.test(b));
 
 				if (toDelete.length === 0) {
 					return {
@@ -126,7 +130,7 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 
 				for (const branch of toDelete) {
 					try {
-						await execAsync(`git branch -d ${branch}`, { cwd, encoding: "utf8" });
+						await execFileAsync("git", ["branch", force ? "-D" : "-d", branch], { cwd });
 						deleted.push(branch);
 					} catch {
 						failed.push(branch);
@@ -151,14 +155,5 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 		}
 	});
 
-	// Optional: auto-check after certain git operations
-	pi.on("tool_result", async (event, ctx) => {
-		// Could trigger after a merge completes
-		// For now, just make it available via command
-	});
 
-	// Provide a slash command for easy access
-	pi.on("agent_start", async (_event, ctx) => {
-		// Nothing needed - command is available
-	});
 }

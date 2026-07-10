@@ -56,7 +56,9 @@ function acquireLock(): boolean {
 		return true;
 	} catch {
 		try {
-			const pid = Number(readFileSync(lockPath, "utf8"));
+			const raw = readFileSync(lockPath, "utf8");
+			const pid = Number(raw);
+			if (!Number.isInteger(pid) || pid <= 0) throw new Error("invalid lock pid");
 			process.kill(pid, 0);
 			return false;
 		} catch {
@@ -120,6 +122,7 @@ async function poll(pi: ExtensionAPI): Promise<void> {
 	const config = readConfig();
 	if (!config?.enabled || !config.token || !acquireLock()) return;
 	const controller = new AbortController();
+	let consecutiveFailures = 0;
 	abortController = controller;
 
 	while (!controller.signal.aborted) {
@@ -136,11 +139,14 @@ async function poll(pi: ExtensionAPI): Promise<void> {
 				activeChatId = message.chat.id;
 				pi.sendUserMessage(`[Telegram user ${userId}] ${message.text}`, { deliverAs: "followUp" });
 			}
-			if (updates.length) saveConfig(config);
+			if (updates.length) { saveConfig(config); consecutiveFailures = 0; }
 		} catch (error) {
 			if (controller.signal.aborted) break;
 			lastError = error instanceof Error ? error.message : String(error);
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			// Exponential backoff capped at 60s
+			const delayMs = Math.min(60_000, 2000 * 2 ** consecutiveFailures);
+			consecutiveFailures = Math.min(consecutiveFailures + 1, 5);
+			await new Promise((resolve) => setTimeout(resolve, delayMs));
 		}
 	}
 }
@@ -153,7 +159,12 @@ export default function telegramExtension(pi: ExtensionAPI) {
 	pi.on("agent_end", async (event) => {
 		const config = readConfig();
 		const text = assistantText(event);
-		if (config?.enabled && activeChatId && text) await sendText(config, activeChatId, text);
+		if (!config?.enabled || !activeChatId || !text) return;
+		try {
+			await sendText(config, activeChatId, text);
+		} catch (error) {
+			lastError = error instanceof Error ? error.message : String(error);
+		}
 	});
 
 	pi.on("session_shutdown", () => {

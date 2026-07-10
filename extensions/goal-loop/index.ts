@@ -99,6 +99,26 @@ function resolveMaxTurns(): number {
 	return DEFAULT_MAX_TURNS;
 }
 
+
+// ponytail: surface last tool call when assistant produced no prose text
+function extractLastToolSummary(branch) {
+	for (let i = branch.length - 1; i >= 0; i--) {
+		const entry = branch[i];
+		if (entry.type !== "message") continue;
+		const msg = entry.message;
+		if (!msg || msg.role !== "assistant") continue;
+		const content = msg.content;
+		if (!Array.isArray(content)) continue;
+		const calls = [];
+		for (const block of content) {
+			if (!block || typeof block !== "object") continue;
+			const b = block;
+			if (b.type === "toolCall" && b.name) calls.push(b.name + "(" + JSON.stringify(b.input || {}).slice(0, 200) + ")");
+		}
+		if (calls.length) return "agent last action: " + calls.slice(-3).join("; ");
+	}
+	return undefined;
+}
 function extractAssistantText(message: unknown): string {
 	if (!message || typeof message !== "object") return "";
 	const m = message as { role?: string; content?: unknown };
@@ -166,6 +186,7 @@ export default function (pi: ExtensionAPI) {
 			// ignore
 		}
 
+		const branchForEvent = (event as any).messages ?? (event as any).branch ?? [];
 		const lastResponse = extractAssistantText(event.message);
 		if (!lastResponse.trim()) return; // empty-response skip (transient API errors)
 
