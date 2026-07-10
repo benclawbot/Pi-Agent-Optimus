@@ -9,8 +9,8 @@
  *   Add "+extensions/context-hotloader/index.ts" to settings.json extensions array
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { existsSync, readFileSync } from "node:fs";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 
 interface ProjectConfig {
@@ -83,7 +83,7 @@ function scanProjectConfig(cwd: string): ProjectConfig {
 
 	for (const file of CONFIG_FILES) {
 		const filePath = path.join(cwd, file.name);
-		if (file.dir ? existsSync(filePath) : existsSync(filePath)) {
+		if (file.dir ? (() => { try { return statSync(filePath).isDirectory(); } catch { return false; } })() : existsSync(filePath)) {
 			(config as any)[file.key] = true;
 		}
 	}

@@ -1,28 +1,11 @@
 import { readFile, rename, writeFile } from "node:fs/promises";
+import { merge } from "./_merge.mjs";
 
 const [defaultsPath, currentPath] = process.argv.slice(2);
 
 if (!defaultsPath || !currentPath) {
   console.error("Usage: node merge-settings.mjs <defaults.json> <current.json>");
   process.exit(2);
-}
-
-function merge(defaults, current) {
-  if (Array.isArray(defaults) && Array.isArray(current)) {
-    return [...new Set([...defaults, ...current])];
-  }
-  if (
-    defaults && current &&
-    typeof defaults === "object" && typeof current === "object" &&
-    !Array.isArray(defaults) && !Array.isArray(current)
-  ) {
-    const result = { ...defaults };
-    for (const [key, value] of Object.entries(current)) {
-      result[key] = key in defaults ? merge(defaults[key], value) : value;
-    }
-    return result;
-  }
-  return current ?? defaults;
 }
 
 const defaults = JSON.parse(await readFile(defaultsPath, "utf8"));
