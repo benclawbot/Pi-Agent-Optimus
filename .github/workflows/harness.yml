@@ -23,4 +23,4 @@ jobs:
         with:
           node-version: "22"
       - name: Run harness and behavioral security regression tests
-        run: node --test tests/harness.test.mjs tests/behavioral/fusion.test.mjs tests/behavioral/subagent.test.mjs
+        run: node --test tests/harness.test.mjs tests/frontmatter.test.mjs tests/behavioral/fusion.test.mjs tests/behavioral/subagent.test.mjs
