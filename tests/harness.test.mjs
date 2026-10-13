@@ -182,3 +182,12 @@ test("fusion uses parallel MiniMax panelists and an M3 judge", async () => {
   assert.match(fusion, /contradictions/i);
   assert.match(fusion, /blind spots/i);
 });
+
+test("branch cleanup avoids shell interpolation and requires explicit confirmation", async () => {
+  const code = await source("extensions/branch-cleanup/index.ts");
+  assert.match(code, /execFileAsync\("git",\s*\["branch"/);
+  assert.doesNotMatch(code, /execAsync\(/);
+  assert.doesNotMatch(code, /await exec\(/);
+  assert.match(code, /!force && safeBranches\.length > 0/);
+  assert.match(code, /execFileAsync\("git",\s*\["branch",\s*force \? "-D" : "-d",\s*branch\]/);
+});
