@@ -1,6 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { markSkillManualOnly } from "./_frontmatter.mjs";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const manualSkills = [
@@ -31,21 +32,7 @@ const manualSkills = [
 for (const name of manualSkills) {
   const skillPath = path.join(root, "skills", name, "SKILL.md");
   let contents = await readFile(skillPath, "utf8");
-  // Find the FIRST horizontal rule after the opening fence. The frontmatter is
-  // delimited by `---` on its own line; later `---` blocks inside the body must
-  // not be matched (the previous indexOf heuristic broke on body HRs).
-  const openEnd = contents.indexOf("\n---", 0);
-  if (openEnd < 0) throw new Error(`Missing frontmatter in ${skillPath}`);
-  const headerStart = openEnd + 1;
-  const headerEnd = contents.indexOf("\n---", headerStart + 4);
-  if (headerEnd < 0) throw new Error(`Missing frontmatter in ${skillPath}`);
-  const header = contents.slice(0, headerEnd);
-  const body = contents.slice(headerEnd);
-  if (/^disable-model-invocation:/m.test(header)) {
-    contents = header.replace(/^disable-model-invocation:.*$/m, "disable-model-invocation: true") + body;
-  } else {
-    contents = `${header}\ndisable-model-invocation: true\n${body}`;
-  }
+  contents = markSkillManualOnly(contents);
   await writeFile(skillPath, contents);
 }
 
