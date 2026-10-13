@@ -1,0 +1,26 @@
+name: Pi Agent harness validation
+
+on:
+  pull_request:
+  push:
+    branches: [master, audit/fix-2026-07-10]
+
+permissions:
+  contents: read
+
+jobs:
+  harness:
+    name: Node tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run harness and behavioral security regression tests
+        run: node --test tests/harness.test.mjs tests/behavioral/fusion.test.mjs tests/behavioral/subagent.test.mjs
