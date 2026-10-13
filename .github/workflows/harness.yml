@@ -28,3 +28,5 @@ jobs:
           node-version: "22"
       - name: Run harness and behavioral security regression tests
         run: npm test
+      - name: Verify clean install and upgrade without touching user home
+        run: node scripts/verify-fresh-install.mjs
