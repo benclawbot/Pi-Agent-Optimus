@@ -3,7 +3,11 @@ name: Pi Agent harness validation
 on:
   pull_request:
   push:
-    branches: [master, audit/fix-2026-07-10]
+    branches: [master]
+
+concurrency:
+  group: pi-harness-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
