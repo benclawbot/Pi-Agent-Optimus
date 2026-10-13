@@ -70,6 +70,29 @@ test("settings installation merges resources without replacing user defaults", a
   assert.deepEqual(merged.compaction, { enabled: true, reserveTokens: 12000 });
 });
 
+test("settings merge deduplicates deeply equivalent hook objects across repeated installs", async () => {
+  const { merge } = await import("../scripts/_merge.mjs");
+  const defaults = {
+    hooks: { PreToolUse: [
+      { matcher: "Bash", hooks: [{ type: "command", command: "rtk hook claude" }] },
+    ] },
+    extensions: ["a", "b"],
+  };
+  const current = JSON.parse(JSON.stringify(defaults));
+  current.extensions.push("custom");
+  const once = merge(defaults, current);
+  const twice = merge(defaults, JSON.parse(JSON.stringify(once)));
+  assert.deepEqual(twice, once);
+  assert.equal(once.hooks.PreToolUse.length, 1);
+  assert.deepEqual(once.extensions, ["a", "b", "custom"]);
+  const reversed = {
+    hooks: { PreToolUse: [
+      { hooks: [{ command: "rtk hook claude", type: "command" }], matcher: "Bash" },
+    ] },
+  };
+  assert.equal(merge(defaults, reversed).hooks.PreToolUse.length, 1);
+});
+
 test("todo panel stays visible and exposes a refresh command", async () => {
   const panel = await source("extensions/todo-panel/index.ts");
 
