@@ -2,7 +2,12 @@
   "name": "pi-config",
   "version": "1.0.0",
   "description": "Personal pi coding agent configuration — clone to ~/.pi/agent/",
-  "keywords": ["pi-package"],
+  "keywords": [
+    "pi-package"
+  ],
   "author": "HazAT",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tests/harness.test.mjs tests/frontmatter.test.mjs tests/behavioral/fusion.test.mjs tests/behavioral/subagent.test.mjs"
+  }
 }
