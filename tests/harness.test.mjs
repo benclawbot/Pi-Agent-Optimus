@@ -30,12 +30,13 @@ test("subagents default to the current parent model", async () => {
   assert.doesNotMatch(subagent, /params\.model \|\| "minimax\//);
 });
 
-test("the distributable settings keep the active package and extensions", async () => {
+test("the distributable settings activate only configured local extensions", async () => {
   const settings = JSON.parse(await source("settings.json"));
 
-  assert.ok(settings.packages?.includes("npm:context-mode"));
-  assert.ok(settings.extensions?.includes("+extensions/subagent/index.ts"));
-  assert.ok(settings.extensions?.includes("+extensions/repo-map/index.ts"));
+  for (const extension of ["btw", "reload", "todos"]) {
+    assert.ok(settings.extensions?.includes(`+extensions/${extension}/index.ts`));
+  }
+  assert.equal(new Set(settings.extensions).size, settings.extensions.length);
 });
 
 test("settings installation merges resources without replacing user defaults", async () => {
@@ -103,7 +104,8 @@ test("Telegram bridge is enabled and guarded by a single-instance lock", async (
   const settings = JSON.parse(await source("settings.json"));
   const telegram = await source("extensions/telegram/index.ts");
 
-  assert.ok(settings.extensions?.includes("+extensions/telegram/index.ts"));
+  // Telegram remains available on disk but is intentionally opt-in.
+  assert.ok(!settings.extensions?.includes("+extensions/telegram/index.ts"));
   assert.match(telegram, /openSync\(lockPath, "wx"\)/);
   assert.match(telegram, /allowedUsers\.includes/);
   assert.match(telegram, /renameSync\(tempPath, configPath\)/);
@@ -157,7 +159,7 @@ test("installer reproduces the harness without replacing user settings", async (
 
   const installed = JSON.parse(await readFile(path.join(temp, "settings.json"), "utf8"));
   assert.equal(installed.defaultModel, "user-model");
-  assert.ok(installed.extensions.includes("+extensions/telegram/index.ts"));
+  assert.ok(installed.extensions.includes("+extensions/todos/index.ts"));
   assert.ok(installed.extensions.includes("+extensions/user-only/index.ts"));
   assert.equal(await readFile(path.join(temp, "auth.json"), "utf8"), "keep-me");
   await access(path.join(temp, "extensions", "todo-panel", "index.ts"));
@@ -168,7 +170,8 @@ test("fusion uses parallel MiniMax panelists and an M3 judge", async () => {
   const settings = JSON.parse(await source("settings.json"));
   const fusion = await source("extensions/fusion/index.ts");
 
-  assert.ok(settings.extensions?.includes("+extensions/fusion/index.ts"));
+  // Fusion's behavior is tested independently; enabling it is opt-in.
+  assert.ok(!settings.extensions?.includes("+extensions/fusion/index.ts"));
   assert.match(fusion, /Promise\.allSettled/);
   assert.match(fusion, /minimax\/MiniMax-M2\.7/);
   assert.match(fusion, /minimax\/MiniMax-M3/);
