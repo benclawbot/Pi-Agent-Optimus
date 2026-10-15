@@ -133,13 +133,14 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 					};
 				}
 
+				// Always use safe deletion (-d); force confirms the action, not data loss.
 				// Use execFile (not shell) so branch names are passed as argv, never interpolated.
 				const deleted: string[] = [];
 				const failed: string[] = [];
 
 				for (const branch of safeBranches) {
 					try {
-						await execFileAsync("git", ["branch", force ? "-D" : "-d", branch], { cwd });
+						await execFileAsync("git", ["branch", "-d", branch], { cwd });
 						deleted.push(branch);
 					} catch {
 						failed.push(branch);
