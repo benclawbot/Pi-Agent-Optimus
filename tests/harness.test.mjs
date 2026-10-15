@@ -212,5 +212,5 @@ test("branch cleanup avoids shell interpolation and requires explicit confirmati
   assert.doesNotMatch(code, /execAsync\(/);
   assert.doesNotMatch(code, /await exec\(/);
   assert.match(code, /!force && safeBranches\.length > 0/);
-  assert.match(code, /execFileAsync\("git",\s*\["branch",\s*force \? "-D" : "-d",\s*branch\]/);
+  assert.match(code, /execFileAsync\("git",\s*\["branch",\s*"-d",\s*branch\]/);
 });
