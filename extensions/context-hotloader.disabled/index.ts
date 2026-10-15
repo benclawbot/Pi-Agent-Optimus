@@ -9,7 +9,7 @@
  *   Add "+extensions/context-hotloader/index.ts" to settings.json extensions array
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -141,7 +141,7 @@ export default function contextHotloaderExtension(pi: ExtensionAPI) {
 		// Store in session context for agents to use
 		pi.sendUserMessage(
 			`[Context Hotloader] Detected: ${parts.join(" | ")}\n` +
-			toRead.length > 0 ? `Auto-loading config: ${toRead.map(f => path.basename(f)).join(", ")}` : "",
+			(toRead.length > 0 ? `Auto-loading config: ${toRead.map(f => path.basename(f)).join(", ")}` : ""),
 			{ deliverAs: "steer" }
 		);
 	});

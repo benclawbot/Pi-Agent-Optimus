@@ -1,6 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { markSkillManualOnly } from "./_frontmatter.mjs";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const manualSkills = [
@@ -31,13 +32,7 @@ const manualSkills = [
 for (const name of manualSkills) {
   const skillPath = path.join(root, "skills", name, "SKILL.md");
   let contents = await readFile(skillPath, "utf8");
-  if (/^disable-model-invocation:/m.test(contents)) {
-    contents = contents.replace(/^disable-model-invocation:.*$/m, "disable-model-invocation: true");
-  } else {
-    const closing = contents.indexOf("\n---", 4);
-    if (closing < 0) throw new Error(`Missing frontmatter in ${skillPath}`);
-    contents = `${contents.slice(0, closing)}\ndisable-model-invocation: true${contents.slice(closing)}`;
-  }
+  contents = markSkillManualOnly(contents);
   await writeFile(skillPath, contents);
 }
 

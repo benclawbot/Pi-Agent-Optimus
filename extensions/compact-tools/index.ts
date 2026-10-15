@@ -11,9 +11,9 @@
  *   pi -e ./index.ts
  */
 
-import type { BashToolDetails, EditToolDetails, ExtensionAPI, ReadToolDetails } from "@mariozechner/pi-coding-agent";
-import { createBashTool, createEditTool, createReadTool, createWriteTool } from "@mariozechner/pi-coding-agent";
-import { Text } from "@mariozechner/pi-tui";
+import type { BashToolDetails, EditToolDetails, ExtensionAPI, ReadToolDetails } from "@earendil-works/pi-coding-agent";
+import { createBashTool, createEditTool, createReadTool, createWriteTool } from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
 
 export default function (pi: ExtensionAPI) {
 	const cwd = process.cwd();
@@ -68,7 +68,7 @@ export default function (pi: ExtensionAPI) {
 			const output = (result.content[0] as any)?.text ?? "";
 			const exitMatch = output.match(/exit code: (\d+)/);
 			const exitCode = exitMatch ? parseInt(exitMatch[1], 10) : null;
-			const lineCount = output.split("\n").filter(l => l.trim()).length;
+			const lineCount = output.split("\n").filter((l: string) => l.trim()).length;
 			const status = exitCode === 0 || exitCode === null ? theme.fg("success", "→ done") : theme.fg("error", `→ exit ${exitCode}`);
 			return new Text(`${status}${theme.fg("dim", ` (${lineCount} lines)`)}`, 0, 0);
 		},

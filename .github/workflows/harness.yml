@@ -1,0 +1,50 @@
+name: Pi Agent harness validation
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+concurrency:
+  group: pi-harness-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  harness:
+    name: Node tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run harness and behavioral security regression tests
+        run: npm test
+      - name: Verify clean install and upgrade without touching user home
+        run: node scripts/verify-fresh-install.mjs
+      - name: Verify TypeScript API compatibility with Pi 0.80.5
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          npm install --ignore-scripts --no-save --no-package-lock \
+            typescript@5.9.3 @types/node@22 \
+            @earendil-works/pi-coding-agent@0.80.5 \
+            @earendil-works/pi-tui@0.80.5
+          ./node_modules/.bin/tsc --noEmit --strict --skipLibCheck \
+            --target ES2022 --module NodeNext --moduleResolution NodeNext \
+            --types node \
+            extensions/branch-cleanup/index.ts \
+            extensions/cmux/index.ts \
+            extensions/cmux.disabled/index.ts \
+            extensions/compact-tools/index.ts \
+            extensions/compact-tools.disabled/index.ts \
+            extensions/context-hotloader/index.ts \
+            extensions/context-hotloader.disabled/index.ts

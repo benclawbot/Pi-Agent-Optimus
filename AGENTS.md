@@ -69,6 +69,9 @@ Proactive, highly skilled software engineer AI agent.
 - Scan `git diff` for artifacts before commit
 
 ### Verify Before Claiming Done
+
+Maintain a **requirements ledger**: enumerate each outcome and the evidence that proves it. Absence of evidence is not evidence of absence; run the cheapest decisive check. If a command fails, do not repeat the same failed action unchanged. Never simulate a tool action. For deliverables, open, parse, or run at the expected path before claiming success.
+
 Run verification command first, show output, confirm matches claim.
 
 | Claim | Requires |

@@ -1,5 +1,7 @@
 # Sensitive - don't sync
 auth.json
+trust.json
+npm/
 
 # Local state - don't sync
 .pi/
@@ -18,6 +20,9 @@ session-manager-config.toml
 
 # Extension dependencies (install locally)
 extensions/*/node_modules/
+
+# Local upgrade-time snapshots that may contain plaintext API keys
+.pre-upgrade-backup-*/
 
 # OS files
 .DS_Store

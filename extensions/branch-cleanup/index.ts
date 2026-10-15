@@ -8,11 +8,10 @@
  *   Add "+extensions/branch-cleanup/index.ts" to settings.json extensions array
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { exec } from "node:child_process";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 interface Branch {
 	name: string;
@@ -23,11 +22,11 @@ interface Branch {
 async function getBranches(cwd: string): Promise<Branch[]> {
 	try {
 		// Get current branch first
-		const { stdout: current } = await execAsync("git branch --show-current", { cwd, encoding: "utf8" });
+		const { stdout: current } = await execFileAsync("git", ["branch", "--show-current"], { cwd });
 		const currentBranch = current.trim();
 
 		// Get all local branches
-		const { stdout } = await execAsync("git branch --format='%(refname:short) %(HEAD)'", { cwd, encoding: "utf8" });
+		const { stdout } = await execFileAsync("git", ["branch", "--format=%(refname:short) %(HEAD)"], { cwd, encoding: "utf8" });
 		const branches: Branch[] = [];
 
 		for (const line of stdout.split("\n").filter(Boolean)) {
@@ -48,7 +47,7 @@ async function getBranches(cwd: string): Promise<Branch[]> {
 
 async function checkMergedBranches(cwd: string): Promise<string[]> {
 	try {
-		const { stdout } = await execAsync("git branch --merged main 2>/dev/null || git branch --merged master 2>/dev/null || git branch --merged HEAD", { cwd, encoding: "utf8" });
+		const { stdout } = await execFileAsync("git", ["branch", "--merged"], { cwd });
 		return stdout.split("\n").map(b => b.trim()).filter(Boolean);
 	} catch {
 		return [];
@@ -77,7 +76,7 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 		},
 		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
 			const cwd = ctx.cwd;
-			const action = params.action ?? "check";
+			const action: string = String(params.action ?? "check");
 
 			if (action === "list") {
 				const branches = await getBranches(cwd);
@@ -111,22 +110,37 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 			}
 
 			if (action === "delete") {
+				const force = Boolean(params.force);
 				const toDelete = mergedBranches.filter(b => !b.includes(currentBranch) && b !== currentBranch);
 
-				if (toDelete.length === 0) {
+				// Branch names must be a tight whitelist — the previous code
+				// interpolated into a shell string and would break (or worse)
+				// for branch names containing spaces or shell metacharacters.
+				const safeBranches = toDelete.filter(b => /^[A-Za-z0-9._/-\[\]]+$/.test(b));
+				const unsafe = toDelete.filter(b => !/^[A-Za-z0-9._/-\[\]]+$/.test(b));
+
+				if (!force && safeBranches.length > 0) {
+					return {
+						content: [{ type: "text", text: `Will delete ${safeBranches.length} branches: ${safeBranches.join(", ")}. Re-run with force: true to confirm.` }],
+						details: { pending: safeBranches, blocked: unsafe, currentBranch }
+					};
+				}
+
+				if (safeBranches.length === 0) {
 					return {
 						content: [{ type: "text", text: "No merged branches to delete." }],
 						details: { deleted: [], currentBranch }
 					};
 				}
 
-				// Delete each branch
+				// Always use safe deletion (-d); force confirms the action, not data loss.
+				// Use execFile (not shell) so branch names are passed as argv, never interpolated.
 				const deleted: string[] = [];
 				const failed: string[] = [];
 
-				for (const branch of toDelete) {
+				for (const branch of safeBranches) {
 					try {
-						await execAsync(`git branch -d ${branch}`, { cwd, encoding: "utf8" });
+						await execFileAsync("git", ["branch", "-d", branch], { cwd });
 						deleted.push(branch);
 					} catch {
 						failed.push(branch);
@@ -137,10 +151,13 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 				if (failed.length > 0) {
 					message += `\nFailed to delete: ${failed.join(", ")} (may not be fully merged)`;
 				}
+				if (unsafe.length > 0) {
+					message += `\nSkipped unsafe names: ${unsafe.join(", ")}`;
+				}
 
 				return {
 					content: [{ type: "text", text: message }],
-					details: { deleted, failed, currentBranch }
+					details: { deleted, failed, skipped: unsafe, currentBranch }
 				};
 			}
 
@@ -151,14 +168,4 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 		}
 	});
 
-	// Optional: auto-check after certain git operations
-	pi.on("tool_result", async (event, ctx) => {
-		// Could trigger after a merge completes
-		// For now, just make it available via command
-	});
-
-	// Provide a slash command for easy access
-	pi.on("agent_start", async (_event, ctx) => {
-		// Nothing needed - command is available
-	});
 }
