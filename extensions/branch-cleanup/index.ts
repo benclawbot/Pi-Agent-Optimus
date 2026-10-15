@@ -76,7 +76,7 @@ export default function branchCleanupExtension(pi: ExtensionAPI) {
 		},
 		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
 			const cwd = ctx.cwd;
-			const action = params.action ?? "check";
+			const action: string = String(params.action ?? "check");
 
 			if (action === "list") {
 				const branches = await getBranches(cwd);
