@@ -141,7 +141,7 @@ export default function contextHotloaderExtension(pi: ExtensionAPI) {
 		// Store in session context for agents to use
 		pi.sendUserMessage(
 			`[Context Hotloader] Detected: ${parts.join(" | ")}\n` +
-			toRead.length > 0 ? `Auto-loading config: ${toRead.map(f => path.basename(f)).join(", ")}` : "",
+			(toRead.length > 0 ? `Auto-loading config: ${toRead.map(f => path.basename(f)).join(", ")}` : ""),
 			{ deliverAs: "steer" }
 		);
 	});
