@@ -30,3 +30,21 @@ jobs:
         run: npm test
       - name: Verify clean install and upgrade without touching user home
         run: node scripts/verify-fresh-install.mjs
+      - name: Verify TypeScript API compatibility with Pi 0.80.5
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          npm install --ignore-scripts --no-save --no-package-lock \
+            typescript@5.9.3 @types/node@22 \
+            @earendil-works/pi-coding-agent@0.80.5 \
+            @earendil-works/pi-tui@0.80.5
+          ./node_modules/.bin/tsc --noEmit --strict --skipLibCheck \
+            --target ES2022 --module NodeNext --moduleResolution NodeNext \
+            --types node \
+            extensions/branch-cleanup/index.ts \
+            extensions/cmux/index.ts \
+            extensions/cmux.disabled/index.ts \
+            extensions/compact-tools/index.ts \
+            extensions/compact-tools.disabled/index.ts \
+            extensions/context-hotloader/index.ts \
+            extensions/context-hotloader.disabled/index.ts
